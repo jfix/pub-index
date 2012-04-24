@@ -1,0 +1,31 @@
+$Id$
+
+Ingestion via Infostudio
+------------------------
+
+short summary of how to configure ingestion flow
+
+* name: kapp-t4-ingest (could be anything)
+
+
+h1. Collect
+
+
+h2. Filesystem Directory
+
+* Path: /Users/jakob/Projects/kappa-t4/out 
+
+(where we should have the subdirectories for the different pubtypes)
+
+h1. Load
+
+h2. URI structure
+
+* Path: /content{$path strip-prefix="/Users/jakob/Projects/kappa-t4/out"}/{$filename}{$dot-ext}
+* Replace
+
+h2. Collection
+
+* metadata
+
+leave everything else as is

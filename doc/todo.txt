@@ -1,0 +1,47 @@
+todo
+----
+
+* OK: paging search results => basic, all pages always shown, clever limiting TODO 
+* opensearch => description document ok, link ok, search results TODO, test TODO
+* OK: rewrite => basic rewrite for display and search
+
+* facets by: 
+** topics
+** country (show expandable list, or type ahead?) 
+** language (select from a list of little icons?) 
+** pubtype
+** pub date (select slider)
+** first letter (A-Z)
+
+* search: OK (but some indexes need checking suggest/search differences)
+
+
+* generic paging mechanism for both search/browse
+
+
+* OK: suggest, but search kind of screws up TODO
+* OK: wordcloud => looking at html code and algorithm for mapping
+
+
+* slider thingy: list lates four publications (flagships?) + one page for upcoming
+  ==> goes to a browse view primed with a time facet constraint
+ 
+* google map: show bubbles (different sizes) for each country we handle, 
+  ==> click on here leads to browse page primed by country facet
+
+
+* embed L/M/S (script/div or iframe)
+  * L: image + title + abstract + publication date + link 
+  * M: thumbnail + title + date + link
+  * S: title, date, link
+
+
+* integration of online-reader?  easily possible (actually works already ...)
+
+
+* federated search (basically ready) - opensearch.xml + rss results returned
+
+
+list scenarios for kimpoc
+-------------------------
+* the ppt demo based on our powerpoint presentations
