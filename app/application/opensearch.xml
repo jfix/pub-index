@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>books.oecd.org search</ShortName>
+  <Description>Find OECD publications quickly on books.oecd.org</Description>
+  <Tags>publications oecd search</Tags>
+  <Contact>opensearch@books.oecd.org</Contact>
+  <SyndicationRight>open</SyndicationRight>
+  <Url type="application/rss+xml" template="http://localhost:60045/application/xquery/opensearch.xqy?q={searchTerms}&amp;from={startPage?}&amp;format=rss"/>
+
+  <!--  
+    once rewriter for opensearch in place use this instead
+    <Url type="application/rss+xml" 
+    template="http://localhost:60045/opensearch?q={searchTerms}&amp;from={startPage?}&amp;format=rss"/>
+-->
+</OpenSearchDescription>
