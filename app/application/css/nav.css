@@ -1,0 +1,157 @@
+/* 
+  $Id$
+  
+  lifted from official OECD css here:
+   http://www.oecd.org/dataoecd/style/newSite/oecd2010.css
+*/
+/* --------------------------------------------------------------
+
+B - Main Navigation Section
+
+-------------------------------------------------------------- */
+
+#nav {
+	position: relative;
+	margin-bottom: 2em;
+	}
+
+#nav ul.navCtn {
+	float: left;
+	margin: 0; padding: 0;
+	border-top: 2px solid #018fd1;
+	background: #008FD1 url(/assets/images/mainnavbg.png) repeat-x;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2973bd), to(#018fd0));
+	background: -moz-linear-gradient(center bottom, #018fd0 1%, #2973bd 100% );
+	list-style-type: none;
+	height: 32px;
+	width: 100%;
+	}
+#nav li.navItem {
+	float: left;
+	padding: 0 2px 0 0;
+	background: url(/assets/images/splitter.png) right center no-repeat;
+	}
+
+#nav li.navItem a.navAct {
+	display: block;
+	position: relative;
+	width: 156px;
+	outline: none;
+	text-decoration: none;
+	font-size: 1.5em;
+	color: #fff;
+	text-align: center;
+	}
+
+#nav li.navItem a.navAct span {
+	display: block;
+	padding: 7px 0;
+	}
+
+#nav li.bLast {
+	padding: 0;
+	background: none;
+	}
+#nav li.bLast a.navAct {
+	width: 160px;
+	}
+
+#nav li.navItem a.navAct:hover, #nav li.activePage a.navAct, #nav li.current a.navAct {
+	-webkit-border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	border-radius: 3px 3px 0 0;
+	}
+#nav li.bFirst a.navAct, #nav li.bFirst a.navAct:hover {
+	-webkit-border-radius: 0 3px 0 0;
+	-moz-border-radius: 0 3px 0 0;
+	border-radius: 0 3px 0 0;
+	}
+#nav li.bLast a.navAct, #nav li.bLast a.navAct:hover {
+	-webkit-border-radius: 3px 0 0 0;
+	-moz-border-radius: 3px 0 0 0;
+	border-radius: 3px 0 0 0;
+	}
+#nav li.navItem a.navAct:hover {
+	background-color: #c5d7ed;
+	color: #2973bd;
+	}
+#nav li.activePage a.navAct {
+	background-color: #fefefe!important;
+	color: #2973bd!important;
+	}
+#nav li.current a.navAct {
+	background-color: #ffffff!important;
+	color: #2973bd!important;
+	}
+
+
+/* noscript additional styles
+*/
+
+.scriptless #mainPanels {
+	clear:both;
+	position: relative;
+	z-index: 310;
+	}
+.scriptless #mainPanels h2 {
+	clear: both;
+	}
+.scriptless #mainPanels .tabs {
+	display: none;
+	}
+.scriptless #mainPanels ul {
+	float: left;
+	}
+.scriptless #mainPanels li {
+	float: left;
+	width: 20%;
+	}
+
+
+/* --------------------------------------------------------------
+
+D - Footer
+
+-------------------------------------------------------------- */
+
+#footer .footerNav {
+  width: 100%;
+	float: left;
+	margin: 35px 0 0 0; padding: 0;
+	list-style-type: none;
+	font-size: .75em; 
+	}
+#footer .footerNav li {
+	float: left;
+	border-top: 1px solid #dfdfdf;
+	margin: 0 0 0 2px;
+	padding: 9px 0;
+	width: 138px; /* incredible: pixel-precise width! where will the madness end! */
+	background: #fafafa;
+	}
+#footer .footerNav li a {
+	outline: none;
+	display: block;
+	padding: 0 3px;
+	text-decoration: none;
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	color: #333; text-align: center;
+	}
+
+#footer .footerNav li a:hover {
+	 color: #000;
+	 }
+#footer .footerNav li.last {
+	width: 138px;
+	border-color: #205ca2;
+	background: #2973bd;
+	background:  -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2973bd), to(#018fd0));
+	background:  -moz-linear-gradient(center bottom, #018fd0 1%, #2973bd 100% );
+	color: #fff;
+	}
+#footer .footerNav li.last a {
+	color: #ecf7fd;
+	 }
+#footer .footerNav li.last a:hover {
+	 color: #fff;
+	 }
