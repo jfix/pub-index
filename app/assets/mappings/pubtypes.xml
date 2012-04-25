@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<!-- simply needed to colour labels differently for different publication types; in the search results -->
+<type-mappings>
+  <type color="red">book</type>
+  <type color="blue">periodical</type>
+  <type color="green">summary</type>
+  <type color="white">chapter</type>
+  <type color="yellow">journal</type>
+  <type color="brown">default</type>
+</type-mappings>

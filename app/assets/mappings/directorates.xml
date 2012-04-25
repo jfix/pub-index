@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<directorates>
+  <directorate id="daf">Directorate for Financial and Enterprise Affairs</directorate>
+  <directorate id="env">Environment Directorate</directorate>
+  <directorate id="tad">Trade and Agriculture Directorate</directorate>
+  <directorate id="edu">Directorate for Education</directorate>
+  <directorate id="pac">Public Affairs and Communications</directorate>
+  <directorate id="ccnm">Centre for Co-operation with Non-Members</directorate>
+  <directorate id="sti">Directorate for Science, Technology and Industry</directorate>
+  <directorate id="dcd">Development Co-operation Directorate</directorate>
+  <directorate id="ctpa">Centre for Tax Policy and Administration</directorate>
+  <directorate id="eco">Economics Department</directorate>
+  <directorate id="gov">Public Governance and Territorial Development Directorate</directorate>
+  <directorate id="els">Directorate for Employment, Labour and Social Affairs</directorate>
+  <directorate id="cemt">European Conference of Ministers of Transport</directorate>
+  <directorate id="swac">Sahel and West Africa Club</directorate>
+  <directorate id="nea">Nuclear Energy Agency</directorate>
+  <directorate id="sge"/>
+  <directorate id="iea">International Energy Agency</directorate>
+  <directorate id="dev">Development Centre</directorate>
+  <directorate id="std">Statistics Directorate</directorate>
+</directorates>
