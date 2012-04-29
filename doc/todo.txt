@@ -1,6 +1,16 @@
 todo
 ----
 
+* encoding issue?
+* from chapter to parent (see http://localhost:60045/chapter/eco_surveys-fin-2010-1-fr), currently hard-coded to /book/)
+* url system (book/, chapter/, ...) is that useful?
+* type ahead for search not really working (ui-wise)
+* also, do we want to search for titles or for words or ... ?
+
+* listing to take aspects of OECD.org lists, use thumbnails (needs search-transform?)
+
+
+
 * OK: paging search results => basic, all pages always shown, clever limiting TODO 
 * opensearch => description document ok, link ok, search results TODO, test TODO
 * OK: rewrite => basic rewrite for display and search
