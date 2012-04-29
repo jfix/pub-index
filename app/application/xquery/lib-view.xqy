@@ -44,7 +44,7 @@ declare function view:html-page(
         <script src="/application/foundation/javascripts/modernizr.foundation.js">//</script>
         <script src="/application/foundation/javascripts/foundation.js">//</script>
         <script src="/application/foundation/javascripts/app.js">//</script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">//</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">//</script>
         <script src="/application/jquery/jquery.ui.core.js"></script>
       	<script src="/application/jquery/jquery.ui.widget.js"></script>
       	<script src="/application/jquery/jquery.ui.position.js"></script>
@@ -212,7 +212,6 @@ declare function view:html-header(
         <span class="slogan">BETTER BOOKS FOR BETTER LIVES</span>
       </div>
       <div class="five columns" style="text-align:right">
-        <img src="http://placehold.it/1x85/ffffff"/>
         {$s:search-form}
       </div>
     </div>

@@ -170,7 +170,7 @@ declare variable $lib-search:page-title as xs:string := if ($term) then concat("
 declare variable $lib-search:search-form as node() :=
   <div>
     <form action="/application/xquery/search.xqy" class="nice">
-      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input"/>
+      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input align-bottom"/>
     </form>
   </div>;
 

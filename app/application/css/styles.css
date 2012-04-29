@@ -66,3 +66,9 @@ body {
    height:300px;
    width: 100%;
 }
+
+.align-bottom {
+    position: absolute;
+    top: 93px;
+    right: 0;
+}
