@@ -59,10 +59,12 @@ declare function browse:browse-results(
     <div>
     {
       let $r := xdmp:xslt-eval($browse-results-xslt, $result)
-      return (
+      return ((:
         xdmp:log(
-          concat("****** XSLT TRANSFORMATION: ", xdmp:quote($r))
-        ),
+          concat("****** XSLT STYLE: ", xdmp:quote($browse-results-xslt),
+                "****** RESULTS: ", xdmp:quote($result),
+                "****** XSLT TRANSFORMATION: ", xdmp:quote($r))
+        ),:)
         $r
        )
      }

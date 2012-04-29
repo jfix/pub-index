@@ -2,4 +2,114 @@ $Id$
 
 h1. Documentation of indexes, fields, security, etc.
 
-TODO
+
+* forest must be created first
+* data directory!
+
+h2. database
+
+Enable
+* uri lexicon
+* collection lexicon
+
+h3. Element Range Indexes
+
+| dateTime | http://purl.org/dc/terms/               | available               | false |
+| string   | http://purl.org/dc/terms/               | subject                 | false | required for facetting
+| string   | http://purl.org/dc/terms/               | language                | false |
+| string   | http://purl.org/dc/terms/               | title                   | false |
+| string   | http://www.oecd.org/metapub/oecdOrg/ns/ | webDirectorate, pubtype | false | required for facetting
+| string   | http://www.oecd.org/metapub/oecdOrg/ns/ | status                  | false |
+| string   | http://www.oecd.org/metapub/oecdOrg/ns/ | country                 | false |
+
+h3. Element Word Lexicons
+
+| http://purl.org/dc/terms | title,abstract | http://marklogic.com/collation/ |
+| http://purl.org/dc/terms | subject        | http://marklogic.com/collation/ |
+
+h3. Word Query
+
+* index settings:
+** set "word searches" to true
+
+* Include Document root: false
+
+* Included Elements
+
+| title, abstract    | http://purl.org/dc/terms | 1.0 |
+| subTitle           | http://purl.org/dc/terms | 1.0 |
+
+
+* Excluded Elements
+
+| identifier         | http://purl.org/dc/terms | 1.0 |
+| summaries, summary | http://purl.org/dc/terms | 1.0 |
+
+
+h3. Fields
+
+h4. suggest-field
+
+This field is necessary to provide fast results for type-ahead in the search
+box.  Right now, it is based on the words in the title and the abstract.
+
+> Note: in order for this "field" to work, we need also "element word lexicons"
+> for title and abstract to be created
+
+TODO: what do we really want?
+* suggest titles (i.e. search for and suggest phrases)
+* suggest words (i.e. search for independent words only as done right now)
+
+* index settings
+** fast diacritic sensitive searches
+** three character searches
+** two character searches
+** one character searches
+** field value searches
+
+[TODO - document sense of these collations]
+* word lexicons
+** http://marklogic.com/collation//S1
+** http://marklogic.com/collation//S4
+
+* include document root: false
+
+* Included Elements
+
+| title, abstract    | http://purl.org/dc/terms | 1.0 |
+
+
+
+
+h2. app servers
+
+h3. http server on port 60045 (= books)
+
+this is the application server that will actually serve the contents.
+
+* name: kappa-t4-http
+* root:             C:/Applications/kappa-t4/app/
+* port:             60045
+* modules:          (filesystem)
+* database:         kappa-t4
+* authentication:   application-level
+* default user:     admin
+* rewriter:         application/xquery/rewriter.xqy
+* error:            application/xquery/error.xqy
+
+all other values left "as-is"
+
+
+h3. webdav server on port 60046 (books + 1)
+
+this is a webdav server that allows to manipulate the contents directly in the 
+database (via Oxygen, for example).
+
+* name:             kappa-t4-webdav
+* root:             /
+* port:             60046
+* database:         kappa-t4
+
+all other values left "as-is"
+
+

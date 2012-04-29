@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="13.1">
+<project version="13.2">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="13.1" xml:space="preserve">
+            <serialized version="13.2" xml:space="preserve">
                 <map>
                     <entry>
                         <String>scenario.associations</String>
@@ -474,16 +474,11 @@
                             </scenario>
                         </scenario-array>
                     </entry>
-                    <entry>
-                        <String>scenarios.load.from.project</String>
-                        <Boolean>true</Boolean>
-                    </entry>
                 </map>
             </serialized>
         </options>
     </meta>
     <projectTree name="kappa-t4.xpr">
         <folder path="."/>
-        <folder path="../../../../Volumes/127.0.0.1/"/>
     </projectTree>
 </project>
