@@ -8,7 +8,8 @@
   <xsl:variable name="root" select="/*[1]"/>
   <xsl:variable name="title" select="/*/dt:title"/>
   <xsl:variable name="pub-type" select="lower-case(local-name($root))"/>
-  
+  <xsl:variable name="thumbnail-url-150">http://images.oecdcode.org/covers/150</xsl:variable>
+    
   <!-- main template, creates page structure -->
   <xsl:template match="/" as="item()*">
     <div class="row" style="margin-top: 3em;">
@@ -122,7 +123,7 @@
   </xsl:template>
   
   <xsl:template match="oe:coverImage" as="item()*">
-    <img src="/thumbnails/150/{.}" class="thumbnail"/>
+    <img src="{$thumbnail-url-150}/{.}" class="thumbnail"/>
   </xsl:template>
   
   <xsl:template match="dt:abstract" as="item()*">
