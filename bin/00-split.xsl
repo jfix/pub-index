@@ -31,6 +31,9 @@
           this doesn't really matter at this stage.
     
     -->
+    
+    <xsl:variable name="out" select="'../../out/'"/>
+    
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>
@@ -49,7 +52,7 @@
   
     <xsl:template match="/*/*">
       <xsl:variable name="type" select="lower-case(local-name(.))"/>
-        <xsl:result-document  href="{concat('../../out/', $type, '/', dt:identifier/text(), '.xml')}">
+        <xsl:result-document  href="{concat($out, $type, '/', dt:identifier/text(), '.xml')}">
             <xsl:element name="{local-name(.)}">
               <!--<xsl:attribute name="pubtype" select="$type"/>-->
                 <xsl:copy-of select="@*"/>

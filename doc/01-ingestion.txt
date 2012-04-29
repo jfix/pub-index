@@ -21,6 +21,9 @@ h1. Load
 
 h2. URI structure
 
+> You have to adapt the strip-prefix to your local conventions, i.e. where hte data 
+> to be imported is stored: @C:/Applications/kappa-t4/data/out@ would be normal
+
 * Path: /content{$path strip-prefix="/Users/jakob/Projects/kappa-t4/out"}/{$filename}{$dot-ext}
 * Replace
 
