@@ -46,11 +46,18 @@ body {
 }
 
 .pubtype-label {
-  margin-right: 1em;
+  margin-right: -0.8em;
 }
 
 .search-result-highlight {
   font-weight: bold;
+}
+
+.search-result-thumbnail {
+  float: left;
+  margin-right: 0.6em;
+  border: 1px solid #c0c0c0;
+  
 }
 
 .search-container {

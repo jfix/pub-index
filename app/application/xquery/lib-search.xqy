@@ -38,7 +38,10 @@ declare function lib-search:search-results(
   let $time as xs:duration := $result/search:metrics/search:total-time/text()
   let $display-time as xs:double := round-half-to-even(seconds-from-duration($time), 2)
   let $page-length as xs:integer := data($result/@page-length)
-  let $end as xs:integer := if ($total < $start + $page-length) 
+  
+  let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length))
+  
+  let $end as xs:integer := if ($total < $start * $page-length) 
     then $total 
     else $start * $page-length
     
@@ -53,14 +56,7 @@ declare function lib-search:search-results(
       </div>
     else
       (
-      <div class="row">
-        <div class="five columns">
-          {$total} results found in {$display-time} secs, showing {$start * $page-length - $page-length + 1} to {$end}. 
-        </div>
-        <div class="five columns">
-          {lib-search:search-paging($start, $page-length, $total, $term)}
-        </div>
-      </div>
+      lib-search:search-meta($total, $display-time, $start, $page-length, $end)
       ,
       <div class="row">
         <br/>
@@ -68,15 +64,39 @@ declare function lib-search:search-results(
         <br/>
       </div>
       ,
-      <div class="row">
-        <div class="five columns">
-          {$total} results found in {$display-time} secs, showing {$start * $page-length - $page-length + 1} to {$end}.
-        </div>
-        <div class="five columns">
-          {lib-search:search-paging($start, $page-length, $total, $term)}
-        </div>
-      </div>
+      lib-search:search-meta($total, $display-time, $start, $page-length, $end)
       )
+};
+
+(:~
+ : Responsible for the display on top and bottom of search results of 
+ : some kind of summary information (total, time. paging)
+ :
+ : @param $total as xs:integer total number of hits
+ : @param $display-time as xs:double number of seconds required for search
+ : @param $start as xs:integer where current page starts, for example 11 or 21
+ : @param $page-length as xs:integer how many items to display (by default: 10)
+ : @param $end as xs:integer last item of current page (usually $start + 10, but sometimes also $total)
+ : @returns a div element containing the information
+ :)
+declare function lib-search:search-meta(
+  $total as xs:integer,
+  $display-time as xs:double,
+  $start as xs:integer,
+  $page-length as xs:integer,
+  $end as xs:integer
+)
+as element(div)
+{
+  <div class="row">
+    <div class="five columns">
+      {$total} results found in {$display-time} secs, showing {$start * $page-length - $page-length + 1} to {$end}. 
+    </div>
+    <div class="five columns">
+      {lib-search:search-paging($start, $page-length, $total, $term)}
+    </div>
+  </div>
+
 };
 
 declare function lib-search:search-paging(
@@ -91,32 +111,22 @@ declare function lib-search:search-paging(
   let $prev-page := if ($start - $page-length gt 0) then $start - $page-length else ()
   let $curr-page := $start
   return
-  <div>
-    <ul class="pagination">
-      {if ($start > 1) then
-          <li><a href="/search/{$term}/{$start - 1}">&laquo;</a></li>
-        else
-          <li class='unavailable'><a href="">&laquo;</a></li>
-      }
-        
-      {lib-search:search-paging-pages($curr-page, $total-pages, $term)}
-
+  
+  <div style="float:right;">
       {
-        if ($curr-page < $total-pages) then
-          <li><a href="/search/{$term}/{$start + 1}">&raquo;</a></li>
+        if ($start > 1) then
+          <a class="nice small radius blue button" href="/search/{$term}/{$start - 1}">&laquo; Previous</a>
         else
-          <li class='unavailable'><a href="">&raquo;</a></li>
+          <a class="disabled nice small radius blue button" href="#">&laquo; Previous</a>
+        ,
+        text { '&#160;' }
+        ,
+        if ($curr-page < $total-pages) then
+          <a class="nice small radius blue button" href="/search/{$term}/{$start + 1}">Next &raquo;</a>
+        else
+          <a class="disabled nice small radius blue button" href="#">Next &raquo;</a>
       }
-    </ul>
   </div>
-(:  
-    debug info:
-    paging goes here:
-    first page {$start} <br/>
-    {$total-pages} necessary <br/>
-    next page starts at {$next-page} <br/>
-    prev page starts at {$prev-page} <br/>
-    :)
 };
 
 declare function lib-search:search-paging-pages(
@@ -174,12 +184,17 @@ declare variable $lib-search:search-form as node() :=
     </form>
   </div>;
 
-declare variable $lib-search:search-results as node() :=
+declare variable $lib-search:search-results as node()+ :=
   <div class="row">
-    <div class="two columns">
+    <div class="twelve columns">
+      <h3>searching for '{$term}'</h3>
+    </div>
+  </div>,
+  <div class="row">
+    <div class="three columns">
       here go facets
     </div>
-    <div class="ten columns">
+    <div class="nine columns">
       {lib-search:search-results($term, $start)}
     </div>
   </div>;

@@ -26,8 +26,9 @@ declare function custom-search:transformed-result(
            
            (: use string-join to concatenate more than one (i.e. bilingual) titles with a ' / ' :)
            <search:title>{string-join($result/*/dt:title/text(), ' / ')}</search:title>,
-           
-           <search:type>{lower-case(local-name($result/*))}</search:type>
+           <search:date>{$result/*/dt:available/text()}</search:date>,
+           <search:type>{lower-case(local-name($result/*))}</search:type>,
+           <search:cover>{$result/*/oe:coverImage/text()}</search:cover>
   )
   }</search:snippet>
 };
