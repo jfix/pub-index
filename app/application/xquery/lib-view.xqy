@@ -8,6 +8,19 @@ import module namespace s = "lib-search" at "lib-search.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 
+declare variable $suggest-script as element(script) :=
+  <script type="text/javascript">
+    $(document).ready(function() {{  
+      $( "#term" ).autocomplete({{
+  			source: "/application/xquery/suggest.xqy",
+  			
+  			select: function( event, ui ) {{
+  				
+  			}}
+  		}});
+		}});
+		</script>;
+		
 declare function view:html-page(
     $title as xs:string,
     $script as node()*,
@@ -49,7 +62,9 @@ declare function view:html-page(
       	<script src="/application/jquery/jquery.ui.widget.js"></script>
       	<script src="/application/jquery/jquery.ui.position.js"></script>
       	<script src="/application/jquery/jquery.ui.autocomplete.js"></script>
-        {$script}
+        {$script
+        ,
+        $suggest-script}
 	</body>
   </html>
   )  
@@ -134,24 +149,10 @@ declare function view:html-search-page(
     $cache-version as xs:double?
 )
 {
-  let $suggest := <script type="text/javascript">
-    
-    $(document).ready(function() {{  
-      $( "#term" ).autocomplete({{
-  			source: "/application/xquery/suggest.xqy",
-  			
-  			select: function( event, ui ) {{
-  				
-  			}}
-  		}});
-		}});
-		</script>
-
-  return
   (: for the time being simply return the basic HTML page :)
   view:html-page(
     $title,
-    $suggest,
+    $script,
     $html,
     $meta-description,
     $meta-content,
