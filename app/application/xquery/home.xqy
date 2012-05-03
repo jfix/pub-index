@@ -16,6 +16,11 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
 
+declare variable $homepage-scripts as element(script)+ :=
+  w:map-scripts(),
+  w:word-cloud-scripts()
+  ;
+
 
 declare function local:slider-thingy()
 {
@@ -33,8 +38,8 @@ declare function local:word-cloud()
 
 declare function local:google-map()
 {
-  <h3>browse by country (google map)</h3>,
-  <img src="http://placehold.it/980x500&amp;text=map to select publications by country"/>,
+  <h3>browse by country</h3>,
+  <div id="map" style="width:980px;height:500px"></div>,
   <hr/>
 };
 
@@ -52,7 +57,7 @@ let $content :=
 return
 v:html-home-page(
   "OECD publications",
-  w:word-cloud-scripts(),
+  $homepage-scripts,
   $content,
   "","","",1)
     

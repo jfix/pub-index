@@ -9,7 +9,7 @@ xquery version "1.0-ml";
  : * slider thingy (TODO)
  : * ...
  :)
-module namespace widgets = "lib-widgets";
+module namespace w = "lib-widgets";
 
 import module namespace search = "http://marklogic.com/appservices/search"
   at "/MarkLogic/appservices/search/search.xqy";
@@ -29,7 +29,7 @@ declare default collation "http://marklogic.com/collation/";
  : {text: "Ipsum", weight: 9, url: "http://jquery.com/", title: "I can haz URL"},
  :
  :)
-declare function widgets:get-word-cloud-data()
+declare function w:get-word-cloud-data()
 {
   let $subjects := cts:element-values(
     fn:QName("http://purl.org/dc/terms/", "subject"),"", ("item-frequency"), 
@@ -52,10 +52,10 @@ declare function widgets:get-word-cloud-data()
 (:~
  : This function needs to be passed to the function that displays
  : a web page (there is a parameter for additional scripts).
- : It also requires the widgets:word-cloud() function to be called a
+ : It also requires the w:word-cloud() function to be called a
  : the appropriate place where the word cloud is to be included.
  :)
-declare function widgets:word-cloud-scripts()
+declare function w:word-cloud-scripts()
 as element(script)+
 {
   (
@@ -70,18 +70,32 @@ as element(script)+
 
 (:~
  : This function needs to be called on the page where you want the word cloud
- : to be included.  Also the widgets:word-cloud-scripts() need to be called
+ : to be included.  Also the w:word-cloud-scripts() need to be called
  : on that page, so that the script get loaded on that page.
  :
  :)
-declare function widgets:word-cloud()
+declare function w:word-cloud()
 as element(div)
 {
   <div class="row">
-    <script type='text/javascript'>var word_cloud_list = {widgets:get-word-cloud-data()};</script>
+    <script type='text/javascript'>var word_cloud_list = {w:get-word-cloud-data()};</script>
     <div class="twelve columns">
       <div id="wordcloud">
       </div>
     </div>
   </div>
+};
+
+declare function w:map-scripts()
+as element(script)+
+{
+  (
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>,
+  <script type="text/javascript" src="/application/jquery/gmap3.min.js"></script>,
+  <script type="text/javascript">
+    $(document).ready(function() {{
+        $("#map").gmap3();
+      }});
+  </script>
+  )
 };
