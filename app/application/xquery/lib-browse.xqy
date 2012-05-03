@@ -50,8 +50,13 @@ declare function browse:browse-results(
       <constraint name="metadata-only">
         <collection prefix="metadata"/>
       </constraint>
+        <constraint name="pubtype">
+          <range type="xs:string">
+            <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+          </range>
+        </constraint>
       <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy" />
-      <return-facets>false</return-facets>
+      <return-facets>true</return-facets>
     </search:options>
 
   let $result := search:search("", $options, $start, $length)

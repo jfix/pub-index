@@ -23,8 +23,18 @@ declare function lib-search:search-results(
     <constraint name="metadata-only">
       <collection prefix="metadata"/>
     </constraint>
+    <constraint name="pubtype">
+      <range type="xs:string">
+        <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+      </range>
+    </constraint>
+    <constraint name="subject">
+     <range collation="http://marklogic.com/collation/" type="xs:string" facet="true">
+        <element ns="http://purl.org/dc/terms/" name="subject"/>
+     </range>
+   </constraint>
     <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy" />
-    <return-facets>false</return-facets>
+    <return-facets>true</return-facets>
   </options>
   
   let $xslt := document("/application/xslt/search-results.xsl")
@@ -39,7 +49,7 @@ declare function lib-search:search-results(
   let $display-time as xs:double := round-half-to-even(seconds-from-duration($time), 2)
   let $page-length as xs:integer := data($result/@page-length)
   
-  let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length))
+  (:let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length)):)
   
   let $end as xs:integer := if ($total < $start * $page-length) 
     then $total 
@@ -89,10 +99,10 @@ declare function lib-search:search-meta(
 as element(div)
 {
   <div class="row">
-    <div class="five columns">
-      {$total} results found in {$display-time} secs, showing {$start * $page-length - $page-length + 1} to {$end}. 
+    <div class="eight columns">
+      {$total} results found in {$display-time} secs, showing {$start} to {$end}. 
     </div>
-    <div class="five columns">
+    <div class="four columns">
       {lib-search:search-paging($start, $page-length, $total, $term)}
     </div>
   </div>
@@ -115,14 +125,14 @@ declare function lib-search:search-paging(
   <div style="float:right;">
       {
         if ($start > 1) then
-          <a class="nice small radius blue button" href="/search/{$term}/{$start - 1}">&laquo; Previous</a>
+          <a class="nice small radius blue button" href="/search/{$term}/{number($prev-page)}">&laquo; Previous</a>
         else
           <a class="disabled nice small radius blue button" href="#">&laquo; Previous</a>
         ,
         text { '&#160;' }
         ,
         if ($curr-page < $total-pages) then
-          <a class="nice small radius blue button" href="/search/{$term}/{$start + 1}">Next &raquo;</a>
+          <a class="nice small radius blue button" href="/search/{$term}/{number($next-page)}">Next &raquo;</a>
         else
           <a class="disabled nice small radius blue button" href="#">Next &raquo;</a>
       }
