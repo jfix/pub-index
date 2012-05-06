@@ -35,7 +35,7 @@ let $new-url :=
   then
     fn:replace($url,
      $browse-pattern,
-       "/application/xquery/browse.xqy?facet=$1:$2")
+       "/application/xquery/search.xqy?term=$1:&quot;$2&quot;")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))
@@ -68,6 +68,6 @@ let $new-url :=
   (: by default try to resolve url passed in :)
   else $url
   
-let $_log := xdmp:log(concat("REWRITER: ", $new-url))
+(:let $_log := xdmp:log(concat("REWRITER: ", $new-url)):)
 
 return $new-url
