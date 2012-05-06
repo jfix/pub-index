@@ -16,6 +16,8 @@ import module namespace search = "http://marklogic.com/appservices/search"
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare default element namespace "http://www.w3.org/1999/xhtml";
+declare namespace cc = "country-data";
+
 declare default collation "http://marklogic.com/collation/";
 
 (:~
@@ -43,11 +45,13 @@ declare function w:get-word-cloud-data()
       let $put := map:put($map, 'weight', $freq)
       let $put := map:put($map, 'text', $subject)
       let $put := map:put($map, 'title', concat("There are ", $freq, " publications on ", $subject))
-      let $put := map:put($map, 'url', concat('/browse/topic/', xdmp:url-encode($subject)))
+      let $put := map:put($map, 'url', concat('/browse/subject/', xdmp:url-encode($subject)))
+      (:let $put := map:put($map, 'url', concat('/application/xquery/search.xqy?term=subject:&quot;', xdmp:url-encode($subject), "&quot;")):)
       return $map
   )
   return xdmp:to-json($list)
 };
+
 
 (:~
  : This function needs to be passed to the function that displays
@@ -86,6 +90,33 @@ as element(div)
   </div>
 };
 
+declare function w:map-data()
+{
+  let $doc := document("/assets/mappings/countries.xml")
+  let $countries := cts:element-values(
+    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/", "country"),"", ("item-frequency"), 
+    cts:collection-query(("metadata")))
+  
+  let $list := (
+    for $country in $countries
+    
+    let $coords := xs:double($doc//cc:country[cc:code = upper-case($country)]/cc:coords/cc:centred/cc:*)    
+    let $freq := cts:frequency($country)
+    let $map := map:map()
+    let $put := map:put($map, 'center', $coords)
+    let $put := map:put($map, 'radius', $freq * 1000)
+    let $put := map:put($map, "fillColor", "#018FD1")
+    let $put := map:put($map, "strokeColor", "#018FD1")
+    let $put := map:put($map, "strokeWeight", "1")
+    let $put := map:put($map, "action", "addCircle")
+    (:order by $freq descending:)
+    return $map
+  )
+  let $json := xdmp:to-json($list)
+  let $length := string-length($json)
+  return substring( substring($json, 2), 1, ($length - 2))
+};
+
 declare function w:map-scripts()
 as element(script)+
 {
@@ -93,9 +124,19 @@ as element(script)+
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>,
   <script type="text/javascript" src="/application/jquery/gmap3.min.js"></script>,
   <script type="text/javascript">
-    $(document).ready(function() {{
-        $("#map").gmap3();
-      }});
+    $(document).ready(function() 
+    {{
+        $("#map").gmap3(
+          {{
+            action: 'init',
+            options: {{
+              mapTypeId: google.maps.MapTypeId.TERRAIN
+             }}
+          }},
+
+        {w:map-data()}
+        );
+    }});
   </script>
   )
 };
