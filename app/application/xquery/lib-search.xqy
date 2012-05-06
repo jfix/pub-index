@@ -53,7 +53,7 @@ declare function lib-search:search-results(
   
   let $end as xs:integer := if ($total < $start * $page-length) 
     then $total 
-    else $start * $page-length
+    else $start + $page-length - 1
     
   return if ($term eq "")
     then
