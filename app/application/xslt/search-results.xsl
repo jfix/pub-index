@@ -53,5 +53,5 @@
     </span>
   </xsl:template>
   
-  <xsl:template match="search:metrics|search:qtext|search:title|search:type|search:facet" as="item()*"/>
+    <xsl:template match="search:metrics|search:qtext|search:title|search:type|search:facet|search:cover|search:date" as="item()*"/>
 </xsl:stylesheet>
