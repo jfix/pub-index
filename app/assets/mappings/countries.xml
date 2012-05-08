@@ -1,0 +1,5052 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- this file contains a list of all 246 countries listed on the ISO website here:
+    
+    http://www.iso.org/iso/english_country_names_and_code_elements
+    http://www.iso.org/iso/french_country_names_and_code_elements
+    
+    as of 10/07/2010
+    
+    encoded by Jakob Fix
+    
+    modified slightly to conform to the Global Forum's slightly diverging naming rules:
+        Hong Kong -> Hong Kong, China
+        Macau     -> Macau, China
+    
+-->
+<countries xmlns="country-data">
+   <country>
+      <code>AF</code>
+      <name>
+         <en case="uppercase">AFGHANISTAN</en>
+         <en case="normal">Afghanistan</en>
+         <fr case="uppercase">AFGHANISTAN</fr>
+      </name>
+      <capital>Kabul</capital>
+      <coords>
+         <capital>
+            <lat>34.31</lat>
+            <long>69.11</long>
+         </capital>
+         <centred>
+            <lat>33.00</lat>
+            <long>65.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ZA</code>
+      <name>
+         <en case="uppercase">SOUTH AFRICA</en>
+         <en case="normal">South Africa</en>
+         <fr case="uppercase">AFRIQUE DU SUD</fr>
+      </name>
+      <capital>Pretoria</capital>
+      <coords>
+         <capital>
+            <lat>-25.42</lat>
+            <long>28.13</long>
+         </capital>
+         <centred>
+            <lat>-29.00</lat>
+            <long>24.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AX</code>
+      <name>
+         <en case="uppercase">ÅLAND ISLANDS</en>
+         <en case="normal">Åland Islands</en>
+         <fr case="uppercase">ÅLAND, ÎLES</fr>
+      </name>
+      <capital>Mariehamn</capital>
+      <coords/>
+   </country>
+   <country>
+      <code>AL</code>
+      <name>
+         <en case="uppercase">ALBANIA</en>
+         <en case="normal">Albania</en>
+         <fr case="uppercase">ALBANIE</fr>
+      </name>
+      <capital>Tirane</capital>
+      <coords>
+         <capital>
+            <lat>41.19</lat>
+            <long>19.49</long>
+         </capital>
+         <centred>
+            <lat>41.00</lat>
+            <long>20.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DZ</code>
+      <name>
+         <en case="uppercase">ALGERIA</en>
+         <en case="normal">Algeria</en>
+         <fr case="uppercase">ALGÉRIE</fr>
+      </name>
+      <capital>Algiers</capital>
+      <coords>
+         <capital>
+            <lat>36.45</lat>
+            <long>3.03</long>
+         </capital>
+         <centred>
+            <lat>28.00</lat>
+            <long>3.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DE</code>
+      <name>
+         <en case="uppercase">GERMANY</en>
+         <en case="normal">Germany</en>
+         <fr case="uppercase">ALLEMAGNE</fr>
+      </name>
+      <capital>Berlin</capital>
+      <coords>
+         <capital>
+            <lat>52.31</lat>
+            <long>13.24</long>
+         </capital>
+         <centred>
+            <lat>51.00</lat>
+            <long>9.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AD</code>
+      <name>
+         <en case="uppercase">ANDORRA</en>
+         <en case="normal">Andorra</en>
+         <fr case="uppercase">ANDORRE</fr>
+      </name>
+      <capital>Andorra la Vella</capital>
+      <coords>
+         <capital>
+            <lat>42.30</lat>
+            <long>1.31</long>
+         </capital>
+         <centred>
+            <lat>42.30</lat>
+            <long>1.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AO</code>
+      <name>
+         <en case="uppercase">ANGOLA</en>
+         <en case="normal">Angola</en>
+         <fr case="uppercase">ANGOLA</fr>
+      </name>
+      <capital>Luanda</capital>
+      <coords>
+         <capital>
+            <lat>-8.50</lat>
+            <long>13.14</long>
+         </capital>
+         <centred>
+            <lat>-12.30</lat>
+            <long>18.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AI</code>
+      <name>
+         <en case="uppercase">ANGUILLA</en>
+         <en case="normal">Anguilla</en>
+         <fr case="uppercase">ANGUILLA</fr>
+      </name>
+      <capital>The Valley</capital>
+      <coords>
+         <capital>
+            <lat>18.13</lat>
+            <long>-63.03</long>
+         </capital>
+         <centred>
+            <lat>18.15</lat>
+            <long>-63.10</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AQ</code>
+      <name>
+         <en case="uppercase">ANTARCTICA</en>
+         <en case="normal">Antarctica</en>
+         <fr case="uppercase">ANTARCTIQUE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>-90.00</lat>
+            <long>0.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AG</code>
+      <name>
+         <en case="uppercase">ANTIGUA AND BARBUDA</en>
+         <en case="normal">Antigua and Barbuda</en>
+         <fr case="uppercase">ANTIGUA ET BARBUDA</fr>
+      </name>
+      <capital>St. John's</capital>
+      <coords>
+         <capital>
+            <lat>17.07</lat>
+            <long>-61.51</long>
+         </capital>
+         <centred>
+            <lat>17.03</lat>
+            <long>-61.48</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AN</code>
+      <name>
+         <en case="uppercase">NETHERLANDS ANTILLES</en>
+         <en case="normal">Netherlands Antilles</en>
+         <fr case="uppercase">ANTILLES NÉERLANDAISES</fr>
+      </name>
+      <capital>Willemstad</capital>
+      <coords>
+         <capital>
+            <lat>12.06</lat>
+            <long>-68.56</long>
+         </capital>
+         <centred>
+            <lat>12.15</lat>
+            <long>-68.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SA</code>
+      <name>
+         <en case="uppercase">SAUDI ARABIA</en>
+         <en case="normal">Saudi Arabia</en>
+         <fr case="uppercase">ARABIE SAOUDITE</fr>
+      </name>
+      <capital>Riyadh</capital>
+      <coords>
+         <capital>
+            <lat>24.38</lat>
+            <long>46.43</long>
+         </capital>
+         <centred>
+            <lat>25.00</lat>
+            <long>45.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AR</code>
+      <name>
+         <en case="uppercase">ARGENTINA</en>
+         <en case="normal">Argentina</en>
+         <fr case="uppercase">ARGENTINE</fr>
+      </name>
+      <capital>Buenos Aires</capital>
+      <coords>
+         <capital>
+            <lat>-34.36</lat>
+            <long>-58.40</long>
+         </capital>
+         <centred>
+            <lat>-34.00</lat>
+            <long>-64.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AM</code>
+      <name>
+         <en case="uppercase">ARMENIA</en>
+         <en case="normal">Armenia</en>
+         <fr case="uppercase">ARMÉNIE</fr>
+      </name>
+      <capital>Yerevan</capital>
+      <coords>
+         <capital>
+            <lat>40.10</lat>
+            <long>44.30</long>
+         </capital>
+         <centred>
+            <lat>40.00</lat>
+            <long>45.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AW</code>
+      <name>
+         <en case="uppercase">ARUBA</en>
+         <en case="normal">Aruba</en>
+         <fr case="uppercase">ARUBA</fr>
+      </name>
+      <capital>Oranjestad</capital>
+      <coords>
+         <capital>
+            <lat>12.31</lat>
+            <long>-70.02</long>
+         </capital>
+         <centred>
+            <lat>12.30</lat>
+            <long>-69.58</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AU</code>
+      <name>
+         <en case="uppercase">AUSTRALIA</en>
+         <en case="normal">Australia</en>
+         <fr case="uppercase">AUSTRALIE</fr>
+      </name>
+      <capital>Canberra</capital>
+      <coords>
+         <capital>
+            <lat>-35.17</lat>
+            <long>149.13</long>
+         </capital>
+         <centred>
+            <lat>-27.00</lat>
+            <long>133.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AT</code>
+      <name>
+         <en case="uppercase">AUSTRIA</en>
+         <en case="normal">Austria</en>
+         <fr case="uppercase">AUTRICHE</fr>
+      </name>
+      <capital>Vienna</capital>
+      <coords>
+         <capital>
+            <lat>48.12</lat>
+            <long>16.22</long>
+         </capital>
+         <centred>
+            <lat>47.20</lat>
+            <long>13.20</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AZ</code>
+      <name>
+         <en case="uppercase">AZERBAIJAN</en>
+         <en case="normal">Azerbaijan</en>
+         <fr case="uppercase">AZERBAÏDJAN</fr>
+      </name>
+      <capital>Baku</capital>
+      <coords>
+         <capital>
+            <lat>40.23</lat>
+            <long>49.52</long>
+         </capital>
+         <centred>
+            <lat>40.30</lat>
+            <long>47.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BS</code>
+      <name>
+         <en case="uppercase">BAHAMAS</en>
+         <en case="normal">Bahamas</en>
+         <fr case="uppercase">BAHAMAS</fr>
+      </name>
+      <capital>Nassau</capital>
+      <coords>
+         <capital>
+            <lat>25.05</lat>
+            <long>-77.21</long>
+         </capital>
+         <centred>
+            <lat>24.15</lat>
+            <long>-76.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BH</code>
+      <name>
+         <en case="uppercase">BAHRAIN</en>
+         <en case="normal">Bahrain</en>
+         <fr case="uppercase">BAHREÏN</fr>
+      </name>
+      <capital>Manama</capital>
+      <coords>
+         <capital>
+            <lat>26.14</lat>
+            <long>50.34</long>
+         </capital>
+         <centred>
+            <lat>26.00</lat>
+            <long>50.33</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BD</code>
+      <name>
+         <en case="uppercase">BANGLADESH</en>
+         <en case="normal">Bangladesh</en>
+         <fr case="uppercase">BANGLADESH</fr>
+      </name>
+      <capital>Dhaka</capital>
+      <coords>
+         <capital>
+            <lat>23.43</lat>
+            <long>90.24</long>
+         </capital>
+         <centred>
+            <lat>24.00</lat>
+            <long>90.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BB</code>
+      <name>
+         <en case="uppercase">BARBADOS</en>
+         <en case="normal">Barbados</en>
+         <fr case="uppercase">BARBADE</fr>
+      </name>
+      <capital>Bridgetown</capital>
+      <coords>
+         <capital>
+            <lat>13.06</lat>
+            <long>-59.37</long>
+         </capital>
+         <centred>
+            <lat>13.10</lat>
+            <long>-59.32</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BY</code>
+      <name>
+         <en case="uppercase">BELARUS</en>
+         <en case="normal">Belarus</en>
+         <fr case="uppercase">BÉLARUS</fr>
+      </name>
+      <capital>Minsk</capital>
+      <coords>
+         <capital>
+            <lat>53.54</lat>
+            <long>27.34</long>
+         </capital>
+         <centred>
+            <lat>53.00</lat>
+            <long>28.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BE</code>
+      <name>
+         <en case="uppercase">BELGIUM</en>
+         <en case="normal">Belgium</en>
+         <fr case="uppercase">BELGIQUE</fr>
+      </name>
+      <capital>Brussels</capital>
+      <coords>
+         <capital>
+            <lat>50.50</lat>
+            <long>4.20</long>
+         </capital>
+         <centred>
+            <lat>50.50</lat>
+            <long>4.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BZ</code>
+      <name>
+         <en case="uppercase">BELIZE</en>
+         <en case="normal">Belize</en>
+         <fr case="uppercase">BELIZE</fr>
+      </name>
+      <capital>Belmopan</capital>
+      <coords>
+         <capital>
+            <lat>17.15</lat>
+            <long>-88.46</long>
+         </capital>
+         <centred>
+            <lat>17.15</lat>
+            <long>-88.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BJ</code>
+      <name>
+         <en case="uppercase">BENIN</en>
+         <en case="normal">Benin</en>
+         <fr case="uppercase">BÉNIN</fr>
+      </name>
+      <capital>Porto-Novo</capital>
+      <coords>
+         <capital>
+            <lat>6.29</lat>
+            <long>2.37</long>
+         </capital>
+         <centred>
+            <lat>9.30</lat>
+            <long>2.15</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BM</code>
+      <name>
+         <en case="uppercase">BERMUDA</en>
+         <en case="normal">Bermuda</en>
+         <fr case="uppercase">BERMUDES</fr>
+      </name>
+      <capital>Hamilton</capital>
+      <coords>
+         <capital>
+            <lat>32.17</lat>
+            <long>-64.47</long>
+         </capital>
+         <centred>
+            <lat>32.20</lat>
+            <long>-64.45</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745040"><!-- http://www.docstoc.com/docs/56745040/BM -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+       
+   </country>
+   <country>
+      <code>BT</code>
+      <name>
+         <en case="uppercase">BHUTAN</en>
+         <en case="normal">Bhutan</en>
+         <fr case="uppercase">BHOUTAN</fr>
+      </name>
+      <capital>Thimphu</capital>
+      <coords>
+         <capital>
+            <lat>27.29</lat>
+            <long>89.36</long>
+         </capital>
+         <centred>
+            <lat>27.30</lat>
+            <long>90.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BO</code>
+      <name>
+         <en case="uppercase">BOLIVIA, PLURINATIONAL STATE OF</en>
+         <en case="normal">Bolivia, Plurinational State of</en>
+         <fr case="uppercase">BOLIVIE, l'ÉTAT PLURINATIONAL DE</fr>
+      </name>
+      <capital>La Paz</capital>
+      <coords>
+         <capital>
+            <lat>-16.30</lat>
+            <long>-68.09</long>
+         </capital>
+         <centred>
+            <lat>-17.00</lat>
+            <long>-65.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BA</code>
+      <name>
+         <en case="uppercase">BOSNIA AND HERZEGOVINA</en>
+         <en case="normal">Bosnia and Herzegovina</en>
+         <fr case="uppercase">BOSNIE-HERZÉGOVINE</fr>
+      </name>
+      <capital>Sarajevo</capital>
+      <coords>
+         <capital>
+            <lat>43.52</lat>
+            <long>18.25</long>
+         </capital>
+         <centred>
+            <lat>44.00</lat>
+            <long>18.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BW</code>
+      <name>
+         <en case="uppercase">BOTSWANA</en>
+         <en case="normal">Botswana</en>
+         <fr case="uppercase">BOTSWANA</fr>
+      </name>
+      <capital>Gaborone</capital>
+      <coords>
+         <capital>
+            <lat>-24.45</lat>
+            <long>25.55</long>
+         </capital>
+         <centred>
+            <lat>-22.00</lat>
+            <long>24.00</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745044"><!-- http://www.docstoc.com/docs/56745044/BW -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+   </country>
+   <country>
+      <code>BV</code>
+      <name>
+         <en case="uppercase">BOUVET ISLAND</en>
+         <en case="normal">Bouvet Island</en>
+         <fr case="uppercase">BOUVET, ÎLE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>-54.26</lat>
+            <long>3.24</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BR</code>
+      <name>
+         <en case="uppercase">BRAZIL</en>
+         <en case="normal">Brazil</en>
+         <fr case="uppercase">BRÉSIL</fr>
+      </name>
+      <capital>Brasilia</capital>
+      <coords>
+         <capital>
+            <lat>-15.47</lat>
+            <long>-47.55</long>
+         </capital>
+         <centred>
+            <lat>-10.00</lat>
+            <long>-55.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BN</code>
+      <name>
+         <en case="uppercase">BRUNEI DARUSSALAM</en>
+         <en case="normal">Brunei Darussalam</en>
+         <fr case="uppercase">BRUNÉI DARUSSALAM</fr>
+      </name>
+      <capital>Bandar Seri Begawan</capital>
+      <coords>
+         <capital>
+            <lat>4.53</lat>
+            <long>114.56</long>
+         </capital>
+         <centred>
+            <lat>4.30</lat>
+            <long>114.40</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BG</code>
+      <name>
+         <en case="uppercase">BULGARIA</en>
+         <en case="normal">Bulgaria</en>
+         <fr case="uppercase">BULGARIE</fr>
+      </name>
+      <capital>Sofia</capital>
+      <coords>
+         <capital>
+            <lat>42.41</lat>
+            <long>23.19</long>
+         </capital>
+         <centred>
+            <lat>43.00</lat>
+            <long>25.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BF</code>
+      <name>
+         <en case="uppercase">BURKINA FASO</en>
+         <en case="normal">Burkina Faso</en>
+         <fr case="uppercase">BURKINA FASO</fr>
+      </name>
+      <capital>Ouagadougou</capital>
+      <coords>
+         <capital>
+            <lat>12.22</lat>
+            <long>-1.31</long>
+         </capital>
+         <centred>
+            <lat>13.00</lat>
+            <long>-2.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BI</code>
+      <name>
+         <en case="uppercase">BURUNDI</en>
+         <en case="normal">Burundi</en>
+         <fr case="uppercase">BURUNDI</fr>
+      </name>
+      <capital>Bujumbura</capital>
+      <coords>
+         <capital>
+            <lat>-3.22</lat>
+            <long>29.21</long>
+         </capital>
+         <centred>
+            <lat>-3.30</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KY</code>
+      <name>
+         <en case="uppercase">CAYMAN ISLANDS</en>
+         <en case="normal">Cayman Islands</en>
+         <fr case="uppercase">CAÏMANES, ÎLES</fr>
+      </name>
+      <capital>George Town</capital>
+      <coords>
+         <capital>
+            <lat>19.18</lat>
+            <long>-81.23</long>
+         </capital>
+         <centred>
+            <lat>19.30</lat>
+            <long>-80.30</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745066"><!-- http://www.docstoc.com/docs/56745066/KY -->
+          <!-- here goes the exec summary
+
+                and
+
+                the instruments table
+          -->
+      </phase1_report>
+       <summary_assessment>
+         <evaluations>
+            <evaluation type="committment" degree="true"/>
+            <evaluation type="implementation" degree="partial"/>
+         </evaluations>
+         <exchanging_information>
+            <p>The Cayman Islands has signed bilateral agreements with 11 countries, of which 9 are OECD members that provide for exchange of information to the OECD standard. In addition, the Cayman Islands is able to exchange information unilaterally on request, in all tax matters, under its domestic law with 12 countries, 11 of which are OECD member countries. The Cayman Islands also provides automatic exchange of information with the 27 EU member countries in respect of savings income.</p>
+         </exchanging_information>
+         <bankinfo_access>
+            <p>The Cayman Islands has no restrictions on access to bank information for tax information exchange purposes.</p>
+         </bankinfo_access>
+         <ownership_access>
+            <p>The Cayman Islands has powers to obtain ownership, identity and accounting information, whether or not it is required to be kept, and has measures to compel the production of information. There are general confidentiality provisions in place, but these may be overridden in connection with a request under a bilateral or unilateral exchange of information arrangement. The Cayman Islands allows the issuance of bearer securities. Bearer shares must be immobilised. For bearer debt, paying agents must establish the holder’s identity for the purposes of applying its savings agreements with EU member countries.</p>
+         </ownership_access>
+         <ownership_availability>
+            <p>Companies must maintain information regarding legal and beneficial ownership except for bearer shares, which must be immobilised with an approved custodian. Trustees must maintain information on the identity of both the settlor and the beneficiary of domestic and foreign trusts. Information regarding partners must be kept by the partnership. Anti-money laundering “know your customer” requirements apply to financial institutions and company and trust service providers.</p>
+            <p>Accounting information for all entities is required to be kept in accordance with the JAHGA standards.</p>
+         </ownership_availability>
+         <jurisdiction_comments>
+            <p>The Cayman Islands currently has 11 bilateral tax information exchange agreements (TIEAs), 9 of which are with OECD members. It is currently in advance stages of negotiations with France, Canada, New Zealand, Germany, Australia, Mexico and Italy. In addition the Cayman Islands has had expressions of interests to sign TIEAs from the Czech Republic and Japan. and has itself approached a number of other OECD countries to request negotiations. It intends to sign TIEAs with all OECD member countries that are able to sign within the next 60 days. Moreover, the Cayman Islands will approach other significant non-OECD countries to negotiate TIEAs.</p>
+         </jurisdiction_comments>
+      </summary_assessment>
+      
+      <!-- this is the equivalent of the tables
+            A - Exchanging information
+                [A1 - not a table]
+                A2 - domestic laws
+                A3 - DTC and TIEAs
+                A4 - mechanisms in place
+                A5 - dual criminality principle
+                
+            B - Access to Bank information
+                B1 - bank secrecy
+                B2 - bank information for eoi purposes
+                B3 - procedures to obtain bank information
+                
+            C - Access to ownership, identity and accounting information
+                C1 - information gathering powers
+                C2 - confidentiality or secrecy
+                C3 - bearer securities
+                
+            D - Availability of ownership, identity and accounting informaiton
+                D1 - ownership information - companies
+                D2 - trusts laws
+
+                D3 - identity information - trusts
+                D4 - identity information - partnerships
+                D5 - identity information - foundations
+                
+                D6 - aacounting information - companies
+                D7 - accounting information - trusts
+                D8 - accounting information - partnerships
+                D9 - accounting information - foundations
+      -->
+      <framework_info>
+          <!-- A2 -->
+          <domestic_laws>
+              <law>
+                  <type>Tax Information Authority Law</type>
+                  <description>
+                      In December 2008, the Cayman Islands amended its Tax Information Authority Law, 2005, to introduce a unilateral mechanism for the provision of information in tax matters, to OECD standards to countries that are scheduled under the legislation. As of 1 January 2009 no country had been scheduled. A total of twelve countries have since been scheduled.
+                  </description>
+              </law>
+              <law>
+                  <type>Law implementing Savings Tax Agreements with EU member states. “The Reporting of Savings Income Information (European Union) Law 2005”</type>
+                  <description>
+                      Allows for automatic exchange in respect of savings income paid to individuals - See footnote 2
+                  </description>
+              </law>
+          </domestic_laws>
+          
+          <!-- A3 -->
+          <eoi_agreements>
+              <agreement type="DTC">0</agreement>
+              <agreement type="TIEA">1</agreement>
+              <limited count="0"/>
+              <broad count="1">
+                  <all_tax count="1"/>
+                  <criminal count="0"/>
+                  <civil count="0"/>
+              </broad>
+          </eoi_agreements>
+          
+          <!-- A4 -->
+          <eoi_mechanisms>
+              <all count="1">and all scheduled countries 
+                  <note>see table A2</note>
+              </all>
+              <civil count="27">
+                  <note>EU Savings Tax Agreements</note>
+              </civil>
+              <criminal count="0"/>
+          </eoi_mechanisms>
+          
+          <!-- A5 -->
+          <!-- not applicable -->
+          
+          <!-- B1 -->
+          <bank_secrecy purely_law="no" reinforced="yes" limited="no"/>
+          
+          <!-- B2 -->
+          <bank_info_access>
+              <all value="yes">
+                  <note>The Cayman Islands has the power to obtain bank information in all tax matters for the purposes of its tax information agreements. The Cayman Islands also exchanges information automatically on savings income under its bilateral agreements with EU member states.</note>
+              </all>
+              <domestic value="no"/>
+              <criminal value="n/a"/>
+              <inability value="no"/>
+          </bank_info_access>
+          
+          <!-- B3 -->
+          <bank_info_procedures>
+              <direct_access value="yes">
+                  <note>In connection with a DTC or TIEA. In other cases authorisation may be required.</note>
+              </direct_access>
+              <compelling_measures value="yes"/>
+          </bank_info_procedures>
+          
+          <!-- C1 -->
+          <powers>
+              <information_kept value="yes">
+                  <civil value="yes">
+                      <note>The Tax Information Authority has power to obtain information to respond to a request for exchange of information where an exchange of information agreement such as TIEA is in place.</note>
+                  </civil>
+                  <criminal value="yes">
+                      <note>The Tax Information Authority has power to obtain information to respond to a request for exchange of information where an exchange of information agreement such as TIEA is in place.</note>
+                  </criminal>
+              </information_kept>
+              <information_kept value="no">
+                  <civil value="yes">
+                      <note>The Tax Information Authority has power to obtain information to respond to a request for exchange of information where an exchange of information agreement such as TIEA is in place.</note>
+                  </civil>
+                  <criminal value="yes">
+                      <note>The Tax Information Authority has power to obtain information to respond to a request for exchange of information where an exchange of information agreement such as TIEA is in place.</note>
+                  </criminal>
+              </information_kept>
+              <only_domestic value="no"/>
+              <compelling_measures value="yes"/>
+          </powers>
+          
+          <!-- C2 -->
+          <secrecy_provisions>
+              <prohibiting_disclosure value="yes"/>
+              <type>General application</type>
+              <eoi_overrides value="yes"/>
+          </secrecy_provisions>
+          
+          <!-- C3 -->
+          <bearer_securities>
+              <shares issued="yes">
+                  <mechanism>Entities doing relevant financial business are required to comply with the requirements of anti-money laundering provisions and pursuant to companies law bearer shares must be immobilised.</mechanism>
+              </shares>
+              <debt issued="yes">
+                  <mechanism>Investigative powers combined with “know your customer” rules arising under anti-money laundering laws where debt is issued in the Cayman Islands. See also footnote 2.</mechanism>
+              </debt>
+          </bearer_securities>
+          
+          <!-- D -->
+          <information>
+              <!-- D1 -->
+              <ownership type="companies">
+                  <applicable_to>
+                      <type>Ordinary companies</type>
+                      <type>Exempt companies</type>
+                      <type>Non-resident companies</type>
+                  </applicable_to>
+                  <by_government>
+                      Legal ownership (other than for bearer shares
+                      <note>Bearer shares are required to be immobilised and the beneficial ownership details held by the authorised or recognised custodian.</note>
+                      ). Beneficial ownership in relation to: 
+                      (i) initial subscribers;
+                      (ii) members, via annual filing of register of members (except for exempted companies).
+                  </by_government>
+                  <by_company>
+                      Legal and beneficial ownership (other than for bearer shares
+                      <note>Bearer shares are required to be immobilised and the beneficial ownership details held by the authorised or recognised custodian.</note>
+                      ) - all companies (including exempted companies, although later not required to file same) must keep a register of members.                  </by_company>
+                  <by_serviceprovider>
+                      All persons providing company services
+                      <note>e.g. nominees; bearer share custodians; directors/officers; formation services.</note>
+                      are regulated by CIMA and such services are defined as “relevant financial business” under anti- money laundering / counter financing of terrorism regime, and therefore service providers must apply know your customer and recordkeeping requirements.
+                  </by_serviceprovider>
+              </ownership>
+              <!-- D2 -->
+              <trust_laws>
+                  <domestic value="yes"/>
+                  <non_resident value="no"/>
+                  <resident_administer value="n/a"/>
+              </trust_laws>
+              <!-- D3 -->
+              <identity type="trusts"/>
+              <!-- D4 -->
+              <identity type="partnerships"/>
+              <!-- D5 -->
+              <identity type="foundations"/>
+              <!-- D6 -->
+              <accounting type="companies"/>
+              <!-- D7 -->
+              <accounting type="trusts"/>
+              <!-- D8 -->
+              <accounting type="partnerships"/>
+              <!-- D9 -->
+              <accounting type="foundations"/>
+          </information>
+      </framework_info>
+   </country>
+   <country>
+      <code>KH</code>
+      <name>
+         <en case="uppercase">CAMBODIA</en>
+         <en case="normal">Cambodia</en>
+         <fr case="uppercase">CAMBODGE</fr>
+      </name>
+      <capital>Phnom Penh</capital>
+      <coords>
+         <capital>
+            <lat>11.33</lat>
+            <long>104.55</long>
+         </capital>
+         <centred>
+            <lat>13.00</lat>
+            <long>105.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CM</code>
+      <name>
+         <en case="uppercase">CAMEROON</en>
+         <en case="normal">Cameroon</en>
+         <fr case="uppercase">CAMEROUN</fr>
+      </name>
+      <capital>Yaounde</capital>
+      <coords>
+         <capital>
+            <lat>3.52</lat>
+            <long>11.31</long>
+         </capital>
+         <centred>
+            <lat>6.00</lat>
+            <long>12.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CA</code>
+      <name>
+         <en case="uppercase">CANADA</en>
+         <en case="normal">Canada</en>
+         <fr case="uppercase">CANADA</fr>
+      </name>
+      <capital>Ottawa</capital>
+      <coords>
+         <capital>
+            <lat>45.25</lat>
+            <long>-75.42</long>
+         </capital>
+         <centred>
+            <lat>60.00</lat>
+            <long>-95.00</long>
+         </centred>
+      </coords>
+      <summary_assessment>
+         <evaluations>
+            <evaluation type="committment" degree="true"/>
+            <evaluation type="implementation" degree="substantial"/>
+         </evaluations>
+         <exchanging_information>
+            <p>Canada has signed agreements with 79 countries that provide exchange of information in tax matters to OECD standards. Canada also has five MLATs that allow for exchange of information in criminal tax matters.</p>            
+         </exchanging_information>
+         <ownership_access>
+            <p>Canada has powers to obtain ownership, identity and accounting information, whether or not it is required to be kept, and has measures to compel the production of such information. There are no statutory confidentiality or secrecy provisions in place. Canada allows the issuance of bearer securities and generally relies on investigative powers to identify the owners of such securities. Canada has powers to obtain ownership, identity and accounting information, whether or not it is required to be kept, and has measures to compel the production of such information. There are no statutory confidentiality or secrecy provisions in place. Canada allows the issuance of bearer securities and generally relies on investigative powers to identify the owners of such securities.</p>
+         </ownership_access>
+         <ownership_availability>
+            <p>Companies and nominee shareholders must maintain legal ownership information. In the case of trusts, the governmental authorities, the trustee and service providers must maintain identity information on the settlors and beneficiaries when the trust is resident in Canada. The identity of all partners must be maintained by the governmental authorities and the partnership.</p>
+            <p>Accounting information for all entities is required to be kept in accordance with the JAHGA standards.</p>
+         </ownership_availability>
+      </summary_assessment>
+       <!-- this is the equivalent of the tables
+           A - Exchanging information
+           [A1 - not a table]
+           A2 - domestic laws
+           A3 - DTC and TIEAs
+           A4 - mechanisms in place
+           A5 - dual criminality principle
+           
+           B - Access to Bank information
+           B1 - bank secrecy
+           B2 - bank information for eoi purposes
+           B3 - procedures to obtain bank information
+           
+           C - Access to ownership, identity and accounting information
+           C1 - information gathering powers
+           C2 - confidentiality or secrecy
+           C3 - bearer securities
+           
+           D - Availability of ownership, identity and accounting information
+           D1 - ownership information - companies
+           D2 - trusts laws
+           
+           D3 - identity information - trusts
+           D4 - identity information - partnerships
+           D5 - identity information - foundations
+           
+           D6 - aacounting information - companies
+           D7 - accounting information - trusts
+           D8 - accounting information - partnerships
+           D9 - accounting information - foundations
+       -->
+       
+       <framework_info>
+           <!-- A2 -->
+           <domestic_laws>
+               <law>
+                   <type>Mutual Legal Assistance Law</type>
+                   <description>
+                       Provides mechanisms for exchanging information in relation to criminal offences including criminal tax matters. Dual criminality is not required.                   </description>
+               </law>
+           </domestic_laws>
+
+           <!-- A3 -->
+           <eoi_agreements>
+               <agreement type="DTC">87</agreement>
+               <agreement type="TIEA">0</agreement>
+               <limited count="1"/>
+               <broad count="86">
+                   <all_tax count="86"/>
+                   <criminal count="0"/>
+                   <civil count="0"/>
+               </broad>
+           </eoi_agreements>
+
+           <!-- A4 -->
+           <eoi_mechanisms>
+               <all count="85"/>
+               <civil count="1"/>
+               <criminal count="5">MLAT
+                   <note>MLATs (with countries without DTC or TIEA) with Antigua and Barbuda, Bahamas; Greece; Hong Kong, China; Uruguay. See Table A2.</note>
+               </criminal>
+           </eoi_mechanisms>
+
+           <!-- A5 -->
+           <!-- not applicable -->
+       
+           <!-- B1 -->
+           <bank_secrecy purely_law="yes" reinforced="no" limited="n/a"/>
+           
+           <!-- B2 -->
+           <bank_info_access>
+               <all value="yes"/>
+               <domestic value="no"/>
+               <criminal value="n/a"/>
+               <inability value="no"/>
+           </bank_info_access>
+           
+           <!-- B3 -->
+           <bank_info_procedures>
+               <direct_access value="yes">
+                   <note>In connection with a DTC or TIEA. In other cases separate authorization may be required.</note>
+               </direct_access>
+               <compelling_measures value="yes"/>
+           </bank_info_procedures>
+           
+           <!-- C1 -->
+           <powers>
+               <information_kept value="yes">
+                   <civil value="yes"/>
+                   <criminal value="yes"/>
+               </information_kept>
+               <information_kept value="no">
+                   <civil value="yes"/>
+                   <criminal value="yes"/>
+               </information_kept>
+               <only_domestic value="no"/>
+               <compelling_measures value="yes"/>
+           </powers>
+           
+           <!-- C2 -->
+           <secrecy_provisions>
+               <prohibiting_disclosure value="no"/>
+               <type value="n/a"/>
+               <eoi_overrides value="n/a"/>
+           </secrecy_provisions>
+           
+           <!-- C3 -->
+           <bearer_securities>
+               <shares issued="yes">
+                   <mechanism>
+                       Investigative powers.
+                       <note>Refers to powers of the tax administration to require information to be provided.</note>
+                       There are also provisions in corporate law which assist in identifying owners of bearer securities such as requirements for registration in order to vote, receive notices, interest dividends or other payments.
+                   </mechanism>
+               </shares>
+               <debt issued="yes">
+                   <mechanism>
+                       Investigative powers.
+                       <note>Refers to powers of the tax administration to require information to be provided.</note>
+                       See also column 3.
+                   </mechanism>
+               </debt>
+           </bearer_securities>
+           
+           <!-- D -->
+           <information>
+               <!-- D1 -->
+               <ownership type="companies">
+                   <by_government value="no">
+                       <note>Where subject to taxation a company may be required to provide ownership information.</note>
+                   </by_government>
+                   <by_company>
+                       Legal ownership for other than bearer shares.
+                   </by_company>
+                   <by_serviceprovider>
+                       Nominees are required to know the next legal owner.
+                   </by_serviceprovider>
+               </ownership>
+               <!-- D2 -->
+               <trust_laws>
+                   <domestic value="yes"/>
+                   <non_resident value="no"/>
+                   <resident_administer value="n/a"/>
+               </trust_laws>
+               
+               <!-- D3 -->
+               <identity type="trusts"/>
+               <!-- D4 -->
+               <identity type="partnerships"/>
+               <!-- D5 -->
+               <identity type="foundations"/>
+               <!-- D6 -->
+               <accounting type="companies"/>
+               <!-- D7 -->
+               <accounting type="trusts"/>
+               <!-- D8 -->
+               <accounting type="partnerships"/>
+               <!-- D9 -->
+               <accounting type="foundations"/>
+               
+           </information>
+       </framework_info>
+       
+   </country>
+   <country>
+      <code>CV</code>
+      <name>
+         <en case="uppercase">CAPE VERDE</en>
+         <en case="normal">Cape Verde</en>
+         <fr case="uppercase">CAP-VERT</fr>
+      </name>
+      <capital>Praia</capital>
+      <coords>
+         <capital>
+            <lat>14.55</lat>
+            <long>-23.31</long>
+         </capital>
+         <centred>
+            <lat>16.00</lat>
+            <long>-24.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CF</code>
+      <name>
+         <en case="uppercase">CENTRAL AFRICAN REPUBLIC</en>
+         <en case="normal">Central African Republic</en>
+         <fr case="uppercase">CENTRAFRICAINE, RÉPUBLIQUE</fr>
+      </name>
+      <capital>Bangui</capital>
+      <coords>
+         <capital>
+            <lat>4.22</lat>
+            <long>18.35</long>
+         </capital>
+         <centred>
+            <lat>7.00</lat>
+            <long>21.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CL</code>
+      <name>
+         <en case="uppercase">CHILE</en>
+         <en case="normal">Chile</en>
+         <fr case="uppercase">CHILI</fr>
+      </name>
+      <capital>Santiago</capital>
+      <coords>
+         <capital>
+            <lat>-33.27</lat>
+            <long>-70.40</long>
+         </capital>
+         <centred>
+            <lat>-30.00</lat>
+            <long>-71.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CN</code>
+      <name>
+         <en case="uppercase">CHINA</en>
+         <en case="normal">China</en>
+         <fr case="uppercase">CHINE</fr>
+      </name>
+      <capital>Beijing</capital>
+      <coords>
+         <capital>
+            <lat>39.55</lat>
+            <long>116.23</long>
+         </capital>
+         <centred>
+            <lat>35.00</lat>
+            <long>105.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CX</code>
+      <name>
+         <en case="uppercase">CHRISTMAS ISLAND</en>
+         <en case="normal">Christmas Island</en>
+         <fr case="uppercase">CHRISTMAS, ÎLE</fr>
+      </name>
+      <capital>Flying Fish Cove</capital>
+      <coords>
+         <capital>
+            <lat>-10.25</lat>
+            <long>105.43</long>
+         </capital>
+         <centred>
+            <lat>-10.30</lat>
+            <long>105.40</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CY</code>
+      <name>
+         <en case="uppercase">CYPRUS</en>
+         <en case="normal">Cyprus</en>
+         <fr case="uppercase">CHYPRE</fr>
+      </name>
+      <capital>Nicosia</capital>
+      <coords>
+         <capital>
+            <lat>35.10</lat>
+            <long>33.22</long>
+         </capital>
+         <centred>
+            <lat>35.00</lat>
+            <long>33.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CC</code>
+      <name>
+         <en case="uppercase">COCOS (KEELING) ISLANDS</en>
+         <en case="normal">Cocos (Keeling) Islands</en>
+         <fr case="uppercase">COCOS (KEELING), ÎLES</fr>
+      </name>
+      <capital/>
+      <coords>
+         <capital>
+            <lat>-12.10</lat>
+            <long>96.50</long>
+         </capital>
+         <centred>
+            <lat>-12.30</lat>
+            <long>96.50</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CO</code>
+      <name>
+         <en case="uppercase">COLOMBIA</en>
+         <en case="normal">Colombia</en>
+         <fr case="uppercase">COLOMBIE</fr>
+      </name>
+      <capital>Bogotá</capital>
+      <coords>
+         <capital>
+            <lat>4.36</lat>
+            <long>-74.05</long>
+         </capital>
+         <centred>
+            <lat>4.00</lat>
+            <long>-72.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KM</code>
+      <name>
+         <en case="uppercase">COMOROS</en>
+         <en case="normal">Comoros</en>
+         <fr case="uppercase">COMORES</fr>
+      </name>
+      <capital>Moroni</capital>
+      <coords>
+         <capital>
+            <lat>-11.42</lat>
+            <long>43.14</long>
+         </capital>
+         <centred>
+            <lat>-12.10</lat>
+            <long>44.15</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CG</code>
+      <name>
+         <en case="uppercase">CONGO, REPUBLIC OF THE</en>
+         <en case="normal">Congo, Republic of the</en>
+         <fr case="uppercase">CONGO, RÉPUBLIQUE DU</fr>
+      </name>
+      <capital>Brazzaville</capital>
+      <coords>
+         <capital>
+            <lat>-4.15</lat>
+            <long>15.17</long>
+         </capital>
+         <centred>
+            <lat>-1.00</lat>
+            <long>15.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CD</code>
+      <name>
+         <en case="uppercase">CONGO, DEMOCRATIC REPUBLIC OF THE</en>
+         <en case="normal">Congo, Democratic Republic of the</en>
+         <fr case="uppercase">CONGO, RÉPUBLIQUE DÉMOCRATIQUE DU</fr>
+      </name>
+      <capital>Kinshasa</capital>
+      <coords>
+         <capital>
+            <lat>-4.19</lat>
+            <long>15.18</long>
+         </capital>
+         <centred>
+            <lat>0.00</lat>
+            <long>25.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CK</code>
+      <name>
+         <en case="uppercase">COOK ISLANDS</en>
+         <en case="normal">Cook Islands</en>
+         <fr case="uppercase">COOK, ÎLES</fr>
+      </name>
+      <capital>Avarua</capital>
+      <coords>
+         <capital>
+            <lat>-21.12</lat>
+            <long>-159.46</long>
+         </capital>
+         <centred>
+            <lat>-21.14</lat>
+            <long>-159.46</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KR</code>
+      <name>
+         <en case="uppercase">KOREA, REPUBLIC OF</en>
+         <en case="normal">Korea, Republic of</en>
+         <fr case="uppercase">CORÉE, RÉPUBLIQUE DE</fr>
+      </name>
+      <capital>Seoul</capital>
+      <coords>
+         <capital>
+            <lat>37.33</lat>
+            <long>126.59</long>
+         </capital>
+         <centred>
+            <lat>37.00</lat>
+            <long>127.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KP</code>
+      <name>
+         <en case="uppercase">KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</en>
+         <en case="normal">Korea, Democratic People's Republic of</en>
+         <fr case="uppercase">CORÉE, RÉPUBLIQUE POPULAIRE DÉMOCRATIQUE DE</fr>
+      </name>
+      <capital>Pyongyang</capital>
+      <coords>
+         <capital>
+            <lat>39.01</lat>
+            <long>125.45</long>
+         </capital>
+         <centred>
+            <lat>40.00</lat>
+            <long>127.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CR</code>
+      <name>
+         <en case="uppercase">COSTA RICA</en>
+         <en case="normal">Costa Rica</en>
+         <fr case="uppercase">COSTA RICA</fr>
+      </name>
+      <capital>San Jose</capital>
+      <coords>
+         <capital>
+            <lat>9.56</lat>
+            <long>-84.05</long>
+         </capital>
+         <centred>
+            <lat>10.00</lat>
+            <long>-84.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CI</code>
+      <name>
+         <en case="uppercase">CÔTE D'IVOIRE</en>
+         <en case="normal">Côte d'Ivoire</en>
+         <fr case="uppercase">CÔTE D'IVOIRE</fr>
+      </name>
+      <capital>Yamoussoukro</capital>
+      <coords>
+         <capital>
+            <lat>6.49</lat>
+            <long>-5.17</long>
+         </capital>
+         <centred>
+            <lat>8.00</lat>
+            <long>-5.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>HR</code>
+      <name>
+         <en case="uppercase">CROATIA</en>
+         <en case="normal">Croatia</en>
+         <fr case="uppercase">CROATIE</fr>
+      </name>
+      <capital>Zagreb</capital>
+      <coords>
+         <capital>
+            <lat>45.48</lat>
+            <long>16.00</long>
+         </capital>
+         <centred>
+            <lat>45.10</lat>
+            <long>15.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CU</code>
+      <name>
+         <en case="uppercase">CUBA</en>
+         <en case="normal">Cuba</en>
+         <fr case="uppercase">CUBA</fr>
+      </name>
+      <capital>Havana</capital>
+      <coords>
+         <capital>
+            <lat>23.07</lat>
+            <long>-82.21</long>
+         </capital>
+         <centred>
+            <lat>21.30</lat>
+            <long>-80.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DK</code>
+      <name>
+         <en case="uppercase">DENMARK</en>
+         <en case="normal">Denmark</en>
+         <fr case="uppercase">DANEMARK</fr>
+      </name>
+      <capital>Copenhagen</capital>
+      <coords>
+         <capital>
+            <lat>55.40</lat>
+            <long>12.35</long>
+         </capital>
+         <centred>
+            <lat>56.00</lat>
+            <long>10.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DJ</code>
+      <name>
+         <en case="uppercase">DJIBOUTI</en>
+         <en case="normal">Djibouti</en>
+         <fr case="uppercase">DJIBOUTI</fr>
+      </name>
+      <capital>Djibouti</capital>
+      <coords>
+         <capital>
+            <lat>11.35</lat>
+            <long>43.09</long>
+         </capital>
+         <centred>
+            <lat>11.30</lat>
+            <long>43.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DO</code>
+      <name>
+         <en case="uppercase">DOMINICAN REPUBLIC</en>
+         <en case="normal">Dominican Republic</en>
+         <fr case="uppercase">DOMINICAINE, RÉPUBLIQUE</fr>
+      </name>
+      <capital>Santo Domingo</capital>
+      <coords>
+         <capital>
+            <lat>18.28</lat>
+            <long>-69.54</long>
+         </capital>
+         <centred>
+            <lat>19.00</lat>
+            <long>-70.40</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>DM</code>
+      <name>
+         <en case="uppercase">DOMINICA</en>
+         <en case="normal">Dominica</en>
+         <fr case="uppercase">DOMINIQUE</fr>
+      </name>
+      <capital>Roseau</capital>
+      <coords>
+         <capital>
+            <lat>15.18</lat>
+            <long>-61.24</long>
+         </capital>
+         <centred>
+            <lat>15.25</lat>
+            <long>-61.20</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>EG</code>
+      <name>
+         <en case="uppercase">EGYPT</en>
+         <en case="normal">Egypt</en>
+         <fr case="uppercase">ÉGYPTE</fr>
+      </name>
+      <capital>Cairo</capital>
+      <coords>
+         <capital>
+            <lat>30.03</lat>
+            <long>31.15</long>
+         </capital>
+         <centred>
+            <lat>27.00</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SV</code>
+      <name>
+         <en case="uppercase">EL SALVADOR</en>
+         <en case="normal">El Salvador</en>
+         <fr case="uppercase">EL SALVADOR</fr>
+      </name>
+      <capital>San Salvador</capital>
+      <coords>
+         <capital>
+            <lat>13.42</lat>
+            <long>-89.12</long>
+         </capital>
+         <centred>
+            <lat>13.50</lat>
+            <long>-88.55</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AE</code>
+      <name>
+         <en case="uppercase">UNITED ARAB EMIRATES</en>
+         <en case="normal">United Arab Emirates</en>
+         <fr case="uppercase">ÉMIRATS ARABES UNIS</fr>
+      </name>
+      <capital>Abu Dhabi</capital>
+      <coords>
+         <capital>
+            <lat>24.28</lat>
+            <long>54.22</long>
+         </capital>
+         <centred>
+            <lat>24.00</lat>
+            <long>54.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>EC</code>
+      <name>
+         <en case="uppercase">ECUADOR</en>
+         <en case="normal">Ecuador</en>
+         <fr case="uppercase">ÉQUATEUR</fr>
+      </name>
+      <capital>Quito</capital>
+      <coords>
+         <capital>
+            <lat>-0.13</lat>
+            <long>-78.30</long>
+         </capital>
+         <centred>
+            <lat>-2.00</lat>
+            <long>-77.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ER</code>
+      <name>
+         <en case="uppercase">ERITREA</en>
+         <en case="normal">Eritrea</en>
+         <fr case="uppercase">ÉRYTHRÉE</fr>
+      </name>
+      <capital>Asmara</capital>
+      <coords>
+         <capital>
+            <lat>15.20</lat>
+            <long>38.56</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>39.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ES</code>
+      <name>
+         <en case="uppercase">SPAIN</en>
+         <en case="normal">Spain</en>
+         <fr case="uppercase">ESPAGNE</fr>
+      </name>
+      <capital>Madrid</capital>
+      <coords>
+         <capital>
+            <lat>40.24</lat>
+            <long>-3.41</long>
+         </capital>
+         <centred>
+            <lat>40.00</lat>
+            <long>-4.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>EE</code>
+      <name>
+         <en case="uppercase">ESTONIA</en>
+         <en case="normal">Estonia</en>
+         <fr case="uppercase">ESTONIE</fr>
+      </name>
+      <capital>Tallinn</capital>
+      <coords>
+         <capital>
+            <lat>59.26</lat>
+            <long>24.43</long>
+         </capital>
+         <centred>
+            <lat>59.00</lat>
+            <long>26.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>US</code>
+      <name>
+         <en case="uppercase">UNITED STATES</en>
+         <en case="normal">United States</en>
+         <fr case="uppercase">ÉTATS-UNIS</fr>
+      </name>
+      <capital>Washington, D.C.</capital>
+      <coords>
+         <capital>
+            <lat>38.53</lat>
+            <long>-77.02</long>
+         </capital>
+         <centred>
+            <lat>38.00</lat>
+            <long>-97.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ET</code>
+      <name>
+         <en case="uppercase">ETHIOPIA</en>
+         <en case="normal">Ethiopia</en>
+         <fr case="uppercase">ÉTHIOPIE</fr>
+      </name>
+      <capital>Addis Ababa</capital>
+      <coords>
+         <capital>
+            <lat>9.02</lat>
+            <long>38.42</long>
+         </capital>
+         <centred>
+            <lat>8.00</lat>
+            <long>38.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FK</code>
+      <name>
+         <en case="uppercase">FALKLAND ISLANDS (MALVINAS)</en>
+         <en case="normal">Falkland Islands (Malvinas)</en>
+         <fr case="uppercase">FALKLAND, ÎLES (MALVINAS)</fr>
+      </name>
+      <capital>Stanley</capital>
+      <coords>
+         <capital>
+            <lat>-51.42</lat>
+            <long>-57.51</long>
+         </capital>
+         <centred>
+            <lat>-51.45</lat>
+            <long>-59.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FO</code>
+      <name>
+         <en case="uppercase">FAROE ISLANDS</en>
+         <en case="normal">Faroe Islands</en>
+         <fr case="uppercase">FÉROÉ, ÎLES</fr>
+      </name>
+      <capital>Tórshavn</capital>
+      <coords>
+         <capital>
+            <lat>62.01</lat>
+            <long>-6.46</long>
+         </capital>
+         <centred>
+            <lat>62.00</lat>
+            <long>-7.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FJ</code>
+      <name>
+         <en case="uppercase">FIJI</en>
+         <en case="normal">Fiji</en>
+         <fr case="uppercase">FIDJI</fr>
+      </name>
+      <capital>Suva</capital>
+      <coords>
+         <capital>
+            <lat>-18.08</lat>
+            <long>178.25</long>
+         </capital>
+         <centred>
+            <lat>-18.00</lat>
+            <long>175.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FI</code>
+      <name>
+         <en case="uppercase">FINLAND</en>
+         <en case="normal">Finland</en>
+         <fr case="uppercase">FINLANDE</fr>
+      </name>
+      <capital>Helsinki</capital>
+      <coords>
+         <capital>
+            <lat>60.10</lat>
+            <long>24.56</long>
+         </capital>
+         <centred>
+            <lat>64.00</lat>
+            <long>26.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FR</code>
+      <name>
+         <en case="uppercase">FRANCE</en>
+         <en case="normal">France</en>
+         <fr case="uppercase">FRANCE</fr>
+      </name>
+      <capital>Paris</capital>
+      <coords>
+         <capital>
+            <lat>48.52</lat>
+            <long>2.20</long>
+         </capital>
+         <centred>
+            <lat>46.53</lat>
+            <long>2.43</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GA</code>
+      <name>
+         <en case="uppercase">GABON</en>
+         <en case="normal">Gabon</en>
+         <fr case="uppercase">GABON</fr>
+      </name>
+      <capital>Libreville</capital>
+      <coords>
+         <capital>
+            <lat>0.23</lat>
+            <long>9.27</long>
+         </capital>
+         <centred>
+            <lat>-1.00</lat>
+            <long>11.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GM</code>
+      <name>
+         <en case="uppercase">GAMBIA, THE</en>
+         <en case="normal">Gambia, The</en>
+         <fr case="uppercase">GAMBIE, LA</fr>
+      </name>
+      <capital>Banjul</capital>
+      <coords>
+         <capital>
+            <lat>13.27</lat>
+            <long>-16.34</long>
+         </capital>
+         <centred>
+            <lat>13.28</lat>
+            <long>-16.34</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GE</code>
+      <name>
+         <en case="uppercase">GEORGIA</en>
+         <en case="normal">Georgia</en>
+         <fr case="uppercase">GÉORGIE</fr>
+      </name>
+      <capital>Tbilisi</capital>
+      <coords>
+         <capital>
+            <lat>41.43</lat>
+            <long>44.47</long>
+         </capital>
+         <centred>
+            <lat>42.00</lat>
+            <long>43.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GS</code>
+      <name>
+         <en case="uppercase">SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</en>
+         <en case="normal">South Georgia and the South Sandwich Islands</en>
+         <fr case="uppercase">GÉORGIE DU SUD ET LES ÎLES SANDWICH DU SUD</fr>
+      </name>
+      <capital>King Edward Point</capital>
+      <coords>
+         <centred>
+            <lat>-54.30</lat>
+            <long>-37.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GH</code>
+      <name>
+         <en case="uppercase">GHANA</en>
+         <en case="normal">Ghana</en>
+         <fr case="uppercase">GHANA</fr>
+      </name>
+      <capital>Accra</capital>
+      <coords>
+         <capital>
+            <lat>5.33</lat>
+            <long>-0.13</long>
+         </capital>
+         <centred>
+            <lat>8.00</lat>
+            <long>-2.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GI</code>
+      <name>
+         <en case="uppercase">GIBRALTAR</en>
+         <en case="normal">Gibraltar</en>
+         <fr case="uppercase">GIBRALTAR</fr>
+      </name>
+      <capital>Gibraltar</capital>
+      <coords>
+         <capital>
+            <lat>36.08</lat>
+            <long>-5.21</long>
+         </capital>
+         <centred>
+            <lat>36.08</lat>
+            <long>-5.21</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GR</code>
+      <name>
+         <en case="uppercase">GREECE</en>
+         <en case="normal">Greece</en>
+         <fr case="uppercase">GRÈCE</fr>
+      </name>
+      <capital>Athens</capital>
+      <coords>
+         <capital>
+            <lat>37.59</lat>
+            <long>23.44</long>
+         </capital>
+         <centred>
+            <lat>39.00</lat>
+            <long>22.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GD</code>
+      <name>
+         <en case="uppercase">GRENADA</en>
+         <en case="normal">Grenada</en>
+         <fr case="uppercase">GRENADE</fr>
+      </name>
+      <capital>St. George's</capital>
+      <coords>
+         <capital>
+            <lat>12.03</lat>
+            <long>-61.45</long>
+         </capital>
+         <centred>
+            <lat>12.07</lat>
+            <long>-61.40</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GL</code>
+      <name>
+         <en case="uppercase">GREENLAND</en>
+         <en case="normal">Greenland</en>
+         <fr case="uppercase">GROENLAND</fr>
+      </name>
+      <capital/>
+      <coords>
+         <capital>
+            <lat>64.11</lat>
+            <long>-51.45</long>
+         </capital>
+         <centred>
+            <lat>72.00</lat>
+            <long>-40.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GP</code>
+      <name>
+         <en case="uppercase">GUADELOUPE</en>
+         <en case="normal">Guadeloupe</en>
+         <fr case="uppercase">GUADELOUPE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>16.15</lat>
+            <long>-61.35</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GU</code>
+      <name>
+         <en case="uppercase">GUAM</en>
+         <en case="normal">Guam</en>
+         <fr case="uppercase">GUAM</fr>
+      </name>
+      <capital>Hagåtña</capital>
+      <coords>
+         <capital>
+            <lat>13.28</lat>
+            <long>144.44</long>
+         </capital>
+         <centred>
+            <lat>13.28</lat>
+            <long>144.47</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GT</code>
+      <name>
+         <en case="uppercase">GUATEMALA</en>
+         <en case="normal">Guatemala</en>
+         <fr case="uppercase">GUATEMALA</fr>
+      </name>
+      <capital>Guatemala City</capital>
+      <coords>
+         <capital>
+            <lat>14.37</lat>
+            <long>-90.31</long>
+         </capital>
+         <centred>
+            <lat>15.30</lat>
+            <long>-90.15</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GG</code>
+      <name>
+         <en case="uppercase">GUERNSEY</en>
+         <en case="normal">Guernsey</en>
+         <fr case="uppercase">GUERNESEY</fr>
+      </name>
+      <capital>Saint Peter Port</capital>
+      <coords>
+         <capital>
+            <lat>49.27</lat>
+            <long>-2.32</long>
+         </capital>
+         <centred>
+            <lat>49.28</lat>
+            <long>-2.35</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GN</code>
+      <name>
+         <en case="uppercase">GUINEA</en>
+         <en case="normal">Guinea</en>
+         <fr case="uppercase">GUINÉE</fr>
+      </name>
+      <capital>Conakry</capital>
+      <coords>
+         <capital>
+            <lat>9.33</lat>
+            <long>-13.42</long>
+         </capital>
+         <centred>
+            <lat>11.00</lat>
+            <long>-10.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GW</code>
+      <name>
+         <en case="uppercase">GUINEA-BISSAU</en>
+         <en case="normal">Guinea-Bissau</en>
+         <fr case="uppercase">GUINÉE-BISSAU</fr>
+      </name>
+      <capital>Bissau</capital>
+      <coords>
+         <capital>
+            <lat>11.51</lat>
+            <long>-15.35</long>
+         </capital>
+         <centred>
+            <lat>12.00</lat>
+            <long>-15.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GQ</code>
+      <name>
+         <en case="uppercase">EQUATORIAL GUINEA</en>
+         <en case="normal">Equatorial Guinea</en>
+         <fr case="uppercase">GUINÉE ÉQUATORIALE</fr>
+      </name>
+      <capital>Malabo</capital>
+      <coords>
+         <capital>
+            <lat>3.45</lat>
+            <long>8.47</long>
+         </capital>
+         <centred>
+            <lat>2.00</lat>
+            <long>10.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GY</code>
+      <name>
+         <en case="uppercase">GUYANA</en>
+         <en case="normal">Guyana</en>
+         <fr case="uppercase">GUYANA</fr>
+      </name>
+      <capital>Georgetown</capital>
+      <coords>
+         <capital>
+            <lat>6.48</lat>
+            <long>-58.10</long>
+         </capital>
+         <centred>
+            <lat>5.00</lat>
+            <long>-59.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GF</code>
+      <name>
+         <en case="uppercase">FRENCH GUIANA</en>
+         <en case="normal">French Guiana</en>
+         <fr case="uppercase">GUYANE FRANÇAISE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>4.00</lat>
+            <long>-53.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>HT</code>
+      <name>
+         <en case="uppercase">HAITI</en>
+         <en case="normal">Haiti</en>
+         <fr case="uppercase">HAÏTI</fr>
+      </name>
+      <capital>Port-au-Prince</capital>
+      <coords>
+         <capital>
+            <lat>18.32</lat>
+            <long>-72.20</long>
+         </capital>
+         <centred>
+            <lat>19.00</lat>
+            <long>-72.25</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>HM</code>
+      <name>
+         <en case="uppercase">HEARD ISLAND AND MCDONALD ISLANDS</en>
+         <en case="normal">Heard Island and McDonald Islands</en>
+         <fr case="uppercase">HEARD, ÎLE ET MCDONALD, ÎLES</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>-53.06</lat>
+            <long>72.31</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>HN</code>
+      <name>
+         <en case="uppercase">HONDURAS</en>
+         <en case="normal">Honduras</en>
+         <fr case="uppercase">HONDURAS</fr>
+      </name>
+      <capital>Tegucigalpa</capital>
+      <coords>
+         <capital>
+            <lat>14.06</lat>
+            <long>-87.13</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>-86.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>HK</code>
+      <name>
+         <en case="uppercase">HONG KONG, CHINA</en>
+         <en case="normal">Hong Kong, China</en>
+         <fr case="uppercase">HONG-KONG, CHINE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>22.15</lat>
+            <long>114.10</long>
+         </centred>
+         <!-- no capital, values made up-->
+         <capital>
+            <lat>20.7480779028968</lat>
+            <long>109.929574</long>
+         </capital>
+      </coords>
+   </country>
+   <country>
+      <code>HU</code>
+      <name>
+         <en case="uppercase">HUNGARY</en>
+         <en case="normal">Hungary</en>
+         <fr case="uppercase">HONGRIE</fr>
+      </name>
+      <capital>Budapest</capital>
+      <coords>
+         <capital>
+            <lat>47.30</lat>
+            <long>19.05</long>
+         </capital>
+         <centred>
+            <lat>47.00</lat>
+            <long>20.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IM</code>
+      <name>
+         <en case="uppercase">ISLE OF MAN</en>
+         <en case="normal">Isle of Man</en>
+         <fr case="uppercase">ÎLE DE MAN</fr>
+      </name>
+      <capital>Douglas</capital>
+      <coords>
+         <capital>
+            <lat>54.09</lat>
+            <long>-4.29</long>
+         </capital>
+         <centred>
+            <lat>54.15</lat>
+            <long>-4.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>UM</code>
+      <name>
+         <en case="uppercase">UNITED STATES MINOR OUTLYING ISLANDS</en>
+         <en case="normal">United States Minor Outlying Islands</en>
+         <fr case="uppercase">ÎLES MINEURES ÉLOIGNÉES DES ÉTATS-UNIS</fr>
+      </name>
+      <capital/>
+      <coords/>
+   </country>
+   <country>
+      <code>VG</code>
+      <name>
+         <en case="uppercase">VIRGIN ISLANDS, BRITISH</en>
+         <en case="normal">Virgin Islands, British</en>
+         <fr case="uppercase">ÎLES VIERGES BRITANNIQUES</fr>
+      </name>
+      <capital>Road Town</capital>
+      <coords>
+         <capital>
+            <lat>18.27</lat>
+            <long>-64.37</long>
+         </capital>
+         <centred>
+            <lat>18.30</lat>
+            <long>-64.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VI</code>
+      <name>
+         <en case="uppercase">VIRGIN ISLANDS, U.S.</en>
+         <en case="normal">Virgin Islands, U.S.</en>
+         <fr case="uppercase">ÎLES VIERGES DES ÉTATS-UNIS</fr>
+      </name>
+      <capital>Charlotte Amalie</capital>
+      <coords>
+         <capital>
+            <lat>18.21</lat>
+            <long>-64.56</long>
+         </capital>
+         <centred>
+            <lat>18.20</lat>
+            <long>-64.50</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IN</code>
+      <name>
+         <en case="uppercase">INDIA</en>
+         <en case="normal">India</en>
+         <fr case="uppercase">INDE</fr>
+      </name>
+      <capital>New Delhi</capital>
+      <coords>
+         <capital>
+            <lat>28.36</lat>
+            <long>77.12</long>
+         </capital>
+         <centred>
+            <lat>20.00</lat>
+            <long>77.00</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745051"><!-- http://www.docstoc.com/docs/56745051/IN -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+       
+   </country>
+   <country>
+      <code>ID</code>
+      <name>
+         <en case="uppercase">INDONESIA</en>
+         <en case="normal">Indonesia</en>
+         <fr case="uppercase">INDONÉSIE</fr>
+      </name>
+      <capital>Jakarta</capital>
+      <coords>
+         <capital>
+            <lat>-6.10</lat>
+            <long>106.49</long>
+         </capital>
+         <centred>
+            <lat>-5.00</lat>
+            <long>120.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IR</code>
+      <name>
+         <en case="uppercase">IRAN, ISLAMIC REPUBLIC OF</en>
+         <en case="normal">Iran, Islamic Republic of</en>
+         <fr case="uppercase">IRAN, RÉPUBLIQUE ISLAMIQUE D'</fr>
+      </name>
+      <capital>Tehran</capital>
+      <coords>
+         <capital>
+            <lat>35.40</lat>
+            <long>51.25</long>
+         </capital>
+         <centred>
+            <lat>32.00</lat>
+            <long>53.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IQ</code>
+      <name>
+         <en case="uppercase">IRAQ</en>
+         <en case="normal">Iraq</en>
+         <fr case="uppercase">IRAQ</fr>
+      </name>
+      <capital>Baghdad</capital>
+      <coords>
+         <capital>
+            <lat>33.20</lat>
+            <long>44.23</long>
+         </capital>
+         <centred>
+            <lat>33.00</lat>
+            <long>44.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IE</code>
+      <name>
+         <en case="uppercase">IRELAND</en>
+         <en case="normal">Ireland</en>
+         <fr case="uppercase">IRLANDE</fr>
+      </name>
+      <capital>Dublin</capital>
+      <coords>
+         <capital>
+            <lat>53.19</lat>
+            <long>-6.14</long>
+         </capital>
+         <centred>
+            <lat>53.00</lat>
+            <long>-8.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IS</code>
+      <name>
+         <en case="uppercase">ICELAND</en>
+         <en case="normal">Iceland</en>
+         <fr case="uppercase">ISLANDE</fr>
+      </name>
+      <capital>Reykjavik</capital>
+      <coords>
+         <capital>
+            <lat>64.09</lat>
+            <long>-21.57</long>
+         </capital>
+         <centred>
+            <lat>65.00</lat>
+            <long>-18.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IL</code>
+      <name>
+         <en case="uppercase">ISRAEL</en>
+         <en case="normal">Israel</en>
+         <fr case="uppercase">ISRAËL</fr>
+      </name>
+      <capital>Jerusalem</capital>
+      <coords>
+         <capital>
+            <lat>31.46</lat>
+            <long>35.14</long>
+         </capital>
+         <centred>
+            <lat>31.30</lat>
+            <long>34.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IT</code>
+      <name>
+         <en case="uppercase">ITALY</en>
+         <en case="normal">Italy</en>
+         <fr case="uppercase">ITALIE</fr>
+      </name>
+      <capital>Rome</capital>
+      <coords>
+         <capital>
+            <lat>41.54</lat>
+            <long>12.29</long>
+         </capital>
+         <centred>
+            <lat>42.50</lat>
+            <long>12.50</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>JM</code>
+      <name>
+         <en case="uppercase">JAMAICA</en>
+         <en case="normal">Jamaica</en>
+         <fr case="uppercase">JAMAÏQUE</fr>
+      </name>
+      <capital>Kingston</capital>
+      <coords>
+         <capital>
+            <lat>18.00</lat>
+            <long>-76.48</long>
+         </capital>
+         <centred>
+            <lat>18.15</lat>
+            <long>-77.30</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745062"><!-- http://www.docstoc.com/docs/56745062/JM -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+   </country>
+   <country>
+      <code>JP</code>
+      <name>
+         <en case="uppercase">JAPAN</en>
+         <en case="normal">Japan</en>
+         <fr case="uppercase">JAPON</fr>
+      </name>
+      <capital>Tokyo</capital>
+      <coords>
+         <capital>
+            <lat>35.41</lat>
+            <long>139.45</long>
+         </capital>
+         <centred>
+            <lat>36.00</lat>
+            <long>138.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>JE</code>
+      <name>
+         <en case="uppercase">JERSEY</en>
+         <en case="normal">Jersey</en>
+         <fr case="uppercase">JERSEY</fr>
+      </name>
+      <capital>Saint Helier</capital>
+      <coords>
+         <capital>
+            <lat>49.11</lat>
+            <long>-2.06</long>
+         </capital>
+         <centred>
+            <lat>49.15</lat>
+            <long>-2.10</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>JO</code>
+      <name>
+         <en case="uppercase">JORDAN</en>
+         <en case="normal">Jordan</en>
+         <fr case="uppercase">JORDANIE</fr>
+      </name>
+      <capital>Amman</capital>
+      <coords>
+         <capital>
+            <lat>31.57</lat>
+            <long>35.56</long>
+         </capital>
+         <centred>
+            <lat>31.00</lat>
+            <long>36.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KZ</code>
+      <name>
+         <en case="uppercase">KAZAKHSTAN</en>
+         <en case="normal">Kazakhstan</en>
+         <fr case="uppercase">KAZAKHSTAN</fr>
+      </name>
+      <capital>Astana</capital>
+      <coords>
+         <capital>
+            <lat>51.10</lat>
+            <long>71.25</long>
+         </capital>
+         <centred>
+            <lat>48.00</lat>
+            <long>68.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KE</code>
+      <name>
+         <en case="uppercase">KENYA</en>
+         <en case="normal">Kenya</en>
+         <fr case="uppercase">KENYA</fr>
+      </name>
+      <capital>Nairobi</capital>
+      <coords>
+         <capital>
+            <lat>-1.17</lat>
+            <long>36.49</long>
+         </capital>
+         <centred>
+            <lat>1.00</lat>
+            <long>38.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KG</code>
+      <name>
+         <en case="uppercase">KYRGYZSTAN</en>
+         <en case="normal">Kyrgyzstan</en>
+         <fr case="uppercase">KIRGHIZISTAN</fr>
+      </name>
+      <capital>Bishkek</capital>
+      <coords>
+         <capital>
+            <lat>42.52</lat>
+            <long>74.36</long>
+         </capital>
+         <centred>
+            <lat>41.00</lat>
+            <long>75.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KI</code>
+      <name>
+         <en case="uppercase">KIRIBATI</en>
+         <en case="normal">Kiribati</en>
+         <fr case="uppercase">KIRIBATI</fr>
+      </name>
+      <capital>Tarawa</capital>
+      <coords>
+         <capital>
+            <lat>1.19</lat>
+            <long>172.58</long>
+         </capital>
+         <centred>
+            <lat>1.25</lat>
+            <long>173.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KW</code>
+      <name>
+         <en case="uppercase">KUWAIT</en>
+         <en case="normal">Kuwait</en>
+         <fr case="uppercase">KOWEÏT</fr>
+      </name>
+      <capital>Kuwait City</capital>
+      <coords>
+         <capital>
+            <lat>29.22</lat>
+            <long>47.58</long>
+         </capital>
+         <centred>
+            <lat>29.30</lat>
+            <long>45.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LA</code>
+      <name>
+         <en case="uppercase">LAO PEOPLE'S DEMOCRATIC REPUBLIC</en>
+         <en case="normal">Lao People's Democratic Republic</en>
+         <fr case="uppercase">LAO, RÉPUBLIQUE DÉMOCRATIQUE POPULAIRE</fr>
+      </name>
+      <capital>Vientiane</capital>
+      <coords>
+         <capital>
+            <lat>17.58</lat>
+            <long>102.36</long>
+         </capital>
+         <centred>
+            <lat>18.00</lat>
+            <long>105.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LS</code>
+      <name>
+         <en case="uppercase">LESOTHO</en>
+         <en case="normal">Lesotho</en>
+         <fr case="uppercase">LESOTHO</fr>
+      </name>
+      <capital>Maseru</capital>
+      <coords>
+         <capital>
+            <lat>-29.19</lat>
+            <long>27.29</long>
+         </capital>
+         <centred>
+            <lat>-29.30</lat>
+            <long>28.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LV</code>
+      <name>
+         <en case="uppercase">LATVIA</en>
+         <en case="normal">Latvia</en>
+         <fr case="uppercase">LETTONIE</fr>
+      </name>
+      <capital>Riga</capital>
+      <coords>
+         <capital>
+            <lat>56.57</lat>
+            <long>24.06</long>
+         </capital>
+         <centred>
+            <lat>57.00</lat>
+            <long>25.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LB</code>
+      <name>
+         <en case="uppercase">LEBANON</en>
+         <en case="normal">Lebanon</en>
+         <fr case="uppercase">LIBAN</fr>
+      </name>
+      <capital>Beirut</capital>
+      <coords>
+         <capital>
+            <lat>33.52</lat>
+            <long>35.30</long>
+         </capital>
+         <centred>
+            <lat>33.50</lat>
+            <long>35.50</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LR</code>
+      <name>
+         <en case="uppercase">LIBERIA</en>
+         <en case="normal">Liberia</en>
+         <fr case="uppercase">LIBÉRIA</fr>
+      </name>
+      <capital>Monrovia</capital>
+      <coords>
+         <capital>
+            <lat>6.18</lat>
+            <long>-10.48</long>
+         </capital>
+         <centred>
+            <lat>6.30</lat>
+            <long>-9.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LY</code>
+      <name>
+         <en case="uppercase">LIBYAN ARAB JAMAHIRIYA</en>
+         <en case="normal">Libyan Arab Jamahiriya</en>
+         <fr case="uppercase">LIBYENNE, JAMAHIRIYA ARABE</fr>
+      </name>
+      <capital>Tripoli</capital>
+      <coords>
+         <capital>
+            <lat>32.53</lat>
+            <long>13.10</long>
+         </capital>
+         <centred>
+            <lat>25.00</lat>
+            <long>17.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LI</code>
+      <name>
+         <en case="uppercase">LIECHTENSTEIN</en>
+         <en case="normal">Liechtenstein</en>
+         <fr case="uppercase">LIECHTENSTEIN</fr>
+      </name>
+      <capital>Vaduz</capital>
+      <coords>
+         <capital>
+            <lat>47.08</lat>
+            <long>9.31</long>
+         </capital>
+         <centred>
+            <lat>47.16</lat>
+            <long>9.32</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LT</code>
+      <name>
+         <en case="uppercase">LITHUANIA</en>
+         <en case="normal">Lithuania</en>
+         <fr case="uppercase">LITUANIE</fr>
+      </name>
+      <capital>Vilnius</capital>
+      <coords>
+         <capital>
+            <lat>54.41</lat>
+            <long>25.19</long>
+         </capital>
+         <centred>
+            <lat>56.00</lat>
+            <long>24.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LU</code>
+      <name>
+         <en case="uppercase">LUXEMBOURG</en>
+         <en case="normal">Luxembourg</en>
+         <fr case="uppercase">LUXEMBOURG</fr>
+      </name>
+      <capital>Luxembourg</capital>
+      <coords>
+         <capital>
+            <lat>49.36</lat>
+            <long>6.07</long>
+         </capital>
+         <centred>
+            <lat>49.45</lat>
+            <long>6.10</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MO</code>
+      <name>
+         <en case="uppercase">MACAU, CHINA</en>
+         <en case="normal">Macau, China</en>
+         <fr case="uppercase">MACAO, CHINE</fr>
+      </name>
+      <capital>Macau</capital>
+       <!-- FIXME: just copied and pasted centred coords for capital coords -->
+      <coords>
+         <capital>
+            <lat>22.10</lat>
+            <long>113.33</long>
+         </capital>
+          <centred>
+              <lat>22.10</lat>
+              <long>113.33</long>
+          </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MK</code>
+      <name>
+         <en case="uppercase">MACEDONIA, FORMER YUGOSLAV REPUBLIC OF</en>
+         <en case="normal">Macedonia, Former Yugoslav Republic of</en>
+         <fr case="uppercase">MACÉDOINE, EX-RÉPUBLIQUE YOUGOSLAVE DE</fr>
+      </name>
+      <capital>Skopje</capital>
+      <coords>
+         <capital>
+            <lat>42.00</lat>
+            <long>21.26</long>
+         </capital>
+         <centred>
+            <lat>41.50</lat>
+            <long>22.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MG</code>
+      <name>
+         <en case="uppercase">MADAGASCAR</en>
+         <en case="normal">Madagascar</en>
+         <fr case="uppercase">MADAGASCAR</fr>
+      </name>
+      <capital>Antananarivo</capital>
+      <coords>
+         <capital>
+            <lat>-18.55</lat>
+            <long>47.31</long>
+         </capital>
+         <centred>
+            <lat>-20.00</lat>
+            <long>47.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MY</code>
+      <name>
+         <en case="uppercase">MALAYSIA</en>
+         <en case="normal">Malaysia</en>
+         <fr case="uppercase">MALAISIE</fr>
+      </name>
+      <capital>Kuala Lumpur</capital>
+      <coords>
+         <capital>
+            <lat>3.10</lat>
+            <long>101.42</long>
+         </capital>
+         <centred>
+            <lat>2.30</lat>
+            <long>112.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MW</code>
+      <name>
+         <en case="uppercase">MALAWI</en>
+         <en case="normal">Malawi</en>
+         <fr case="uppercase">MALAWI</fr>
+      </name>
+      <capital>Lilongwe</capital>
+      <coords>
+         <capital>
+            <lat>-13.59</lat>
+            <long>33.47</long>
+         </capital>
+         <centred>
+            <lat>-13.30</lat>
+            <long>34.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MV</code>
+      <name>
+         <en case="uppercase">MALDIVES</en>
+         <en case="normal">Maldives</en>
+         <fr case="uppercase">MALDIVES</fr>
+      </name>
+      <capital>Male</capital>
+      <coords>
+         <capital>
+            <lat>4.10</lat>
+            <long>73.30</long>
+         </capital>
+         <centred>
+            <lat>3.15</lat>
+            <long>73.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ML</code>
+      <name>
+         <en case="uppercase">MALI</en>
+         <en case="normal">Mali</en>
+         <fr case="uppercase">MALI</fr>
+      </name>
+      <capital>Bamako</capital>
+      <coords>
+         <capital>
+            <lat>12.39</lat>
+            <long>-8.00</long>
+         </capital>
+         <centred>
+            <lat>17.00</lat>
+            <long>-4.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MT</code>
+      <name>
+         <en case="uppercase">MALTA</en>
+         <en case="normal">Malta</en>
+         <fr case="uppercase">MALTE</fr>
+      </name>
+      <capital>Valletta</capital>
+      <coords>
+         <capital>
+            <lat>35.53</lat>
+            <long>14.30</long>
+         </capital>
+         <centred>
+            <lat>35.50</lat>
+            <long>14.35</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MP</code>
+      <name>
+         <en case="uppercase">NORTHERN MARIANA ISLANDS</en>
+         <en case="normal">Northern Mariana Islands</en>
+         <fr case="uppercase">MARIANNES DU NORD, ÎLES</fr>
+      </name>
+      <capital>Saipan</capital>
+      <coords>
+         <capital>
+            <lat>15.12</lat>
+            <long>145.45</long>
+         </capital>
+         <centred>
+            <lat>15.12</lat>
+            <long>145.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MA</code>
+      <name>
+         <en case="uppercase">MOROCCO</en>
+         <en case="normal">Morocco</en>
+         <fr case="uppercase">MAROC</fr>
+      </name>
+      <capital>Rabat</capital>
+      <coords>
+         <capital>
+            <lat>34.01</lat>
+            <long>-6.49</long>
+         </capital>
+         <centred>
+            <lat>32.00</lat>
+            <long>-5.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MH</code>
+      <name>
+         <en case="uppercase">MARSHALL ISLANDS</en>
+         <en case="normal">Marshall Islands</en>
+         <fr case="uppercase">MARSHALL, ÎLES</fr>
+      </name>
+      <capital>Majuro</capital>
+      <coords>
+         <capital>
+            <lat>7.06</lat>
+            <long>171.23</long>
+         </capital>
+         <centred>
+            <lat>9.00</lat>
+            <long>168.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MQ</code>
+      <name>
+         <en case="uppercase">MARTINIQUE</en>
+         <en case="normal">Martinique</en>
+         <fr case="uppercase">MARTINIQUE</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>14.40</lat>
+            <long>-61.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MU</code>
+      <name>
+         <en case="uppercase">MAURITIUS</en>
+         <en case="normal">Mauritius</en>
+         <fr case="uppercase">MAURICE</fr>
+      </name>
+      <capital>Port Louis</capital>
+      <coords>
+         <capital>
+            <lat>-20.09</lat>
+            <long>57.29</long>
+         </capital>
+         <centred>
+            <lat>-20.17</lat>
+            <long>57.33</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MR</code>
+      <name>
+         <en case="uppercase">MAURITANIA</en>
+         <en case="normal">Mauritania</en>
+         <fr case="uppercase">MAURITANIE</fr>
+      </name>
+      <capital>Nouakchott</capital>
+      <coords>
+         <capital>
+            <lat>18.07</lat>
+            <long>-16.02</long>
+         </capital>
+         <centred>
+            <lat>20.00</lat>
+            <long>-12.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>YT</code>
+      <name>
+         <en case="uppercase">MAYOTTE</en>
+         <en case="normal">Mayotte</en>
+         <fr case="uppercase">MAYOTTE</fr>
+      </name>
+      <capital>Mamoudzou</capital>
+      <coords>
+         <capital>
+            <lat>-12.46</lat>
+            <long>45.13</long>
+         </capital>
+         <centred>
+            <lat>-12.50</lat>
+            <long>45.10</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MX</code>
+      <name>
+         <en case="uppercase">MEXICO</en>
+         <en case="normal">Mexico</en>
+         <fr case="uppercase">MEXIQUE</fr>
+      </name>
+      <capital>Mexico City</capital>
+      <coords>
+         <capital>
+            <lat>19.26</lat>
+            <long>-99.08</long>
+         </capital>
+         <centred>
+            <lat>23.00</lat>
+            <long>-102.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>FM</code>
+      <name>
+         <en case="uppercase">MICRONESIA, FEDERATED STATES OF</en>
+         <en case="normal">Micronesia, Federated States of</en>
+         <fr case="uppercase">MICRONÉSIE, ÉTATS FÉDÉRÉS DE</fr>
+      </name>
+      <capital>Palikir</capital>
+      <coords>
+         <capital>
+            <lat>6.55</lat>
+            <long>158.09</long>
+         </capital>
+         <centred>
+            <lat>6.55</lat>
+            <long>158.15</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MD</code>
+      <name>
+         <en case="uppercase">MOLDOVA, REPUBLIC OF</en>
+         <en case="normal">Moldova, Republic of</en>
+         <fr case="uppercase">MOLDOVA</fr>
+      </name>
+      <capital>Chişinău</capital>
+      <coords>
+         <capital>
+            <lat>47.00</lat>
+            <long>28.51</long>
+         </capital>
+         <centred>
+            <lat>47.00</lat>
+            <long>29.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MC</code>
+      <name>
+         <en case="uppercase">MONACO</en>
+         <en case="normal">Monaco</en>
+         <fr case="uppercase">MONACO</fr>
+      </name>
+      <capital>Monaco</capital>
+      <coords>
+         <capital>
+            <lat>43.44</lat>
+            <long>7.25</long>
+         </capital>
+         <centred>
+            <lat>43.44</lat>
+            <long>7.24</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745080"><!-- http://www.docstoc.com/docs/56745080/MC -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+   </country>
+   <country>
+      <code>MN</code>
+      <name>
+         <en case="uppercase">MONGOLIA</en>
+         <en case="normal">Mongolia</en>
+         <fr case="uppercase">MONGOLIE</fr>
+      </name>
+      <capital>Ulan Bator</capital>
+      <coords>
+         <capital>
+            <lat>47.55</lat>
+            <long>106.55</long>
+         </capital>
+         <centred>
+            <lat>46.00</lat>
+            <long>105.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ME</code>
+      <name>
+         <en case="uppercase">MONTENEGRO</en>
+         <en case="normal">Montenegro</en>
+         <fr case="uppercase">MONTÉNÉGRO</fr>
+      </name>
+      <capital>Podgorica</capital>
+      <coords>
+         <capital>
+            <lat>42.26</lat>
+            <long>19.16</long>
+         </capital>
+         <centred>
+            <lat>42.30</lat>
+            <long>19.18</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MS</code>
+      <name>
+         <en case="uppercase">MONTSERRAT</en>
+         <en case="normal">Montserrat</en>
+         <fr case="uppercase">MONTSERRAT</fr>
+      </name>
+      <capital>Brades</capital>
+      <coords>
+         <capital>
+            <lat>16.42</lat>
+            <long>-62.13</long>
+         </capital>
+         <centred>
+            <lat>16.45</lat>
+            <long>-62.12</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MZ</code>
+      <name>
+         <en case="uppercase">MOZAMBIQUE</en>
+         <en case="normal">Mozambique</en>
+         <fr case="uppercase">MOZAMBIQUE</fr>
+      </name>
+      <capital>Maputo</capital>
+      <coords>
+         <capital>
+            <lat>-25.57</lat>
+            <long>32.35</long>
+         </capital>
+         <centred>
+            <lat>-18.15</lat>
+            <long>35.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MM</code>
+      <name>
+         <en case="uppercase">MYANMAR</en>
+         <en case="normal">Myanmar</en>
+         <fr case="uppercase">MYANMAR</fr>
+      </name>
+      <capital>Naypyidaw</capital>
+      <coords>
+         <capital>
+            <lat>16.48</lat>
+            <long>96.09</long>
+         </capital>
+         <centred>
+            <lat>22.00</lat>
+            <long>98.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NA</code>
+      <name>
+         <en case="uppercase">NAMIBIA</en>
+         <en case="normal">Namibia</en>
+         <fr case="uppercase">NAMIBIE</fr>
+      </name>
+      <capital>Windhoek</capital>
+      <coords>
+         <capital>
+            <lat>-22.34</lat>
+            <long>17.05</long>
+         </capital>
+         <centred>
+            <lat>-22.00</lat>
+            <long>17.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NR</code>
+      <name>
+         <en case="uppercase">NAURU</en>
+         <en case="normal">Nauru</en>
+         <fr case="uppercase">NAURU</fr>
+      </name>
+      <capital>Yaren District (unofficial)</capital>
+      <coords>
+          <!-- FIXME: just copied and pasted centred coords for capital coords -->
+         <capital>
+            <lat>-0.32</lat>
+            <long>166.55</long>
+         </capital>
+          <centred>
+              <lat>-0.32</lat>
+              <long>166.55</long>
+          </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NP</code>
+      <name>
+         <en case="uppercase">NEPAL</en>
+         <en case="normal">Nepal</en>
+         <fr case="uppercase">NÉPAL</fr>
+      </name>
+      <capital>Kathmandu</capital>
+      <coords>
+         <capital>
+            <lat>27.43</lat>
+            <long>85.19</long>
+         </capital>
+         <centred>
+            <lat>28.00</lat>
+            <long>84.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NI</code>
+      <name>
+         <en case="uppercase">NICARAGUA</en>
+         <en case="normal">Nicaragua</en>
+         <fr case="uppercase">NICARAGUA</fr>
+      </name>
+      <capital>Managua</capital>
+      <coords>
+         <capital>
+            <lat>12.09</lat>
+            <long>-86.17</long>
+         </capital>
+         <centred>
+            <lat>13.00</lat>
+            <long>-85.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NE</code>
+      <name>
+         <en case="uppercase">NIGER</en>
+         <en case="normal">Niger</en>
+         <fr case="uppercase">NIGER</fr>
+      </name>
+      <capital>Niamey</capital>
+      <coords>
+         <capital>
+            <lat>13.31</lat>
+            <long>2.07</long>
+         </capital>
+         <centred>
+            <lat>16.00</lat>
+            <long>8.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NG</code>
+      <name>
+         <en case="uppercase">NIGERIA</en>
+         <en case="normal">Nigeria</en>
+         <fr case="uppercase">NIGÉRIA</fr>
+      </name>
+      <capital>Abuja</capital>
+      <coords>
+         <capital>
+            <lat>9.05</lat>
+            <long>7.32</long>
+         </capital>
+         <centred>
+            <lat>10.00</lat>
+            <long>8.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NU</code>
+      <name>
+         <en case="uppercase">NIUE</en>
+         <en case="normal">Niue</en>
+         <fr case="uppercase">NIUÉ</fr>
+      </name>
+      <capital>Alofi</capital>
+      <coords>
+         <capital>
+            <lat>-19.01</lat>
+            <long>-169.55</long>
+         </capital>
+         <centred>
+            <lat>-19.02</lat>
+            <long>-169.52</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NF</code>
+      <name>
+         <en case="uppercase">NORFOLK ISLAND</en>
+         <en case="normal">Norfolk Island</en>
+         <fr case="uppercase">NORFOLK, ÎLE</fr>
+      </name>
+      <capital>Kingston</capital>
+      <coords>
+         <capital>
+            <lat>-29.03</lat>
+            <long>167.58</long>
+         </capital>
+         <centred>
+            <lat>-29.02</lat>
+            <long>167.57</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NO</code>
+      <name>
+         <en case="uppercase">NORWAY</en>
+         <en case="normal">Norway</en>
+         <fr case="uppercase">NORVÈGE</fr>
+      </name>
+      <capital>Oslo</capital>
+      <coords>
+         <capital>
+            <lat>59.55</lat>
+            <long>10.45</long>
+         </capital>
+         <centred>
+            <lat>62.00</lat>
+            <long>10.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NC</code>
+      <name>
+         <en case="uppercase">NEW CALEDONIA</en>
+         <en case="normal">New Caledonia</en>
+         <fr case="uppercase">NOUVELLE-CALÉDONIE</fr>
+      </name>
+      <capital>Nouméa</capital>
+      <coords>
+         <capital>
+            <lat>-22.16</lat>
+            <long>166.27</long>
+         </capital>
+         <centred>
+            <lat>-21.30</lat>
+            <long>165.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NZ</code>
+      <name>
+         <en case="uppercase">NEW ZEALAND</en>
+         <en case="normal">New Zealand</en>
+         <fr case="uppercase">NOUVELLE-ZÉLANDE</fr>
+      </name>
+      <capital>Wellington</capital>
+      <coords>
+         <capital>
+            <lat>-41.28</lat>
+            <long>174.51</long>
+         </capital>
+         <centred>
+            <lat>-41.00</lat>
+            <long>174.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>IO</code>
+      <name>
+         <en case="uppercase">BRITISH INDIAN OCEAN TERRITORY</en>
+         <en case="normal">British Indian Ocean Territory</en>
+         <fr case="uppercase">OCÉAN INDIEN, TERRITOIRE BRITANNIQUE DE L'</fr>
+      </name>
+      <capital>Diego Garcia</capital>
+      <coords>
+         <centred>
+            <lat>-6.00</lat>
+            <long>71.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>OM</code>
+      <name>
+         <en case="uppercase">OMAN</en>
+         <en case="normal">Oman</en>
+         <fr case="uppercase">OMAN</fr>
+      </name>
+      <capital>Muscat</capital>
+      <coords>
+         <capital>
+            <lat>23.37</lat>
+            <long>58.35</long>
+         </capital>
+         <centred>
+            <lat>21.00</lat>
+            <long>57.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>UG</code>
+      <name>
+         <en case="uppercase">UGANDA</en>
+         <en case="normal">Uganda</en>
+         <fr case="uppercase">OUGANDA</fr>
+      </name>
+      <capital>Kampala</capital>
+      <coords>
+         <capital>
+            <lat>0.19</lat>
+            <long>32.25</long>
+         </capital>
+         <centred>
+            <lat>1.00</lat>
+            <long>32.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>UZ</code>
+      <name>
+         <en case="uppercase">UZBEKISTAN</en>
+         <en case="normal">Uzbekistan</en>
+         <fr case="uppercase">OUZBÉKISTAN</fr>
+      </name>
+      <capital>Tashkent</capital>
+      <coords>
+         <capital>
+            <lat>41.20</lat>
+            <long>69.18</long>
+         </capital>
+         <centred>
+            <lat>41.00</lat>
+            <long>64.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PK</code>
+      <name>
+         <en case="uppercase">PAKISTAN</en>
+         <en case="normal">Pakistan</en>
+         <fr case="uppercase">PAKISTAN</fr>
+      </name>
+      <capital>Islamabad</capital>
+      <coords>
+         <capital>
+            <lat>33.42</lat>
+            <long>73.10</long>
+         </capital>
+         <centred>
+            <lat>30.00</lat>
+            <long>70.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PW</code>
+      <name>
+         <en case="uppercase">PALAU</en>
+         <en case="normal">Palau</en>
+         <fr case="uppercase">PALAOS</fr>
+      </name>
+      <capital>Koror</capital>
+      <coords>
+         <capital>
+            <lat>7.29</lat>
+            <long>134.38</long>
+         </capital>
+         <centred>
+            <lat>7.30</lat>
+            <long>134.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PS</code>
+      <name>
+         <en case="uppercase">PALESTINIAN TERRITORY, OCCUPIED</en>
+         <en case="normal">Palestinian Territory, Occupied</en>
+         <fr case="uppercase">PALESTINIEN OCCUPÉ, TERRITOIRE</fr>
+      </name>
+      <capital/>
+      <coords/>
+   </country>
+   <country>
+      <code>PA</code>
+      <name>
+         <en case="uppercase">PANAMA</en>
+         <en case="normal">Panama</en>
+         <fr case="uppercase">PANAMA</fr>
+      </name>
+      <capital>Panama City</capital>
+      <coords>
+         <capital>
+            <lat>8.58</lat>
+            <long>-79.32</long>
+         </capital>
+         <centred>
+            <lat>9.00</lat>
+            <long>-80.00</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745087"><!-- http://www.docstoc.com/docs/56745087/PA -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+       
+   </country>
+   <country>
+      <code>PG</code>
+      <name>
+         <en case="uppercase">PAPUA NEW GUINEA</en>
+         <en case="normal">Papua New Guinea</en>
+         <fr case="uppercase">PAPOUASIE-NOUVELLE-GUINÉE</fr>
+      </name>
+      <capital>Port Moresby</capital>
+      <coords>
+         <capital>
+            <lat>-9.30</lat>
+            <long>147.10</long>
+         </capital>
+         <centred>
+            <lat>-6.00</lat>
+            <long>147.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PY</code>
+      <name>
+         <en case="uppercase">PARAGUAY</en>
+         <en case="normal">Paraguay</en>
+         <fr case="uppercase">PARAGUAY</fr>
+      </name>
+      <capital>Asuncion</capital>
+      <coords>
+         <capital>
+            <lat>-25.16</lat>
+            <long>-57.40</long>
+         </capital>
+         <centred>
+            <lat>-23.00</lat>
+            <long>-58.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>NL</code>
+      <name>
+         <en case="uppercase">NETHERLANDS</en>
+         <en case="normal">Netherlands</en>
+         <fr case="uppercase">PAYS-BAS</fr>
+      </name>
+      <capital>Amsterdam</capital>
+      <coords>
+         <capital>
+            <lat>52.23</lat>
+            <long>4.54</long>
+         </capital>
+         <centred>
+            <lat>52.30</lat>
+            <long>5.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PE</code>
+      <name>
+         <en case="uppercase">PERU</en>
+         <en case="normal">Peru</en>
+         <fr case="uppercase">PÉROU</fr>
+      </name>
+      <capital>Lima</capital>
+      <coords>
+         <capital>
+            <lat>-12.03</lat>
+            <long>-77.03</long>
+         </capital>
+         <centred>
+            <lat>-10.00</lat>
+            <long>-76.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PH</code>
+      <name>
+         <en case="uppercase">PHILIPPINES</en>
+         <en case="normal">Philippines</en>
+         <fr case="uppercase">PHILIPPINES</fr>
+      </name>
+      <capital>Manila</capital>
+      <coords>
+         <capital>
+            <lat>14.35</lat>
+            <long>121.00</long>
+         </capital>
+         <centred>
+            <lat>13.00</lat>
+            <long>122.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PN</code>
+      <name>
+         <en case="uppercase">PITCAIRN</en>
+         <en case="normal">Pitcairn</en>
+         <fr case="uppercase">PITCAIRN</fr>
+      </name>
+      <capital>Adamstown</capital>
+      <coords>
+         <capital>
+            <lat>-25.04</lat>
+            <long>-130.05</long>
+         </capital>
+         <centred>
+            <lat>-25.04</lat>
+            <long>-130.06</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PL</code>
+      <name>
+         <en case="uppercase">POLAND</en>
+         <en case="normal">Poland</en>
+         <fr case="uppercase">POLOGNE</fr>
+      </name>
+      <capital>Warsaw</capital>
+      <coords>
+         <capital>
+            <lat>52.15</lat>
+            <long>21.00</long>
+         </capital>
+         <centred>
+            <lat>52.00</lat>
+            <long>20.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PF</code>
+      <name>
+         <en case="uppercase">FRENCH POLYNESIA</en>
+         <en case="normal">French Polynesia</en>
+         <fr case="uppercase">POLYNÉSIE FRANÇAISE</fr>
+      </name>
+      <capital>Papeete</capital>
+      <coords>
+         <capital>
+            <lat>-17.32</lat>
+            <long>-149.34</long>
+         </capital>
+         <centred>
+            <lat>-15.00</lat>
+            <long>-140.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PR</code>
+      <name>
+         <en case="uppercase">PUERTO RICO</en>
+         <en case="normal">Puerto Rico</en>
+         <fr case="uppercase">PORTO RICO</fr>
+      </name>
+      <capital>San Juan</capital>
+      <coords>
+         <capital>
+            <lat>18.28</lat>
+            <long>-66.07</long>
+         </capital>
+         <centred>
+            <lat>18.15</lat>
+            <long>-66.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PT</code>
+      <name>
+         <en case="uppercase">PORTUGAL</en>
+         <en case="normal">Portugal</en>
+         <fr case="uppercase">PORTUGAL</fr>
+      </name>
+      <capital>Lisbon</capital>
+      <coords>
+         <capital>
+            <lat>38.43</lat>
+            <long>-9.08</long>
+         </capital>
+         <centred>
+            <lat>39.30</lat>
+            <long>-8.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>QA</code>
+      <name>
+         <en case="uppercase">QATAR</en>
+         <en case="normal">Qatar</en>
+         <fr case="uppercase">QATAR</fr>
+      </name>
+      <capital>Doha</capital>
+      <coords>
+         <capital>
+            <lat>25.17</lat>
+            <long>51.32</long>
+         </capital>
+         <centred>
+            <lat>25.30</lat>
+            <long>51.15</long>
+         </centred>
+      </coords>
+       <phase1_report docstoc_id="56745095"><!-- http://www.docstoc.com/docs/56745095/QA -->
+           <!-- here goes the exec summary
+               
+               and
+               
+               the instruments table
+           -->
+       </phase1_report>
+   </country>
+   <country>
+      <code>RE</code>
+      <name>
+         <en case="uppercase">RÉUNION</en>
+         <en case="normal">Réunion</en>
+         <fr case="uppercase">RÉUNION</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>-21.06</lat>
+            <long>55.36</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>RO</code>
+      <name>
+         <en case="uppercase">ROMANIA</en>
+         <en case="normal">Romania</en>
+         <fr case="uppercase">ROUMANIE</fr>
+      </name>
+      <capital>Bucharest</capital>
+      <coords>
+         <capital>
+            <lat>44.26</lat>
+            <long>26.06</long>
+         </capital>
+         <centred>
+            <lat>46.00</lat>
+            <long>25.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>GB</code>
+      <name>
+         <en case="uppercase">UNITED KINGDOM</en>
+         <en case="normal">United Kingdom</en>
+         <fr case="uppercase">ROYAUME-UNI</fr>
+      </name>
+      <capital>London</capital>
+      <coords>
+         <capital>
+            <lat>51.30</lat>
+            <long>-0.10</long>
+         </capital>
+         <centred>
+            <lat>54.00</lat>
+            <long>-2.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>RU</code>
+      <name>
+         <en case="uppercase">RUSSIAN FEDERATION</en>
+         <en case="normal">Russian Federation</en>
+         <fr case="uppercase">RUSSIE, FÉDÉRATION DE</fr>
+      </name>
+      <capital>Moscow</capital>
+      <coords>
+         <capital>
+            <lat>55.45</lat>
+            <long>37.35</long>
+         </capital>
+         <centred>
+            <lat>60.00</lat>
+            <long>100.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>RW</code>
+      <name>
+         <en case="uppercase">RWANDA</en>
+         <en case="normal">Rwanda</en>
+         <fr case="uppercase">RWANDA</fr>
+      </name>
+      <capital>Kigali</capital>
+      <coords>
+         <capital>
+            <lat>-1.57</lat>
+            <long>30.04</long>
+         </capital>
+         <centred>
+            <lat>-2.00</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>EH</code>
+      <name>
+         <en case="uppercase">WESTERN SAHARA</en>
+         <en case="normal">Western Sahara</en>
+         <fr case="uppercase">SAHARA OCCIDENTAL</fr>
+      </name>
+      <capital>El Aaiun (unofficial)</capital>
+      <coords>
+         <centred>
+            <lat>24.30</lat>
+            <long>-13.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>BL</code>
+      <name>
+         <en case="uppercase">SAINT BARTHÉLEMY</en>
+         <en case="normal">Saint Barthélemy</en>
+         <fr case="uppercase">SAINT-BARTHÉLEMY</fr>
+      </name>
+      <capital>Gustavia</capital>
+      <coords>
+         <capital>
+            <lat>17.53</lat>
+            <long>-62.51</long>
+         </capital>
+         <centred>
+            <lat>17.90</lat>
+            <long>-62.85</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SH</code>
+      <name>
+         <en case="uppercase">SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</en>
+         <en case="normal">Saint Helena, Ascension and Tristan da Cunha</en>
+         <fr case="uppercase">SAINTE-HÉLÈNE, ASCENSION ET TRISTAN DA CUNHA</fr>
+      </name>
+      <capital>Jamestown</capital>
+      <coords>
+         <capital>
+            <lat>-15.56</lat>
+            <long>-5.44</long>
+         </capital>
+         <centred>
+            <lat>-15.56</lat>
+            <long>-5.42</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LC</code>
+      <name>
+         <en case="uppercase">SAINT LUCIA</en>
+         <en case="normal">Saint Lucia</en>
+         <fr case="uppercase">SAINTE-LUCIE</fr>
+      </name>
+      <capital>Castries</capital>
+      <coords>
+         <capital>
+            <lat>14.01</lat>
+            <long>-61.00</long>
+         </capital>
+         <centred>
+            <lat>13.53</lat>
+            <long>-60.58</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>KN</code>
+      <name>
+         <en case="uppercase">SAINT KITTS AND NEVIS</en>
+         <en case="normal">Saint Kitts and Nevis</en>
+         <fr case="uppercase">SAINT-KITTS-ET-NEVIS</fr>
+      </name>
+      <capital>Basseterre</capital>
+      <coords>
+         <capital>
+            <lat>17.18</lat>
+            <long>-62.43</long>
+         </capital>
+         <centred>
+            <lat>17.20</lat>
+            <long>-62.45</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SM</code>
+      <name>
+         <en case="uppercase">SAN MARINO</en>
+         <en case="normal">San Marino</en>
+         <fr case="uppercase">SAINT-MARIN</fr>
+      </name>
+      <capital>San Marino</capital>
+      <coords>
+         <capital>
+            <lat>43.56</lat>
+            <long>12.25</long>
+         </capital>
+         <centred>
+            <lat>43.46</lat>
+            <long>12.25</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>MF</code>
+      <name>
+         <en case="uppercase">SAINT MARTIN</en>
+         <en case="normal">Saint Martin</en>
+         <fr case="uppercase">SAINT-MARTIN</fr>
+      </name>
+      <capital/>
+      <coords>
+         <centred>
+            <lat>18.05</lat>
+            <long>-63.57</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>PM</code>
+      <name>
+         <en case="uppercase">SAINT PIERRE AND MIQUELON</en>
+         <en case="normal">Saint Pierre and Miquelon</en>
+         <fr case="uppercase">SAINT-PIERRE-ET-MIQUELON</fr>
+      </name>
+      <capital>Saint Pierre</capital>
+      <coords>
+         <capital>
+            <lat>46.46</lat>
+            <long>-56.11</long>
+         </capital>
+         <centred>
+            <lat>46.50</lat>
+            <long>-56.20</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VA</code>
+      <name>
+         <en case="uppercase">HOLY SEE (VATICAN CITY STATE)</en>
+         <en case="normal">Holy See (Vatican City State)</en>
+         <fr case="uppercase">SAINT-SIÈGE (ÉTAT DE LA CITÉ DU VATICAN)</fr>
+      </name>
+      <capital>Vatican</capital>
+      <coords>
+         <capital>
+            <lat>41.54</lat>
+            <long>12.27</long>
+         </capital>
+         <centred>
+            <lat>41.54</lat>
+            <long>12.27</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VC</code>
+      <name>
+         <en case="uppercase">SAINT VINCENT AND THE GRENADINES</en>
+         <en case="normal">Saint Vincent and the Grenadines</en>
+         <fr case="uppercase">SAINT-VINCENT-ET-LES GRENADINES</fr>
+      </name>
+      <capital>Kingstown</capital>
+      <coords>
+         <capital>
+            <lat>13.09</lat>
+            <long>-61.14</long>
+         </capital>
+         <centred>
+            <lat>13.15</lat>
+            <long>-61.12</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SB</code>
+      <name>
+         <en case="uppercase">SOLOMON ISLANDS</en>
+         <en case="normal">Solomon Islands</en>
+         <fr case="uppercase">SALOMON, ÎLES</fr>
+      </name>
+      <capital>Honiara</capital>
+      <coords>
+         <capital>
+            <lat>-9.26</lat>
+            <long>159.57</long>
+         </capital>
+         <centred>
+            <lat>-8.00</lat>
+            <long>159.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>WS</code>
+      <name>
+         <en case="uppercase">SAMOA</en>
+         <en case="normal">Samoa</en>
+         <fr case="uppercase">SAMOA</fr>
+      </name>
+      <capital>Apia</capital>
+      <coords>
+         <capital>
+            <lat>-13.50</lat>
+            <long>-171.44</long>
+         </capital>
+         <centred>
+            <lat>-13.35</lat>
+            <long>-172.20</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>AS</code>
+      <name>
+         <en case="uppercase">AMERICAN SAMOA</en>
+         <en case="normal">American Samoa</en>
+         <fr case="uppercase">SAMOA AMÉRICAINES</fr>
+      </name>
+      <capital>Pago Pago</capital>
+      <coords>
+         <capital>
+            <lat>-14.16</lat>
+            <long>-170.42</long>
+         </capital>
+         <centred>
+            <lat>-14.20</lat>
+            <long>-170.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ST</code>
+      <name>
+         <en case="uppercase">SÃO TOMÉ AND PRÍNCIPE</en>
+         <en case="normal">São Tomé and Príncipe</en>
+         <fr case="uppercase">SÃO TOMÉ-ET-PRINCIPE</fr>
+      </name>
+      <capital>Sao Tome</capital>
+      <coords>
+         <capital>
+            <lat>0.12</lat>
+            <long>6.39</long>
+         </capital>
+         <centred>
+            <lat>1.00</lat>
+            <long>7.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SN</code>
+      <name>
+         <en case="uppercase">SENEGAL</en>
+         <en case="normal">Senegal</en>
+         <fr case="uppercase">SÉNÉGAL</fr>
+      </name>
+      <capital>Dakar</capital>
+      <coords>
+         <capital>
+            <lat>14.40</lat>
+            <long>-17.26</long>
+         </capital>
+         <centred>
+            <lat>14.00</lat>
+            <long>-14.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>RS</code>
+      <name>
+         <en case="uppercase">SERBIA</en>
+         <en case="normal">Serbia</en>
+         <fr case="uppercase">SERBIE</fr>
+      </name>
+      <capital>Belgrade</capital>
+      <coords>
+         <capital>
+            <lat>44.50</lat>
+            <long>20.30</long>
+         </capital>
+         <centred>
+            <lat>44.00</lat>
+            <long>21.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SC</code>
+      <name>
+         <en case="uppercase">SEYCHELLES</en>
+         <en case="normal">Seychelles</en>
+         <fr case="uppercase">SEYCHELLES</fr>
+      </name>
+      <capital>Victoria</capital>
+      <coords>
+         <capital>
+            <lat>-4.38</lat>
+            <long>55.27</long>
+         </capital>
+         <centred>
+            <lat>-4.35</lat>
+            <long>55.40</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SL</code>
+      <name>
+         <en case="uppercase">SIERRA LEONE</en>
+         <en case="normal">Sierra Leone</en>
+         <fr case="uppercase">SIERRA LEONE</fr>
+      </name>
+      <capital>Freetown</capital>
+      <coords>
+         <capital>
+            <lat>8.30</lat>
+            <long>-13.15</long>
+         </capital>
+         <centred>
+            <lat>8.30</lat>
+            <long>-11.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SG</code>
+      <name>
+         <en case="uppercase">SINGAPORE</en>
+         <en case="normal">Singapore</en>
+         <fr case="uppercase">SINGAPOUR</fr>
+      </name>
+      <capital>Singapore</capital>
+      <coords>
+         <capital>
+            <lat>1.17</lat>
+            <long>103.51</long>
+         </capital>
+         <centred>
+            <lat>1.22</lat>
+            <long>103.48</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SK</code>
+      <name>
+         <en case="uppercase">SLOVAKIA</en>
+         <en case="normal">Slovakia</en>
+         <fr case="uppercase">SLOVAQUIE</fr>
+      </name>
+      <capital>Bratislava</capital>
+      <coords>
+         <capital>
+            <lat>48.09</lat>
+            <long>17.07</long>
+         </capital>
+         <centred>
+            <lat>48.40</lat>
+            <long>19.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SI</code>
+      <name>
+         <en case="uppercase">SLOVENIA</en>
+         <en case="normal">Slovenia</en>
+         <fr case="uppercase">SLOVÉNIE</fr>
+      </name>
+      <capital>Ljubljana</capital>
+      <coords>
+         <capital>
+            <lat>46.03</lat>
+            <long>14.31</long>
+         </capital>
+         <centred>
+            <lat>46.07</lat>
+            <long>14.49</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SO</code>
+      <name>
+         <en case="uppercase">SOMALIA</en>
+         <en case="normal">Somalia</en>
+         <fr case="uppercase">SOMALIE</fr>
+      </name>
+      <capital>Mogadishu</capital>
+      <coords>
+         <capital>
+            <lat>2.04</lat>
+            <long>45.22</long>
+         </capital>
+         <centred>
+            <lat>10.00</lat>
+            <long>49.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SD</code>
+      <name>
+         <en case="uppercase">SUDAN</en>
+         <en case="normal">Sudan</en>
+         <fr case="uppercase">SOUDAN</fr>
+      </name>
+      <capital>Khartoum</capital>
+      <coords>
+         <capital>
+            <lat>15.36</lat>
+            <long>32.32</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>LK</code>
+      <name>
+         <en case="uppercase">SRI LANKA</en>
+         <en case="normal">Sri Lanka</en>
+         <fr case="uppercase">SRI LANKA</fr>
+      </name>
+      <capital>Colombo</capital>
+      <coords>
+         <capital>
+            <lat>6.56</lat>
+            <long>79.51</long>
+         </capital>
+         <centred>
+            <lat>7.00</lat>
+            <long>81.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SE</code>
+      <name>
+         <en case="uppercase">SWEDEN</en>
+         <en case="normal">Sweden</en>
+         <fr case="uppercase">SUÈDE</fr>
+      </name>
+      <capital>Stockholm</capital>
+      <coords>
+         <capital>
+            <lat>59.20</lat>
+            <long>18.03</long>
+         </capital>
+         <centred>
+            <lat>62.00</lat>
+            <long>15.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CH</code>
+      <name>
+         <en case="uppercase">SWITZERLAND</en>
+         <en case="normal">Switzerland</en>
+         <fr case="uppercase">SUISSE</fr>
+      </name>
+      <capital>Bern</capital>
+      <coords>
+         <capital>
+            <lat>46.57</lat>
+            <long>7.26</long>
+         </capital>
+         <centred>
+            <lat>47.00</lat>
+            <long>8.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SR</code>
+      <name>
+         <en case="uppercase">SURINAME</en>
+         <en case="normal">Suriname</en>
+         <fr case="uppercase">SURINAME</fr>
+      </name>
+      <capital>Paramaribo</capital>
+      <coords>
+         <capital>
+            <lat>5.50</lat>
+            <long>-55.10</long>
+         </capital>
+         <centred>
+            <lat>4.00</lat>
+            <long>-56.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SJ</code>
+      <name>
+         <en case="uppercase">SVALBARD AND JAN MAYEN</en>
+         <en case="normal">Svalbard and Jan Mayen</en>
+         <fr case="uppercase">SVALBARD ET ÎLE JAN MAYEN</fr>
+      </name>
+      <capital/>
+      <coords/>
+   </country>
+   <country>
+      <code>SZ</code>
+      <name>
+         <en case="uppercase">SWAZILAND</en>
+         <en case="normal">Swaziland</en>
+         <fr case="uppercase">SWAZILAND</fr>
+      </name>
+      <capital>Mbabane</capital>
+      <coords>
+         <capital>
+            <lat>-26.18</lat>
+            <long>31.06</long>
+         </capital>
+         <centred>
+            <lat>-26.30</lat>
+            <long>31.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>SY</code>
+      <name>
+         <en case="uppercase">SYRIAN ARAB REPUBLIC</en>
+         <en case="normal">Syrian Arab Republic</en>
+         <fr case="uppercase">SYRIENNE, RÉPUBLIQUE ARABE</fr>
+      </name>
+      <capital>Damascus</capital>
+      <coords>
+         <capital>
+            <lat>33.30</lat>
+            <long>36.18</long>
+         </capital>
+         <centred>
+            <lat>35.00</lat>
+            <long>38.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TJ</code>
+      <name>
+         <en case="uppercase">TAJIKISTAN</en>
+         <en case="normal">Tajikistan</en>
+         <fr case="uppercase">TADJIKISTAN</fr>
+      </name>
+      <capital>Dushanbe</capital>
+      <coords>
+         <capital>
+            <lat>38.35</lat>
+            <long>68.48</long>
+         </capital>
+         <centred>
+            <lat>39.00</lat>
+            <long>71.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TW</code>
+      <name>
+         <en case="uppercase">TAIWAN, PROVINCE OF CHINA</en>
+         <en case="normal">Taiwan, Province of China</en>
+         <fr case="uppercase">TAÏWAN, PROVINCE DE CHINE</fr>
+      </name>
+      <capital>Taipei</capital>
+      <coords>
+         <capital>
+            <lat>25.03</lat>
+            <long>121.30</long>
+         </capital>
+         <centred>
+            <lat>23.30</lat>
+            <long>121.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TZ</code>
+      <name>
+         <en case="uppercase">TANZANIA, UNITED REPUBLIC OF</en>
+         <en case="normal">Tanzania, United Republic of</en>
+         <fr case="uppercase">TANZANIE, RÉPUBLIQUE-UNIE DE</fr>
+      </name>
+      <capital>Dodoma</capital>
+      <coords>
+         <capital>
+            <lat>-6.48</lat>
+            <long>39.17</long>
+         </capital>
+         <centred>
+            <lat>-6.00</lat>
+            <long>35.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TD</code>
+      <name>
+         <en case="uppercase">CHAD</en>
+         <en case="normal">Chad</en>
+         <fr case="uppercase">TCHAD</fr>
+      </name>
+      <capital>N'Djamena</capital>
+      <coords>
+         <capital>
+            <lat>12.06</lat>
+            <long>15.02</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>19.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>CZ</code>
+      <name>
+         <en case="uppercase">CZECH REPUBLIC</en>
+         <en case="normal">Czech Republic</en>
+         <fr case="uppercase">TCHÈQUE, RÉPUBLIQUE</fr>
+      </name>
+      <capital>Prague</capital>
+      <coords>
+         <capital>
+            <lat>50.05</lat>
+            <long>14.28</long>
+         </capital>
+         <centred>
+            <lat>49.45</lat>
+            <long>15.30</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TF</code>
+      <name>
+         <en case="uppercase">FRENCH SOUTHERN TERRITORIES</en>
+         <en case="normal">French Southern Territories</en>
+         <fr case="uppercase">TERRES AUSTRALES FRANÇAISES</fr>
+      </name>
+      <capital/>
+      <coords/>
+   </country>
+   <country>
+      <code>TH</code>
+      <name>
+         <en case="uppercase">THAILAND</en>
+         <en case="normal">Thailand</en>
+         <fr case="uppercase">THAÏLANDE</fr>
+      </name>
+      <capital>Bangkok</capital>
+      <coords>
+         <capital>
+            <lat>13.45</lat>
+            <long>100.31</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>100.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TL</code>
+      <name>
+         <en case="uppercase">TIMOR-LESTE</en>
+         <en case="normal">Timor-Leste</en>
+         <fr case="uppercase">TIMOR-LESTE</fr>
+      </name>
+      <capital>Dili</capital>
+      <coords>
+         <capital>
+            <lat>-8.35</lat>
+            <long>125.36</long>
+         </capital>
+         <centred>
+            <lat>-8.50</lat>
+            <long>125.55</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TG</code>
+      <name>
+         <en case="uppercase">TOGO</en>
+         <en case="normal">Togo</en>
+         <fr case="uppercase">TOGO</fr>
+      </name>
+      <capital>Lome</capital>
+      <coords>
+         <capital>
+            <lat>6.08</lat>
+            <long>1.13</long>
+         </capital>
+         <centred>
+            <lat>8.00</lat>
+            <long>1.10</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TK</code>
+      <name>
+         <en case="uppercase">TOKELAU</en>
+         <en case="normal">Tokelau</en>
+         <fr case="uppercase">TOKELAU</fr>
+      </name>
+      <capital>Nukunonu</capital>
+      <coords>
+         <centred>
+            <lat>-9.00</lat>
+            <long>-172.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TO</code>
+      <name>
+         <en case="uppercase">TONGA</en>
+         <en case="normal">Tonga</en>
+         <fr case="uppercase">TONGA</fr>
+      </name>
+      <capital>Nuku'alofa</capital>
+      <coords>
+         <capital>
+            <lat>-21.08</lat>
+            <long>-175.12</long>
+         </capital>
+         <centred>
+            <lat>-20.00</lat>
+            <long>-175.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TT</code>
+      <name>
+         <en case="uppercase">TRINIDAD AND TOBAGO</en>
+         <en case="normal">Trinidad and Tobago</en>
+         <fr case="uppercase">TRINITÉ-ET-TOBAGO</fr>
+      </name>
+      <capital>Port-of-Spain</capital>
+      <coords>
+         <capital>
+            <lat>10.39</lat>
+            <long>-61.31</long>
+         </capital>
+         <centred>
+            <lat>11.00</lat>
+            <long>-61.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TN</code>
+      <name>
+         <en case="uppercase">TUNISIA</en>
+         <en case="normal">Tunisia</en>
+         <fr case="uppercase">TUNISIE</fr>
+      </name>
+      <capital>Tunis</capital>
+      <coords>
+         <capital>
+            <lat>36.48</lat>
+            <long>10.11</long>
+         </capital>
+         <centred>
+            <lat>34.00</lat>
+            <long>9.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TM</code>
+      <name>
+         <en case="uppercase">TURKMENISTAN</en>
+         <en case="normal">Turkmenistan</en>
+         <fr case="uppercase">TURKMÉNISTAN</fr>
+      </name>
+      <capital>Ashgabat</capital>
+      <coords>
+         <capital>
+            <lat>37.57</lat>
+            <long>58.23</long>
+         </capital>
+         <centred>
+            <lat>40.00</lat>
+            <long>60.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TC</code>
+      <name>
+         <en case="uppercase">TURKS AND CAICOS ISLANDS</en>
+         <en case="normal">Turks and Caicos Islands</en>
+         <fr case="uppercase">TURKS ET CAÏQUES, ÎLES</fr>
+      </name>
+      <capital>Cockburn Town</capital>
+      <coords>
+         <capital>
+            <lat>21.28</lat>
+            <long>-71.08</long>
+         </capital>
+         <centred>
+            <lat>21.45</lat>
+            <long>-71.35</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TR</code>
+      <name>
+         <en case="uppercase">TURKEY</en>
+         <en case="normal">Turkey</en>
+         <fr case="uppercase">TURQUIE</fr>
+      </name>
+      <capital>Ankara</capital>
+      <coords>
+         <capital>
+            <lat>39.56</lat>
+            <long>32.52</long>
+         </capital>
+         <centred>
+            <lat>39.00</lat>
+            <long>35.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>TV</code>
+      <name>
+         <en case="uppercase">TUVALU</en>
+         <en case="normal">Tuvalu</en>
+         <fr case="uppercase">TUVALU</fr>
+      </name>
+      <capital>Funafuti</capital>
+      <coords>
+         <capital>
+            <lat>-8.30</lat>
+            <long>179.12</long>
+         </capital>
+         <centred>
+            <lat>-8.00</lat>
+            <long>178.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>UA</code>
+      <name>
+         <en case="uppercase">UKRAINE</en>
+         <en case="normal">Ukraine</en>
+         <fr case="uppercase">UKRAINE</fr>
+      </name>
+      <capital>Kiev</capital>
+      <coords>
+         <capital>
+            <lat>50.26</lat>
+            <long>30.31</long>
+         </capital>
+         <centred>
+            <lat>49.00</lat>
+            <long>32.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>UY</code>
+      <name>
+         <en case="uppercase">URUGUAY</en>
+         <en case="normal">Uruguay</en>
+         <fr case="uppercase">URUGUAY</fr>
+      </name>
+      <capital>Montevideo</capital>
+      <coords>
+         <capital>
+            <lat>-34.53</lat>
+            <long>-56.11</long>
+         </capital>
+         <centred>
+            <lat>-33.00</lat>
+            <long>-56.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VU</code>
+      <name>
+         <en case="uppercase">VANUATU</en>
+         <en case="normal">Vanuatu</en>
+         <fr case="uppercase">VANUATU</fr>
+      </name>
+      <capital>Port Vila</capital>
+      <coords>
+         <capital>
+            <lat>-17.44</lat>
+            <long>168.19</long>
+         </capital>
+         <centred>
+            <lat>-16.00</lat>
+            <long>167.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VE</code>
+      <name>
+         <en case="uppercase">VENEZUELA, BOLIVARIAN REPUBLIC OF</en>
+         <en case="normal">Venezuela, Bolivarian Republic of</en>
+         <fr case="uppercase"> VENEZUELA, RÉPUBLIQUE BOLIVARIENNE DU</fr>
+      </name>
+      <capital>Caracas</capital>
+      <coords>
+         <capital>
+            <lat>10.30</lat>
+            <long>-66.56</long>
+         </capital>
+         <centred>
+            <lat>8.00</lat>
+            <long>-66.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>VN</code>
+      <name>
+         <en case="uppercase">VIET NAM</en>
+         <en case="normal">Viet nam</en>
+         <fr case="uppercase">VIET NAM</fr>
+      </name>
+      <capital>Hanoi</capital>
+      <coords>
+         <capital>
+            <lat>21.02</lat>
+            <long>105.51</long>
+         </capital>
+         <centred>
+            <lat>16.00</lat>
+            <long>106.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>WF</code>
+      <name>
+         <en case="uppercase">WALLIS AND FUTUNA</en>
+         <en case="normal">Wallis and Futuna</en>
+         <fr case="uppercase">WALLIS ET FUTUNA</fr>
+      </name>
+      <capital>Mata-Utu</capital>
+      <coords>
+         <capital>
+            <lat>-13.57</lat>
+            <long>-171.56</long>
+         </capital>
+         <centred>
+            <lat>-13.18</lat>
+            <long>-176.12</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>YE</code>
+      <name>
+         <en case="uppercase">YEMEN</en>
+         <en case="normal">Yemen</en>
+         <fr case="uppercase">YÉMEN</fr>
+      </name>
+      <capital>Sana'a</capital>
+      <coords>
+         <capital>
+            <lat>15.21</lat>
+            <long>44.12</long>
+         </capital>
+         <centred>
+            <lat>15.00</lat>
+            <long>48.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ZM</code>
+      <name>
+         <en case="uppercase">ZAMBIA</en>
+         <en case="normal">Zambia</en>
+         <fr case="uppercase">ZAMBIE</fr>
+      </name>
+      <capital>Lusaka</capital>
+      <coords>
+         <capital>
+            <lat>-15.25</lat>
+            <long>28.17</long>
+         </capital>
+         <centred>
+            <lat>-15.00</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+   <country>
+      <code>ZW</code>
+      <name>
+         <en case="uppercase">ZIMBABWE</en>
+         <en case="normal">Zimbabwe</en>
+         <fr case="uppercase">ZIMBABWE</fr>
+      </name>
+      <capital>Harare</capital>
+      <coords>
+         <capital>
+            <lat>-17.50</lat>
+            <long>31.03</long>
+         </capital>
+         <centred>
+            <lat>-20.00</lat>
+            <long>30.00</long>
+         </centred>
+      </coords>
+   </country>
+</countries>
