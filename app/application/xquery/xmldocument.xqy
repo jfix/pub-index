@@ -11,5 +11,8 @@ declare variable $id as xs:string := xdmp:get-request-field("id");
 declare variable $type as xs:string := tokenize($id, '/')[1];
 declare variable $doi as xs:string := tokenize($id, '/')[2];
 
+xdmp:log(concat("XMLDOCUMENT: ", $id)),
+
 (: simply return the document requested :)
-document(concat('/content/', $type, '/', $doi))
+collection("metadata")//dt:identifier[. = $id]/root()
+

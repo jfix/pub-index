@@ -2,10 +2,10 @@ xquery version "1.0-ml";
 
 (: $Id$ :)
 
-import module namespace v = "lib-view" at "lib-view.xqy";
-import module namespace b = "lib-browse" at "lib-browse.xqy";
-import module namespace s = "lib-search" at "lib-search.xqy";
-import module namespace w = "lib-widgets" at "lib-widgets.xqy";
+import module namespace v = "lib-view" at "lib/view.xqy";
+import module namespace b = "lib-browse" at "lib/browse.xqy";
+import module namespace s = "lib-search" at "lib/search.xqy";
+import module namespace w = "lib-widgets" at "lib/widgets.xqy";
 
 import module namespace search = "http://marklogic.com/appservices/search"
   at "/MarkLogic/appservices/search/search.xqy";

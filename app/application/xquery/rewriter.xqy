@@ -19,9 +19,9 @@ let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
 let $browse-pattern as xs:string := "^/browse/([a-z]+)/([-a-zA-Z\s,+]+)$"
-let $display-pattern as xs:string := "^/([a-z]+)/([-a-z0-9_]+)$"
-let $xmldocument-pattern as xs:string := "^/([a-z]+)/([-a-z0-9_]+\.xml)$"
-let $search-pattern as xs:string := "^/search/([^/]+)(/([1-9]))?"
+let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
+let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
+let $search-pattern as xs:string := "^/search/([^/]+)(/([0-9]+))?"
 let $opensearch-pattern as xs:string := "^/opensearch\?q=([a-zA-Z0-9 ]+)(&amp;start=([0-9]+))?"
 
 let $new-url :=
@@ -42,14 +42,14 @@ let $new-url :=
   then
     fn:replace($url,
      $xmldocument-pattern,
-       "/application/xquery/xmldocument.xqy?id=$1/$2")
+       "/application/xquery/xmldocument.xqy?id=$1")
   
   (: display a product :)
   else if (fn:matches($url, $display-pattern))
   then
     fn:replace($url,
       $display-pattern,
-       "/application/xquery/display.xqy?id=$1/$2")
+       "/application/xquery/display.xqy?id=$1")
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))

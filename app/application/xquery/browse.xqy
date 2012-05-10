@@ -2,8 +2,8 @@ xquery version "1.0-ml";
 
 (: $Id$ :)
 
-import module namespace v = "lib-view" at "lib-view.xqy";
-import module namespace b = "lib-browse" at "lib-browse.xqy";
+import module namespace v = "lib-view" at "lib/view.xqy";
+import module namespace b = "lib-browse" at "lib/browse.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
