@@ -13,6 +13,9 @@ declare variable $doi as xs:string := tokenize($id, '/')[2];
 
 xdmp:log(concat("XMLDOCUMENT: ", $id)),
 
-(: simply return the document requested :)
-collection("metadata")//dt:identifier[. = $id]/root()
+(: 
+  simply return the document requested 
+  but could also be a XSLT transformation to provide, e.g. RDF
+:)
 
+collection("metadata")//dt:identifier[. = $id]/root()

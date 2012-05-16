@@ -19,7 +19,7 @@
     <div class="row">
       <div class="two columns">
         <h4 style="text-align:right;">
-          <span class="pubtype-label round label {data($types-doc//type[./text() eq $type]/@color)}"><xsl:value-of select="$type" disable-output-escaping="no"/></span>
+          <span class="pubtype-label round label {data($types-doc//type[./text() eq $type]/@color)}"><xsl:value-of select="$type"/></span>
         </h4>
         <p style="font-size: smaller; text-align:right">
           <span><xsl:value-of select="$date"/></span>                  
@@ -32,7 +32,7 @@
         </xsl:if>
         <h4>
           <a href="{$url}">
-            <xsl:value-of select="$title" disable-output-escaping="no"/>
+            <xsl:value-of select="$title"/>
           </a>
         </h4>
         <xsl:apply-templates select="child::node()"/>

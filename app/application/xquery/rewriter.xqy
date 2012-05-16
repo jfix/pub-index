@@ -21,7 +21,7 @@ let $home-pattern as xs:string := "^/?$"
 let $browse-pattern as xs:string := "^/browse/([a-z]+)/([-a-zA-Z\s,+]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
-let $search-pattern as xs:string := "^/search/([^/]+)(/([0-9]+))?"
+let $search-pattern as xs:string := "^/search/([^/]+)(/([0-9]+))?$"
 let $opensearch-pattern as xs:string := "^/opensearch\?q=([a-zA-Z0-9 ]+)(&amp;start=([0-9]+))?"
 
 let $new-url :=
@@ -54,7 +54,7 @@ let $new-url :=
   (: search results :)
   else if(fn:matches($url, $search-pattern))
   then
-      fn:replace($url,
+    fn:replace($url,
       $search-pattern,
        "/application/xquery/search.xqy?term=$1&amp;start=$3") 
   
@@ -62,12 +62,12 @@ let $new-url :=
   else if (fn:matches($url, $opensearch-pattern))
   then
     fn:replace($url,
-    $opensearch-pattern,
-    "/application/xquery/opensearch.xqy?term=$1&amp;start=$3")
+      $opensearch-pattern,
+      "/application/xquery/opensearch.xqy?term=$1&amp;start=$3")
   
   (: by default try to resolve url passed in :)
   else $url
   
-(:let $_log := xdmp:log(concat("REWRITER: ", $new-url)):)
+let $_log := xdmp:log(concat("REWRITER: ", $new-url))
 
 return $new-url

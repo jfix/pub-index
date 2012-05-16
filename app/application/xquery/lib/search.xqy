@@ -7,11 +7,14 @@ module namespace lib-search = "lib-search";
 import module namespace search = "http://marklogic.com/appservices/search"
   at "/MarkLogic/appservices/search/search.xqy";
 
+import module namespace lib-facets = "lib-facets" at "facets.xqy";
+
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
+declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
 
 declare function lib-search:search-results( 
   $term,
@@ -34,7 +37,6 @@ declare function lib-search:search-results(
      </range>
    </constraint>
     <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy" />
-    <return-facets>true</return-facets>
   </options>
   
   let $xslt := document("/application/xslt/search-results.xsl")
@@ -51,7 +53,7 @@ declare function lib-search:search-results(
   
   (:let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length)):)
   
-  let $end as xs:integer := if ($total < $start * $page-length) 
+  let $end as xs:integer := if ($total < $start + $page-length) 
     then $total 
     else $start + $page-length - 1
     
@@ -97,10 +99,18 @@ declare function lib-search:search-meta(
   $end as xs:integer
 )
 as element(div)
-{
+{  
   <div class="row">
     <div class="eight columns">
-      {$total} results found in {$display-time} secs, showing {$start} to {$end}. 
+    {
+      if ($total < 1) then
+        "No results found."
+      else
+      if ($total = 1) then
+        "One result found."
+      else
+        concat($total, " results found in ", $display-time, " secs, showing ", $start, " to ", $end, ".")
+    } 
     </div>
     <div class="four columns">
       {lib-search:search-paging($start, $page-length, $total, $term)}
@@ -109,17 +119,25 @@ as element(div)
 
 };
 
+(:~
+ : Provides a div that contains the previous / next buttons for search results/browse pages
+ :
+ : @param $start as xs:integer, the index in the list of results where to start showing results
+ : @param $page-length as xs:integer, the number of results to show on one page, default 10
+ : @param $total as xs:integer, total numer of results
+ : @param $term as xs:string, the actual search expression (as submitted to MarkLogic, may need some
+ :                            prettying up
+ : @returns element(div) the div containing the buttons
+ :)
 declare function lib-search:search-paging(
   $start as xs:integer,
   $page-length as xs:integer,
   $total as xs:integer,
   $term as xs:string
-)
+) as element(div)
 {
-  let $total-pages := ceiling( $total div $page-length)
   let $next-page := if ($start + $page-length gt $total) then () else $start + $page-length
   let $prev-page := if ($start - $page-length gt 0) then $start - $page-length else ()
-  let $curr-page := $start
   return
   
   <div style="float:right;">
@@ -127,14 +145,14 @@ declare function lib-search:search-paging(
         if ($start > 1) then
           <a class="nice small radius blue button" href="/search/{$term}/{number($prev-page)}">&laquo; Previous</a>
         else
-          <a class="disabled nice small radius blue button" href="#">&laquo; Previous</a>
+          <a class="disabled nice small radius blue button" >&laquo; Previous</a>
         ,
         text { '&#160;' }
         ,
-        if ($curr-page < $total-pages) then
+        if ($start < $total) then
           <a class="nice small radius blue button" href="/search/{$term}/{number($next-page)}">Next &raquo;</a>
         else
-          <a class="disabled nice small radius blue button" href="#">Next &raquo;</a>
+          <a class="disabled nice small radius blue button" >Next &raquo;</a>
       }
   </div>
 };
@@ -202,7 +220,7 @@ declare variable $lib-search:search-results as node()+ :=
   </div>,
   <div class="row">
     <div class="three columns">
-      here go facets
+      {lib-facets:facets($term, $start, $page-length)}
     </div>
     <div class="nine columns">
       {lib-search:search-results($term, $start)}

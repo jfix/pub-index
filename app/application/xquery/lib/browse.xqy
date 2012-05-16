@@ -7,6 +7,8 @@ module namespace browse = "lib-browse";
 import module namespace search = "http://marklogic.com/appservices/search"
   at "/MarkLogic/appservices/search/search.xqy";
 
+import module namespace b = "lib-facets" at "facets.xqy";
+
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default collation "http://marklogic.com/collation/";
@@ -63,16 +65,8 @@ declare function browse:browse-results(
   return
     <div>
     {
-      let $r := xdmp:xslt-eval($browse-results-xslt, $result)
-      return ((:
-        xdmp:log(
-          concat("****** XSLT STYLE: ", xdmp:quote($browse-results-xslt),
-                "****** RESULTS: ", xdmp:quote($result),
-                "****** XSLT TRANSFORMATION: ", xdmp:quote($r))
-        ),:)
-        $r
-       )
-     }
+      xdmp:xslt-eval($browse-results-xslt, $result)
+    }
     </div>
 };
 
