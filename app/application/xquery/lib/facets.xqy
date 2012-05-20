@@ -9,6 +9,7 @@ import module namespace search = "http://marklogic.com/appservices/search"
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
+declare namespace country = "country-data";
 
 declare variable $term as xs:string := (xdmp:get-request-field("query"), '')[1];
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
@@ -20,8 +21,8 @@ declare function f:facets(
   $page-length as xs:integer
 )
 {
-  let $options :=
-    <options xmlns="http://marklogic.com/appservices/search">
+  let $options := document("/application/xquery/options/facets-no-results.xml")/search:options
+(:    <options xmlns="http://marklogic.com/appservices/search">
       <constraint name="metadata-only">
         <collection prefix="metadata"/>
       </constraint>
@@ -39,7 +40,7 @@ declare function f:facets(
      <return-facets>true</return-facets>
      <return-metrics>false</return-metrics>
     </options>
-    
+:)    
   let $result as element(search:response) := search:search($term, $options, $start)
   let $_log := xdmp:log(concat("------ START FACETS --------:", xdmp:quote($result), "------ END FACETS --------:"))
   
@@ -52,10 +53,33 @@ declare function f:transform-facet-results(
   $term as xs:string
 )
 {
+  let $country-doc := doc("/assets/mappings/countries.xml")
+  let $_log := xdmp:log(concat("------ START country doc --------:", xdmp:quote($country-doc/root()), "------ END country doc --------:"))
+
+  return
   for $facet in $facets/search:facet
     let $facet-name := data($facet/@name)
     return  
       if ($facet-name eq "metadata-only") then ()
+      
+      (: treat countries by displaying their flag :)
+      else if ($facet-name eq "country") then
+        <div class="row">
+          <strong>countries</strong><br/>
+          {
+            for $country in $facet//search:facet-value
+              let $code := data($country/@name)
+              let $count := data($country/@count)
+              let $_log := xdmp:log("about to log information on country name")
+              let $name := $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
+              let $_log := xdmp:log(concat("COUNTRY-NAME: ", $code, ": ", $name))
+
+              order by $country/@count descending 
+              return
+                <img class="flag" src="/assets/images/flags/16/{$code}.png"
+                  title="{$name} has {$count} publications"/>
+          }
+        </div>
       else
         <div class="row">
           <strong>{$facet-name}</strong>
@@ -78,5 +102,15 @@ declare function f:transform-facet-results(
 
 (:
 
-          
+          let $options := 
+<search:options xmlns="http://marklogic.com/appservices/search">
+    <sort-order type="xs:dateTime" 	collation="http://marklogic.com/collation/" direction="descending">
+      <element ns="http://purl.org/dc/terms/" name="available"/>
+    </sort-order>
+    <sort-order type="score" direction="ascending">
+      <score/>
+    </sort-order>
+</search:options>
+return
+search:search("", $options)
 :)
