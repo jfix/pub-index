@@ -21,43 +21,23 @@ declare function lib-search:search-results(
   $start-from
 )
 {
-  let $options :=
-  <options xmlns="http://marklogic.com/appservices/search">
-    <constraint name="metadata-only">
-      <collection prefix="metadata"/>
-    </constraint>
-    <constraint name="pubtype">
-      <range type="xs:string">
-        <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
-      </range>
-    </constraint>
-    <constraint name="subject">
-     <range collation="http://marklogic.com/collation/" type="xs:string" facet="true">
-        <element ns="http://purl.org/dc/terms/" name="subject"/>
-     </range>
-   </constraint>
-    <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy" />
-  </options>
-  
+  let $options := document("/application/xquery/options/default.xml")/search:options
   let $xslt := document("/application/xslt/search-results.xsl")
-  
   let $result := search:search($term, $options, $start-from)
-  
-  let $_log := xdmp:log(concat("XDMP: ", xdmp:quote($result)))
+  (:let $_log := xdmp:log(concat("XDMP: ", xdmp:quote($result))):)
   
   let $start as xs:integer := data($result/@start)
   let $total as xs:integer := data($result/@total)
   let $time as xs:duration := $result/search:metrics/search:total-time/text()
   let $display-time as xs:double := round-half-to-even(seconds-from-duration($time), 2)
-  let $page-length as xs:integer := data($result/@page-length)
-  
+  let $page-length as xs:integer := data($result/@page-length) 
   (:let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length)):)
   
   let $end as xs:integer := if ($total < $start + $page-length) 
     then $total 
     else $start + $page-length - 1
     
-  return if ($term eq "")
+  return (:if ($term eq "")
     then
       <div class="six columns centered">
         <br/>
@@ -66,7 +46,7 @@ declare function lib-search:search-results(
           <a href="" class="close">&times;</a>
         </div>
       </div>
-    else
+    else:)
       (
       lib-search:search-meta($total, $display-time, $start, $page-length, $end)
       ,
