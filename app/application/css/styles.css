@@ -79,3 +79,13 @@ body {
     top: 93px;
     right: 0;
 }
+
+img.flag {
+  margin: 0.2em;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+}
+img.flag.selected {
+  border: 2px solid #2A85E8;
+}
