@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: $Id: lib-search.xqy 32 2012-05-06 22:16:39Z Fix_J $ :)
+(: $Id$ :)
 
 module namespace lib-search = "lib-search";
 

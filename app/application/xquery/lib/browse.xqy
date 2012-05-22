@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: $Id: lib-browse.xqy 28 2012-05-03 22:25:17Z Fix_J $ :)
+(: $Id$ :)
 
 module namespace browse = "lib-browse";
 

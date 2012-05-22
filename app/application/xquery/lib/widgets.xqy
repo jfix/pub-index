@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: $Id: lib-widgets.xqy 33 2012-05-06 22:18:09Z Fix_J $ :)
+(: $Id$ :)
 
 (:~
  : This module defines functions that can be called to create widgets, such as:

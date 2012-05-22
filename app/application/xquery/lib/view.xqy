@@ -1,6 +1,6 @@
 xquery version "1.0-ml";
 
-(: $Id: lib-view.xqy 27 2012-05-03 21:54:44Z Fix_J $ :)
+(: $Id$ :)
 
 module namespace view = "lib-view";
 
