@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<options xmlns="http://marklogic.com/appservices/search">
+    <constraint name="metadata-only">
+        <collection prefix="metadata"/>
+    </constraint>
+    <constraint name="pubtype">
+        <range type="xs:string">
+            <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+        </range>
+    </constraint>
+    <constraint name="country">
+        <range type="xs:string">
+            <element name="country" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+        </range>
+    </constraint>
+    <constraint name="subject">
+        <range type="xs:string">
+            <element name="subject" ns="http://purl.org/dc/terms/"/>
+        </range>
+    </constraint>
+    <sort-order type="xs:dateTime" collation="http://marklogic.com/collation/" direction="descending">
+        <element ns="http://purl.org/dc/terms/" name="available"/>
+    </sort-order>
+    <sort-order type="score" direction="ascending">
+        <score/>
+    </sort-order>
+    <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy"/>
+</options>

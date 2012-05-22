@@ -24,7 +24,7 @@ declare function lib-search:search-results(
   let $options := document("/application/xquery/options/default.xml")/search:options
   let $xslt := document("/application/xslt/search-results.xsl")
   let $result := search:search($term, $options, $start-from)
-  (:let $_log := xdmp:log(concat("XDMP: ", xdmp:quote($result))):)
+  let $_log := xdmp:log(concat("XDMP: ", xdmp:quote($result)))
   
   let $start as xs:integer := data($result/@start)
   let $total as xs:integer := data($result/@total)
