@@ -18,6 +18,7 @@ as xs:string
 let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
+let $about-pattern as xs:string := "^/about$"
 let $browse-pattern as xs:string := "^/browse/([a-z]+)/([-a-zA-Z\s,+]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
@@ -30,7 +31,14 @@ let $new-url :=
   then
     "/application/xquery/home.xqy"
   
-  (: redirect to browse page :)
+  (: redirect to about page :)
+  else if (fn:matches($url, $about-pattern))
+  then
+    fn:replace($url,
+     $about-pattern,
+       "/application/xquery/about.xqy")
+
+(: redirect to browse page :)
   else if (fn:matches($url, $browse-pattern))
   then
     fn:replace($url,

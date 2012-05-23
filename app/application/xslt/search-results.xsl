@@ -29,7 +29,9 @@
       </div>
       <div class="ten columns">
         <xsl:if test="$cover">
-          <img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/>          
+            <a href="{$url}">
+                <img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/>
+            </a>          
         </xsl:if>
         <h4>
           <a href="{$url}">

@@ -50,6 +50,10 @@
       </dt:available>
     </xsl:template>
   
+    <!-- ignore the complet database list element, following conversation 
+         with Lancelot and Laurent -->
+    <xsl:template match="/oe:completedatabaselist_Root/oe:CompleteDatabaseList" priority="1"/>
+    
     <xsl:template match="/*/*">
       <xsl:variable name="type" select="lower-case(local-name(.))"/>
         <xsl:result-document  href="{concat($out, $type, '/', dt:identifier/text(), '.xml')}">

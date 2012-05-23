@@ -22,6 +22,10 @@ body {
   margin-bottom: 1em;
 }
 
+img.logo {
+    margin-top: 32px; /* this has been "pixel-perfected" to work with the alignment of the search form */
+}
+
 .thumbnail {
   margin: 0 2em 2em 1em;
   border: 1px solid black;
@@ -76,7 +80,7 @@ body {
 
 .align-bottom {
     position: absolute;
-    top: 93px;
+    top: 90px; /* this has been "pixel-perfected" to work with the alignment of the logo */
     right: 0;
 }
 

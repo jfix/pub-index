@@ -17,6 +17,11 @@ h2. Filesystem Directory
 
 (where we should have the subdirectories for the different pubtypes)
 
+I added:
+* fix XML
+* force type to: XML
+* force encoding to: UTF-8
+
 h1. Load
 
 h2. URI structure
@@ -29,6 +34,6 @@ h2. URI structure
 
 h2. Collection
 
-* metadata
+* "metadata"
 
 leave everything else as is

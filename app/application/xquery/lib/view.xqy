@@ -139,6 +139,28 @@ declare function view:html-product-page(
   )
 };
 
+declare function view:html-about-page(
+    $title as xs:string,
+    $script as node()*,
+    $html as node()*,
+    $meta-description as xs:string?,
+    $meta-content as xs:string?,
+    $google-analytics-id as xs:string?,
+    $cache-version as xs:double?
+)
+{
+  (: for the time being simply return the basic HTML page :)
+  view:html-page(
+    $title,
+    $script,
+    $html,
+    $meta-description,
+    $meta-content,
+    $google-analytics-id,
+    $cache-version
+  )
+};
+
 declare function view:html-search-page(
     $title as xs:string,
     $script as node()*,
@@ -184,7 +206,7 @@ declare function view:html-head(
       	<link rel="stylesheet" href="/application/jquery/css/jquery.ui.autocomplete.css"/>
       	<link rel="stylesheet" href="/application/jquery/css/jqcloud.css"/>
       	<link rel="stylesheet" href="/application/css/styles.css"/>
-      	<link rel="stylesheet" href="/application/css/nav.css"/>
+      	<link rel="stylesheet" href="/application/css/oecd.css"/>
       	<!--[if lt IE 9]>
       		<link rel="stylesheet" href="/application/foundation/stylesheets/ie.css"/>
       	<![endif]-->
@@ -203,14 +225,26 @@ declare function view:html-head(
       </head>
 };
 
-declare function view:html-header(
-
-)
+(:~
+ : Returns the "masthead" of each page, i.e. logo, search box, blue menu bar.
+ :
+ : @returns element(div)+
+ :)
+declare function view:html-header
+(
+) as element(div)+ 
 {
+    (: this is so clumsy, la honte !:)
+    let $isAbout as xs:boolean := fn:contains(xdmp:get-request-url(), '/about') 
+    let $homeActive as xs:string := if ($isAbout) then "" else "activePage"
+    let $aboutActive as xs:string := if ($isAbout) then "activePage" else ""
+
+    return
+    (
     <div class="row page-header">
       <div class="seven columns">
-        <img src="/assets/images/logooecd_en.png"/>
-        <span class="slogan">BETTER BOOKS FOR BETTER LIVES</span>
+        <img class="logo" src="/assets/images/logooecd_en_books.png"/>
+        
       </div>
       <div class="five columns" style="text-align:right">
         {$s:search-form}
@@ -223,23 +257,23 @@ declare function view:html-header(
           <li class="navItem bFirst">
             <a class="navAct" href="http://www.oecd.org/"><span>OECD Home</span></a>
           </li>
-          <li class="navItem activePage">
+          <li>
+          { attribute class { fn:concat('navItem ', $homeActive) } }
             <a class="navAct" href="/"><span>Books</span></a>
           </li>
-          <li class="navItem">
-            <a class="navAct" href="http://www.oecd.org/media"><span>About</span></a>
-          </li>
-          <li class="navItem bLast">
-            <a class="navAct" href="http://www.oecd.org/media"><span>Newsroom</span></a>
+          <li>
+            { attribute class { fn:concat('navItem ', $aboutActive) } }
+            <a class="navAct" href="/about"><span>About</span></a>
           </li>
         </ul>
       </div>
     </div>
+    )
 };
 
-declare function view:html-footer(
-
-)
+declare function view:html-footer
+(
+) as element(div)
 {
   <div class="row">
     <div id="footer" class="twelve columns">
@@ -250,7 +284,7 @@ declare function view:html-footer(
 				<li><a href="http://www.marklogic.com/">Powered by MarkLogic</a></li>
 				<li><a href="http://www.oecd.org/MyOECD/0,3359,en_17642234_17642806_1_1_1_1_1,00.html">MyOECD</a></li>
 				<li><a href="http://www.oecd.org/SiteMap/0,3362,en_2649_201185_1_1_1_1_1,00.html">Site Map</a></li>
-				<li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html">Contact Us</a></li>
+				<li class="last"><a href="http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html">Contact Us</a></li>
 			</ul>
 		</div>
   </div>
