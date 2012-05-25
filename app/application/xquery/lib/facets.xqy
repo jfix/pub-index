@@ -5,8 +5,9 @@ xquery version "1.0-ml";
 module namespace f = "lib-facets";
 
 import module namespace search = "http://marklogic.com/appservices/search"
-  at "/MarkLogic/appservices/search/search.xqy";
-
+    at "/MarkLogic/appservices/search/search.xqy";
+import module namespace functx = "http://www.functx.com" 
+    at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare namespace country = "country-data";
@@ -15,6 +16,11 @@ declare variable $term as xs:string := (xdmp:get-request-field("query"), '')[1];
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
 declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
 
+(:~
+ :
+ :
+ :
+ :)
 declare function f:facets(
   $term as xs:string,
   $start as xs:integer,
@@ -22,25 +28,6 @@ declare function f:facets(
 )
 {
   let $options := document("/application/xquery/options/facets-no-results.xml")/search:options
-(:    <options xmlns="http://marklogic.com/appservices/search">
-      <constraint name="metadata-only">
-        <collection prefix="metadata"/>
-      </constraint>
-      <constraint name="pubtype">
-        <range type="xs:string">
-          <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
-        </range>
-      </constraint>
-      <constraint name="subject">
-       <range collation="http://marklogic.com/collation/" type="xs:string" facet="true">
-          <element ns="http://purl.org/dc/terms/" name="subject"/>
-       </range>
-     </constraint>
-     <return-results>false</return-results>
-     <return-facets>true</return-facets>
-     <return-metrics>false</return-metrics>
-    </options>
-:)    
   let $result as element(search:response) := search:search($term, $options, $start)
   let $_log := xdmp:log(concat("------ START FACETS --------:", xdmp:quote($result), "------ END FACETS --------:"))
   
@@ -48,6 +35,11 @@ declare function f:facets(
   
 };
 
+(:~
+ :
+ :
+ :
+ :)
 declare function f:transform-facet-results(
   $facets as element(search:response),
   $term as xs:string
@@ -59,7 +51,9 @@ declare function f:transform-facet-results(
   return
   for $facet in $facets/search:facet
     let $facet-name := data($facet/@name)
-    return  
+    (: the following only works because by chance the facets are named in the right descending order ... :)
+    order by $facet-name descending
+    return
       if ($facet-name eq "metadata-only") then ()
       
       (: treat countries by displaying their flag :)
@@ -76,8 +70,10 @@ declare function f:transform-facet-results(
 
               order by $country/@count descending 
               return
-                <img class="flag" src="/assets/images/flags/16/{$code}.png"
-                  title="{$name} has {$count} publications"/>
+                <a href="{f:create-facet-link($term, $facet-name, $code)}">
+                    <img class="flag" src="/assets/images/flags/16/{$code}.png" 
+                        title="{$name} has {$count} publications"/>
+                </a>
           }
         </div>
       else
@@ -90,8 +86,8 @@ declare function f:transform-facet-results(
             let $count := data($value/@count)
             order by $value/@count descending 
             return 
-              <li style="margin-bottom: 0"><a 
-                href="/application/xquery/search.xqy?term={$term} {$facet-name}:{$value}" 
+              <li style="margin-bottom: 0"><a
+                href="{f:create-facet-link($term, xs:string($facet-name), $value/@name)}"
                 title="There are {$count} {$name}">{$name}</a> ({$count})
               </li>
           }
@@ -99,18 +95,19 @@ declare function f:transform-facet-results(
         </div>
 };
 
-
-(:
-
-          let $options := 
-<search:options xmlns="http://marklogic.com/appservices/search">
-    <sort-order type="xs:dateTime" 	collation="http://marklogic.com/collation/" direction="descending">
-      <element ns="http://purl.org/dc/terms/" name="available"/>
-    </sort-order>
-    <sort-order type="score" direction="ascending">
-      <score/>
-    </sort-order>
-</search:options>
-return
-search:search("", $options)
-:)
+(:~
+ : Returns URL (its path component) to restrict search to a particular facet
+ :
+ :
+ :)
+declare function f:create-facet-link
+(
+    $term as xs:string, 
+    $facet-name as xs:string, 
+    $facet-value as xs:string
+) as xs:string
+{
+    let $quoted-value := if (contains($facet-value, ' ')) then concat('"', $facet-value, '"') else $facet-value
+    return
+        concat("/application/xquery/search.xqy?term=", concat($term, " ", $facet-name, ":", $quoted-value) )
+};
