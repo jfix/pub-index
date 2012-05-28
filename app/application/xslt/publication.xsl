@@ -11,7 +11,10 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
   xmlns:xdmp="http://marklogic.com/xdmp" 
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-  xmlns="http://www.w3.org/1999/xhtml">
+  xmlns="http://www.w3.org/1999/xhtml"
+  
+  xmlns:utils="books.oecd.org/utils"
+  >
   
   <xsl:output method="xhtml"/>
   
@@ -63,7 +66,7 @@
   
   <xsl:template match="oe:parent" mode="metadata" as="item()*">
     <h4>
-      <a href="/display/{tokenize(oe:doi/@rdf:resource, '/')[last()]}"><xsl:value-of select="dt:title"/></a>
+      <a href="{utils:link(oe:doi/@rdf:resource)}"><xsl:value-of select="dt:title"/></a>
     </h4>  
   </xsl:template>
   
@@ -87,21 +90,18 @@
     </div>
   </xsl:template>
   
+  <!-- display a translation link, just one; add a comma if it is not the last -->
   <xsl:template match="oe:translation" mode="metadata" as="item()*">
-    <xsl:variable name="link">
-      <xsl:value-of select="concat('/display/', tokenize(./oe:doi/@rdf:resource, '/')[last()])"/>
-    </xsl:variable>
     <xsl:variable name="lang-id" select="dt:language/text()"/>
-    <xsl:message>BBBBBBBBBB ========
-      <xsl:value-of select="$link"/></xsl:message>
     <strong>
-      <a href="{$link}">
+      <a href="{utils:link(oe:doi/@rdf:resource)}">
         <xsl:value-of select="$lang-doc//language[@id eq $lang-id]/text()" />
       </a>
     </strong>
     <xsl:if test="following-sibling::oe:translation[1]">, </xsl:if>
   </xsl:template>
   
+  <!-- display the div that contains the list of multilingual summaries, if any -->
   <xsl:template match="oe:summaries" mode="metadata" as="item()*">
     <div class="row">
       <hr/>
@@ -122,22 +122,22 @@
   <xsl:template match="oe:summary" mode="metadata" as="item()*">
     <xsl:variable name="lang-id" select="dt:language/text()"/>
     <xsl:variable name="lang-label" select="($lang-doc//language[@id eq $lang-id]/text(), $lang-id)[1]"/>
-    <xsl:variable name="link" select="concat('/display/', tokenize(./oe:doi/@rdf:resource, '/')[last()]                )"/>
-    <a href="{$link}">
+    <a href="{utils:link(oe:doi/@rdf:resource)}">
       <xsl:value-of select="$lang-label"/>
     </a>
     <xsl:if test="following-sibling::oe:summary[1]">, </xsl:if>
-    
   </xsl:template>
   
   <xsl:template match="dt:status" as="item()*">
     <span class="status"><strong>Status:</strong> <span><xsl:value-of select="."/></span></span>  
   </xsl:template>
   
+  <!-- display the cover images if there is one -->
   <xsl:template match="oe:coverImage" as="item()*">
     <img src="{concat($thumbnail-url-150, .)}" class="thumbnail"/>
   </xsl:template>
   
+  <!-- display the abstract -->
   <xsl:template match="dt:abstract" as="item()*">
     <div class="row">
       <div class="twelve columns">
@@ -159,6 +159,7 @@
   
   <xsl:template match="dt:identifier" as="item()*"/>
   
+  <!-- generate the contents for the tabs -->
   <xsl:template match="oe:chapters|oe:graphs|oe:tables" as="item()*">
     <li id="{local-name(.)}Tab">
       <xsl:if test="local-name(.) = 'chapters'">
@@ -201,9 +202,10 @@
     </li>
   </xsl:template>
   
+  <!-- creates a list item for a chapter, a graph or a table -->
   <xsl:template match="oe:chapter|oe:graph|oe:table" as="item()*">
     <li>
-      <a href="{oe:doi/@rdf:resource}">
+      <a href="{utils:link(oe:doi/@rdf:resource)}">
         <xsl:value-of select="dt:title"/>
         <xsl:if test="oe:subTitle">
           <xsl:text>: </xsl:text>
@@ -215,7 +217,7 @@
     </li>
   </xsl:template>
   
-  
+  <!-- display the Read and Buy buttons -->
   <xsl:template name="tpl.consumer-box" as="item()*">
     <xsl:param name="buy-link" as="xs:string"/>
     <xsl:param name="read-link" as="xs:string"/>
@@ -241,6 +243,7 @@
     </div>
   </xsl:template>
   
+  <!-- display the tabs for chapters, graphs, tables -->
   <xsl:template name="tpl.toc-header" as="item()*">
     <xsl:if test="//oe:chapters|//oe:tables|//oe:graphs">
       <div class="row">
@@ -262,4 +265,10 @@
       </div>
     </xsl:if>
   </xsl:template>
+  
+  <!-- returns a local link for a given DOI -->
+  <xsl:function name="utils:link">
+    <xsl:param name="doi"/>
+    <xsl:value-of select="concat('/display/', tokenize($doi, '/')[last()])"/>
+  </xsl:function>
 </xsl:stylesheet>
