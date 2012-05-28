@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>publications mapped</title>
+    <!--<link rel='stylesheet' href='http://www.simile-widgets.org/styles/common.css' type='text/css' />-->
+    <link href="/application/xquery/pubs-country.xqy" type="application/json" rel="exhibit/data" />
+    <script src="http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js"></script>    
+    <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/map/map-extension.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h1>explore by countries</h1>
+    </div>
+    <div id="content">
+      <div ex:role="coder" 
+        ex:coderClass="SizeGradient" 
+        id="pub-coder"
+        ex:color="green"
+        ex:gradientPoints="1, 10; 1000, 100" >
+      </div>
+      
+        
+      <div ex:role="view"
+        ex:viewClass="Map"
+        ex:type="satellite"
+        ex:label="Cities"
+        ex:latlng=".latlng"
+        ex:sizeKey=".publications"
+        ex:sizeCoder="pub-coder"
+        ex:sizeLegendLabel="publications"
+        ex:zoom="2"
+        ex:mapHeight="500"
+        ex:showHeader="false"
+        ex:showFooter="false"
+        ex:showSummary="false"
+        ex:showToolbox="false"
+        >
+        
+        <!-- custom popup when circle clicked -->
+        <div class="map-lens" ex:role="lens" style="display: none;">
+          <div><a href="/application/xquery/search.xqy?filter-string=country:"><span ex:content=".publications"></span> publication(s) on <b ex:content=".label"></b></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
