@@ -5,48 +5,83 @@ xquery version "1.0-ml";
 module namespace lib-search = "lib-search";
 
 import module namespace search = "http://marklogic.com/appservices/search"
-  at "/MarkLogic/appservices/search/search.xqy";
-
-import module namespace lib-facets = "lib-facets" at "facets.xqy";
+    at "/MarkLogic/appservices/search/search.xqy";
+import module namespace functx = "http://www.functx.com" 
+    at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
+import module namespace lib-facets = "lib-facets" 
+    at "facets.xqy";
+import module namespace utils = "lib-utils"
+    at "utils.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
+declare variable $filter-json as xs:string := (xdmp:get-request-field("filter-json"), '')[1]; (: serialized JSON object :)
+declare variable $filter-string as xs:string := (xdmp:get-request-field("filter-string"), '')[1]; (: serialized filter string :)
+
+declare variable $country as xs:string := (xdmp:get-request-field("country"), "")[1];
+declare variable $_log := utils:log(concat("COCOCOCOC", $country));
+declare variable $country-string as xs:string := if (string-length($country) > 0) then concat('country:', $country) else "";
+
+declare variable $qtext as xs:string := functx:trim( concat($term, " ", $filter-string, " ", $country-string));
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
 declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
 
+declare variable $lib-search:search-script as element(script) :=
+<script type="text/javascript">
+  $(document).ready(function() {{  
+    $( "#term" ).autocomplete({{
+  		source: "/application/xquery/suggest.xqy",
+  		select: function( event, ui ) {{
+  			
+  		}}
+  	}});
+  	$(".navigationButton").click(function() {{
+  	  $("#start").val($(this).data("start"));
+      $("#searchForm").submit();
+
+  	}});
+  	
+  	// re-objectify json object from request param "filter-json"
+    __currentFacets = { if (string-length($filter-json) > 0) then $filter-json else '{}' };
+    var filterString = serializeFacets(__currentFacets);
+    var filterJson = JSON.stringify(__currentFacets);
+    $("#filter-string").val(filterString); // used for marklogic
+    $("#filter-json").val(filterJson);     // used by javascript
+    
+    function previousPage(start) {{
+      $("#start").val(start);
+      $("#searchForm").submit();
+    }}
+    function nextPage(start) {{
+      $("#start").val(start);
+      $("#searchForm").submit();    
+    }}
+	}});
+	</script>;
+
 declare function lib-search:search-results( 
-  $term,
-  $start-from
-)
+  $qtext as xs:string,
+  $start-from as xs:integer
+) as element(div)+
 {
   let $options := document("/application/xquery/options/default.xml")/search:options
   let $xslt := document("/application/xslt/search-results.xsl")
-  let $result := search:search($term, $options, $start-from)
-  let $_log := xdmp:log(concat("XDMP: ", xdmp:quote($result)))
+  let $result := search:search($qtext, $options, $start-from)
+  let $_log := utils:log(concat("XDMP: ", xdmp:quote($result)))
   
   let $start as xs:integer := data($result/@start)
   let $total as xs:integer := data($result/@total)
   let $time as xs:duration := $result/search:metrics/search:total-time/text()
   let $display-time as xs:double := round-half-to-even(seconds-from-duration($time), 2)
   let $page-length as xs:integer := data($result/@page-length) 
-  (:let $_log := xdmp:log(concat("TOTAL ???? ", $total, " START: ", $start, " PAGE-LENGTH: ", $page-length)):)
   
   let $end as xs:integer := if ($total < $start + $page-length) 
     then $total 
     else $start + $page-length - 1
     
-  return (:if ($term eq "")
-    then
-      <div class="six columns centered">
-        <br/>
-        <div class="alert-box">
-          Please enter a search term
-          <a href="" class="close">&times;</a>
-        </div>
-      </div>
-    else:)
+  return
       (
       lib-search:search-meta($total, $display-time, $start, $page-length, $end)
       ,
@@ -123,14 +158,14 @@ declare function lib-search:search-paging(
   <div style="float:right;">
       {
         if ($start > 1) then
-          <a class="nice small radius blue button" href="/search/{$term}/{number($prev-page)}">&laquo; Previous</a>
+          <a class="nice small radius blue button navigationButton" data-start="{number($prev-page)}" href="#">&laquo; Previous</a>
         else
           <a class="disabled nice small radius blue button" >&laquo; Previous</a>
         ,
         text { '&#160;' }
         ,
         if ($start < $total) then
-          <a class="nice small radius blue button" href="/search/{$term}/{number($next-page)}">Next &raquo;</a>
+          <a class="nice small radius blue button navigationButton" data-start="{number($next-page)}" href="#">Next &raquo;</a>
         else
           <a class="disabled nice small radius blue button" >Next &raquo;</a>
       }
@@ -141,19 +176,8 @@ declare function lib-search:search-paging-pages(
   $curr-page as xs:integer,
   $total-pages as xs:integer,
   $term as xs:string
-)
+) as element(li)
 {
-  (:different behaviour for different total-pages:
-    if <= 10 total pages, display all of them,
-    if > 10 total pages, show current plus four on each side 
-    
-    << [1] 2 3 4 >> 
-    << 1 2 3 4 [5] 6 7 8 9 10 >>
-    << 1 2 [3] 4 5 ... 23 24 >> 
-    << 1 2 3 4 5 ... 21 22 [23] 24  >>
-    
-    currently just basic paging irrespective of total number:
-    :)
     let $from as xs:int :=
       if ($curr-page >= $total-pages - 10)
       then $total-pages - 7
@@ -184,14 +208,47 @@ declare function lib-search:search-paging-pages(
       else 
         <li><a href="/search/{$term}/{$i}">{$i}</a></li>
 };
-declare variable $lib-search:page-title as xs:string := if ($term) then concat("Searching for ", $term) else "Search books.oecd.org";
+
+declare function lib-search:search-results-for(
+  $qtext as xs:string
+) as element(div)+
+{
+  <div class="row">
+    <div class="twelve columns">
+      <h3>searching for '{$qtext}'</h3>
+    </div>
+  </div>,
+  <div class="row">
+    <div class="three columns">
+      {lib-facets:facets($qtext, $start, $page-length)}
+    </div>
+    <div class="nine columns">
+      {lib-search:search-results($qtext, $start)}
+    </div>
+  </div>
+};
+
+declare variable $lib-search:page-title as xs:string := if ($qtext) then concat("Searching for ", $qtext) else "Search books.oecd.org";
+
+(:~
+ : Provides access to the search form
+ :
+ :)
 declare variable $lib-search:search-form as node() :=
   <div>
-    <form action="/application/xquery/search.xqy" class="nice">
+    <form action="/application/xquery/search.xqy" method="post" class="nice" name="searchForm" id="searchForm">
       <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input align-bottom"/>
+      <input type="hidden" id="filter-string" name="filter-string"/>
+      <input type="hidden" id="filter-json" name="filter-json"/>
+      <input type="hidden" id="start" name="start" value="1"/>
+      <input type="hidden" id="page-length" name="page-length" value="10"/>
     </form>
   </div>;
 
+(:~
+ : Returns search results displayable as html
+ :
+ :)
 declare variable $lib-search:search-results as node()+ :=
   <div class="row">
     <div class="twelve columns">
@@ -200,10 +257,10 @@ declare variable $lib-search:search-results as node()+ :=
   </div>,
   <div class="row">
     <div class="three columns">
-      {lib-facets:facets($term, $start, $page-length)}
+      {lib-facets:facets($qtext, $start, $page-length)}
     </div>
     <div class="nine columns">
-      {lib-search:search-results($term, $start)}
+      {lib-search:search-results($qtext, $start)}
     </div>
   </div>;
 

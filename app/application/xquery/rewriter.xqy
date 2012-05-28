@@ -7,6 +7,8 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
   /[type]/[doi] => /application.xqy?id=[type]/[doi]
 :)
 
+import module namespace utils = "lib-utils"
+    at "lib/utils.xqy";
 
 declare function local:construct-new($url as xs:string,$pattern as xs:string,$view as xs:string)
 as xs:string
@@ -19,6 +21,9 @@ let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
 let $about-pattern as xs:string := "^/about$"
+let $browse-only-pattern as xs:string := "^/browse$"
+let $country-pattern as xs:string := "^/country/([a-z]{2})$"
+let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
 let $browse-pattern as xs:string := "^/browse/([a-z]+)/([-a-zA-Z\s,+]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
@@ -28,54 +33,47 @@ let $opensearch-pattern as xs:string := "^/opensearch\?q=([a-zA-Z0-9 ]+)(&amp;st
 let $new-url :=
   (: home page :)
   if (fn:matches($url, $home-pattern))
-  then
-    "/application/xquery/home.xqy"
+  then  "/application/xquery/home.xqy"
   
   (: redirect to about page :)
   else if (fn:matches($url, $about-pattern))
-  then
-    fn:replace($url,
-     $about-pattern,
-       "/application/xquery/about.xqy")
+  then  fn:replace($url,     $about-pattern,        "/application/xquery/about.xqy")
 
+(: redirect to general browse page :)
+  else if (fn:matches($url, $browse-only-pattern))
+  then  fn:replace($url,     $browse-only-pattern,  "/application/xquery/search.xqy")
+  
+(: redirect to country browse page :)
+  else if (fn:matches($url, $country-pattern))
+  then  fn:replace($url,     $country-pattern,      "/application/xquery/browse.xqy?by=country&amp;value=$1")
+  
+(: redirect to subject browse page :)
+  else if (fn:matches($url, $subject-pattern))
+  then  fn:replace($url,     $subject-pattern,      "/application/xquery/browse.xqy?by=subject&amp;value=$1")
+  
 (: redirect to browse page :)
   else if (fn:matches($url, $browse-pattern))
-  then
-    fn:replace($url,
-     $browse-pattern,
-       "/application/xquery/search.xqy?term=$1:&quot;$2&quot;")
+  then  fn:replace($url,     $browse-pattern,       "/application/xquery/search.xqy?term=$1:&quot;$2&quot;")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))
-  then
-    fn:replace($url,
-     $xmldocument-pattern,
-       "/application/xquery/xmldocument.xqy?id=$1")
+  then  fn:replace($url,     $xmldocument-pattern,  "/application/xquery/xmldocument.xqy?id=$1")
   
   (: display a product :)
   else if (fn:matches($url, $display-pattern))
-  then
-    fn:replace($url,
-      $display-pattern,
-       "/application/xquery/display.xqy?id=$1")
+  then  fn:replace($url,     $display-pattern,      "/application/xquery/display.xqy?id=$1")
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))
-  then
-    fn:replace($url,
-      $search-pattern,
-       "/application/xquery/search.xqy?term=$1&amp;start=$3") 
+  then  fn:replace($url,     $search-pattern,       "/application/xquery/search.xqy?term=$1&amp;start=$3") 
   
   (: opensearch results :)
   else if (fn:matches($url, $opensearch-pattern))
-  then
-    fn:replace($url,
-      $opensearch-pattern,
-      "/application/xquery/opensearch.xqy?term=$1&amp;start=$3")
+  then  fn:replace($url,     $opensearch-pattern,   "/application/xquery/opensearch.xqy?term=$1&amp;start=$3")
   
   (: by default try to resolve url passed in :)
   else $url
   
-let $_log := xdmp:log(concat("REWRITER: ", $new-url))
+let $_log := utils:log(concat("REWRITER: ", $new-url))
 
 return $new-url
