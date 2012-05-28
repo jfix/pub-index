@@ -83,7 +83,11 @@ img.logo {
     top: 90px; /* this has been "pixel-perfected" to work with the alignment of the logo */
     right: 0;
 }
-
+/* facets can be either simple links (unselected) or have the css class "selected" which makes them .... correct! "selected" */
+a.selected {
+  font-weight: bold;
+  color: black;
+}
 img.flag {
   margin: 0.2em;
   width: 16px;
@@ -92,4 +96,22 @@ img.flag {
 }
 img.flag.selected {
   border: 2px solid #2A85E8;
+}
+
+div.exhibit-views-header {
+  display: none;
+}
+/* 
+  Zurb Foundation's reset styles contain a max-width: 100% that interfere with
+  google maps bubble display.
+  
+  @see https://github.com/zurb/foundation/issues/112
+*/
+div#map-container img {
+  max-width: none; 
+  height: auto;
+}
+
+div.exhibit-busyIndicator {
+  display: none;
 }
