@@ -8,19 +8,30 @@ import module namespace s = "lib-search" at "search.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 
-declare variable $suggest-script as element(script) :=
-  <script type="text/javascript">
-    $(document).ready(function() {{  
-      $( "#term" ).autocomplete({{
-  			source: "/application/xquery/suggest.xqy",
-  			
-  			select: function( event, ui ) {{
-  				
-  			}}
-  		}});
-		}});
-		</script>;
-		
+(:~ basic HTML page display, WITHOUT header scripts  :)
+declare function view:html-page(
+  $title as xs:string,
+  $script as node()*,
+  $html as node()*,
+  $meta-description as xs:string?,
+  $meta-content as xs:string?,
+  $google-analytics-id as xs:string?,
+  $cache-version as xs:double?
+)
+{
+  view:html-page(
+    $title,
+    $script,
+    $html,
+    $meta-description,
+    $meta-content,
+    $google-analytics-id,
+    $cache-version,
+    ()
+  )
+};
+
+(:~ basic HTML page display, WITH header scripts  :)
 declare function view:html-page(
     $title as xs:string,
     $script as node()*,
@@ -28,7 +39,8 @@ declare function view:html-page(
     $meta-description as xs:string?,
     $meta-content as xs:string?,
     $google-analytics-id as xs:string?,
-    $cache-version as xs:double?
+    $cache-version as xs:double?,
+    $header-scripts as node()*
 )
 {
   (xdmp:set-response-content-type("text/html"),
@@ -37,7 +49,7 @@ declare function view:html-page(
   <!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->,
   <!--[if (gt IEMobile 7)|!(IEMobile)]><!-->, <html class="no-js"> <!--<![endif]-->
   
-      {view:html-head($title, $meta-description, $meta-content)}
+      {view:html-head($title, $meta-description, $meta-content, $header-scripts)}
       
       <body>
         <div class="container">
@@ -58,13 +70,12 @@ declare function view:html-page(
         <script src="/application/foundation/javascripts/foundation.js">//</script>
         <script src="/application/foundation/javascripts/app.js">//</script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">//</script>
-        <script src="/application/jquery/jquery.ui.core.js"></script>
-      	<script src="/application/jquery/jquery.ui.widget.js"></script>
-      	<script src="/application/jquery/jquery.ui.position.js"></script>
-      	<script src="/application/jquery/jquery.ui.autocomplete.js"></script>
-        {$script
-        ,
-        $suggest-script}
+        <script src="/application/js/jquery/jquery.ui.core.js"></script>
+      	<script src="/application/js/jquery/jquery.ui.widget.js"></script>
+      	<script src="/application/js/jquery/jquery.ui.position.js"></script>
+      	<script src="/application/js/jquery/jquery.ui.autocomplete.js"></script>
+      	<script src="/application/js/facets.js"></script>
+        {$script}
 	</body>
   </html>
   )  
@@ -72,6 +83,7 @@ declare function view:html-page(
 
 declare function view:html-home-page(
     $title as xs:string,
+    $header-scripts as node()*,
     $script as node()*,
     $html as node()*,
     $meta-description as xs:string?,
@@ -88,11 +100,10 @@ declare function view:html-home-page(
     $meta-description,
     $meta-content,
     $google-analytics-id,
-    $cache-version
+    $cache-version,
+    $header-scripts
   )
 };
-
-
 
 declare function view:html-browse-page(
     $title as xs:string,
@@ -187,7 +198,8 @@ declare function view:html-search-page(
 declare function view:html-head(
   $title as xs:string,
   $meta-description as xs:string?,
-  $meta-content as xs:string?
+  $meta-content as xs:string?,
+  $header-scripts as node()*
 )
 {
       <head profile="http://a9.com/-/spec/opensearch/1.1/">
@@ -202,15 +214,16 @@ declare function view:html-head(
       	<!-- Included CSS Files -->
       	<link rel="stylesheet" href="/application/foundation/stylesheets/foundation.css"/>
       	<link rel="stylesheet" href="/application/foundation/stylesheets/app.css"/>
-      	<link rel="stylesheet" href="/application/jquery/css/jquery.ui.theme.css"/>
-      	<link rel="stylesheet" href="/application/jquery/css/jquery.ui.autocomplete.css"/>
-      	<link rel="stylesheet" href="/application/jquery/css/jqcloud.css"/>
+      	<link rel="stylesheet" href="/application/js/jquery/css/jquery.ui.theme.css"/>
+      	<link rel="stylesheet" href="/application/js/jquery/css/jquery.ui.autocomplete.css"/>
+      	<link rel="stylesheet" href="/application/js/jquery/css/jqcloud.css"/>
       	<link rel="stylesheet" href="/application/css/styles.css"/>
       	<link rel="stylesheet" href="/application/css/oecd.css"/>
       	<!--[if lt IE 9]>
       		<link rel="stylesheet" href="/application/foundation/stylesheets/ie.css"/>
       	<![endif]-->
       
+        {$header-scripts}
       
       	<!-- IE Fix for HTML5 Tags -->
       	<!--[if lt IE 9]>

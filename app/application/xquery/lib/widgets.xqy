@@ -40,12 +40,16 @@ declare function w:get-word-cloud-data()
 
   let $list := (
     for $subject in $subjects
+      let $quoted-subject := if (contains($subject, " ")) then concat('"', $subject, '"') else $subject
+      let $filter-string := concat('filter-string=subject:', xdmp:url-encode($quoted-subject))
+      let $filter-json := xdmp:url-encode(concat('&amp;', 'filter-json={"subject": [', $quoted-subject, ']}'))
       let $freq := cts:frequency($subject)
       let $map := map:map()
       let $put := map:put($map, 'weight', $freq)
       let $put := map:put($map, 'text', $subject)
       let $put := map:put($map, 'title', concat("There are ", $freq, " publications on ", $subject))
-      let $put := map:put($map, 'url', concat('/browse/subject/', xdmp:url-encode($subject)))
+      let $put := map:put($map, 'url', concat('/subject/', xdmp:url-encode($subject)))
+      (:let $put := map:put($map, 'url', concat('/application/xquery/search.xqy?', $filter-string, $filter-json)):)
       (:let $put := map:put($map, 'url', concat('/application/xquery/search.xqy?term=subject:&quot;', xdmp:url-encode($subject), "&quot;")):)
       return $map
   )
@@ -63,7 +67,7 @@ declare function w:word-cloud-scripts()
 as element(script)+
 {
   (
-  <script type="text/javascript" src="/application/jquery/jqcloud-0.2.10.min.js"/>,
+  <script type="text/javascript" src="/application/js/jquery/jqcloud-0.2.10.min.js"/>,
   <script type="text/javascript">
     $(document).ready(function() {{
         $("#wordcloud").jQCloud(word_cloud_list, {{delayedMode: true, shape: "elliptic"}});
@@ -118,25 +122,8 @@ declare function w:map-data()
 };
 
 declare function w:map-scripts()
-as element(script)+
+as node()*
 {
   (
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>,
-  <script type="text/javascript" src="/application/jquery/gmap3.min.js"></script>,
-  <script type="text/javascript">
-    $(document).ready(function() 
-    {{
-        $("#map").gmap3(
-          {{
-            action: 'init',
-            options: {{
-              mapTypeId: google.maps.MapTypeId.TERRAIN
-             }}
-          }},
-
-        {w:map-data()}
-        );
-    }});
-  </script>
   )
 };
