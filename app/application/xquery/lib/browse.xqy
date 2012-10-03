@@ -13,8 +13,6 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default collation "http://marklogic.com/collation/";
 
-declare variable $browse-results-xslt := document("/application/xslt/browse-results.xsl");
-
 declare function browse:browse-content()
 as element(div)+
 {
@@ -65,7 +63,7 @@ declare function browse:browse-results(
   return
     <div>
     {
-      xdmp:xslt-eval($browse-results-xslt, $result)
+      xdmp:xslt-invoke("/application/xslt/browse-results.xsl", $result)
     }
     </div>
 };

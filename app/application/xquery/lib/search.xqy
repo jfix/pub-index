@@ -67,7 +67,6 @@ declare function lib-search:search-results(
 ) as element(div)+
 {
   let $options := document("/application/xquery/options/default.xml")/search:options
-  let $xslt := document("/application/xslt/search-results.xsl")
   let $result := search:search($qtext, $options, $start-from)
   let $_log := utils:log(concat("XDMP: ", xdmp:quote($result)))
   
@@ -87,7 +86,7 @@ declare function lib-search:search-results(
       ,
       <div class="row">
         <br/>
-        {xdmp:xslt-eval($xslt, $result)}
+        {xdmp:xslt-invoke("/application/xslt/search-results.xsl", $result)}
         <br/>
       </div>
       ,
