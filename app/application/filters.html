@@ -1,0 +1,155 @@
+<!DOCTYPE html SYSTEM "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title></title>
+    <script src="../application/jquery/jquery-1.7.2.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    
+    var facets = {};
+    
+    $(document).ready(function(){
+    
+       $("div#facets ul.facet a").click( function() {
+        manageFacets( $(this).attr("href"));
+        event.preventDefault();
+       });
+      
+       $("#searchForm").submit(function() {
+          $("#term").val(
+            [$("#filter").val(), $("#query").val()].join(" ")
+          )
+       });
+     });
+     
+     /**
+      * ( pubtype:book OR pubtype:article ) subject:"Development"
+      *
+      * {
+      *   pubtype: ['book', 'chapter'],
+      *   subject: ['Tax', 'Sustainable development']
+      * }
+      * values with spaces must be surrounded with double quotes
+      *
+      */
+     function manageFacets( facet )
+     {
+        var facetTokenized = facet.split(":");
+        var key = facetTokenized[0];
+        var val = facetTokenized[1];
+        var arr =facets[key];
+        
+        if (arr) {
+          var pos = $.inArray(val, arr);
+          
+          if (arr.length == 1 && pos == 0) {
+            delete facets[key];
+          }
+          else if (pos >= 0) {
+            arr.splice(pos, 1);
+            facets[key] = arr;
+          } else {
+            facets[key].push( val );
+          }
+        } else {
+          facets[key] = [ val ];
+        }
+        serializeFacets();
+     }
+     
+     /**
+      * Takes facet object and creates a string that MarkLogic understands.
+      *
+      *
+      */
+     function serializeFacets()
+     {
+        var serialized = "";
+        
+        for (key in facets) {
+          var values = facets[key];
+          if (values.length > 1) {
+            serialized += "(";
+            for (var i = 0; values.length > i; i++) {
+              var needsQuotes = (values[i].search(" ") >= 0);
+              
+              if (i > 0) serialized += " OR ";
+              
+              if (needsQuotes) {
+                serialized += key + ":" + '"' + values[i] + '"';
+              } else {
+                serialized += key + ":" + values[i];
+              }
+            }
+            serialized += ")";
+            
+          } else {
+            if (values[0].search(" ") >= 0) {
+              serialized += key + ":" + '"' + values[0] + '"';
+            } else {
+              serialized += key + ":" + values[0];
+            }
+            
+          }
+          serialized += " ";
+        }
+        $("#filter").val($.trim(serialized));
+    }
+  </script>
+  </head>
+  <body>
+    <h1>query test</h1>
+    <form name="searchForm" id="searchForm" 
+      action="http://localhost:60045/application/xquery/search.xqy" 
+      method="get">
+      
+      <input type="hidden" name="term" id="term"/>
+      <br />filters: <input type="text" name="filter" id="filter" size="200" />
+      <br />query: <input type="text" name="query" id="query"/>
+      <input type="submit" />
+    </form>
+    <div id="facets">
+    <ul class="pubtype facet">
+      <li><a href="pubtype:chapter" title="There are 805 chapter">chapter</a> (805)</li>
+      <li><a href="pubtype:graph" title="There are 207 graph">graph</a> (207) </li>
+      <li><a href="pubtype:book" title="There are 201 book">book</a> (201)    </li>
+      <li><a href="pubtype:table" title="There are 189 table">table</a> (189)      </li>
+      <li><a href="pubtype:workingpaper" title="There are 114 workingpaper">workingpaper</a> (114) </li>
+      <li><a href="pubtype:summary" title="There are 98 summary">summary</a> (98)</li>
+      <li><a href="pubtype:dataset" title="There are 42 dataset">dataset</a> (42)</li>
+      <li><a href="pubtype:article" title="There are 39 article">article</a> (39)</li>
+      <li><a href="pubtype:keytable" title="There are 15 keytable">keytable</a> (15)</li>
+      <li><a href="pubtype:periodical" title="There are 9 periodical">periodical</a> (9)</li>
+      <li><a href="pubtype:statisticalcollection" title="There are 5 statisticalcollection">statisticalcollection</a> (5)    </li>
+      <li><a href="pubtype:journal" title="There are 1 journal">journal</a> (1)</li>
+    </ul>
+    
+    <ul class="subject facet">
+      <li><a href="subject:Sustainable development" title="There are 1880 Sustainable development">Sustainable development</a> (1880)</li>
+      <li><a href="subject:Innovation" title="There are 1872 Innovation">Innovation</a> (1872)</li>
+      <li><a href="subject:Employment" title="There are 1858 Employment">Employment</a> (1858)</li>
+      <li><a href="subject:Finance" title="There are 1847 Finance">Finance</a> (1847)</li>
+      <li><a href="subject:Investment" title="There are 1845 Investment">Investment</a> (1845)</li>
+      <li><a href="subject:Competition" title="There are 1818 Competition">Competition</a> (1818)</li>
+      <li><a href="subject:Bribery and corruption" title="There are 1816 Bribery and corruption">Bribery and corruption</a> (1816)</li>
+      <li><a href="subject:International migration" title="There are 1811 International migration">International migration</a> (1811)</li>
+      <li><a href="subject:Public governance" title="There are 1809 Public governance">Public governance</a> (1809)</li>
+      <li><a href="subject:Trade" title="There are 1809 Trade">Trade</a> (1809)</li>
+      <li><a href="subject:Insurance and pensions" title="There are 1804 Insurance and pensions">Insurance and pensions</a> (1804)</li>
+      <li><a href="subject:Environment" title="There are 1800 Environment">Environment</a> (1800)</li>
+      <li><a href="subject:Economy" title="There are 1786 Economy">Economy</a> (1786)</li>
+      <li><a href="subject:Development" title="There are 1785 Development">Development</a> (1785)</li>
+      <li><a href="subject:Industry and entrepreneurship" title="There are 1785 Industry and entrepreneurship">Industry and entrepreneurship</a> (1785)</li>
+      <li><a href="subject:Corporate governance" title="There are 1780 Corporate governance">Corporate governance</a> (1780)</li>
+      <li><a href="subject:Health" title="There are 1779 Health">Health</a> (1779)</li>
+      <li><a href="subject:Internet economy" title="There are 1776 Internet economy">Internet economy</a> (1776)</li>
+      <li><a href="subject:Tax" title="There are 1766 Tax">Tax</a> (1766)</li>
+      <li><a href="subject:Regional, rural and urban development" title="There are 1765 Regional, rural and urban development">Regional, rural and urban development</a> (1765)</li>
+      <li><a href="subject:Regulatory reform" title="There are 1762 Regulatory reform">Regulatory reform</a> (1762)</li>
+      <li><a href="subject:Agriculture and fisheries" title="There are 1748 Agriculture and fisheries">Agriculture and fisheries</a> (1748)</li>
+      <li><a href="subject:Social and welfare issues" title="There are 1725 Social and welfare issues">Social and welfare issues</a> (1725)</li>
+      <li><a href="subject:Education" title="There are 1713 Education">Education</a> (1713)</li>
+      <li><a href="subject:Science and technology" title="There are 1680 Science and technology">Science and technology</a> (1680)</li>
+    </ul>
+    </div>
+  </body>
+</html>
