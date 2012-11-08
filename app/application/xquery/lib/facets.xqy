@@ -61,7 +61,7 @@ declare function f:transform-facet-results(
   let $qtext as xs:string := ($search-response//search:qtext/text(), "")[1]
   
   return (
-    <div class="row subject facet">
+    <div class="subject facet">
       <h6>subjects</h6>
       <ul>
       {
@@ -81,7 +81,7 @@ declare function f:transform-facet-results(
       }
       </ul>
     </div>,
-    <div class="row pubtype facet">
+    <div class="pubtype facet">
       <h6>publication types</h6>
       <ul>
       {
@@ -100,7 +100,7 @@ declare function f:transform-facet-results(
       }
       </ul>
     </div>,
-    <div class="row country facet">
+    <div class="country facet">
       <h6>countries covered</h6>
       {
         for $country in $all-country-facets//search:facet-value

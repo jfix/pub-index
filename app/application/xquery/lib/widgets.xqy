@@ -87,7 +87,7 @@ as element(div)
 {
   <div class="row">
     <script type='text/javascript'>var word_cloud_list = {w:get-word-cloud-data()};</script>
-    <div class="twelve columns">
+    <div class="span12">
       <div id="wordcloud">
       </div>
     </div>

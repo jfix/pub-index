@@ -18,12 +18,12 @@ as element(div)+
 {
 (
   <div class="row">
-    <div class="twelve columns">
+    <div class="span12">
       <h3>browsing publications</h3>
     </div>
   </div>,
   <div class="row">
-    <div class="three columns">
+    <div class="span3">
       { 
         browse:browse-topic(''),
         <hr/>,
@@ -33,7 +33,7 @@ as element(div)+
       }
 
     </div>
-    <div class="nine columns">
+    <div class="span9">
       {browse:browse-results(1, 10)}
     </div>
   </div>

@@ -15,7 +15,7 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 let $content := 
 <div class="row">
-  <div class="twelve columns">
+  <div class="span12">
     <h3>about</h3>
     <p>This is a catalogue of all OECD publications.</p>
   </div>

@@ -45,35 +45,24 @@ declare function view:html-page(
 {
   (xdmp:set-response-content-type("text/html"),
   '<!doctype html>',
-  <!-- Conditional comment for mobile ie7 http://blogs.msdn.com/b/iemobile/ -->,
-  <!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->,
-  <!--[if (gt IEMobile 7)|!(IEMobile)]><!-->, <html class="no-js"> <!--<![endif]-->
-  
+  <html>
       {view:html-head($title, $meta-description, $meta-content, $header-scripts)}
-      
       <body>
-        <div class="container">
+        <!-- header -->
+        {view:html-header()}
         
-          <!-- header -->
-          {view:html-header()}
-          
-          <!-- content -->
+        <!-- content -->
+        <div class="container">
           {$html}
-          
-          <!-- footer -->
-          {view:html-footer()}
         </div>
         
+        <!-- footer -->
+        {view:html-footer()}
+        
         <!-- Included JS Files -->
-        <script src="/assets/foundation/javascripts/jquery.min.js">//</script>
-        <script src="/assets/foundation/javascripts/modernizr.foundation.js">//</script>
-        <script src="/assets/foundation/javascripts/foundation.js">//</script>
-        <script src="/assets/foundation/javascripts/app.js">//</script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">//</script>
-        <script src="/assets/js/jquery/jquery.ui.core.js"></script>
-      	<script src="/assets/js/jquery/jquery.ui.widget.js"></script>
-      	<script src="/assets/js/jquery/jquery.ui.position.js"></script>
-      	<script src="/assets/js/jquery/jquery.ui.autocomplete.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
       	<script src="/assets/js/facets.js"></script>
         {$script}
 	</body>
@@ -212,19 +201,16 @@ declare function view:html-head(
         <title>{$title}</title>
         
       	<!-- Included CSS Files -->
-      	<link rel="stylesheet" href="/assets/foundation/stylesheets/foundation.css"/>
-      	<link rel="stylesheet" href="/assets/foundation/stylesheets/app.css"/>
+      	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
+      	<!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
       	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.theme.css"/>
       	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.autocomplete.css"/>
       	<link rel="stylesheet" href="/assets/js/jquery/css/jqcloud.css"/>
       	<link rel="stylesheet" href="/assets/css/styles.css"/>
       	<link rel="stylesheet" href="/assets/css/oecd.css"/>
-      	<!--[if lt IE 9]>
-      		<link rel="stylesheet" href="/assets/foundation/stylesheets/ie.css"/>
-      	<![endif]-->
-      
+
         {$header-scripts}
-      
+
       	<!-- IE Fix for HTML5 Tags -->
       	<!--[if lt IE 9]>
       		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
@@ -245,7 +231,7 @@ declare function view:html-head(
  :)
 declare function view:html-header
 (
-) as element(div)+ 
+) as element(header)
 {
     (: this is so clumsy, la honte !:)
     let $isAbout as xs:boolean := fn:contains(xdmp:get-request-url(), '/about') 
@@ -254,33 +240,35 @@ declare function view:html-header
 
     return
     (
-    <div class="row page-header">
-      <div class="seven columns">
-        <img class="logo" src="/assets/images/logooecd_en_books.png"/>
-        
+    <header class="jumbotron subhead" id="overview">
+      <div class="container">
+        <div class="row">
+          <div class="span7">
+            <img class="logo" src="/assets/images/logooecd_en_books.png"/>
+          </div>
+          <div class="span5" style="text-align:right">
+            {$s:search-form}
+          </div>
+        </div>
+        <div id="nav" class="row">
+          <div class="span12">
+            <ul class="navCtn">
+              <li class="navItem bFirst">
+                <a class="navAct" href="http://www.oecd.org/"><span>OECD Home</span></a>
+              </li>
+              <li>
+              { attribute class { fn:concat('navItem ', $homeActive) } }
+                <a class="navAct" href="/"><span>Books</span></a>
+              </li>
+              <li>
+                { attribute class { fn:concat('navItem ', $aboutActive) } }
+                <a class="navAct" href="/about"><span>About</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="five columns" style="text-align:right">
-        {$s:search-form}
-      </div>
-    </div>
-    ,
-    <div class="row">
-      <div id="nav" class="twelve columns">
-        <ul class="navCtn">
-          <li class="navItem bFirst">
-            <a class="navAct" href="http://www.oecd.org/"><span>OECD Home</span></a>
-          </li>
-          <li>
-          { attribute class { fn:concat('navItem ', $homeActive) } }
-            <a class="navAct" href="/"><span>Books</span></a>
-          </li>
-          <li>
-            { attribute class { fn:concat('navItem ', $aboutActive) } }
-            <a class="navAct" href="/about"><span>About</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    </header>
     )
 };
 
@@ -288,17 +276,19 @@ declare function view:html-footer
 (
 ) as element(div)
 {
-  <div class="row">
-    <div id="footer" class="twelve columns">
-			<ul class="footerNav">
-				<li>© OECD. All rights reserved</li>
-				<li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899066_1_1_1_1,00.html">Terms &amp; Conditions</a></li>
-				<li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899048_1_1_1_1,00.html">Privacy Policy</a></li>
-				<li><a href="http://www.marklogic.com/">Powered by MarkLogic</a></li>
-				<li><a href="http://www.oecd.org/MyOECD/0,3359,en_17642234_17642806_1_1_1_1_1,00.html">MyOECD</a></li>
-				<li><a href="http://www.oecd.org/SiteMap/0,3362,en_2649_201185_1_1_1_1_1,00.html">Site Map</a></li>
-				<li class="last"><a href="http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html">Contact Us</a></li>
-			</ul>
-		</div>
+  <div class="container">
+    <div class="row">
+      <div id="footer" class="span12">
+        <ul class="footerNav">
+          <li>© OECD. All rights reserved</li>
+          <li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899066_1_1_1_1,00.html">Terms &amp; Conditions</a></li>
+          <li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899048_1_1_1_1,00.html">Privacy Policy</a></li>
+          <li><a href="http://www.marklogic.com/">Powered by MarkLogic</a></li>
+          <li><a href="http://www.oecd.org/MyOECD/0,3359,en_17642234_17642806_1_1_1_1_1,00.html">MyOECD</a></li>
+          <li><a href="http://www.oecd.org/SiteMap/0,3362,en_2649_201185_1_1_1_1_1,00.html">Site Map</a></li>
+          <li class="last"><a href="http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 };

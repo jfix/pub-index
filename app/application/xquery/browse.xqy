@@ -27,7 +27,7 @@ v:html-search-page(
   "Browsing OECD publications",
   $s:search-script,
   <div class="row">
-    <div class="twelve columns">{
+    <div class="span12">{
       s:search-results-for($qtext)
     }</div>
   </div>,

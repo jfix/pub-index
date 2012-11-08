@@ -76,7 +76,7 @@ declare function local:google-map()
 
 let $content := 
 <div class="row">
-  <div class="twelve columns">
+  <div class="span12">
     {local:word-cloud()}
      {local:google-map()}
     {local:slider-thingy()}

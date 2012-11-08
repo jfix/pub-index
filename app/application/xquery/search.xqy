@@ -17,7 +17,7 @@ v:html-search-page(
   $s:page-title,
   $s:search-script,
   <div class="row">
-    <div class="twelve columns">{(
+    <div class="span12">{(
       $s:search-results
     )}</div>
   </div>,

@@ -4,10 +4,6 @@
  */
  
 body {
-  background-image: url(/assets/images/logo.png);
-  background-repeat:no-repeat;
-  background-attachment: inherit;
-  background-position: 110% -30px;
 }
 
 .slogan {
@@ -26,7 +22,7 @@ img.logo {
     margin-top: 32px; /* this has been "pixel-perfected" to work with the alignment of the search form */
 }
 
-.thumbnail {
+.cover {
   margin: 0 2em 2em 1em;
   border: 1px solid black;
   box-shadow: 1em 1em 0.5em #c0c0c0;
@@ -49,9 +45,9 @@ img.logo {
   font-style: italic;
 }
 
-.pubtype-label {
-  margin-right: -0.8em;
-}
+.facet h6 { margin-bottom: 0; }
+.facet ul { list-style: none outside none; margin: 0; font-size: 0.85em; }
+
 
 .search-result-highlight {
   font-weight: bold;
@@ -60,9 +56,14 @@ img.logo {
 .search-result-thumbnail {
   float: left;
   margin-right: 0.6em;
+  margin-top: 5px; /* adapt to bootstrap h4 margin */
   border: 1px solid #c0c0c0;
   
 }
+
+.label.book { background-color: #B94A48; }
+.label.periodical { background-color: #3A87AD; }
+.label.summary { background-color: #468847; }
 
 .search-container {
   position: relative;
@@ -73,16 +74,18 @@ img.logo {
   left: 0; 
 }
 
+#searchForm {
+  position: relative;
+  top: 85px;
+  margin: 0;
+  padding: 0;
+}
+
 #wordcloud {
    height:300px;
    width: 100%;
 }
 
-.align-bottom {
-    position: absolute;
-    top: 90px; /* this has been "pixel-perfected" to work with the alignment of the logo */
-    right: 0;
-}
 /* facets can be either simple links (unselected) or have the css class "selected" which makes them .... correct! "selected" */
 a.selected {
   font-weight: bold;

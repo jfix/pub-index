@@ -18,16 +18,16 @@
     <xsl:variable name="cover" select="search:snippet/search:cover/text()"/>
     <xsl:variable name="cover-url" select="concat('http://images.oecdcode.org/covers/60/', $cover)"/>
     <div class="row">
-      <div class="two columns">
+      <div class="span2">
         <h4 style="text-align:right;">
-          <span class="pubtype-label round label {data($types-doc//type[./text() eq $type]/@color)}"><xsl:value-of select="$type"/></span>
+          <span class="pubtype-label label {data($type)}"><xsl:value-of select="$type"/></span>
         </h4>
         <p style="font-size: smaller; text-align:right">
           <span><xsl:value-of select="$date"/></span>                  
         </p>
         
       </div>
-      <div class="ten columns">
+      <div class="span7">
         <xsl:if test="$cover">
             <a href="{$url}">
                 <img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/>
@@ -39,7 +39,7 @@
           </a>
         </h4>
         <xsl:apply-templates select="child::node()"/>
-        <hr/><br/>
+        <hr/>
       </div>  
     </div>
     

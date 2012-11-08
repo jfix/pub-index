@@ -85,9 +85,9 @@ declare function lib-search:search-results(
       lib-search:search-meta($total, $display-time, $start, $page-length, $end)
       ,
       <div class="row">
-        <br/>
-        {xdmp:xslt-invoke("/application/xslt/search-results.xsl", $result)}
-        <br/>
+        <div class="span9">
+          {xdmp:xslt-invoke("/application/xslt/search-results.xsl", $result)}
+        </div>
       </div>
       ,
       lib-search:search-meta($total, $display-time, $start, $page-length, $end)
@@ -114,8 +114,8 @@ declare function lib-search:search-meta(
 )
 as element(div)
 {  
-  <div class="row">
-    <div class="eight columns">
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="span5">
     {
       if ($total < 1) then
         "No results found."
@@ -126,7 +126,7 @@ as element(div)
         concat($total, " results found in ", $display-time, " secs, showing ", $start, " to ", $end, ".")
     } 
     </div>
-    <div class="four columns">
+    <div class="span4">
       {lib-search:search-paging($start, $page-length, $total, $term)}
     </div>
   </div>
@@ -153,21 +153,22 @@ declare function lib-search:search-paging(
   let $next-page := if ($start + $page-length gt $total) then () else $start + $page-length
   let $prev-page := if ($start - $page-length gt 0) then $start - $page-length else ()
   return
-  
-  <div style="float:right;">
+  <div style="float: right;">
+    <ul class="pager" style="margin: 0;">
       {
         if ($start > 1) then
-          <a class="nice small radius blue button navigationButton" data-start="{number($prev-page)}" href="#">&laquo; Previous</a>
+          <li><a data-start="{number($prev-page)}" href="#">&laquo; Previous</a></li>
         else
-          <a class="disabled nice small radius blue button" >&laquo; Previous</a>
+          <li class="disabled"><a href="#">&laquo; Previous</a></li>
         ,
         text { '&#160;' }
         ,
         if ($start < $total) then
-          <a class="nice small radius blue button navigationButton" data-start="{number($next-page)}" href="#">Next &raquo;</a>
+          <li><a data-start="{number($next-page)}" href="#">Next &raquo;</a></li>
         else
-          <a class="disabled nice small radius blue button" >Next &raquo;</a>
+          <li class="disabled"><a href="#">Next &raquo;</a></li>
       }
+    </ul>
   </div>
 };
 
@@ -213,15 +214,15 @@ declare function lib-search:search-results-for(
 ) as element(div)+
 {
   <div class="row">
-    <div class="twelve columns">
+    <div class="span12">
       <h3>searching for '{$qtext}'</h3>
     </div>
   </div>,
   <div class="row">
-    <div class="three columns">
+    <div class="span3">
       {lib-facets:facets($qtext, $start, $page-length)}
     </div>
-    <div class="nine columns">
+    <div class="span9">
       {lib-search:search-results($qtext, $start)}
     </div>
   </div>
@@ -234,15 +235,13 @@ declare variable $lib-search:page-title as xs:string := if ($qtext) then concat(
  :
  :)
 declare variable $lib-search:search-form as node() :=
-  <div>
-    <form action="/application/xquery/search.xqy" method="post" class="nice" name="searchForm" id="searchForm">
-      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input align-bottom"/>
+    <form action="/application/xquery/search.xqy" method="post" name="searchForm" id="searchForm">
+      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input"/>
       <input type="hidden" id="filter-string" name="filter-string"/>
       <input type="hidden" id="filter-json" name="filter-json"/>
       <input type="hidden" id="start" name="start" value="1"/>
       <input type="hidden" id="page-length" name="page-length" value="10"/>
-    </form>
-  </div>;
+    </form>;
 
 (:~
  : Returns search results displayable as html
@@ -250,15 +249,15 @@ declare variable $lib-search:search-form as node() :=
  :)
 declare variable $lib-search:search-results as node()+ :=
   <div class="row">
-    <div class="twelve columns">
+    <div class="span12">
       <h3>searching for '{$term}'</h3>
     </div>
   </div>,
   <div class="row">
-    <div class="three columns">
+    <div class="span3">
       {lib-facets:facets($qtext, $start, $page-length)}
     </div>
-    <div class="nine columns">
+    <div class="span9">
       {lib-search:search-results($qtext, $start)}
     </div>
   </div>;
