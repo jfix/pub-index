@@ -8,6 +8,8 @@ h1. Documentation of indexes, fields, security, etc.
 
 h2. database
 
+Use can use the xquery script in dbmigration/1.xqy
+
 Enable
 * uri lexicon
 * collection lexicon
