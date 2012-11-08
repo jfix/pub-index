@@ -14,7 +14,7 @@ import module namespace search = "http://marklogic.com/appservices/search"
 declare namespace cc = "country-data";
 declare namespace dt = "http://purl.org/dc/terms/";
  
- let $doc := document("/assets/mappings/countries.xml")
+ let $doc := document("/refs/countries.xml")
   let $countries := cts:element-values(
     fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/", "country"),"", ("item-frequency"), 
     cts:collection-query(("metadata")))

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <options xmlns="http://marklogic.com/appservices/search">
     <constraint name="metadata-only">
         <collection prefix="metadata"/>

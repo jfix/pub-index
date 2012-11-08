@@ -96,7 +96,7 @@ as element(div)
 
 declare function w:map-data()
 {
-  let $doc := document("/assets/mappings/countries.xml")
+  let $doc := document("/refs/countries.xml")
   let $countries := cts:element-values(
     fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/", "country"),"", ("item-frequency"), 
     cts:collection-query(("metadata")))

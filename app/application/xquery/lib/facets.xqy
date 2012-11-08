@@ -30,7 +30,7 @@ declare function f:facets(
   $page-length as xs:integer
 )
 {
-  let $options := document("/application/xquery/options/facets-no-results.xml")/search:options
+  let $options := document("/config/search/facets-no-results.xml")/search:options
   let $result as element(search:response) := search:search($term, $options, $start)
   (:let $_log := utils:log(concat("------ START FACETS --------:", xdmp:quote($result), "------ END FACETS --------:")):)
   
@@ -48,10 +48,10 @@ declare function f:transform-facet-results(
   $term as xs:string
 ) as element(div)+
 {
-  let $country-doc := doc("/assets/mappings/countries.xml")
+  let $country-doc := doc("/refs/countries.xml")
   let $all-facets := 
     search:search("",
-      document("/application/xquery/options/facets-no-results.xml")/search:options
+      document("/config/search/facets-no-results.xml")/search:options
     )
   
   let $all-subject-facets as element(search:facet) := $all-facets/search:facet[@name = 'subject']

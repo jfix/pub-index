@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<countries xmlns="country-data">
 <!-- this file contains a list of all 246 countries listed on the ISO website here:
     
     http://www.iso.org/iso/english_country_names_and_code_elements
@@ -13,7 +14,6 @@
         Macau     -> Macau, China
     
 -->
-<countries xmlns="country-data">
    <country>
       <code>AF</code>
       <name>

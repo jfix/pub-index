@@ -18,7 +18,7 @@
   
   <xsl:output method="xhtml"/>
   
-  <xsl:variable name="lang-doc" select="doc('/assets/mappings/languages.xml')"/>
+  <xsl:variable name="lang-doc" select="doc('/refs/languages.xml')"/>
   <xsl:variable name="root" select="/*[1]"/>
   <xsl:variable name="title" select="/*/dt:title"/>
   <xsl:variable name="pub-type" select="lower-case(local-name($root))"/>

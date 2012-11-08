@@ -66,7 +66,7 @@ declare function lib-search:search-results(
   $start-from as xs:integer
 ) as element(div)+
 {
-  let $options := document("/application/xquery/options/default.xml")/search:options
+  let $options := document("/config/search/default.xml")/search:options
   let $result := search:search($qtext, $options, $start-from)
   let $_log := utils:log(concat("XDMP: ", xdmp:quote($result)))
   
