@@ -67,7 +67,7 @@ declare function w:word-cloud-scripts()
 as element(script)+
 {
   (
-  <script type="text/javascript" src="/application/js/jquery/jqcloud-0.2.10.min.js"/>,
+  <script type="text/javascript" src="/assets/js/jquery/jqcloud-0.2.10.min.js"/>,
   <script type="text/javascript">
     $(document).ready(function() {{
         $("#wordcloud").jQCloud(word_cloud_list, {{delayedMode: true, shape: "elliptic"}});

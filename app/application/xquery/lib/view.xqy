@@ -65,16 +65,16 @@ declare function view:html-page(
         </div>
         
         <!-- Included JS Files -->
-        <script src="/application/foundation/javascripts/jquery.min.js">//</script>
-        <script src="/application/foundation/javascripts/modernizr.foundation.js">//</script>
-        <script src="/application/foundation/javascripts/foundation.js">//</script>
-        <script src="/application/foundation/javascripts/app.js">//</script>
+        <script src="/assets/foundation/javascripts/jquery.min.js">//</script>
+        <script src="/assets/foundation/javascripts/modernizr.foundation.js">//</script>
+        <script src="/assets/foundation/javascripts/foundation.js">//</script>
+        <script src="/assets/foundation/javascripts/app.js">//</script>
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js">//</script>
-        <script src="/application/js/jquery/jquery.ui.core.js"></script>
-      	<script src="/application/js/jquery/jquery.ui.widget.js"></script>
-      	<script src="/application/js/jquery/jquery.ui.position.js"></script>
-      	<script src="/application/js/jquery/jquery.ui.autocomplete.js"></script>
-      	<script src="/application/js/facets.js"></script>
+        <script src="/assets/js/jquery/jquery.ui.core.js"></script>
+      	<script src="/assets/js/jquery/jquery.ui.widget.js"></script>
+      	<script src="/assets/js/jquery/jquery.ui.position.js"></script>
+      	<script src="/assets/js/jquery/jquery.ui.autocomplete.js"></script>
+      	<script src="/assets/js/facets.js"></script>
         {$script}
 	</body>
   </html>
@@ -212,15 +212,15 @@ declare function view:html-head(
         <title>{$title}</title>
         
       	<!-- Included CSS Files -->
-      	<link rel="stylesheet" href="/application/foundation/stylesheets/foundation.css"/>
-      	<link rel="stylesheet" href="/application/foundation/stylesheets/app.css"/>
-      	<link rel="stylesheet" href="/application/js/jquery/css/jquery.ui.theme.css"/>
-      	<link rel="stylesheet" href="/application/js/jquery/css/jquery.ui.autocomplete.css"/>
-      	<link rel="stylesheet" href="/application/js/jquery/css/jqcloud.css"/>
-      	<link rel="stylesheet" href="/application/css/styles.css"/>
-      	<link rel="stylesheet" href="/application/css/oecd.css"/>
+      	<link rel="stylesheet" href="/assets/foundation/stylesheets/foundation.css"/>
+      	<link rel="stylesheet" href="/assets/foundation/stylesheets/app.css"/>
+      	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.theme.css"/>
+      	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.autocomplete.css"/>
+      	<link rel="stylesheet" href="/assets/js/jquery/css/jqcloud.css"/>
+      	<link rel="stylesheet" href="/assets/css/styles.css"/>
+      	<link rel="stylesheet" href="/assets/css/oecd.css"/>
       	<!--[if lt IE 9]>
-      		<link rel="stylesheet" href="/application/foundation/stylesheets/ie.css"/>
+      		<link rel="stylesheet" href="/assets/foundation/stylesheets/ie.css"/>
       	<![endif]-->
       
         {$header-scripts}
