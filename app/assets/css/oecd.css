@@ -13,7 +13,6 @@ B - Main Navigation Section
 #nav {
 	position: relative;
 	margin-bottom: 2em;
-    width: 980px; /* incredible: pixel-precise width! where will the madness end?! */
 }
 
 #nav ul.navCtn {
@@ -30,23 +29,22 @@ B - Main Navigation Section
 #nav li.navItem {
 	float: left;
 	padding: 0 2px 0 0;
+	width: 14%;
 	background: url(/assets/images/splitter.png) right center no-repeat;
 	}
 
 #nav li.navItem a.navAct {
 	display: block;
-	position: relative;
-	width: 156px;
 	outline: none;
 	text-decoration: none;
-	font-size: 1.5em;
+	font-size: 18px;
 	color: #fff;
 	text-align: center;
 	}
 
 #nav li.navItem a.navAct span {
 	display: block;
-	padding: 7px 0;
+	padding: 6px 0;
 	}
 
 #nav li.bLast {
@@ -116,23 +114,29 @@ D - Footer
 -------------------------------------------------------------- */
 #footer {
     display: block;
-    width: 980px; /* incredible: pixel-precise width! where will the madness end?! */
 }
+
 #footer .footerNav {
   width: 100%;
 	float: left;
 	margin: 35px 0 0 0; padding: 0;
 	list-style-type: none;
 	font-size: .75em; 
+  text-align: center;
 	}
+  
 #footer .footerNav li {
 	float: left;
 	border-top: 1px solid #dfdfdf;
-	margin: 0 0 0 2px;
+	margin: 0;
 	padding: 9px 0;
-	width: 138px; /* incredible: pixel-precise width! where will the madness end?! */
+	width: 14%;
 	background: #fafafa;
 	}
+#footer .footerNav li:first-child {
+  width:16%;
+}
+
 #footer .footerNav li a {
 	outline: none;
 	display: block;
@@ -146,7 +150,7 @@ D - Footer
 	 color: #000;
 	 }
 #footer .footerNav li.last {
-	width: 138px;
+	width: 14%;
 	border-color: #205ca2;
 	background: #2973bd;
 	background:  -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2973bd), to(#018fd0));

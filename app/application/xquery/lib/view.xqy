@@ -253,16 +253,27 @@ declare function view:html-header
         <div id="nav" class="row">
           <div class="span12">
             <ul class="navCtn">
-              <li class="navItem bFirst">
+              <li class="navItem">
                 <a class="navAct" href="http://www.oecd.org/"><span>OECD Home</span></a>
+              </li>
+              <li class="navItem">
+                <a class="navAct" href="http://www.oecd.org/about"><span>About</span></a>
+              </li>
+              <li class="navItem">
+                <a class="navAct" href="http://www.oecd.org/#countriesList"><span>Countries</span></a>
+              </li>
+              <li class="navItem">
+                <a class="navAct" href="http://www.oecd.org/#topicsList"><span>Topics</span></a>
+              </li>
+              <li class="navItem">
+                <a class="navAct" href="http://www.oecd.org/statistics"><span>Statistics</span></a>
+              </li>
+              <li class="navItem">
+                <a class="navAct" href="http://www.oecd.org/newsroom"><span>Newsroom</span></a>
               </li>
               <li>
               { attribute class { fn:concat('navItem ', $homeActive) } }
-                <a class="navAct" href="/"><span>Books</span></a>
-              </li>
-              <li>
-                { attribute class { fn:concat('navItem ', $aboutActive) } }
-                <a class="navAct" href="/about"><span>About</span></a>
+                <a class="navAct" href="/"><span>Publications</span></a>
               </li>
             </ul>
           </div>
