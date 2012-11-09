@@ -14,6 +14,7 @@ import module namespace utils = "lib-utils"
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare namespace country = "country-data";
+declare namespace lang = "language-data";
 
 declare variable $term as xs:string := (xdmp:get-request-field("query"), '')[1];
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
@@ -49,6 +50,8 @@ declare function f:transform-facet-results(
 ) as element(div)+
 {
   let $country-doc := doc("/refs/countries.xml")
+  let $language-doc := doc("/refs/languages.xml")
+  
   let $all-facets := 
     search:search("",
       document("/config/search/facets-no-results.xml")/search:options
@@ -57,6 +60,7 @@ declare function f:transform-facet-results(
   let $all-subject-facets as element(search:facet) := $all-facets/search:facet[@name = 'subject']
   let $all-country-facets as element(search:facet) := $all-facets/search:facet[@name = 'country']
   let $all-pubtype-facets as element(search:facet) := $all-facets/search:facet[@name = 'pubtype']
+  let $all-language-facets as element(search:facet) := $all-facets/search:facet[@name = 'language']
   
   let $qtext as xs:string := ($search-response//search:qtext/text(), "")[1]
   
@@ -100,7 +104,7 @@ declare function f:transform-facet-results(
 
           order by $country/@count descending 
           return
-            <option value="{$code}">{concat($name," (", $count,")")}</option>
+            if($name) then <option value="{$code}">{concat($name," (", $count,")")}</option> else ()
       }
       </select>
     </div>,
@@ -117,9 +121,15 @@ declare function f:transform-facet-results(
     <div class="language facet">
       <select>
         <option value="">Filter by language</option>
-        <option value="en">English</option>
-        <option value="fr">French</option>
-        <option value="kl">Klingon</option>
+        {
+          for $language in $all-language-facets//search:facet-value
+            let $code := data($language/@name)
+            let $count := data($language/@count)
+            let $name := fn:data($language-doc/lang:*/lang:language[@id = $code])
+            order by $language/@count descending 
+            return
+              if($name) then <option value="{$code}">{concat($name," (", $count,")")}</option> else ()
+        }
       </select>
     </div>,
     <div class="pubtype facet">

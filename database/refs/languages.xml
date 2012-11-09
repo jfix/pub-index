@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<languages>
+<languages xmlns="language-data">
   <language id="en">English</language>
   <language id="fr">French</language>
   <language id="de">German</language>

@@ -11,6 +11,7 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" 
   xmlns:xdmp="http://marklogic.com/xdmp" 
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+  xmlns:lang="language-data" 
   xmlns="http://www.w3.org/1999/xhtml"
   
   xmlns:utils="books.oecd.org/utils"
@@ -123,7 +124,7 @@
     <xsl:variable name="lang-id" select="dt:language/text()"/>
     <strong>
       <a href="{utils:link(oe:doi/@rdf:resource)}">
-        <xsl:value-of select="$lang-doc//language[@id eq $lang-id]/text()" />
+        <xsl:value-of select="$lang-doc//lang:language[@id eq $lang-id]/text()" />
       </a>
     </strong>
     <xsl:if test="following-sibling::oe:translation[1]">, </xsl:if>
@@ -149,7 +150,7 @@
   
   <xsl:template match="oe:summary" mode="metadata" as="item()*">
     <xsl:variable name="lang-id" select="dt:language/text()"/>
-    <xsl:variable name="lang-label" select="($lang-doc//language[@id eq $lang-id]/text(), $lang-id)[1]"/>
+    <xsl:variable name="lang-label" select="($lang-doc//lang:language[@id eq $lang-id]/text(), $lang-id)[1]"/>
     <a href="{utils:link(oe:doi/@rdf:resource)}">
       <xsl:value-of select="$lang-label"/>
     </a>

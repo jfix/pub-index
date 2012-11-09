@@ -18,6 +18,11 @@
             <element name="subject" ns="http://purl.org/dc/terms/"/>
         </range>
     </constraint>
+    <constraint name="language">
+        <range type="xs:string">
+            <element name="language" ns="http://purl.org/dc/terms/"/>
+        </range>
+    </constraint>
     <return-results>false</return-results>
     <return-facets>true</return-facets>
     <return-metrics>false</return-metrics>
