@@ -61,8 +61,12 @@ declare function f:transform-facet-results(
   let $qtext as xs:string := ($search-response//search:qtext/text(), "")[1]
   
   return (
+    <div class="main facet">
+      <label><input id="filter-summaries" name="filter-summaries" type="checkbox"></input> Include multilingual summaries</label>
+      <label><input id="filter-forthcoming" name="filter-forthcoming" type="checkbox"></input> View forthcoming publications</label>
+    </div>,
     <div class="subject facet">
-      <h6>subjects</h6>
+      <h6>Subjects</h6>
       <ul>
       {
         for $value in $all-subject-facets//search:facet-value
@@ -81,8 +85,45 @@ declare function f:transform-facet-results(
       }
       </ul>
     </div>,
+    <div class="country facet">
+      <select>
+        <option value="">Filter by country</option>
+      {
+        for $country in $all-country-facets//search:facet-value
+          let $code := data($country/@name)
+          let $count := data($country/@count)
+          let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
+          let $_log := utils:log("about to log information on country name")
+          (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
+          let $name := $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
+          let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name))
+
+          order by $country/@count descending 
+          return
+            <option value="{$code}">{concat($name," (", $count,")")}</option>
+      }
+      </select>
+    </div>,
+    <div class="year facet">
+      <select>
+        <option value="">Filter by year</option>
+        <option value="2012">2012</option>
+        <option value="2011">2011</option>
+        <option value="2010">2010</option>
+        <option value="2009">2009</option>
+        <option value="2008">2008</option>
+      </select>
+    </div>,
+    <div class="language facet">
+      <select>
+        <option value="">Filter by language</option>
+        <option value="en">English</option>
+        <option value="fr">French</option>
+        <option value="kl">Klingon</option>
+      </select>
+    </div>,
     <div class="pubtype facet">
-      <h6>publication types</h6>
+      <h6>Publication types</h6>
       <ul>
       {
         for $value in $all-pubtype-facets//search:facet-value
@@ -99,25 +140,5 @@ declare function f:transform-facet-results(
             </li>
       }
       </ul>
-    </div>,
-    <div class="country facet">
-      <h6>countries covered</h6>
-      {
-        for $country in $all-country-facets//search:facet-value
-          let $code := data($country/@name)
-          let $count := data($country/@count)
-          let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
-          let $_log := utils:log("about to log information on country name")
-          (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
-          let $name := $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
-          let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name))
-
-          order by $country/@count descending 
-          return
-            <a href="{concat('country:', $code)}">
-                <img class="flag {$css-class}" src="/assets/images/flags/16/{$code}.png" 
-                    title="{$name} has {$count} publications"/>
-            </a>
-      }
     </div>)
 };

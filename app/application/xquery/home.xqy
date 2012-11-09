@@ -6,6 +6,7 @@ import module namespace v = "lib-view" at "lib/view.xqy";
 import module namespace b = "lib-browse" at "lib/browse.xqy";
 import module namespace s = "lib-search" at "lib/search.xqy";
 import module namespace w = "lib-widgets" at "lib/widgets.xqy";
+import module namespace f = "lib-facets" at "lib/facets.xqy";
 
 import module namespace search = "http://marklogic.com/appservices/search"
   at "/MarkLogic/appservices/search/search.xqy";
@@ -24,7 +25,7 @@ declare variable $homepage-scripts as element(script)+ :=
 
 declare function local:slider-thingy()
 {
-  <h3>latest arrivals</h3>,
+  <h3>Latest arrivals</h3>,
   <a href="/browse">
     <img style="border: 0" src="http://placehold.it/980x400&amp;text=slider thingy here"/>
   </a>
@@ -40,7 +41,7 @@ declare function local:word-cloud()
 
 declare function local:google-map()
 {
-  <h3>browse by country</h3>,
+  <h3>Browse by country</h3>,
   <div id="map-container">
       <div ex:role="coder" 
         ex:coderClass="SizeGradient" 
@@ -76,10 +77,12 @@ declare function local:google-map()
 
 let $content := 
 <div class="row">
-  <div class="span12">
-    {local:word-cloud()}
-     {local:google-map()}
+  <div class="span3">
+    {f:facets("", 1, 10)}
+  </div>
+  <div class="span9">
     {local:slider-thingy()}
+    {local:google-map()}
   </div>
 </div>
 
