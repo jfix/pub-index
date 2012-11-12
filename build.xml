@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="PublicationIndex">
+  
+  <!-- Environment property -->
+  <property environment="ENV"/>
+  
+  <!-- define ${target} by adding -Dtarget=\\servername\full\path\to\PI -->
+  
+  <target name="deploy">
+    <fail message="target property not defined!" unless="target"/>
+    <echo message="Deploy to ${target}"/>
+    <sync todir="${target}" verbose="true">
+      <fileset dir="${basedir}/app"/>
+      <preserveintarget>
+        <include name="xray/**"/>
+      </preserveintarget>
+    </sync>
+  </target>
+  
+</project>
