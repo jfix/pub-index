@@ -82,7 +82,8 @@ declare function f:transform-facet-results(
           return 
             <li style="margin-bottom: 0">
               <a class="{$css-class}" 
-                href="{concat('subject:', $value/@name)}"
+                href="/subject/{xdmp:url-encode($value/@name)}"
+                data-target="{xdmp:url-encode($value/@name)}"
                 title="There are {$count} publications on {$name}"
                 >{$name}</a> ({$count})
             </li>

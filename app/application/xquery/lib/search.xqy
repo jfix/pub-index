@@ -30,13 +30,7 @@ declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-fiel
 
 declare variable $lib-search:search-script as element(script) :=
 <script type="text/javascript">
-  $(document).ready(function() {{  
-    $( "#term" ).autocomplete({{
-  		source: "/application/xquery/suggest.xqy",
-  		select: function( event, ui ) {{
-  			
-  		}}
-  	}});
+  $(document).ready(function() {{
   	$(".navigationButton").click(function() {{
   	  $("#start").val($(this).data("start"));
       $("#searchForm").submit();
@@ -235,8 +229,8 @@ declare variable $lib-search:page-title as xs:string := if ($qtext) then concat(
  :
  :)
 declare variable $lib-search:search-form as node() :=
-    <form action="/application/xquery/search.xqy" method="post" name="searchForm" id="searchForm">
-      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="medium oversize ui-autocomplete-input"/>
+    <form action="/search" method="get" name="searchForm" id="searchForm">
+      <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class=""/>
       <input type="hidden" id="filter-string" name="filter-string"/>
       <input type="hidden" id="filter-json" name="filter-json"/>
       <input type="hidden" id="start" name="start" value="1"/>

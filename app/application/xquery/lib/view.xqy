@@ -64,6 +64,13 @@ declare function view:html-page(
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
       	<script src="/assets/js/facets.js"></script>
+        <script type="text/javascript">
+          $(function() {{
+            $( "#term" ).autocomplete({{
+              source: "/application/xquery/suggest.xqy",
+            }});
+          }});
+        </script>
         {$script}
 	</body>
   </html>

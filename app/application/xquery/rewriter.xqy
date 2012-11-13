@@ -25,7 +25,7 @@ let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
-let $search-pattern as xs:string := "^/search/([^/]+)(/([0-9]+))?$"
+let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
 let $opensearch-pattern as xs:string := "^/opensearch\?q=([a-zA-Z0-9 ]+)(&amp;start=([0-9]+))?"
 
 let $new-url :=
@@ -39,11 +39,11 @@ let $new-url :=
   
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/application/xquery/search.xqy?term=country:$1")
+  then  fn:replace($url,     $country-pattern,      "/application/xquery/search.xqy?filter-string=country:$1")
   
 (: redirect to subject browse page :)
   else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/application/xquery/search.xqy?term=subject:$1")
+  then  fn:replace($url,     $subject-pattern,      "/application/xquery/search.xqy?filter-string=subject:$1")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))
@@ -55,7 +55,7 @@ let $new-url :=
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))
-  then  fn:replace($url,     $search-pattern,       "/application/xquery/search.xqy?term=$1&amp;start=$3") 
+  then  fn:replace($url,     $search-pattern,       "/application/xquery/search.xqy?$1") 
   
   (: opensearch results :)
   else if (fn:matches($url, $opensearch-pattern))
