@@ -31,10 +31,12 @@ declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-fiel
 declare variable $lib-search:search-script as element(script) :=
 <script type="text/javascript">
   $(document).ready(function() {{
-  	$(".navigationButton").click(function() {{
-  	  $("#start").val($(this).data("start"));
-      $("#searchForm").submit();
-
+    $(".pager a").click(function() {{
+      var start = $(this).data("start");
+      if(start) {{
+        $("#start").val(start);
+        $("#searchForm").submit();
+      }}
   	}});
   	
   	// re-objectify json object from request param "filter-json"
