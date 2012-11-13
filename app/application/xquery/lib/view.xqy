@@ -62,7 +62,7 @@ declare function view:html-page(
         <!-- Included JS Files -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
       	<script src="/assets/js/facets.js"></script>
         {$script}
 	</body>
@@ -180,8 +180,7 @@ declare function view:html-head(
       	<!-- Included CSS Files -->
       	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
       	<!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
-      	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.theme.css"/>
-      	<link rel="stylesheet" href="/assets/js/jquery/css/jquery.ui.autocomplete.css"/>
+      	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/cupertino/jquery-ui.css" />
       	<link rel="stylesheet" href="/assets/js/jquery/css/jqcloud.css"/>
       	<link rel="stylesheet" href="/assets/css/styles.css"/>
       	<link rel="stylesheet" href="/assets/css/oecd.css"/>
