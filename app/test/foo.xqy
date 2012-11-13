@@ -7,3 +7,10 @@ declare function node-should-equal-foo ()
     let $node := <foo/>
     return assert:equal($node, <foo/>)
 };
+
+(: another stupid test :)
+declare function string-equality-example ()
+{
+  let $foo := "foo"
+  return assert:equal($foo, "foo")
+};
