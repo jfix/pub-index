@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="PublicationIndex">
+  <!-- define ${target} by adding -Dtarget=\\servername\full\path\to\PI -->
+  <!-- define ${testuri} by adding -Dtesturi=http://servername:port/xray/?dir=test&modules=&tests=&format=xunit -->
   
   <!-- Environment property -->
   <property environment="ENV"/>
   
-  <!-- define ${target} by adding -Dtarget=\\servername\full\path\to\PI -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
   
   <target name="deploy">
     <fail message="target property not defined!" unless="target"/>
@@ -17,4 +19,21 @@
     </sync>
   </target>
   
+  <target name="test">
+    <fail message="testuri property not defined!" unless="testuri"/>
+    
+    <property name="test.results.path" value="${basedir}\test-results"/>
+    <property name="test.results.file" value="${test.results.path}\results.xml"/>
+    
+    <mkdir dir="${test.results.path}"/>
+    <delete file="${test.results.file}" verbose="true"/>
+    
+    <echo message="Run xray testing on ${testuri}"/>
+    <exec executable="${ENV.PATH_CURL}\curl.exe" failonerror="true">
+        <arg value="-sS"/>
+        <arg value="-o"/>
+        <arg value="${basedir}\test-results\results.xml"/>
+        <arg value="${testuri}"/>
+    </exec>
+  </target>
 </project>
