@@ -21,10 +21,8 @@ let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
 let $about-pattern as xs:string := "^/about$"
-let $browse-only-pattern as xs:string := "^/browse$"
 let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
-let $browse-pattern as xs:string := "^/browse/([a-z]+)/([-a-zA-Z\s,+]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
 let $search-pattern as xs:string := "^/search/([^/]+)(/([0-9]+))?$"
@@ -38,22 +36,14 @@ let $new-url :=
   (: redirect to about page :)
   else if (fn:matches($url, $about-pattern))
   then  fn:replace($url,     $about-pattern,        "/application/xquery/about.xqy")
-
-(: redirect to general browse page :)
-  else if (fn:matches($url, $browse-only-pattern))
-  then  fn:replace($url,     $browse-only-pattern,  "/application/xquery/search.xqy")
   
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/application/xquery/browse.xqy?by=country&amp;value=$1")
+  then  fn:replace($url,     $country-pattern,      "/application/xquery/search.xqy?term=country:$1")
   
 (: redirect to subject browse page :)
   else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/application/xquery/browse.xqy?by=subject&amp;value=$1")
-  
-(: redirect to browse page :)
-  else if (fn:matches($url, $browse-pattern))
-  then  fn:replace($url,     $browse-pattern,       "/application/xquery/search.xqy?term=$1:&quot;$2&quot;")
+  then  fn:replace($url,     $subject-pattern,      "/application/xquery/search.xqy?term=subject:$1")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))

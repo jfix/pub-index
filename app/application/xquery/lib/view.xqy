@@ -94,29 +94,6 @@ declare function view:html-home-page(
   )
 };
 
-declare function view:html-browse-page(
-    $title as xs:string,
-    $script as node()*,
-    $html as node()*,
-    $meta-description as xs:string?,
-    $meta-content as xs:string?,
-    $google-analytics-id as xs:string?,
-    $cache-version as xs:double?
-)
-{
-  (: for the time being simply return the basic HTML page :)
-  view:html-page(
-    $title,
-    $script,
-    $html,
-    $meta-description,
-    $meta-content,
-    $google-analytics-id,
-    $cache-version
-  )
-};
-
-
 declare function view:html-product-page(
     $title as xs:string,
     $script as node()*,

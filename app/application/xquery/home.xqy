@@ -3,7 +3,6 @@ xquery version "1.0-ml";
 (: $Id$ :)
 
 import module namespace v = "lib-view" at "lib/view.xqy";
-import module namespace b = "lib-browse" at "lib/browse.xqy";
 import module namespace s = "lib-search" at "lib/search.xqy";
 import module namespace w = "lib-widgets" at "lib/widgets.xqy";
 import module namespace f = "lib-facets" at "lib/facets.xqy";
@@ -26,7 +25,7 @@ declare variable $homepage-scripts as element(script)+ :=
 declare function local:slider-thingy()
 {
   <h3>Latest arrivals</h3>,
-  <a href="/browse">
+  <a href="/latest">
     <img style="border: 0" src="http://placehold.it/980x400&amp;text=slider thingy here"/>
   </a>
   ,<hr/>
