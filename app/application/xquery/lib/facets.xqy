@@ -91,7 +91,7 @@ declare function f:transform-facet-results(
       </ul>
     </div>,
     <div class="country facet">
-      <select>
+      <select data-facet="country">
         <option value="">Filter by country</option>
       {
         for $country in $all-country-facets//search:facet-value
@@ -105,12 +105,16 @@ declare function f:transform-facet-results(
 
           order by $country/@count descending 
           return
-            if($name) then <option value="{$code}">{concat($name," (", $count,")")}</option> else ()
+            if($name) then
+              <option value="{$code}">
+                {if (contains($qtext, concat('country:"', $code, '"'))) then attribute selected { "selected" } else ()}
+                {concat($name," (", $count,")")}
+              </option> else ()
       }
       </select>
     </div>,
     <div class="year facet">
-      <select>
+      <select data-facet="year" disabled="disabled">
         <option value="">Filter by year</option>
         <option value="2012">2012</option>
         <option value="2011">2011</option>
@@ -120,7 +124,7 @@ declare function f:transform-facet-results(
       </select>
     </div>,
     <div class="language facet">
-      <select>
+      <select data-facet="language">
         <option value="">Filter by language</option>
         {
           for $language in $all-language-facets//search:facet-value
@@ -129,7 +133,12 @@ declare function f:transform-facet-results(
             let $name := fn:data($language-doc/lang:*/lang:language[@id = $code])
             order by $language/@count descending 
             return
-              if($name) then <option value="{$code}">{concat($name," (", $count,")")}</option> else ()
+              if($name) then
+                <option value="{$code}">
+                  {if (contains($qtext, concat('language:"', $code, '"'))) then attribute selected { "selected" } else ()}
+                  {concat($name," (", $count,")")}
+                </option>
+              else ()
         }
       </select>
     </div>,

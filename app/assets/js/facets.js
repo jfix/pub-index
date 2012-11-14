@@ -19,6 +19,27 @@ $("div.facet ul li a, div.facet a").click(function (event) {
   }
 });
 
+$("div.facet select").change(function(event) {
+  var facet = $(this).data("facet");
+  var value = $(this).val();
+  
+  if(currentFacets[facet]) {
+    var oldValue = currentFacets[facet][0];
+    if(oldValue) {
+      manageFacets(facet, oldValue, currentFacets);
+    }
+  }
+  
+  if(value != "") {
+    manageFacets(facet, value, currentFacets);
+  }
+  
+  var filterString = serializeFacets(currentFacets);
+  
+  $filterString.val(filterString);
+  $("#searchForm").submit();
+});
+
 /**
 * ( pubtype:book OR pubtype:article ) subject:"Development"
 *
