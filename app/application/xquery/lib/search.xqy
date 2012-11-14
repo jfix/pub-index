@@ -32,9 +32,9 @@ declare variable $lib-search:search-script as element(script) :=
         $("#start").val(start);
         $("#searchForm").submit();
       }}
-  	}});
-	}});
-	</script>;
+    }});
+  }});
+</script>;
 
 declare function lib-search:deserializeFilter($inFilter as xs:string)
 as xs:string

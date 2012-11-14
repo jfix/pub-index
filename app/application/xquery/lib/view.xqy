@@ -63,7 +63,7 @@ declare function view:html-page(
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
-      	<script src="/assets/js/facets.js"></script>
+        <script src="/assets/js/facets.js"></script>
         <script type="text/javascript">
           $(function() {{
             $( "#term" ).autocomplete({{
@@ -72,7 +72,7 @@ declare function view:html-page(
           }});
         </script>
         {$script}
-	</body>
+  </body>
   </html>
   )  
 };
@@ -178,25 +178,25 @@ declare function view:html-head(
       <head profile="http://a9.com/-/spec/opensearch/1.1/">
         <meta charset="utf-8" />
       
-      	<!-- Set the viewport width to device width for mobile -->
-      	<meta name="viewport" content="width=device-width" />
+        <!-- Set the viewport width to device width for mobile -->
+        <meta name="viewport" content="width=device-width" />
         <meta name="description" content="{$meta-description}"/>
         <meta name="author" content="{$meta-content}"/>
         <title>{$title}</title>
         
-      	<!-- Included CSS Files -->
-      	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
-      	<!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
-      	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/cupertino/jquery-ui.css" />
-      	<link rel="stylesheet" href="/assets/css/styles.css"/>
-      	<link rel="stylesheet" href="/assets/css/oecd.css"/>
+        <!-- Included CSS Files -->
+        <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
+        <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/cupertino/jquery-ui.css" />
+        <link rel="stylesheet" href="/assets/css/styles.css"/>
+        <link rel="stylesheet" href="/assets/css/oecd.css"/>
 
         {$header-scripts}
 
-      	<!-- IE Fix for HTML5 Tags -->
-      	<!--[if lt IE 9]>
-      		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
-      	<![endif]-->
+        <!-- IE Fix for HTML5 Tags -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
+        <![endif]-->
         
         <!-- Opensearch description document -->
         <link rel="search"
