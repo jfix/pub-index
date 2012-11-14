@@ -83,7 +83,7 @@ declare function lib-search:search-results(
         </div>
       </div>
       ,
-      lib-search:search-meta($total, $display-time, $start, $page-length, $end)
+      if($total > 0) then lib-search:search-meta($total, $display-time, $start, $page-length, $end) else ()
       )
 };
 
