@@ -39,11 +39,11 @@ let $new-url :=
   
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/application/xquery/search.xqy?filter-string=country:$1")
+  then  fn:replace($url,     $country-pattern,      "/application/xquery/search.xqy?in=country:$1")
   
 (: redirect to subject browse page :)
   else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/application/xquery/search.xqy?filter-string=subject:$1")
+  then  fn:replace($url,     $subject-pattern,      "/application/xquery/search.xqy?in=subject:$1")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))

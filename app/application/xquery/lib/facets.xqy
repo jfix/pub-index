@@ -68,6 +68,7 @@ declare function f:transform-facet-results(
     <div class="main facet">
       <label><input id="filter-summaries" name="filter-summaries" type="checkbox"></input> Include multilingual summaries</label>
       <label><input id="filter-forthcoming" name="filter-forthcoming" type="checkbox"></input> View forthcoming publications</label>
+      <div style="display:none;">{$qtext}</div>
     </div>,
     <div class="subject facet">
       <h6>Subjects</h6>
@@ -75,16 +76,15 @@ declare function f:transform-facet-results(
       {
         for $value in $all-subject-facets//search:facet-value
           let $name := data($value/@name)
-          let $quoted-name := if (contains($name, " ")) then concat('"', $name, '"') else $name
           let $count := data($value/@count)
-          let $css-class := if (contains($qtext, concat('subject:', $quoted-name))) then 'selected' else ''
+          let $css-class := if (contains($qtext, concat('subject:"', $name,'"'))) then 'selected' else ''
           order by $value/@count descending 
           return 
-            <li style="margin-bottom: 0">
+            <li>
               <a class="{$css-class}" 
                 href="/subject/{xdmp:url-encode($value/@name)}"
-                data-target="{xdmp:url-encode($value/@name)}"
-                title="There are {$count} publications on {$name}"
+                data-facet="subject"
+                data-value="{$value/@name}"
                 >{$name}</a> ({$count})
             </li>
       }
@@ -140,13 +140,14 @@ declare function f:transform-facet-results(
         for $value in $all-pubtype-facets//search:facet-value
           let $name := data($value/@name)
           let $count := data($value/@count)
-          let $css-class := if (contains($qtext, concat('pubtype:', $name))) then 'selected' else ''
+          let $css-class := if (contains($qtext, concat('pubtype:"', $name, '"'))) then 'selected' else ''
           order by $value/@count descending 
           return 
-            <li style="margin-bottom: 0">
-              <a class="{$css-class}" 
-                href="{concat('pubtype:', $value/@name)}"
-                title="There are {$count} {$name}s"
+            <li>
+              <a class="{$css-class}"
+                href="/pubtype/{xdmp:url-encode($value/@name)}"
+                data-facet="pubtype"
+                data-value="{$value/@name}"
                 >{$name}</a> ({$count})
             </li>
       }

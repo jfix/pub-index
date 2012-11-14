@@ -1,19 +1,23 @@
-/* $Id$ */
+$(function () {
 
-$(document).ready(function () {
+var $filterString = $("#in");
+var currentFacets = deserializeFacets($filterString.val());
+
+$("div.facet ul li a, div.facet a").click(function (event) {
+  event.preventDefault();
   
-  $("div.facet ul li a, div.facet a").click(function () {
-    var facet = $(this).attr("href");
-    var facets = manageFacets(facet, __currentFacets);
-    var filterString = serializeFacets(facets);
-    var filterJson = JSON.stringify(facets);
-    event.preventDefault();
-    $("#filter-string").val(filterString); // used for marklogic
-    $("#filter-json").val(filterJson);     // used by javascript
-    $("#searchForm").submit();
-  });
+  var facet = $(this).data("facet");
+  if(facet) {
+    var value = $(this).data("value");
+    if(value) {
+      var facets = manageFacets(facet, value, currentFacets);
+      var filterString = serializeFacets(facets);
+      
+      $filterString.val(filterString);
+      $("#searchForm").submit();
+    }
+  }
 });
-
 
 /**
 * ( pubtype:book OR pubtype:article ) subject:"Development"
@@ -25,10 +29,9 @@ $(document).ready(function () {
 * values with spaces must be surrounded with double quotes
 *
 */
-function manageFacets(facet, currentFacets) {
-  var facetTokenized = facet.split(":"),
-  key = facetTokenized[0],
-  val = facetTokenized[1],
+function manageFacets(facet, value, currentFacets) {
+  key = facet,
+  val = value,
   arr = currentFacets[key];
   
   if (arr) {
@@ -45,15 +48,51 @@ function manageFacets(facet, currentFacets) {
   } else {
     currentFacets[key] =[val];
   }
-  return currentFacets
-  serializeFacets(currentFacets);
+  return currentFacets;
+}
+
+function serializeFacets(currentFacets) {
+  var serialized = "";
+  for (key in currentFacets) {
+    var values = currentFacets[key];
+    if (values.length > 0) {
+      serialized += key + ":";
+      for (var i = 0; values.length > i; i++) {
+        if (i > 0)
+          serialized += "|";
+        
+        serialized += values[i];
+      }
+      serialized += ";";
+    }
+  }
+  return $.trim(serialized);
+}
+
+function deserializeFacets(filterString) {
+  var js = {};
+  var facets = filterString.split(";");
+  for(var i = 0; i < facets.length; i++) {
+    var facetString = facets[i];
+    if(facetString != "") {
+      var arr = facetString.split(":");
+      var facet = arr[0];
+      var values = arr[1];
+      arr = values.split("|");
+      for(var j = 0; j < arr.length; j++) {
+        var value = arr[j];
+        js = manageFacets(facet, value, js);
+      }
+    }
+  }
+  
+  return js;
 }
 
 /**
 * Takes facet object and creates a string that MarkLogic understands.
 *
 *
-*/
 function serializeFacets(currentFacets) {
   var serialized = "";
   
@@ -84,3 +123,6 @@ function serializeFacets(currentFacets) {
   }
   return $.trim(serialized);
 }
+*/
+
+});

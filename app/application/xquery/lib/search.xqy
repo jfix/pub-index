@@ -17,14 +17,9 @@ declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
-declare variable $filter-json as xs:string := (xdmp:get-request-field("filter-json"), '')[1]; (: serialized JSON object :)
-declare variable $filter-string as xs:string := (xdmp:get-request-field("filter-string"), '')[1]; (: serialized filter string :)
+declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
 
-declare variable $country as xs:string := (xdmp:get-request-field("country"), "")[1];
-declare variable $_log := utils:log(concat("COCOCOCOC", $country));
-declare variable $country-string as xs:string := if (string-length($country) > 0) then concat('country:', $country) else "";
-
-declare variable $qtext as xs:string := functx:trim( concat($term, " ", $filter-string, " ", $country-string));
+declare variable $qtext as xs:string := functx:trim(concat($term, " ", lib-search:deserializeFilter($in)));
 declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
 declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
 
@@ -38,24 +33,26 @@ declare variable $lib-search:search-script as element(script) :=
         $("#searchForm").submit();
       }}
   	}});
-  	
-  	// re-objectify json object from request param "filter-json"
-    __currentFacets = { if (string-length($filter-json) > 0) then $filter-json else '{}' };
-    var filterString = serializeFacets(__currentFacets);
-    var filterJson = JSON.stringify(__currentFacets);
-    $("#filter-string").val(filterString); // used for marklogic
-    $("#filter-json").val(filterJson);     // used by javascript
-    
-    function previousPage(start) {{
-      $("#start").val(start);
-      $("#searchForm").submit();
-    }}
-    function nextPage(start) {{
-      $("#start").val(start);
-      $("#searchForm").submit();    
-    }}
 	}});
 	</script>;
+
+declare function lib-search:deserializeFilter($inFilter as xs:string)
+as xs:string
+{
+  let $facet := fn:string-join(
+    for $t1 in functx:value-except(fn:tokenize($inFilter, ";"),'')
+      let $facet := fn:substring-before($t1, ":")
+      let $values := fn:substring-after($t1, ":")
+      let $values := fn:string-join(
+        for $t2 in functx:value-except(fn:tokenize($values, "\|"),'')
+        return fn:concat($facet,':"',$t2,'"')
+        ,' OR '
+      )
+      return fn:concat('(',$values,')')
+      ,' '
+  )
+  return $facet
+};
 
 declare function lib-search:search-results( 
   $qtext as xs:string,
@@ -233,8 +230,7 @@ declare variable $lib-search:page-title as xs:string := if ($qtext) then concat(
 declare variable $lib-search:search-form as node() :=
     <form action="/search" method="get" name="searchForm" id="searchForm">
       <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class=""/>
-      <input type="hidden" id="filter-string" name="filter-string"/>
-      <input type="hidden" id="filter-json" name="filter-json"/>
+      <input type="hidden" id="in" name="in" value="{$in}"/>
       <input type="hidden" id="start" name="start" value="1"/>
       <input type="hidden" id="page-length" name="page-length" value="10"/>
     </form>;
