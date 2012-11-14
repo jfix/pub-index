@@ -85,11 +85,6 @@ img.logo {
   padding: 0;
 }
 
-#wordcloud {
-   height:300px;
-   width: 100%;
-}
-
 /* facets can be either simple links (unselected) or have the css class "selected" which makes them .... correct! "selected" */
 a.selected {
   font-weight: bold;

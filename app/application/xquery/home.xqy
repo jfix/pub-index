@@ -17,9 +17,8 @@ declare namespace ex = "exhibit";
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
 
-declare variable $homepage-scripts as element(script)+ :=
-  w:map-scripts(),
-  w:word-cloud-scripts()
+declare variable $homepage-scripts as element(script)* :=
+  (w:map-scripts())
 ;
 
 declare function local:slider-thingy()
@@ -29,13 +28,6 @@ declare function local:slider-thingy()
     <img style="border: 0" src="http://placehold.it/980x400&amp;text=slider thingy here"/>
   </a>
   ,<hr/>
-};
-
-declare function local:word-cloud()
-{
-  <h3>browse by theme</h3>,
-  w:word-cloud(),
-  <hr/>
 };
 
 declare function local:google-map()

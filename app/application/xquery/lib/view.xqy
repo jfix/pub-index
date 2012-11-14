@@ -188,7 +188,6 @@ declare function view:html-head(
       	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
       	<!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
       	<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/cupertino/jquery-ui.css" />
-      	<link rel="stylesheet" href="/assets/js/jquery/css/jqcloud.css"/>
       	<link rel="stylesheet" href="/assets/css/styles.css"/>
       	<link rel="stylesheet" href="/assets/css/oecd.css"/>
 
