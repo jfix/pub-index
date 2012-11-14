@@ -21,18 +21,20 @@ declare namespace dt = "http://purl.org/dc/terms/";
   
   let $list := (
     for $country in $countries
-    
-    let $coords := $doc//cc:country[cc:code = upper-case($country)]/cc:coords/cc:centred/cc:*
-    let $name :=   data($doc//cc:country[cc:code = upper-case($country)]/cc:name/cc:en[@case="normal"])
-    
-    let $freq := cts:frequency($country)
-    let $map := map:map()
-    let $put := map:put($map, 'latlng', string-join($coords, ','))
-    let $put := map:put($map, 'publications', $freq)
-    let $put := map:put($map, 'label', $name)
-    let $put := map:put($map, 'id', $country)
-    let $put := map:put($map, 'url', concat('/country/', $country))
-    
+      let $name :=   data($doc//cc:country[cc:code = upper-case($country)]/cc:name/cc:en[@case="normal"])
+      let $map :=
+        if($name) then
+          let $coords := $doc//cc:country[cc:code = upper-case($country)]/cc:coords/cc:centred/cc:*
+          let $freq := cts:frequency($country)
+          let $map := map:map()
+          let $void := map:put($map, 'latlng', string-join($coords, ','))
+          let $void := map:put($map, 'publications', $freq)
+          let $void := map:put($map, 'label', $name)
+          let $void := map:put($map, 'id', $country)
+          let $void := map:put($map, 'url', concat('/country/', $country))
+          return $map
+        else
+          ()
     return $map
   )
   let $json := xdmp:to-json($list)
