@@ -226,7 +226,7 @@ declare function view:html-header
       <div class="container">
         <div class="row">
           <div class="span7">
-            <img class="logo" src="/assets/images/logooecd_en_books.png"/>
+            <img class="logo" src="/assets/images/logooecd_en_beta.png"/>
           </div>
           <div class="span5" style="text-align:right">
             {$s:search-form}
