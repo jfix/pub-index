@@ -72,7 +72,9 @@ let $content :=
     {f:facets("", 1, 10)}
   </div>
   <div class="span9">
-    {local:slider-thingy()}
+    <h3>Latest arrivals</h3>
+    {w:latest()}
+    <hr/>
     {local:google-map()}
   </div>
 </div>

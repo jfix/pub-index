@@ -103,6 +103,15 @@ img.flag.selected {
 div.exhibit-views-header {
   display: none;
 }
+
+#latest ul { padding: 0 10%; margin: 0; }
+#latest ul li {
+  float: left;
+  width: 25%;
+  list-style: none;
+  text-align: center;
+}
+
 /* 
   Zurb Foundation's reset styles contain a max-width: 100% that interfere with
   google maps bubble display.
