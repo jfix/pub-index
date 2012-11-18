@@ -21,28 +21,33 @@ declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("sta
 declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
 
 (:~
+ : Given a search expression (possibly containing facets and/or a query term),
+ : a start page and the page length, returns search result element
  :
- :
- :
+ : @param $term search expression composed of optional facets and optional query term
+ : @param $start integer for the start page
+ : @param $page-length integer indicating the number of result per page (should default to 10 if value supplied is not "reasonable")
+ : @return element(div)+ a sequence of div elements representing just facets, not containing any results
  :)
 declare function f:facets(
   $term as xs:string,
   $start as xs:integer,
   $page-length as xs:integer
-)
+) as element(div)+
 {
   let $options := document("/config/search/facets-no-results.xml")/search:options
   let $result as element(search:response) := search:search($term, $options, $start)
   (:let $_log := utils:log(concat("------ START FACETS --------:", xdmp:quote($result), "------ END FACETS --------:")):)
-  
   return f:transform-facet-results( $result, $term)
   
 };
 
 (:~
- :
- :
- :
+ : Given the search:response element, it converts it to a sequence of div elements
+ : 
+ : @param $search-response element(search:response)
+ : @param $term xs:string containing facets and query expressions
+ : @return element(div)+ a sequence of div elements containing the facets to be displayed on the left-hand side of the page.
  :)
 declare function f:transform-facet-results(
   $search-response as element(search:response),
