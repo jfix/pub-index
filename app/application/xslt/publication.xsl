@@ -90,7 +90,8 @@
     <!-- multilingual summaries -->
     <xsl:apply-templates select="//oe:summaries" mode="metadata"/>
     
-    
+    <h3>Related links</h3>
+    <div id="backlinks"></div>
   </xsl:template>
   
   <xsl:template match="oe:parent" mode="metadata" as="item()*">
