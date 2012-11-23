@@ -197,12 +197,14 @@ declare function view:html-head(
         <!--[if lt IE 9]>
           <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
         <![endif]-->
-        
+        <script>
+        /*{xdmp:get-request-header-names()}*/
+        </script>
         <!-- Opensearch description document -->
         <link rel="search"
            type="application/opensearchdescription+xml"
-           href="http://localhost:60045/application/opensearch.xml"
-           title="OECDbooks" />
+           href="http://{(xdmp:get-request-header("X-Forwarded-For"),xdmp:get-request-header("HOST"))[1]}/opensearch.xml"
+           title="OECD Publication Index" />
       </head>
 };
 

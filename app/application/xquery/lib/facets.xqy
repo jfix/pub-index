@@ -103,10 +103,10 @@ declare function f:transform-facet-results(
           let $code := data($country/@name)
           let $count := data($country/@count)
           let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
-          let $_log := utils:log("about to log information on country name")
+          (:let $_log := utils:log("about to log information on country name"):)
           (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
           let $name := $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
-          let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name))
+          (:let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name)):)
 
           order by $country/@count descending 
           return

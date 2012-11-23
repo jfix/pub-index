@@ -20,8 +20,8 @@ declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
 declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
 
 declare variable $qtext as xs:string := functx:trim(concat($term, " ", lib-search:deserializeFilter($in)));
-declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
-declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
+declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
+declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
 
 declare variable $lib-search:search-script as element(script) :=
 <script type="text/javascript">
@@ -54,13 +54,20 @@ as xs:string
   return $facet
 };
 
+declare function lib-search:search( 
+  $qtext as xs:string,
+  $start-from as xs:integer
+) as element(search:response)
+{
+  search:search($qtext, document("/config/search/default.xml")/search:options, $start-from)
+};
+
 declare function lib-search:search-results( 
   $qtext as xs:string,
   $start-from as xs:integer
 ) as element(div)+
 {
-  let $options := document("/config/search/default.xml")/search:options
-  let $result := search:search($qtext, $options, $start-from)
+  let $result := lib-search:search($qtext, $start-from)
   let $_log := utils:log(concat("XDMP: ", xdmp:quote($result)))
   
   let $start as xs:integer := data($result/@start)

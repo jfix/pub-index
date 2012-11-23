@@ -26,7 +26,7 @@ let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
 let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
 let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
-let $opensearch-pattern as xs:string := "^/opensearch\?q=([a-zA-Z0-9 ]+)(&amp;start=([0-9]+))?"
+let $opensearch-pattern as xs:string := "^/opensearch[/]?\?(.*)?"
 
 let $new-url :=
   (: home page :)
@@ -59,7 +59,10 @@ let $new-url :=
   
   (: opensearch results :)
   else if (fn:matches($url, $opensearch-pattern))
-  then  fn:replace($url,     $opensearch-pattern,   "/application/xquery/opensearch.xqy?term=$1&amp;start=$3")
+  then  fn:replace($url,     $opensearch-pattern,   "/application/xquery/opensearch.xqy?$1")
+  
+  else if (fn:matches($url, "^/opensearch.xml$"))
+  then  fn:replace($url, "^/opensearch.xml$",   "/application/xquery/opensearchdescriptor.xqy")
   
   (: by default try to resolve url passed in :)
   else $url
