@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <options xmlns="http://marklogic.com/appservices/search">
-    <constraint name="metadata-only">
-        <collection prefix="metadata"/>
-    </constraint>
     <constraint name="pubtype">
         <range type="xs:string">
             <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
@@ -23,6 +20,7 @@
             <element name="language" ns="http://purl.org/dc/terms/"/>
         </range>
     </constraint>
+    <searchable-expression>collection("searchable")</searchable-expression>
     <sort-order type="xs:dateTime" collation="http://marklogic.com/collation/" direction="descending">
         <element ns="http://purl.org/dc/terms/" name="available"/>
     </sort-order>
