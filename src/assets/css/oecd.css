@@ -81,6 +81,96 @@ B - Main Navigation Section
 	color: #2973bd!important;
 	}
 
+#nav .mainPane {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 3px 3px #AAAAAA;
+    left: 0;
+    position: absolute;
+    top: 98%;
+    width: 940px;
+    z-index: 315;
+    margin-left: 20px;
+}
+
+#nav li.navItem .mainPane {
+    visibility: hidden;
+}
+#nav li.navItem a.hasPanel:hover {
+    background: url("/assets/images/closedarrow.gif") no-repeat scroll right center #C5D7ED;
+}
+#nav li.activePage a.hasPanel {
+    background: url("/assets/images/closedarrowlight.gif") no-repeat scroll right center #FFFFFF;
+}
+#nav li.activePage a.hasPanel:hover {
+    background: url("/assets/images/closedarrow.gif") no-repeat scroll right center #FFFFFF;
+}
+#nav li.navItem.active a.hasPanel, #nav li.navItem.active a.hasPanel:hover {
+    background: url("/assets/images/openedarrow.gif") no-repeat scroll right center #FFFFFF;
+    border-radius: 3px 3px 0 0;
+    color: #2973BD !important;
+    z-index: 320;
+}
+#nav li.active .mainPane {
+    visibility: visible;
+}
+
+.mainPane ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.mainPane .tabs {
+    border-bottom: 1px solid #F9F9F9;
+    border-top: 1px solid #F3F3F3;
+    float: left;
+    padding: 0;
+}
+.mainPane .tabs li {
+    float: left;
+    width: 156px;
+}
+.mainPane .tabs a {
+    display: block;
+    font-size: 1.15em;
+    margin: 10px 35px;
+    outline: medium none;
+    padding: 3px 0;
+    text-align: center;
+    text-decoration: none;
+}
+.mainPane .tabs a:hover {
+    background: none repeat scroll 0 0 #EEEFFF;
+    color: #2973BD;
+}
+.mainPane .tabs a.current {
+    background: none repeat scroll 0 0 #666666 !important;
+    color: #FFFFFF !important;
+}
+.mainPane .pane {
+    border-top: 1px solid #F3F3F3;
+    clear: left;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 10px 10px 15px 40px;
+}
+.mainPane .pane a {
+    background: url("/assets/images/sidenavfl1off.gif") no-repeat scroll 20px 8px transparent;
+    color: #666666;
+    display: block;
+    line-height: 1.2em;
+    outline: medium none;
+    padding: 5px 0 5px 30px;
+    text-align: left;
+    text-decoration: none;
+}
+.mainPane .pane a:hover {
+    background-image: url("/assets/images/sidenavfl1.gif");
+    color: #2973BD;
+}
+.mainPane .pane a em {
+    color: #AAAAAA;
+    font-size: 0.9em;
+}
 
 /* noscript additional styles
 */
