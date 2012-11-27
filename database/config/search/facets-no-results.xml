@@ -24,5 +24,5 @@
     <return-results>false</return-results>
     <return-facets>true</return-facets>
     <return-metrics>false</return-metrics>
-    <transform-results apply="transformed-result" ns="transformed-search" at="/app/xquery/transform.xqy"/>
+    <transform-results apply="transformed-result" ns="transformed-search" at="/app/transform.xqy"/>
 </options>

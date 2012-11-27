@@ -18,7 +18,7 @@ try {
   
   let $script := <script type="text/javascript">
     $(function() {{
-      $('#backlinks').load('/app/xquery/backlinks.xqy?id={xdmp:url-encode($id)}');
+      $('#backlinks').load('/app/backlinks.xqy?id={xdmp:url-encode($id)}');
     }});
   </script>
   

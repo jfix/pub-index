@@ -31,38 +31,38 @@ let $opensearch-pattern as xs:string := "^/opensearch[/]?\?(.*)?"
 let $new-url :=
   (: home page :)
   if (fn:matches($url, $home-pattern))
-  then  "/app/xquery/home.xqy"
+  then  "/app/home.xqy"
   
   (: redirect to about page :)
   else if (fn:matches($url, $about-pattern))
-  then  fn:replace($url,     $about-pattern,        "/app/xquery/about.xqy")
+  then  fn:replace($url,     $about-pattern,        "/app/about.xqy")
   
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/app/xquery/search.xqy?in=country:$1")
+  then  fn:replace($url,     $country-pattern,      "/app/search.xqy?in=country:$1")
   
 (: redirect to subject browse page :)
   else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/app/xquery/search.xqy?in=subject:$1")
+  then  fn:replace($url,     $subject-pattern,      "/app/search.xqy?in=subject:$1")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))
-  then  fn:replace($url,     $xmldocument-pattern,  "/app/xquery/xmldocument.xqy?id=$1")
+  then  fn:replace($url,     $xmldocument-pattern,  "/app/xmldocument.xqy?id=$1")
   
   (: display a product :)
   else if (fn:matches($url, $display-pattern))
-  then  fn:replace($url,     $display-pattern,      "/app/xquery/display.xqy?id=$1")
+  then  fn:replace($url,     $display-pattern,      "/app/display.xqy?id=$1")
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))
-  then  fn:replace($url,     $search-pattern,       "/app/xquery/search.xqy?$1") 
+  then  fn:replace($url,     $search-pattern,       "/app/search.xqy?$1") 
   
   (: opensearch results :)
   else if (fn:matches($url, $opensearch-pattern))
-  then  fn:replace($url,     $opensearch-pattern,   "/app/xquery/opensearch.xqy?$1")
+  then  fn:replace($url,     $opensearch-pattern,   "/app/opensearch.xqy?$1")
   
   else if (fn:matches($url, "^/opensearch.xml$"))
-  then  fn:replace($url, "^/opensearch.xml$",   "/app/xquery/opensearchdescriptor.xqy")
+  then  fn:replace($url, "^/opensearch.xml$",   "/app/opensearchdescriptor.xqy")
   
   (: by default try to resolve url passed in :)
   else $url
