@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 module namespace custom-search = "transformed-search";
 import module namespace search = "http://marklogic.com/appservices/search" 
   at "/MarkLogic/appservices/search/search.xqy";

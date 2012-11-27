@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <xsl:stylesheet extension-element-prefixes="xdmp" 
   exclude-result-prefixes="#all" version="2.0" 
   default-validation="strip" 

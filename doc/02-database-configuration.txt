@@ -1,5 +1,3 @@
-$Id$
-
 h1. Documentation of indexes, fields, security, etc.
 
 

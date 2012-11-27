@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 (: TODO: take on the role of an Error document in the sense of Apache :)
 
 declare variable $error:errors as node()* external;

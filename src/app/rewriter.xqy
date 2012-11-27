@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 (:
   /[type]/[doi] => /app.xqy?id=[type]/[doi]

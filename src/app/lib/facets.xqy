@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 module namespace f = "lib-facets";
 
 import module namespace search = "http://marklogic.com/appservices/search"

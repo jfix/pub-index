@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 module namespace view = "lib-view";
 
 import module namespace s = "lib-search" at "search.xqy";

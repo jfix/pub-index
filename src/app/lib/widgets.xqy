@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 (:~
  : This module defines functions that can be called to create widgets, such as:
  : * google map (TODO)

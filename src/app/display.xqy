@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 import module namespace v = "lib-view" at "lib/view.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
