@@ -3,7 +3,7 @@ $(function () {
 var $filterString = $("#in");
 var currentFacets = deserializeFacets($filterString.val());
 
-$("div.facet ul li a, div.facet a").click(function (event) {
+$("div.facet ul li a, div.facet a, div.facet span").click(function (event) {
   event.preventDefault();
   
   var facet = $(this).data("facet");

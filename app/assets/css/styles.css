@@ -22,6 +22,10 @@ img.logo {
     margin-top: 32px; /* this has been "pixel-perfected" to work with the alignment of the search form */
 }
 
+header {
+  margin-bottom: 1.5em;
+}
+
 .cover {
   margin: 0 2em 2em 1em;
   border: 1px solid black;
@@ -48,10 +52,19 @@ img.logo {
 .facet h6 { margin: 0; }
 .facet ul { list-style: none outside none; margin: 0 0 0 5px; font-size: 0.85em; }
 .facet select { margin: 5px 0 5px 0; }
-.facet.main { margin-top: 10px; }
+.facet.main { }
 .facet.main label { font-size: 0.85em; vertical-align: inherit; }
 .facet.main input { font-size: 0.85em; vertical-align: inherit; margin-right: 5px; }
 .facet.subject, .facet.pubtype { margin-bottom: 5px; }
+
+#search-results-facets { padding: 5px;}
+#search-results-facets span { font-size: 0.9em; margin-right: 10px; cursor: pointer; color: #0074B4; }
+#search-results-facets i { margin-right: 4px; }
+
+#search-results-header { padding: 5px; margin-bottom: 10px; background-color: #eee; }
+
+label[for = "sortby"] { display: inline; margin-bottom: auto; }
+#sortby { height: auto; margin: 0; padding: 0; }
 
 .search-result-highlight {
   font-weight: bold;

@@ -16,9 +16,8 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare namespace country = "country-data";
 declare namespace lang = "language-data";
 
-declare variable $term as xs:string := (xdmp:get-request-field("query"), '')[1];
-declare variable $start as xs:integer := xs:integer((xdmp:get-request-field("start"), 1)[1]);
-declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-field("page-length"), 10)[1]);
+declare variable $country-doc := doc("/refs/countries.xml");
+declare variable $language-doc := doc("/refs/languages.xml");
 
 (:~
  : Given a search expression (possibly containing facets and/or a query term),
@@ -54,9 +53,6 @@ declare function f:transform-facet-results(
   $term as xs:string
 ) as element(div)+
 {
-  let $country-doc := doc("/refs/countries.xml")
-  let $language-doc := doc("/refs/languages.xml")
-  
   let $all-facets := 
     search:search("",
       document("/config/search/facets-no-results.xml")/search:options
@@ -105,7 +101,7 @@ declare function f:transform-facet-results(
           let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
           (:let $_log := utils:log("about to log information on country name"):)
           (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
-          let $name := $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
+          let $name := f:get-ref-description("country",$code)
           (:let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name)):)
 
           order by $country/@count descending 
@@ -135,7 +131,7 @@ declare function f:transform-facet-results(
           for $language in $all-language-facets//search:facet-value
             let $code := data($language/@name)
             let $count := data($language/@count)
-            let $name := fn:data($language-doc/lang:*/lang:language[@id = $code])
+            let $name := f:get-ref-description("language",$code)
             order by $language/@count descending 
             return
               if($name) then
@@ -167,4 +163,37 @@ declare function f:transform-facet-results(
       }
       </ul>
     </div>)
+};
+
+declare function f:render-selected-facets($qtext as xs:string)
+as element(div)?
+{
+  let $facets := functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
+  return
+    if($facets) then
+      <div id="search-results-facets" class="facet selected">
+      {
+        for $f in functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
+        let $t := fn:substring-before($f,":")
+        let $v := fn:replace($f,"[a-z]+:""([^""]+)""", "$1")
+        return <span data-facet="{$t}" data-value="{$v}" class="selected-facet">
+          <i class="icon-ok"></i>
+          {f:get-ref-description($t,$v)}
+        </span>
+      }
+      </div>
+    else
+      ()
+};
+
+
+declare private function f:get-ref-description($type as xs:string, $code as xs:string)
+as xs:string?
+{
+  if($type eq "country") then
+     $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
+  else if ($type eq "language") then
+    fn:data($language-doc/lang:*/lang:language[@id = $code])
+  else
+    $code
 };

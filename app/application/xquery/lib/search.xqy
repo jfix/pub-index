@@ -82,7 +82,18 @@ declare function lib-search:search-results(
     
   return
       (
-      lib-search:search-meta($total, $display-time, $start, $page-length, $end)
+        let $html := lib-facets:render-selected-facets($qtext)
+        return
+          if($html) then
+            <div class="row">
+              <div class="span9">
+                {$html}
+              </div>
+            </div>
+          else
+            ()
+      ,
+      lib-search:render-results-header($total, $start, $end)
       ,
       <div class="row">
         <div class="span9">
@@ -90,8 +101,42 @@ declare function lib-search:search-results(
         </div>
       </div>
       ,
-      if($total > 0) then lib-search:search-meta($total, $display-time, $start, $page-length, $end) else ()
+      lib-search:render-results-footer($total, $display-time, $start, $page-length, $end)
       )
+};
+
+declare private function lib-search:render-results-header(
+  $total as xs:integer,
+  $start as xs:integer,
+  $end as xs:integer
+)
+as element(div)
+{
+  <div class="row">
+    <div class="span9">
+      <div id="search-results-header">
+        {
+          if ($total < 1) then
+            "No results found."
+          else
+          if ($total = 1) then
+            "One result found."
+          else
+            concat($total, " results found, showing ", $start, " to ", $end, ".")
+        }
+        <label for="sortby" class="pull-right">Sort by:
+          <select id="sortby" class="input-medium">
+            <option value="date" selected="selected">Date (latest first)</option>
+            <option value="date">Date (oldest first)</option>
+            <option value="title">Title (A-Z)</option>
+            <option value="title">Title (Z-A)</option>
+            <option value="lang">Language (a-z)</option>
+            <option value="lang">Language (z-a)</option>
+          </select>
+        </label>
+      </div>
+    </div>
+  </div>
 };
 
 (:~
@@ -105,7 +150,7 @@ declare function lib-search:search-results(
  : @param $end as xs:integer last item of current page (usually $start + 10, but sometimes also $total)
  : @returns a div element containing the information
  :)
-declare function lib-search:search-meta(
+declare function lib-search:render-results-footer(
   $total as xs:integer,
   $display-time as xs:double,
   $start as xs:integer,
@@ -113,7 +158,7 @@ declare function lib-search:search-meta(
   $end as xs:integer
 )
 as element(div)
-{  
+{
   <div class="row" style="margin-bottom: 10px;">
     <div class="span5">
     {
@@ -130,7 +175,6 @@ as element(div)
       {lib-search:search-paging($start, $page-length, $total, $term)}
     </div>
   </div>
-
 };
 
 (:~
@@ -209,25 +253,6 @@ declare function lib-search:search-paging-pages(
         <li><a href="/search/{$term}/{$i}">{$i}</a></li>
 };
 
-declare function lib-search:search-results-for(
-  $qtext as xs:string
-) as element(div)+
-{
-  <div class="row">
-    <div class="span12">
-      <h3>searching for '{$qtext}'</h3>
-    </div>
-  </div>,
-  <div class="row">
-    <div class="span3">
-      {lib-facets:facets($qtext, $start, $page-length)}
-    </div>
-    <div class="span9">
-      {lib-search:search-results($qtext, $start)}
-    </div>
-  </div>
-};
-
 declare variable $lib-search:page-title as xs:string := if ($qtext) then concat("Searching for ", $qtext) else "Search books.oecd.org";
 
 (:~
@@ -247,11 +272,6 @@ declare variable $lib-search:search-form as node() :=
  :
  :)
 declare variable $lib-search:search-results as node()+ :=
-  <div class="row">
-    <div class="span12">
-      <h3>searching for '{$term}'</h3>
-    </div>
-  </div>,
   <div class="row">
     <div class="span3">
       {lib-facets:facets($qtext, $start, $page-length)}
