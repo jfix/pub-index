@@ -14,11 +14,11 @@ declare variable $id as xs:string := xdmp:get-request-field("id");
 try {
   let $doc as node() := collection("metadata")//dt:identifier[. = $id]/root()
   
-  let $content := xdmp:xslt-invoke("/application/xslt/publication.xsl", $doc)
+  let $content := xdmp:xslt-invoke("/app/xslt/publication.xsl", $doc)
   
   let $script := <script type="text/javascript">
     $(function() {{
-      $('#backlinks').load('/application/xquery/backlinks.xqy?id={xdmp:url-encode($id)}');
+      $('#backlinks').load('/app/xquery/backlinks.xqy?id={xdmp:url-encode($id)}');
     }});
   </script>
   

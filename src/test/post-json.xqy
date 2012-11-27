@@ -25,8 +25,8 @@ declare variable $page-length as xs:integer := xs:integer((xdmp:get-request-fiel
       </form>
     </div>
     
-    <script type="text/javascript" src="/application/js/jquery/jquery-1.7.2.js"></script>
-    <script type="text/javascript" src="/application/js/facets.js"></script>
+    <script type="text/javascript" src="/app/js/jquery/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/app/js/facets.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {{
       

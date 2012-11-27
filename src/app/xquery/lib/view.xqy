@@ -67,7 +67,7 @@ declare function view:html-page(
         <script type="text/javascript">
           $(function() {{
             $( "#term" ).autocomplete({{
-              source: "/application/xquery/suggest.xqy",
+              source: "/app/xquery/suggest.xqy",
             }});
           }});
         </script>

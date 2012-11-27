@@ -27,5 +27,5 @@
     <sort-order type="score" direction="ascending">
         <score/>
     </sort-order>
-    <transform-results apply="transformed-result" ns="transformed-search" at="/application/xquery/transform.xqy"/>
+    <transform-results apply="transformed-result" ns="transformed-search" at="/app/xquery/transform.xqy"/>
 </options>

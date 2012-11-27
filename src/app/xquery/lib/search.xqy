@@ -97,7 +97,7 @@ declare function lib-search:search-results(
       ,
       <div class="row">
         <div class="span9">
-          {xdmp:xslt-invoke("/application/xslt/search-results.xsl", $result)}
+          {xdmp:xslt-invoke("/app/xslt/search-results.xsl", $result)}
         </div>
       </div>
       ,

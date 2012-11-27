@@ -14,7 +14,7 @@ import module namespace search = "http://marklogic.com/appservices/search"
     at "/MarkLogic/appservices/search/search.xqy";
 
 import module namespace f = "lib-facets"
-    at "/application/xquery/lib/facets.xqy";
+    at "/app/xquery/lib/facets.xqy";
 
 
 declare default element namespace "http://www.w3.org/1999/xhtml";

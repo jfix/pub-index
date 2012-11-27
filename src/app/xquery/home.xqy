@@ -83,7 +83,7 @@ return
 v:html-home-page(
   "Welcome to OECD publications",
   (
-    <link href="/application/xquery/pubs-country.xqy" type="application/json" rel="exhibit/data" />,
+    <link href="/app/xquery/pubs-country.xqy" type="application/json" rel="exhibit/data" />,
     <script src="http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js"></script>,
     <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/map/map-extension.js?gmapkey=AIzaSyBy0k-I0Xq-QvHvQRQXvmj7cUu6X40cB6Y"></script>
   ),
