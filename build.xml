@@ -12,7 +12,7 @@
     <fail message="target property not defined!" unless="target"/>
     <echo message="Deploy to ${target}"/>
     <sync todir="${target}" verbose="true">
-      <fileset dir="${basedir}/app"/>
+      <fileset dir="${basedir}/src"/>
       <preserveintarget>
         <include name="xray/**"/>
       </preserveintarget>
