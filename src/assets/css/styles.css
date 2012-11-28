@@ -49,8 +49,8 @@ header {
 .facet select { margin: 5px 0 5px 0; }
 .facet.subject, .facet.pubtype { margin-bottom: 5px; }
 
-#date-range-controls { margin: 1em 1em 2em; }
-#slider-date-range { font-size: 0.5em; margin: 1em 1em 2em; }
+#date-range-controls { margin: 1em 0.6em 2em; }
+#slider-date-range { font-size: 0.5em; margin: 1em 0 2em; }
 .facet .input-append { font-size: inherit; }
 .facet .input-append .add-on { padding: 0.15em; }
 .facet .datepicker { text-align: center; padding: 0.2em 0.2em; font-size: 0.8em; width: 6em; }

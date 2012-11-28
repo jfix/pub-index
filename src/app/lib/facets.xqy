@@ -50,7 +50,7 @@ as element(div)+
   return (
     f:render-subject-facet($qtext, $all-facets/search:facet[@name = 'subject'])
     ,f:render-country-facet($qtext, $all-facets/search:facet[@name = 'country'])
-    ,f:render-year-facet()
+    ,f:render-year-facet($qtext, fn:current-date(), fn:current-date())
     ,f:render-language-facet($qtext, $all-facets/search:facet[@name = 'language'])
     ,f:render-pubtype-facet($qtext, $all-facets/search:facet[@name = 'pubtype'])
   )
@@ -109,7 +109,7 @@ as element(div)
   </div>
 };
 
-declare private function f:render-year-facet()
+declare private function f:render-year-facet($qtext as xs:string, $min as xs:date, $max as xs:date)
 as element(div)
 {
   <div class="year facet">
@@ -117,11 +117,11 @@ as element(div)
     <div id="date-range-controls">
       <div id="slider-date-range"></div>
       <span class="input-append">
-        <input type="text" id="start-date" class="datepicker input-small"/>
+        <input type="text" id="start-date" data-oldest="{$min}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
       <span class="input-append pull-right">
-        <input type="text" id="end-date" class="datepicker input-small"/>
+        <input type="text" id="end-date" data-newest="{$max}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
     </div>
