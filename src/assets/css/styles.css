@@ -47,10 +47,13 @@ header {
 .facet h6 { margin: 0; }
 .facet ul { list-style: none outside none; margin: 0 0 0 5px; font-size: 0.85em; }
 .facet select { margin: 5px 0 5px 0; }
-.facet.main { }
-.facet.main label { font-size: 0.85em; vertical-align: inherit; }
-.facet.main input { font-size: 0.85em; vertical-align: inherit; margin-right: 5px; }
 .facet.subject, .facet.pubtype { margin-bottom: 5px; }
+
+#date-range-controls { margin: 1em 1em 2em; }
+#slider-date-range { font-size: 0.5em; margin: 1em 1em 2em; }
+.facet .input-append { font-size: inherit; }
+.facet .input-append .add-on { padding: 0.15em; }
+.facet .datepicker { text-align: center; padding: 0.2em 0.2em; font-size: 0.8em; width: 6em; }
 
 #search-results-facets { padding: 5px;}
 #search-results-facets span { font-size: 0.9em; margin-right: 10px; cursor: pointer; color: #0074B4; }

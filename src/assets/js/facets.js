@@ -40,6 +40,25 @@ $("div.facet select").change(function(event) {
   $("#searchForm").submit();
 });
 
+(function() {
+  $(".facet .datepicker").datepicker({
+    dateFormat: 'd M yy',
+    changeMonth: true,
+    changeYear: true
+  });
+
+  $( "#slider-date-range" ).slider({
+    range: true,
+    min: 1,
+    max: 56,
+    values: [24, 42],
+    slide: function( event, ui ) {
+        $( "#start-date" ).val( ui.values[ 0 ] );
+        $( "#end-date" ).val(  ui.values[ 1 ] );
+    }
+  });
+})();
+
 /**
 * ( pubtype:book OR pubtype:article ) subject:"Development"
 *

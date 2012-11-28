@@ -113,14 +113,18 @@ declare private function f:render-year-facet()
 as element(div)
 {
   <div class="year facet">
-    <select data-facet="year" disabled="disabled">
-      <option value="">Filter by year</option>
-      <option value="2012">2012</option>
-      <option value="2011">2011</option>
-      <option value="2010">2010</option>
-      <option value="2009">2009</option>
-      <option value="2008">2008</option>
-    </select>
+    <h6>Publication date</h6>
+    <div id="date-range-controls">
+      <div id="slider-date-range"></div>
+      <span class="input-append">
+        <input type="text" id="start-date" class="datepicker input-small"/>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </span>
+      <span class="input-append pull-right">
+        <input type="text" id="end-date" class="datepicker input-small"/>
+        <span class="add-on"><i class="icon-calendar"></i></span>
+      </span>
+    </div>
   </div>
 };
 
