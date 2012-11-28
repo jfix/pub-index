@@ -58,9 +58,9 @@ declare function view:html-page(
         {view:html-footer()}
         
         <!-- Included JS Files -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="/assets/jquery/jquery-1.8.3.min.js"></script>
         <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.min.js"></script>
+        <script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
         <script src="/assets/js/facets.js"></script>
         <script type="text/javascript">
           $(function() {{
@@ -186,7 +186,7 @@ declare function view:html-head(
         <!-- Included CSS Files -->
         <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
         <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/cupertino/jquery-ui.css" />
+        <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         <link rel="stylesheet" href="/assets/css/styles.css"/>
         <link rel="stylesheet" href="/assets/css/oecd.css"/>
 
