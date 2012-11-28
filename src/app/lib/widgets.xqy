@@ -8,8 +8,7 @@ xquery version "1.0-ml";
  :)
 module namespace w = "lib-widgets";
 
-import module namespace search = "http://marklogic.com/appservices/search"
-  at "/MarkLogic/appservices/search/search.xqy";
+import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare default element namespace "http://www.w3.org/1999/xhtml";
@@ -22,16 +21,11 @@ declare default collation "http://marklogic.com/collation/";
 declare function w:get-latest-books($max as xs:integer)
 as element(oe:Book)*
 {
-  let $dl := fn:current-dateTime() - xs:dayTimeDuration("P30D")
-
-  let $books := 
-    for $book in collection("metadata")/oe:Book[oe:status = 'available' and dt:available gt $dl and fn:exists(oe:coverImage) ]
+  (
+    for $book in collection("metadata")/oe:Book[oe:status = 'available' and dt:available lt fn:current-dateTime() and fn:exists(oe:coverImage) ]
     order by $book/dt:available descending
     return $book
-  
-  return
-    for $b in $books[1 to $max]
-    return $b
+  )[1 to $max]
 };
 
 declare function w:latest()
