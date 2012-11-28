@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 module namespace u = "lib-utils";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare default element namespace "http://www.w3.org/1999/xhtml";

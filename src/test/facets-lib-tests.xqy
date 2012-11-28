@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 module namespace test = "http://github.com/robwhitby/xray/test";
 
 import module namespace assert = "http://github.com/robwhitby/xray/assertions" 

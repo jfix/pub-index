@@ -1,7 +1,5 @@
 xquery version "1.0-ml";
 
-(: $Id$ :)
-
 (:~
  : 
  : Script returns json used by map widget on home page
