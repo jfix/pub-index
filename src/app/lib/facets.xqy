@@ -32,11 +32,7 @@ declare function f:facets(
   $page-length as xs:integer
 ) as element(div)+
 {
-  let $options := document("/config/search/facets-no-results.xml")/search:options
-  let $result as element(search:response) := search:search($term, $options, $start)
-  (:let $_log := utils:log(concat("------ START FACETS --------:", xdmp:quote($result), "------ END FACETS --------:")):)
-  return f:transform-facet-results( $result, $term)
-  
+  f:render-facets( $term )
 };
 
 (:~
@@ -46,121 +42,135 @@ declare function f:facets(
  : @param $term xs:string containing facets and query expressions
  : @return element(div)+ a sequence of div elements containing the facets to be displayed on the left-hand side of the page.
  :)
-declare function f:transform-facet-results(
-  $search-response as element(search:response),
-  $term as xs:string
-) as element(div)+
+declare private function f:render-facets($qtext as xs:string)
+as element(div)+
 {
-  let $all-facets := 
-    search:search("",
-      document("/config/search/facets-no-results.xml")/search:options
-    )
-  
-  let $all-subject-facets as element(search:facet) := $all-facets/search:facet[@name = 'subject']
-  let $all-country-facets as element(search:facet) := $all-facets/search:facet[@name = 'country']
-  let $all-pubtype-facets as element(search:facet) := $all-facets/search:facet[@name = 'pubtype']
-  let $all-language-facets as element(search:facet) := $all-facets/search:facet[@name = 'language']
-  
-  let $qtext as xs:string := ($search-response//search:qtext/text(), "")[1]
+  let $all-facets := search:search("",document("/config/search/facets-no-results.xml")/search:options)
   
   return (
-    <div class="main facet">
-      <label><input id="filter-summaries" name="filter-summaries" type="checkbox"></input> Include multilingual summaries</label>
-      <label><input id="filter-forthcoming" name="filter-forthcoming" type="checkbox"></input> View forthcoming publications</label>
-      <div style="display:none;">{$qtext}</div>
-    </div>,
-    <div class="subject facet">
-      <h6>Subjects</h6>
-      <ul>
-      {
-        for $value in $all-subject-facets//search:facet-value
-          let $name := data($value/@name)
-          let $count := data($value/@count)
-          let $css-class := if (contains($qtext, concat('subject:"', $name,'"'))) then 'selected' else ''
-          order by $value/@count descending 
-          return 
-            <li>
-              <a class="{$css-class}" 
-                href="/subject/{xdmp:url-encode($value/@name)}"
-                data-facet="subject"
-                data-value="{$value/@name}"
-                >{$name}</a> ({$count})
-            </li>
-      }
-      </ul>
-    </div>,
-    <div class="country facet">
-      <select data-facet="country">
-        <option value="">Filter by country</option>
-      {
-        for $country in $all-country-facets//search:facet-value
-          let $code := data($country/@name)
-          let $count := data($country/@count)
-          let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
-          (:let $_log := utils:log("about to log information on country name"):)
-          (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
-          let $name := f:get-ref-description("country",$code)
-          (:let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name)):)
+    f:render-subject-facet($qtext, $all-facets/search:facet[@name = 'subject'])
+    ,f:render-country-facet($qtext, $all-facets/search:facet[@name = 'country'])
+    ,f:render-year-facet()
+    ,f:render-language-facet($qtext, $all-facets/search:facet[@name = 'language'])
+    ,f:render-pubtype-facet($qtext, $all-facets/search:facet[@name = 'pubtype'])
+  )
+};
 
-          order by $country/@count descending 
+declare private function f:render-subject-facet($qtext as xs:string, $all-subject-facets as element(search:facet))
+as element(div)
+{
+  <div class="subject facet">
+    <h6>Subjects</h6>
+    <ul>
+    {
+      for $value in $all-subject-facets//search:facet-value
+        let $name := data($value/@name)
+        let $count := data($value/@count)
+        let $css-class := if (contains($qtext, concat('subject:"', $name,'"'))) then 'selected' else ''
+        order by $name ascending
+        return 
+          <li>
+            <a class="{$css-class}" 
+              href="/subject/{xdmp:url-encode($value/@name)}"
+              data-facet="subject"
+              data-value="{$value/@name}"
+              >{$name}</a> ({$count})
+          </li>
+    }
+    </ul>
+  </div>
+};
+
+declare private function f:render-country-facet($qtext as xs:string, $all-country-facets as element(search:facet))
+as element(div)
+{
+  <div class="country facet">
+    <select data-facet="country">
+      <option value="">Filter by country</option>
+    {
+      for $country in $all-country-facets//search:facet-value
+        let $code := data($country/@name)
+        let $count := data($country/@count)
+        let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
+        (:let $_log := utils:log("about to log information on country name"):)
+        (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
+        let $name := f:get-ref-description("country",$code)
+        (:let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name)):)
+
+        order by $name ascending
+        return
+          if($name) then
+            <option value="{$code}">
+              {if (contains($qtext, concat('country:"', $code, '"'))) then attribute selected { "selected" } else ()}
+              {concat($name," (", $count,")")}
+            </option> else ()
+    }
+    </select>
+  </div>
+};
+
+declare private function f:render-year-facet()
+as element(div)
+{
+  <div class="year facet">
+    <select data-facet="year" disabled="disabled">
+      <option value="">Filter by year</option>
+      <option value="2012">2012</option>
+      <option value="2011">2011</option>
+      <option value="2010">2010</option>
+      <option value="2009">2009</option>
+      <option value="2008">2008</option>
+    </select>
+  </div>
+};
+
+declare private function f:render-language-facet($qtext as xs:string, $all-language-facets as element(search:facet))
+as element(div)
+{
+  <div class="language facet">
+    <select data-facet="language">
+      <option value="">Filter by language</option>
+      {
+        for $language in $all-language-facets//search:facet-value
+          let $code := data($language/@name)
+          let $count := data($language/@count)
+          let $name := f:get-ref-description("language",$code)
+          order by $name ascending
           return
             if($name) then
               <option value="{$code}">
-                {if (contains($qtext, concat('country:"', $code, '"'))) then attribute selected { "selected" } else ()}
+                {if (contains($qtext, concat('language:"', $code, '"'))) then attribute selected { "selected" } else ()}
                 {concat($name," (", $count,")")}
-              </option> else ()
+              </option>
+            else ()
       }
-      </select>
-    </div>,
-    <div class="year facet">
-      <select data-facet="year" disabled="disabled">
-        <option value="">Filter by year</option>
-        <option value="2012">2012</option>
-        <option value="2011">2011</option>
-        <option value="2010">2010</option>
-        <option value="2009">2009</option>
-        <option value="2008">2008</option>
-      </select>
-    </div>,
-    <div class="language facet">
-      <select data-facet="language">
-        <option value="">Filter by language</option>
-        {
-          for $language in $all-language-facets//search:facet-value
-            let $code := data($language/@name)
-            let $count := data($language/@count)
-            let $name := f:get-ref-description("language",$code)
-            order by $language/@count descending 
-            return
-              if($name) then
-                <option value="{$code}">
-                  {if (contains($qtext, concat('language:"', $code, '"'))) then attribute selected { "selected" } else ()}
-                  {concat($name," (", $count,")")}
-                </option>
-              else ()
-        }
-      </select>
-    </div>,
-    <div class="pubtype facet">
-      <h6>Publication types</h6>
-      <ul>
-      {
-        for $value in $all-pubtype-facets//search:facet-value
-          let $name := data($value/@name)
-          let $count := data($value/@count)
-          let $css-class := if (contains($qtext, concat('pubtype:"', $name, '"'))) then 'selected' else ''
-          order by $value/@count descending 
-          return 
-            <li>
-              <a class="{$css-class}"
-                href="/pubtype/{xdmp:url-encode($value/@name)}"
-                data-facet="pubtype"
-                data-value="{$value/@name}"
-                >{$name}</a> ({$count})
-            </li>
-      }
-      </ul>
-    </div>)
+    </select>
+  </div>
+};
+
+declare private function f:render-pubtype-facet($qtext as xs:string, $all-pubtype-facets as element(search:facet))
+as element(div)
+{
+  <div class="pubtype facet">
+    <h6>Publication types</h6>
+    <ul>
+    {
+      for $value in $all-pubtype-facets//search:facet-value
+        let $name := data($value/@name)
+        let $count := data($value/@count)
+        let $css-class := if (contains($qtext, concat('pubtype:"', $name, '"'))) then 'selected' else ''
+        order by $name ascending
+        return 
+          <li>
+            <a class="{$css-class}"
+              href="/pubtype/{xdmp:url-encode($value/@name)}"
+              data-facet="pubtype"
+              data-value="{$value/@name}"
+              >{$name}</a> ({$count})
+          </li>
+    }
+    </ul>
+  </div>
 };
 
 declare function f:render-selected-facets($qtext as xs:string)
@@ -183,7 +193,6 @@ as element(div)?
     else
       ()
 };
-
 
 declare private function f:get-ref-description($type as xs:string, $code as xs:string)
 as xs:string?
