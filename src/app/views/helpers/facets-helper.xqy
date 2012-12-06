@@ -21,7 +21,7 @@ declare function module:render-facets($facets as element())
   (
     module:render-subject-facet($qtext, $facets/search:facet[@name = 'subject'])
     ,module:render-country-facet($qtext, $facets/search:facet[@name = 'country'])
-    ,module:render-year-facet($qtext, fn:current-date(), fn:current-date())
+    ,module:render-year-facet($qtext, fn:current-date() - xs:dayTimeDuration('P15000D'), fn:current-date())
     ,module:render-language-facet($qtext, $facets/search:facet[@name = 'language'])
     ,module:render-pubtype-facet($qtext, $facets/search:facet[@name = 'pubtype'])
   )
@@ -88,11 +88,11 @@ as element(div)
     <div id="date-range-controls">
       <div id="slider-date-range"></div>
       <span class="input-append">
-        <input type="text" id="start-date" data-oldest="{$min}" class="datepicker input-small"/>
+        <input type="text" id="start-date" data-oldest="{substring(string($min),1,10)}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
       <span class="input-append pull-right">
-        <input type="text" id="end-date" data-newest="{$max}" class="datepicker input-small"/>
+        <input type="text" id="end-date" data-newest="{substring(string($max),1,10)}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
     </div>

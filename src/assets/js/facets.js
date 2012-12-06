@@ -41,22 +41,86 @@ $("div.facet select").change(function(event) {
 });
 
 (function() {
+  var $startDate = $('#start-date');
+  var $endDate = $('#end-date');
+  var $slider = $('#slider-date-range');
+  
+  var oldest = $startDate.data('oldest');
+  oldest = new Date(oldest + "T00:00:00");
+  
+  var newest = $endDate.data('newest');
+  newest = new Date(newest + "T00:00:00");
+  
+  var nbdays = (newest - oldest)/86400000;
+  
+  var converSliderIndexToDate = function(index) {
+    var time = oldest.getTime() + (index*86400000);
+    return new Date(time);
+  };
+  
+  var converDateToSliderIndex = function(date) {
+    var index  = (date - oldest)/86400000;
+    return index;
+  };
+  
+  var submitForm = function() {
+    /*
+    manageFacets("startDate", $startDate.datepicker("getDate").toISOString().substr(0,10), currentFacets);
+    manageFacets("endDate", $endDate.datepicker("getDate").toISOString().substr(0,10), currentFacets);
+    
+    var filterString = serializeFacets(currentFacets);
+    $filterString.val(filterString);
+    $("#searchForm").submit();
+    */
+  };
+  
   $(".facet .datepicker").datepicker({
     dateFormat: 'd M yy',
     changeMonth: true,
     changeYear: true
   });
-
-  $( "#slider-date-range" ).slider({
+  
+  $startDate.datepicker( "setDate", oldest );
+  $endDate.datepicker( "setDate", newest );
+  
+  $startDate.change(function(event) {
+    var newDate = $startDate.datepicker("getDate");
+    if(newDate) {
+      $slider.slider("values", 0, converDateToSliderIndex(newDate));
+    }
+    else {
+      $startDate.datepicker( "setDate", oldest );
+      $slider.slider("values", 0, 0);
+    }
+    submitForm();
+  });
+  
+  $endDate.change(function(event) {
+    var newDate = $endDate.datepicker("getDate");
+    if(newDate) {
+      $slider.slider("values", 1, converDateToSliderIndex(newDate));
+    }
+    else {
+      $endDate.datepicker( "setDate", newest );
+      $slider.slider("values", 1, nbdays);
+    }
+    submitForm();
+  });
+  
+  $slider.slider({
     range: true,
-    min: 1,
-    max: 56,
-    values: [24, 42],
+    min: 0,
+    max: nbdays,
+    values: [0, nbdays],
     slide: function( event, ui ) {
-        $( "#start-date" ).val( ui.values[ 0 ] );
-        $( "#end-date" ).val(  ui.values[ 1 ] );
+      $startDate.datepicker( "setDate", converSliderIndexToDate(ui.values[0]) );
+      $endDate.datepicker( "setDate", converSliderIndexToDate(ui.values[1]) );
+    },
+    change: function( event, ui) {
+      submitForm();
     }
   });
+
 })();
 
 /**
