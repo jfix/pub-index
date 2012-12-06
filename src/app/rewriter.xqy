@@ -6,7 +6,7 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 :)
 
 import module namespace utils = "lib-utils"
-    at "lib/utils.xqy";
+    at "/app/models/utils.xqy";
 
 declare function local:construct-new($url as xs:string,$pattern as xs:string,$view as xs:string)
 as xs:string
@@ -18,7 +18,6 @@ as xs:string
 let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
-let $about-pattern as xs:string := "^/about$"
 let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
@@ -29,19 +28,15 @@ let $opensearch-pattern as xs:string := "^/opensearch[/]?\?(.*)?"
 let $new-url :=
   (: home page :)
   if (fn:matches($url, $home-pattern))
-  then  "/app/home.xqy"
-  
-  (: redirect to about page :)
-  else if (fn:matches($url, $about-pattern))
-  then  fn:replace($url,     $about-pattern,        "/app/about.xqy")
-  
+  then  "/app/actions/home.xqy"
+
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/app/search.xqy?in=country:$1")
+  then  fn:replace($url,     $country-pattern,      "/app/actions/search.xqy?in=country:$1")
   
 (: redirect to subject browse page :)
   else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/app/search.xqy?in=subject:$1")
+  then  fn:replace($url,     $subject-pattern,      "/app/actions/search.xqy?in=subject:$1")
   
   (: return XML document :)
   else if (fn:matches($url, $xmldocument-pattern))
@@ -49,18 +44,18 @@ let $new-url :=
   
   (: display a product :)
   else if (fn:matches($url, $display-pattern))
-  then  fn:replace($url,     $display-pattern,      "/app/display.xqy?id=$1")
+  then  fn:replace($url,     $display-pattern,      "/app/actions/display.xqy?id=$1")
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))
-  then  fn:replace($url,     $search-pattern,       "/app/search.xqy?$1") 
+  then  fn:replace($url,     $search-pattern,       "/app/actions/search.xqy?$1") 
   
   (: opensearch results :)
   else if (fn:matches($url, $opensearch-pattern))
   then  fn:replace($url,     $opensearch-pattern,   "/app/opensearch.xqy?$1")
   
   else if (fn:matches($url, "^/opensearch.xml$"))
-  then  fn:replace($url, "^/opensearch.xml$",   "/app/opensearchdescriptor.xqy")
+  then  fn:replace($url, "^/opensearch.xml$",   "/app/actions/osd.xqy")
   
   (: by default try to resolve url passed in :)
   else $url

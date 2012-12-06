@@ -7,7 +7,7 @@ xdmp:set-response-content-type("text/xml"),
   <Tags>oecd ocde publications search</Tags>
   <Contact>contact@oecd.org</Contact>
   <SyndicationRight>open</SyndicationRight>
-  <Url type="text/html" method="get" template="http://{$host}/search?term={{searchTerms}}&amp;"/>
-  <Url type="application/rss+xml" template="http://{$host}/opensearch?term={{searchTerms}}&amp;start={{startPage?}}&amp;format=rss"/>
+  <Url type="text/html" method="get" template="http://{$host}/search?term={{searchTerms}}"/>
+  <Url type="application/rss+xml" template="http://{$host}/search?term={{searchTerms}}&amp;start={{startPage?}}&amp;format=rss"/>
   <Url type="application/opensearchdescription+xml" rel="self" template="http://{$host}/opensearch.xml"/>
 </OpenSearchDescription>
