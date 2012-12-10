@@ -58,7 +58,7 @@
           <span>Covered by this publication: </span>
           <span><xsl:apply-templates select="dt:subject"/></span>
           <xsl:if test="oe:country">
-            <span>| <xsl:apply-templates select="oe:country"/></span>
+            <span> | <xsl:apply-templates select="oe:country"/></span>
           </xsl:if>
         </p>
         <hr/>
@@ -79,11 +79,11 @@
   </xsl:template>
   
   <xsl:template match="dt:subject" as="item()*">
-    <a href="" style="margin-right: 5px;"><xsl:value-of select="."/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="."/></a>
   </xsl:template>
   
   <xsl:template match="oe:country" as="item()*">
-    <a href="" style="margin-right: 5px;"><xsl:value-of select="$countries/country:country[country:code eq upper-case(current())]/country:name/country:en[@case='normal']"/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="$countries/country:country[country:code eq upper-case(current())]/country:name/country:en[@case='normal']"/></a>
   </xsl:template>
   
 </xsl:stylesheet>
