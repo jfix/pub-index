@@ -72,7 +72,11 @@ declare function lib-search:search(
         <sort-order type="score" direction="ascending">
             <score/>
         </sort-order>
-        <transform-results apply="transformed-result" ns="lib-search" at="/app/models/search.xqy"/>
+        <transform-results apply="transformed-result" ns="lib-search" at="/app/models/search.xqy">
+          <preferred-elements>
+            <element ns="http://purl.org/dc/terms/" name="abstract"/>
+          </preferred-elements>
+        </transform-results>
     </options>
     ,$start-from)
 };
@@ -88,15 +92,18 @@ declare function lib-search:transformed-result(
   $options as element(search:transform-results)?
 ) as element(search:snippet)
 {
-  <search:snippet>{
+  <search:snippet xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:dt="http://purl.org/dc/terms/">{
   (
-           search:snippet($result, $ctsquery, $options)/*,
-           
-           (: use string-join to concatenate more than one (i.e. bilingual) titles with a ' / ' :)
-           <search:title>{string-join($result/*/dt:title/text(), ' / ')}</search:title>,
-           <search:date>{$result/*/dt:available/text()}</search:date>,
-           <search:type>{lower-case(local-name($result/*))}</search:type>,
-           <search:cover>{$result/*/oe:coverImage/text()}</search:cover>
+    search:snippet($result, $ctsquery, $options)/*,
+    $result//dt:identifier,
+    $result/*/dt:title,
+    $result/*/oe:subTitle,
+    $result//dt:available[1],
+    <oe:type>{$result/*/oe:pubtype/text()}</oe:type>,
+    $result/*/oe:coverImage,
+    $result/*/dt:language,
+    $result/*/dt:subject,
+    $result/*/oe:country
   )
   }</search:snippet>
 };

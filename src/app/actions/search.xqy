@@ -5,6 +5,8 @@ import module namespace s = "lib-search" at "/app/models/search.xqy";
 import module namespace f = "lib-facets" at "/app/models/facets.xqy";
 
 declare namespace search = "http://marklogic.com/appservices/search";
+declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
+declare namespace dt = "http://purl.org/dc/terms/";
 
 declare variable $host := (xdmp:get-request-header("X-Forwarded-For"),xdmp:get-request-header("HOST"))[1];
 declare variable $format := xdmp:get-request-field("format");
@@ -25,10 +27,11 @@ declare function local:render-opensearch-rss($result)
     <opensearch:Query role="request" searchTerms="{$s:term}" startPage="{$s:start}"/>
     {
       for $item in $result/search:result
+      let $snippet := $item/search:snippet
       return
         <item>
-          <title>{ fn:data($item/search:snippet/search:title) }</title>
-          <link>{ concat('http://',$host, '/display/', functx:substring-after-last-match(substring-before($item/@uri, '.xml'), '[/]')) }</link>
+          <title>{ fn:data(($snippet/dt:title[xml:lang eq 'en'],$snippet/dt:title)[1]) }</title>
+          <link>{ concat('http://',$host, '/display/', $snippet/dt:identifier) }</link>
           <description>{ fn:data($item/search:snippet/search:match) }</description>
         </item>
     }
