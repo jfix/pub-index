@@ -15,17 +15,17 @@ let $config := admin:database-add-range-element-index($config, $dbid, (
     admin:database-range-element-index("dateTime", "http://purl.org/dc/terms/", "available", "", fn:false())
     ,admin:database-range-element-index("string", "http://purl.org/dc/terms/", "subject", "http://marklogic.com/collation/", fn:false())
     ,admin:database-range-element-index("string", "http://purl.org/dc/terms/", "language", "http://marklogic.com/collation/", fn:false())
-    ,admin:database-range-element-index("string", "http://purl.org/dc/terms/", "title", "http://marklogic.com/collation/", fn:false())
-    ,admin:database-range-element-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "webDirectorate", "http://marklogic.com/collation/", fn:false())
-    ,admin:database-range-element-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "pubtype", "http://marklogic.com/collation/", fn:false())
     ,admin:database-range-element-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "status", "http://marklogic.com/collation/", fn:false())
     ,admin:database-range-element-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "country", "http://marklogic.com/collation/", fn:false())
+))
+
+let $config := admin:database-add-range-element-attribute-index($config, $dbid, (
+    admin:database-range-element-attribute-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "item", "", "type", "http://marklogic.com/collation/", fn:false())
 ))
 
 let $config := admin:database-add-element-word-lexicon($config, $dbid, (
     admin:database-element-word-lexicon("http://purl.org/dc/terms/", "title", "http://marklogic.com/collation/")
     ,admin:database-element-word-lexicon("http://purl.org/dc/terms/", "abstract", "http://marklogic.com/collation/")
-    ,admin:database-element-word-lexicon("http://purl.org/dc/terms/", "subject", "http://marklogic.com/collation/")
 ))
 
 let $config := admin:database-set-word-query-word-searches($config, $dbid, fn:true())
@@ -33,8 +33,8 @@ let $config := admin:database-set-word-query-include-document-root($config, $dbi
 
 let $config := admin:database-add-word-query-included-element($config, $dbid, (
     admin:database-included-element("http://purl.org/dc/terms/", "title", 1.0, "", "", "")
-    ,admin:database-included-element("http://purl.org/dc/terms/", "abstract", 1.0, "", "", "")
     ,admin:database-included-element("http://www.oecd.org/metapub/oecdOrg/ns/", "subTitle", 1.0, "", "", "")
+    ,admin:database-included-element("http://purl.org/dc/terms/", "abstract", 1.0, "", "", "")
 ))
 
 let $config := admin:database-add-word-query-excluded-element($config, $dbid, (
@@ -60,8 +60,9 @@ let $config := admin:database-set-field-three-character-searches($config, $dbid,
 let $config := admin:database-set-field-value-searches($config, $dbid, $field, fn:true())
 let $config := admin:database-add-field-word-lexicon($config, $dbid, $field, admin:database-word-lexicon("http://marklogic.com/collation//S1"))
 let $config := admin:database-add-field-included-element($config, $dbid, $field, (
-  admin:database-included-element("http://purl.org/dc/terms/", "title", 1.0, "", "", "")
-  ,admin:database-included-element("http://purl.org/dc/terms/", "abstract", 1.0, "", "", "")
+    admin:database-included-element("http://purl.org/dc/terms/", "title", 1.0, "", "", "")
+    ,admin:database-included-element("http://www.oecd.org/metapub/oecdOrg/ns/", "subTitle", 1.0, "", "", "")
+    ,admin:database-included-element("http://purl.org/dc/terms/", "abstract", 1.0, "", "", "")
 ))
 
 return admin:save-configuration($config)

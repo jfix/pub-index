@@ -14,7 +14,8 @@ as element(search:response)
   let $all-facets := search:search("", <options xmlns="http://marklogic.com/appservices/search">
         <constraint name="pubtype">
             <range type="xs:string">
-                <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+                <element name="item" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+                <attribute ns="" name="type"/>
             </range>
         </constraint>
         <constraint name="country">

@@ -47,7 +47,8 @@ declare function lib-search:search(
     <options xmlns="http://marklogic.com/appservices/search">
         <constraint name="pubtype">
             <range type="xs:string">
-                <element name="pubtype" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+                <element name="item" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+                <attribute ns="" name="type"/>
             </range>
         </constraint>
         <constraint name="country">
@@ -95,24 +96,24 @@ declare function lib-search:transformed-result(
   <search:snippet xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:dt="http://purl.org/dc/terms/">{
   (
     search:snippet($result, $ctsquery, $options)/*,
-    $result//dt:identifier,
-    $result/*/dt:title,
-    $result/*/oe:subTitle,
-    $result//dt:available[1],
-    <oe:type>{$result/*/oe:pubtype/text()}</oe:type>,
-    $result/*/oe:coverImage,
-    $result/*/dt:language,
-    $result/*/dt:subject,
-    $result/*/oe:country
+    $result/oe:item/dt:identifier,
+    $result/oe:item/dt:title,
+    $result/oe:item/oe:subTitle,
+    $result/oe:item/dt:available,
+    <oe:type>{fn:data($result/oe:item/@type)}</oe:type>,
+    $result/oe:item/oe:coverImage,
+    $result/oe:item/dt:language,
+    $result/oe:item/dt:subject,
+    $result/oe:item/oe:country
   )
   }</search:snippet>
 };
 
 declare function lib-search:get-latest-books($max as xs:integer)
-as element(oe:Book)*
+as element(oe:item)*
 {
   (
-    for $book in collection("metadata")/oe:Book[oe:status = 'available' and dt:available lt fn:current-dateTime() and fn:exists(oe:coverImage) ]
+    for $book in collection("metadata")/oe:item[oe:status = 'available' and dt:available lt fn:current-dateTime() and fn:exists(oe:coverImage) ]
     order by $book/dt:available descending
     return $book
   )[1 to $max]
