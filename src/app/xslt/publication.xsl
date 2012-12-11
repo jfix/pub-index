@@ -25,85 +25,54 @@
   <xsl:variable name="thumbnail-url-150">http://images.oecdcode.org/covers/150/</xsl:variable>
   
   <!-- main template, creates page structure -->
-  <xsl:template match="/" as="item()*">
+  <xsl:template match="oe:item">
     <div class="row">
-      <xsl:if test="//oe:coverImage">
+      <xsl:if test="oe:coverImage">
         <!-- thumbnail-->
         <div class="span3">
-          <xsl:apply-templates select="//oe:coverImage"/>
+          <xsl:apply-templates select="oe:coverImage"/>
         </div>
        </xsl:if>
       
       <!-- title + metadata -->
       <div class="span9">
-        <xsl:apply-templates select="/*/oe:parent" mode="metadata"/>
-        <xsl:apply-templates select="/*/dt:title" mode="metadata"/>
-        <xsl:apply-templates select="/*/dt:available" mode="metadata"/>
-        <xsl:apply-templates select="/*/oe:translations" mode="metadata"/>
+        <xsl:apply-templates select="oe:parent" mode="metadata"/>
+        <xsl:apply-templates select="dt:title" mode="metadata"/>
+        <xsl:apply-templates select="dt:available" mode="metadata"/>
+        <xsl:apply-templates select="oe:translations" mode="metadata"/>
         
         <xsl:call-template name="tpl.consumer-box">
-          <xsl:with-param name="buy-link" select="(/*/oe:bookshop/text(), '')[1]"/>
-          <xsl:with-param name="read-link" select="(/*/oe:doi/@rdf:resource, '')[1]"/>
+          <xsl:with-param name="buy-link" select="(oe:bookshop/text(), '')[1]"/>
+          <xsl:with-param name="read-link" select="(oe:doi/@rdf:resource, '')[1]"/>
         </xsl:call-template>
       </div>
       
     </div>
     
     <!-- abstract -->
-    <xsl:apply-templates select="/*/dt:abstract"/>
+    <xsl:apply-templates select="dt:abstract"/>
     
-    <!-- toc, lof, lot -->
-    <h3>Table of Contents</h3>
-    <xsl:call-template name="tpl.toc-header"/>
-    <div class="tab-content">
-    
-      <xsl:apply-templates select="//oe:chapters"/>
-      <xsl:apply-templates select="//oe:tables"/>
-      <xsl:apply-templates select="//oe:graphs"/>
-    
-      <div class="tab-pane" id="read">
-          <div class="flex-video" style="height:400px">
-            <div style="clear:both;display:block;" id="flashPlayer">
-              <object id="DocumentPlayer" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab" width="100%" height="400px">
-                <param name="flashVars" value="SwfFile=http://www.keepeek.com/oecd/oecdswf?m=/domain21/media672/108098-gl6gsnm7l5.swf&amp;Scale=0.6&amp;ZoomTransition=easeOut&amp;ZoomTime=0.5&amp;ZoomInterval=0.1&amp;FitPageOnLoad=true&amp;FitWidthOnLoad=false&amp;PrintEnabled=false&amp;FullScreenAsMaxWindow=false&amp;ProgressiveLoading=true&amp;localeChain=en_US" valuetype="data"/>
-                <param name="allowFullScreen" value="true" valuetype="data"/>
-                <param name="movie" value="http://www.keepeek.com:80/oecd/flash/paperviewer.swf" valuetype="data"/>
-                <param name="quality" value="best" valuetype="data"/>
-                <param name="bgcolor" value="#333333" valuetype="data"/>
-                <param name="allowScriptAccess" value="always" valuetype="data"/>
-                <embed width="100%" height="400px" flashvars="SwfFile=http://www.keepeek.com/oecd/oecdswf?m=/domain21/media672/108098-gl6gsnm7l5.swf&amp;Scale=0.6&amp;ZoomTransition=easeOut&amp;ZoomTime=0.5&amp;ZoomInterval=0.1&amp;FitPageOnLoad=true&amp;FitWidthOnLoad=false&amp;PrintEnabled=false&amp;FullScreenAsMaxWindow=false&amp;ProgressiveLoading=true&amp;localeChain=en_US" allowscriptaccess="sameDomain" allowfullscreen="true" quality="best" bgcolor="#333333" src="http://www.keepeek.com:80/oecd/flash/paperviewer.swf"></embed></object>
-            </div>
-            <div style="clear:both;display:none;" id="noflashPlayer">
-              <img src="http://www.keepeek.com/oecd/images/dummyPlayerPicture.jpg"/>
-            </div>
-        </div>
-      </div>
-      
-      <div class="tab-pane" id="cite">
-        <h4>How to cite this <xsl:value-of select="$pub-type"/></h4>
-        <p>Here would be the official citation, with links to download ...</p>
-      </div>
-      
-    </div>
+    <!-- toc -->
+    <xsl:apply-templates select="oe:toc"/>
     
     <!-- multilingual summaries -->
-    <xsl:apply-templates select="//oe:summaries" mode="metadata"/>
+    <xsl:apply-templates select="oe:summaries" mode="metadata"/>
     
     <h3>Related links</h3>
     <div id="backlinks"></div>
   </xsl:template>
   
-  <xsl:template match="oe:parent" mode="metadata" as="item()*">
+  <xsl:template match="oe:parent" mode="metadata">
     <h4>
       <a href="{utils:link(oe:doi/@rdf:resource)}"><xsl:value-of select="dt:title"/></a>
     </h4>  
   </xsl:template>
   
-  <xsl:template match="dt:title" mode="metadata" as="item()*">
+  <xsl:template match="dt:title" mode="metadata">
     <h2><xsl:value-of select="."/></h2>
   </xsl:template>
   
-  <xsl:template match="dt:available" mode="metadata" as="item()*">
+  <xsl:template match="dt:available" mode="metadata">
     <div>
       <span>
         Published on 
@@ -112,7 +81,7 @@
     </div>  
   </xsl:template>
   
-  <xsl:template match="oe:translations" mode="metadata" as="item()*">
+  <xsl:template match="oe:translations" mode="metadata">
     <div>
       <span>Also available in </span>
       <xsl:apply-templates mode="metadata" select="child::node()"/>
@@ -120,7 +89,7 @@
   </xsl:template>
   
   <!-- display a translation link, just one; add a comma if it is not the last -->
-  <xsl:template match="oe:translation" mode="metadata" as="item()*">
+  <xsl:template match="oe:translation" mode="metadata">
     <xsl:variable name="lang-id" select="dt:language/text()"/>
     <strong>
       <a href="{utils:link(oe:doi/@rdf:resource)}">
@@ -131,7 +100,7 @@
   </xsl:template>
   
   <!-- display the div that contains the list of multilingual summaries, if any -->
-  <xsl:template match="oe:summaries" mode="metadata" as="item()*">
+  <xsl:template match="oe:summaries" mode="metadata">
     <div class="row">
       <hr/>
       <h3>Multilingual summaries</h3>
@@ -148,7 +117,7 @@
     </div>
   </xsl:template>
   
-  <xsl:template match="oe:summary" mode="metadata" as="item()*">
+  <xsl:template match="oe:summary" mode="metadata">
     <xsl:variable name="lang-id" select="dt:language/text()"/>
     <xsl:variable name="lang-label" select="($lang-doc//lang:language[@id eq $lang-id]/text(), $lang-id)[1]"/>
     <a href="{utils:link(oe:doi/@rdf:resource)}">
@@ -157,17 +126,17 @@
     <xsl:if test="following-sibling::oe:summary[1]">, </xsl:if>
   </xsl:template>
   
-  <xsl:template match="dt:status" as="item()*">
+  <xsl:template match="dt:status">
     <span class="status"><strong>Status:</strong> <span><xsl:value-of select="."/></span></span>  
   </xsl:template>
   
   <!-- display the cover images if there is one -->
-  <xsl:template match="oe:coverImage" as="item()*">
+  <xsl:template match="oe:coverImage">
     <img src="{concat($thumbnail-url-150, .)}" class="img-polaroid cover"/>
   </xsl:template>
   
   <!-- display the abstract -->
-  <xsl:template match="dt:abstract" as="item()*">
+  <xsl:template match="dt:abstract">
     <div class="row">
       <div class="span12">
         <div class="well well-small abstract">
@@ -186,10 +155,40 @@
     </div>    
   </xsl:template>
   
-  <xsl:template match="dt:identifier" as="item()*"/>
+  <xsl:template match="dt:identifier"/>
+  
+  <xsl:template match="oe:toc">
+    <xsl:if test="oe:item">
+      <h3>Table of Contents</h3>
+      <ul id="toc" class="toc">
+        <xsl:apply-templates select="oe:item"></xsl:apply-templates>
+      </ul>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//oe:item">
+    <li>
+      <xsl:if test="oe:item"><xsl:attribute name="class">open</xsl:attribute></xsl:if>
+      <div>
+        <div class="links pull-right">
+          <i class="icon-eye-open"></i>
+          <i class="icon-shopping-cart"></i>
+          <i class="icon-download-alt"></i>
+        </div>
+        <xsl:if test="@type eq 'table'"><i class="icon-th-list"></i></xsl:if>
+        <xsl:if test="@type eq 'graph'"><i class="icon-signal"></i></xsl:if>
+        <xsl:value-of select="dt:title"/>
+      </div>
+      <xsl:if test="oe:item">
+        <ul class="toc">
+          <xsl:apply-templates select="oe:item"></xsl:apply-templates>
+        </ul>
+      </xsl:if>
+    </li>
+  </xsl:template>
   
   <!-- generate the contents for the tabs -->
-  <xsl:template match="oe:chapters|oe:graphs|oe:tables" as="item()*">
+  <xsl:template match="oe:chapters|oe:graphs|oe:tables">
     <div class="tab-pane" id="{local-name(.)}">
       <xsl:if test="local-name(.) = 'chapters'">
         <xsl:attribute name="class">tab-pane active</xsl:attribute>
@@ -201,7 +200,7 @@
   </xsl:template>
   
   <!-- creates a list item for a chapter, a graph or a table -->
-  <xsl:template match="oe:chapter|oe:graph|oe:table" as="item()*">
+  <xsl:template match="oe:chapter|oe:graph|oe:table">
     <li>
       <a href="{utils:link(oe:doi/@rdf:resource)}">
         <xsl:value-of select="dt:title"/>
@@ -214,9 +213,9 @@
       </a>
     </li>
   </xsl:template>
-  
+
   <!-- display the Read and Buy buttons -->
-  <xsl:template name="tpl.consumer-box" as="item()*">
+  <xsl:template name="tpl.consumer-box">
     <xsl:param name="buy-link" as="xs:string"/>
     <xsl:param name="read-link" as="xs:string"/>
     <br/>
@@ -240,24 +239,6 @@
       </xsl:choose>       
     </div>
   </xsl:template>
-  
-  <!-- display the tabs for chapters, graphs, tables -->
-  <xsl:template name="tpl.toc-header" as="item()*">
-    <ul class="nav nav-tabs">
-      <xsl:if test="//oe:chapters">
-        <li class="active"><a href="#chapters" data-toggle="tab">Chapters</a></li>         
-      </xsl:if>
-      <xsl:if test="//oe:tables">
-        <li><a href="#tables" data-toggle="tab">Tables</a></li>        
-      </xsl:if>
-      <xsl:if test="//oe:graphs">
-        <li><a href="#graphs" data-toggle="tab">Graphs</a></li>      
-      </xsl:if>
-      <li><a href="#read" data-toggle="tab">Read</a></li>
-      <li><a href="#cite" data-toggle="tab">Cite!</a></li>
-    </ul>
-  </xsl:template>
-  
   <!-- returns a local link for a given DOI -->
   <xsl:function name="utils:link">
     <xsl:param name="doi"/>

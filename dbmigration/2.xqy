@@ -11,4 +11,8 @@ let $config := admin:database-add-range-element-index($config, $dbid, (
     admin:database-range-element-index("string", "http://purl.org/dc/terms/", "identifier", "http://marklogic.com/collation/", fn:false())
 ))
 
+let $config := admin:database-add-range-element-attribute-index($config, $dbid, (
+    admin:database-range-element-attribute-index("string", "http://www.oecd.org/metapub/oecdOrg/ns/", "isPartOf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "resource", "http://marklogic.com/collation/", fn:false())
+))
+
 return admin:save-configuration($config)
