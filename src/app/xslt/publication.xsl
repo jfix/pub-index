@@ -19,9 +19,6 @@
   <xsl:output method="xhtml"/>
   
   <xsl:variable name="lang-doc" select="doc('/refs/languages.xml')"/>
-  <xsl:variable name="root" select="/*[1]"/>
-  <xsl:variable name="title" select="/*/dt:title"/>
-  <xsl:variable name="pub-type" select="lower-case(local-name($root))"/>
   <xsl:variable name="thumbnail-url-150">http://images.oecdcode.org/covers/150/</xsl:variable>
   
   <!-- main template, creates page structure -->
@@ -36,12 +33,14 @@
       
       <!-- title + metadata -->
       <div class="span9">
-        <xsl:apply-templates select="oe:parent" mode="metadata"/>
-        <xsl:apply-templates select="dt:title" mode="metadata"/>
-        <xsl:apply-templates select="dt:available" mode="metadata"/>
-        <xsl:apply-templates select="oe:translations" mode="metadata"/>
+        <xsl:apply-templates select="oe:parent"/>
+        <xsl:apply-templates select="(dt:title[xml:lang='en'],dt:title)[1]"/>
+        <xsl:apply-templates select="(oe:subTitle[xml:lang='en'],oe:subTitle)[1]"/>
+        <xsl:apply-templates select="dt:available"/>
+        <xsl:apply-templates select="oe:translations"/>
         
         <xsl:call-template name="tpl.consumer-box">
+          <xsl:with-param name="type" select="@type"/>
           <xsl:with-param name="buy-link" select="(oe:bookshop/text(), '')[1]"/>
           <xsl:with-param name="read-link" select="(oe:doi/@rdf:resource, '')[1]"/>
         </xsl:call-template>
@@ -49,30 +48,38 @@
       
     </div>
     
-    <!-- abstract -->
-    <xsl:apply-templates select="dt:abstract"/>
-    
-    <!-- toc -->
-    <xsl:apply-templates select="oe:toc"/>
-    
-    <!-- multilingual summaries -->
-    <xsl:apply-templates select="oe:summaries" mode="metadata"/>
-    
-    <h3>Related links</h3>
-    <div id="backlinks"></div>
+    <div class="row">
+      <div class="span12">
+        <!-- abstract -->
+        <xsl:apply-templates select="(dt:abstract[xml:lang='en'],dt:abstract)[1]"/>
+        
+        <!-- toc -->
+        <xsl:apply-templates select="oe:toc"/>
+        
+        <!-- multilingual summaries -->
+        <xsl:apply-templates select="oe:summaries"/>
+        
+        <h4>Related links</h4>
+        <div id="backlinks"></div>
+      </div>
+    </div>
   </xsl:template>
   
-  <xsl:template match="oe:parent" mode="metadata">
+  <xsl:template match="oe:parent">
     <h4>
       <a href="{utils:link(oe:doi/@rdf:resource)}"><xsl:value-of select="dt:title"/></a>
     </h4>  
   </xsl:template>
   
-  <xsl:template match="dt:title" mode="metadata">
-    <h2><xsl:value-of select="."/></h2>
+  <xsl:template match="dt:title">
+    <h3><xsl:value-of select="."/></h3>
   </xsl:template>
   
-  <xsl:template match="dt:available" mode="metadata">
+  <xsl:template match="oe:subTitle">
+    <h4><xsl:value-of select="."/></h4>
+  </xsl:template>
+  
+  <xsl:template match="dt:available">
     <div>
       <span>
         Published on 
@@ -81,49 +88,21 @@
     </div>  
   </xsl:template>
   
-  <xsl:template match="oe:translations" mode="metadata">
+  <xsl:template match="oe:translations">
     <div>
       <span>Also available in </span>
-      <xsl:apply-templates mode="metadata" select="child::node()"/>
+      <xsl:apply-templates select="child::node()"/>
     </div>
   </xsl:template>
   
   <!-- display a translation link, just one; add a comma if it is not the last -->
-  <xsl:template match="oe:translation" mode="metadata">
-    <xsl:variable name="lang-id" select="dt:language/text()"/>
+  <xsl:template match="oe:translation">
     <strong>
       <a href="{utils:link(oe:doi/@rdf:resource)}">
-        <xsl:value-of select="$lang-doc//lang:language[@id eq $lang-id]/text()" />
+        <xsl:value-of select="string-join($lang-doc//lang:language[@id = current()/dt:language],'/')" />
       </a>
     </strong>
     <xsl:if test="following-sibling::oe:translation[1]">, </xsl:if>
-  </xsl:template>
-  
-  <!-- display the div that contains the list of multilingual summaries, if any -->
-  <xsl:template match="oe:summaries" mode="metadata">
-    <div class="row">
-      <hr/>
-      <h3>Multilingual summaries</h3>
-      <br/>
-      <xsl:choose>
-        <xsl:when test="count(oe:summary) &gt; 1">
-          The following languages are available:          
-        </xsl:when>
-        <xsl:otherwise>
-          The following language is available:
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:apply-templates mode="metadata" select="child::node()"/>
-    </div>
-  </xsl:template>
-  
-  <xsl:template match="oe:summary" mode="metadata">
-    <xsl:variable name="lang-id" select="dt:language/text()"/>
-    <xsl:variable name="lang-label" select="($lang-doc//lang:language[@id eq $lang-id]/text(), $lang-id)[1]"/>
-    <a href="{utils:link(oe:doi/@rdf:resource)}">
-      <xsl:value-of select="$lang-label"/>
-    </a>
-    <xsl:if test="following-sibling::oe:summary[1]">, </xsl:if>
   </xsl:template>
   
   <xsl:template match="dt:status">
@@ -137,22 +116,9 @@
   
   <!-- display the abstract -->
   <xsl:template match="dt:abstract">
-    <div class="row">
-      <div class="span12">
-        <div class="well well-small abstract">
-          <h3><xsl:choose>
-            <xsl:when test="@xml:lang = 'en'">Abstract</xsl:when>
-            <xsl:when test="@xml:lang = 'fr'">Résumé</xsl:when>
-            <xsl:otherwise>Abstract (fallback)</xsl:otherwise>
-          </xsl:choose></h3>
-          <div>
-            <!--<xsl:value-of select="."/>-->
-            <xsl:value-of select="xdmp:tidy(.)[2]"/>
-          </div>
-          <br/>
-        </div>
-      </div>
-    </div>    
+    <p class="abstract">
+      <xsl:value-of select="xdmp:tidy(.)[2]"/>
+    </p>
   </xsl:template>
   
   <xsl:template match="dt:identifier"/>
@@ -222,6 +188,7 @@
   
   <!-- display the Read and Buy buttons -->
   <xsl:template name="tpl.consumer-box">
+    <xsl:param name="type" as="xs:string"/>
     <xsl:param name="buy-link" as="xs:string"/>
     <xsl:param name="read-link" as="xs:string"/>
     <br/>
@@ -231,7 +198,7 @@
           <a class="btn disabled" href="#">Unavailable</a>
         </xsl:when>
         <xsl:otherwise>
-          <a class="btn" href="{$read-link}">Read this <xsl:value-of select="$pub-type"/></a>
+          <a class="btn" href="{$read-link}">Read this <xsl:value-of select="$type"/></a>
         </xsl:otherwise>
       </xsl:choose>
       <xsl:text> </xsl:text>
@@ -240,7 +207,7 @@
           <a class="btn disabled" href="#">Unavailable for purchase</a>          
         </xsl:when>
         <xsl:otherwise>
-          <a class="btn" href="{$buy-link}">Buy this <xsl:value-of select="$pub-type"/></a>
+          <a class="btn" href="{$buy-link}">Buy this <xsl:value-of select="$type"/></a>
         </xsl:otherwise>
       </xsl:choose>       
     </div>
