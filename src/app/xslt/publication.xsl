@@ -159,7 +159,7 @@
   
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
-      <h3>Table of Contents</h3>
+      <h4>Table of Contents</h4>
       <ul id="toc" class="toc">
         <xsl:apply-templates select="oe:item"></xsl:apply-templates>
       </ul>
@@ -171,49 +171,26 @@
       <xsl:if test="oe:item"><xsl:attribute name="class">open</xsl:attribute></xsl:if>
       <div>
         <div class="links pull-right">
-          <i class="icon-eye-open"></i>
-          <i class="icon-shopping-cart"></i>
-          <i class="icon-download-alt"></i>
+          <a href=""><i class="icon-eye-open"></i></a>
+          <a href=""><i class="icon-shopping-cart"></i></a>
+          <a href=""><i class="icon-download-alt"></i></a>
         </div>
+        
+        <xsl:if test="@type eq 'chapter'"><i class="icon-file"></i></xsl:if>
         <xsl:if test="@type eq 'table'"><i class="icon-th-list"></i></xsl:if>
         <xsl:if test="@type eq 'graph'"><i class="icon-signal"></i></xsl:if>
         <xsl:value-of select="dt:title"/>
-      </div>
-      <xsl:if test="oe:item">
-        <ul class="toc">
-          <xsl:apply-templates select="oe:item"></xsl:apply-templates>
-        </ul>
-      </xsl:if>
-    </li>
-  </xsl:template>
-  
-  <!-- generate the contents for the tabs -->
-  <xsl:template match="oe:chapters|oe:graphs|oe:tables">
-    <div class="tab-pane" id="{local-name(.)}">
-      <xsl:if test="local-name(.) = 'chapters'">
-        <xsl:attribute name="class">tab-pane active</xsl:attribute>
-      </xsl:if>
-      <ul class="toc-list">
-        <xsl:apply-templates select="child::node()"/>
-      </ul>
-    </div>
-  </xsl:template>
-  
-  <!-- creates a list item for a chapter, a graph or a table -->
-  <xsl:template match="oe:chapter|oe:graph|oe:table">
-    <li>
-      <a href="{utils:link(oe:doi/@rdf:resource)}">
-        <xsl:value-of select="dt:title"/>
-        <xsl:if test="oe:subTitle">
-          <xsl:text>: </xsl:text>
-          <span class="subtitle">
-            <xsl:value-of select="oe:subTitle"/>
-          </span>
+        <xsl:if test="dt:abstract"><em><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></em></xsl:if>
+        
+        <xsl:if test="oe:item">
+          <ul class="toc">
+            <xsl:apply-templates select="oe:item"></xsl:apply-templates>
+          </ul>
         </xsl:if>
-      </a>
+      </div>
     </li>
   </xsl:template>
-
+  
   <!-- display the Read and Buy buttons -->
   <xsl:template name="tpl.consumer-box">
     <xsl:param name="buy-link" as="xs:string"/>
@@ -239,6 +216,7 @@
       </xsl:choose>       
     </div>
   </xsl:template>
+  
   <!-- returns a local link for a given DOI -->
   <xsl:function name="utils:link">
     <xsl:param name="doi"/>

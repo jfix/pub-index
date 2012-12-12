@@ -123,17 +123,22 @@ div.exhibit-views-header {
   text-align: center;
 }
 
-.toc { list-style: none; margin: 0 0 0 1em;  }
+.toc { list-style: none; margin: 0;  }
 .toc > li { padding: 0; }
-.toc > li > div { padding: 0.5em 0 0.5em 0.5em; }
+.toc > li > div { padding: 0.5em; }
 .toc > li > div > i { margin-right: 0.5em;  }
-.toc > li > div:hover { background-color: #ade; }
+.toc > li > div:hover { background-color: #ECE8FF; }
 
-.toc > li.open > div { border-bottom: 1px solid black; }
+.toc .toc  { margin-top: 0.5em; }
+.toc .toc > li > div:hover { background-color: #fff; }
 
-.toc > li > div .links { visibility: hidden; }
-.toc > li > div:hover .links { visibility: visible; }
-.toc > li > div .links i { margin-right: 1em; }
+div > .toc > li > div { border-top: 1px solid #ddd; }
+
+.toc > li > div > .links { visibility: hidden; }
+.toc > li > div:hover > .links { visibility: visible; }
+.toc > li > div > .links i { margin-left: 1em; }
+
+.toc em { display: block; border: 1px dashed #eee; padding: 0.5em; margin-top: 0.5em; background-color: #fafafa; }
 
 /* 
   Zurb Foundation's reset styles contain a max-width: 100% that interfere with
