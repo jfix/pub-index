@@ -23,3 +23,17 @@ declare function u:log(
 {
   u:log($msg, 'info')
 };
+
+declare function u:get-output-format()
+as xs:string
+{
+  let $param := xdmp:get-request-field('format')
+  let $accept := xdmp:get-request-header('Accept')
+  return 
+    if($param eq '.xml' or $param eq 'xml' or contains($accept, 'text/xml'))
+      then 'xml'
+     else if($param eq '.json' or $param eq 'json' or contains($accept, 'application/json'))
+      then 'json'
+     else
+      'html'
+};

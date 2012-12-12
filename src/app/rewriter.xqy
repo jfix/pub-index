@@ -20,8 +20,7 @@ let $url := xdmp:get-request-url()
 let $home-pattern as xs:string := "^/?$"
 let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
-let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)$"
-let $xmldocument-pattern as xs:string := "^/display/([-a-z0-9_]+)\.xml$"
+let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)(.xml|.json)?$"
 let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
 let $opensearch-pattern as xs:string := "^/opensearch[/]?\?(.*)?"
 
@@ -38,13 +37,9 @@ let $new-url :=
   else if (fn:matches($url, $subject-pattern))
   then  fn:replace($url,     $subject-pattern,      "/app/actions/search.xqy?in=subject:$1")
   
-  (: return XML document :)
-  else if (fn:matches($url, $xmldocument-pattern))
-  then  fn:replace($url,     $xmldocument-pattern,  "/app/xmldocument.xqy?id=$1")
-  
-  (: display a product :)
+  (: display an item :)
   else if (fn:matches($url, $display-pattern))
-  then  fn:replace($url,     $display-pattern,      "/app/actions/display.xqy?id=$1")
+  then  fn:replace($url,     $display-pattern,      "/app/actions/display.xqy?id=$1&amp;format=$2")
   
   (: search results :)
   else if(fn:matches($url, $search-pattern))
