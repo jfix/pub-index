@@ -175,8 +175,8 @@
       <div>
         <div class="links pull-right">
           <xsl:apply-templates select="oe:freepreview"/>
-          <xsl:apply-templates select="oe:doi"/>
           <xsl:apply-templates select="oe:bookshop"/>
+          <xsl:apply-templates select="oe:doi"/>
         </div>
         
         <xsl:choose>
