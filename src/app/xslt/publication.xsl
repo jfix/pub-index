@@ -159,8 +159,12 @@
   
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
+      <div id="toc-actions" class="btn-group pull-right">
+        <xsl:if test="oe:item/dt:abstract"><button class="btn" data-toggle=".toc-abstract"><i class="icon-eye-open"></i> Abstracts</button></xsl:if>
+        <xsl:if test="oe:item/oe:item"><button class="btn" data-toggle=".toc-sublist"><i class="icon-eye-open"></i> Tables/Graphs</button></xsl:if>
+      </div>
       <h4>Table of Contents</h4>
-      <ul id="toc" class="toc">
+      <ul id="toc-root" class="toc">
         <xsl:apply-templates select="oe:item"></xsl:apply-templates>
       </ul>
     </xsl:if>
@@ -173,17 +177,25 @@
         <div class="links pull-right">
           <a href=""><i class="icon-eye-open"></i></a>
           <a href=""><i class="icon-shopping-cart"></i></a>
-          <a href=""><i class="icon-download-alt"></i></a>
+          <xsl:if test="oe:doi">
+            <a>
+              <xsl:attribute name="href"><xsl:value-of select="oe:doi/@rdf:resource"></xsl:value-of></xsl:attribute>
+              <i class="icon-download-alt"></i>
+            </a>
+          </xsl:if>
         </div>
         
-        <xsl:if test="@type eq 'chapter'"><i class="icon-file"></i></xsl:if>
-        <xsl:if test="@type eq 'table'"><i class="icon-th-list"></i></xsl:if>
-        <xsl:if test="@type eq 'graph'"><i class="icon-signal"></i></xsl:if>
+        <xsl:choose>
+          <xsl:when test="@type eq 'chapter'"><i class="icon-file"></i></xsl:when>
+          <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
+          <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
+        </xsl:choose>
+        
         <xsl:value-of select="dt:title"/>
-        <xsl:if test="dt:abstract"><em><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></em></xsl:if>
+        <xsl:if test="dt:abstract"><p class="toc-abstract"><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></p></xsl:if>
         
         <xsl:if test="oe:item">
-          <ul class="toc">
+          <ul class="toc toc-sublist">
             <xsl:apply-templates select="oe:item"></xsl:apply-templates>
           </ul>
         </xsl:if>

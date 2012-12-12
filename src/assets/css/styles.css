@@ -124,21 +124,27 @@ div.exhibit-views-header {
 }
 
 .toc { list-style: none; margin: 0;  }
-.toc > li { padding: 0; }
+.toc > li { padding: 0; border-top: 1px solid #ddd; }
 .toc > li > div { padding: 0.5em; }
 .toc > li > div > i { margin-right: 0.5em;  }
 .toc > li > div:hover { background-color: #ECE8FF; }
 
 .toc .toc  { margin-top: 0.5em; }
+.toc .toc > li { padding: 0; border-top: 1px dashed #ddd; }
 .toc .toc > li > div:hover { background-color: #fff; }
-
-div > .toc > li > div { border-top: 1px solid #ddd; }
 
 .toc > li > div > .links { visibility: hidden; }
 .toc > li > div:hover > .links { visibility: visible; }
 .toc > li > div > .links i { margin-left: 1em; }
 
-.toc em { display: block; border: 1px dashed #eee; padding: 0.5em; margin-top: 0.5em; background-color: #fafafa; }
+.toc p { border: 1px dashed #eee; font-size: 0.9em; padding: 0.5em; margin: 0.5em 0 0; background-color: #fafafa; }
+
+.toc-sublist { display: none; }
+.toc-abstract { display: none; }
+
+.no-js #toc-actions { display: none; }
+.no-js .toc-sublist { display: block; }
+.no-js .toc-abstract { display: block; }
 
 /* 
   Zurb Foundation's reset styles contain a max-width: 100% that interfere with
