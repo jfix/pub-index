@@ -172,17 +172,11 @@
   
   <xsl:template match="oe:toc//oe:item">
     <li>
-      <xsl:if test="oe:item"><xsl:attribute name="class">open</xsl:attribute></xsl:if>
       <div>
         <div class="links pull-right">
-          <a href=""><i class="icon-eye-open"></i></a>
-          <a href=""><i class="icon-shopping-cart"></i></a>
-          <xsl:if test="oe:doi">
-            <a>
-              <xsl:attribute name="href"><xsl:value-of select="oe:doi/@rdf:resource"></xsl:value-of></xsl:attribute>
-              <i class="icon-download-alt"></i>
-            </a>
-          </xsl:if>
+          <xsl:apply-templates select="oe:freepreview"/>
+          <xsl:apply-templates select="oe:doi"/>
+          <xsl:apply-templates select="oe:bookshop"/>
         </div>
         
         <xsl:choose>
@@ -190,17 +184,40 @@
           <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
           <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
         </xsl:choose>
-        
         <xsl:value-of select="dt:title"/>
-        <xsl:if test="dt:abstract"><p class="toc-abstract"><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></p></xsl:if>
         
-        <xsl:if test="oe:item">
-          <ul class="toc toc-sublist">
-            <xsl:apply-templates select="oe:item"></xsl:apply-templates>
-          </ul>
-        </xsl:if>
+        <div class="toc-details">
+          <xsl:if test="dt:abstract"><p class="toc-abstract"><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></p></xsl:if>
+          
+          <xsl:if test="oe:item">
+            <ul class="toc toc-sublist">
+              <xsl:apply-templates select="oe:item"></xsl:apply-templates>
+            </ul>
+          </xsl:if>
+        </div>
       </div>
     </li>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//oe:item//oe:freepreview">
+    <a target="_blank">
+      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
+      <i class="icon-eye-open"></i>
+    </a>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//oe:item//oe:bookshop">
+    <a target="_blank">
+      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
+      <i class="icon-shopping-cart"></i>
+    </a>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//oe:item//oe:doi">
+    <a target="_blank">
+      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
+      <i class="icon-download-alt"></i>
+    </a>
   </xsl:template>
   
   <!-- display the Read and Buy buttons -->

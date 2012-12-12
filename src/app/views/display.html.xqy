@@ -25,6 +25,7 @@ let $params := map:map(),
                 var $icon = $btn.children('i');
                 $btn.click(function() {{
                   $targets.fadeToggle();
+                  $btn.toggleClass('active');
                   if($icon.hasClass('icon-eye-open')) {{
                     $icon.removeClass('icon-eye-open');
                     $icon.addClass('icon-eye-close');
