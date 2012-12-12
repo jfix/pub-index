@@ -150,10 +150,10 @@
           <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
           <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
         </xsl:choose>
-        <xsl:value-of select="dt:title"/>
+        <xsl:value-of select="(dt:title[xml:lang='en'],dt:title)[1]"/>
         
         <div class="toc-details">
-          <xsl:if test="dt:abstract"><p class="toc-abstract"><xsl:value-of select="xdmp:tidy(dt:abstract/text())[2]"></xsl:value-of></p></xsl:if>
+          <xsl:apply-templates select="(dt:abstract[xml:lang='en'],dt:abstract)[1]"/>
           
           <xsl:if test="oe:item">
             <ul class="toc toc-sublist">
@@ -184,6 +184,12 @@
       <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
       <i class="icon-download-alt"></i>
     </a>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//oe:item//dt:abstract">
+    <p class="toc-abstract">
+      <xsl:value-of select="xdmp:tidy(.)[2]"/>
+    </p>
   </xsl:template>
   
   <!-- display the Read and Buy buttons -->
