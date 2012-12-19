@@ -76,8 +76,8 @@ declare function local:render-countries-widget()
           <a ex:href-content=".url">
             <span ex:content=".publications"></span> publication(s) on <b ex:content=".label"></b>
           </a>
-      </div>:)-->
-    </div>
+      </div>
+    </div>:)-->
   </div>
 )};
 
