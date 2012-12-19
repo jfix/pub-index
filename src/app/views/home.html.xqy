@@ -48,7 +48,10 @@ declare function local:render-countries-widget()
 {(
   <h3>Browse by country</h3>,
   <div id="map-container">
-    <div ex:role="coder" 
+    <!-- temporary replacing simile widget with a place holder image -->
+    <img src="http://placehold.it/700x500&amp;text=map to select publications by country"/>
+    <!--
+      (:<div ex:role="coder" 
       ex:coderClass="SizeGradient" 
       id="pub-coder"
       ex:color="green"
@@ -69,12 +72,11 @@ declare function local:render-countries-widget()
       ex:showSummary="false"
       ex:showToolbox="false"
       >
-      <!-- custom popup when circle clicked -->
       <div class="map-lens" ex:role="lens" style="display: none;">
           <a ex:href-content=".url">
             <span ex:content=".publications"></span> publication(s) on <b ex:content=".label"></b>
           </a>
-      </div>
+      </div>:)-->
     </div>
   </div>
 )};
@@ -95,11 +97,6 @@ declare function local:render-content()
 
 let $params := map:map(),
       $void := map:put($params, "title", "Welcome to OECD publications"),
-      $void := map:put($params, "header",(
-        <link href="/app/actions/pubs-country.xqy" type="application/json" rel="exhibit/data" />,
-        <script src="http://api.simile-widgets.org/exhibit/2.2.0/exhibit-api.js"></script>,
-        <script src="http://api.simile-widgets.org/exhibit/2.2.0/extensions/map/map-extension.js?gmapkey=AIzaSyBy0k-I0Xq-QvHvQRQXvmj7cUu6X40cB6Y"></script>
-      )),
       $void := map:put($params, "content", local:render-content())
 
 return
