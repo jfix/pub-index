@@ -7,10 +7,46 @@ declare namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
+declare function module:add($item as element(oe:item))
+as empty-sequence()
+{
+  let $id := $item/dt:identifier
+  let $type := $item/@type
+  
+  return 
+    if($id and $type) then
+      xdmp:document-insert(
+        fn:concat("/metadata/",$type,"/",$id,".xml")
+        ,$item
+        ,()
+        ,(
+          "metadata"
+          ,$type
+          ,if($type = ("book", "article", "workingpaper", "serial")) then "searchable" else ()
+        )
+      )
+    else
+      fn:error((),"Malformed XML input")
+};
+
 declare function module:get-item($id as xs:string)
 as element(oe:item)
 {
   collection("metadata")[.//dt:identifier = $id]/oe:item
+};
+
+declare function module:get-item-translations($item as element(oe:item))
+as element(oe:translations)
+{
+  <translations xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+    {
+      for $trans in collection("metadata")[.//dt:identifier = $item/dt:relation[@type = 'translation']/@rdf:resource]/oe:item
+      return
+        <translation rdf:resource="{$trans/dt:identifier}">
+          {$trans/dt:language}
+        </translation>
+    }
+  </translations>
 };
 
 declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $showAbstract as xs:boolean?)
@@ -20,7 +56,7 @@ as element(oe:toc)
   return
   <toc xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
     {
-      for $ipo in collection("metadata")/oe:item[@type = $types]/oe:isPartOf[@rdf:resource = $id and not(following-sibling::isPartOf) ]
+      for $ipo in collection("metadata")/oe:item[@type = $types]/dt:relation[@type = 'completeversion' and @rdf:resource = $id and not(../dt:relation[@type = 'chapter']) ]
       let $comp := $ipo/..
       order by xs:integer($ipo/@order) ascending
       return <item>
@@ -31,7 +67,7 @@ as element(oe:toc)
         {if ($showAbstract) then $comp/dt:abstract else ()}
         {
           if ($showTg) then
-            for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/oe:isPartOf[@rdf:resource = $comp/dt:identifier]
+            for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/dt:relation[@type = 'chapter' and @rdf:resource = $comp/dt:identifier]
             let $tg  := $ipo2/..
             order by xs:integer($ipo2/@order) ascending
             return

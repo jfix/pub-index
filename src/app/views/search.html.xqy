@@ -113,7 +113,7 @@ as element(div)
   <div style="float: right;">
     <ul class="pager" style="margin: 0;">
       {
-        if ($start > 1) then
+        if ($start > 1) then (: {concat(replace(xdmp:get-original-url(),"&amp;start=\d+",""), "&amp;start=", $prev-page)} :)
           <li><a data-start="{number($prev-page)}" href="#">&laquo; Previous</a></li>
         else
           <li class="disabled"><a href="#">&laquo; Previous</a></li>

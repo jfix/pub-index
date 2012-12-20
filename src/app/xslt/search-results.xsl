@@ -7,14 +7,12 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
   xmlns:search="http://marklogic.com/appservices/search"
   xmlns:dt="http://purl.org/dc/terms/"
-  xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/"
-  xmlns:country="country-data"
-  xmlns:lang="language-data">  
+  xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/">  
   
   <xsl:output omit-xml-declaration="yes" method="xhtml"/>
-  <xsl:variable name="types-doc" select="doc('/refs/pubtypes.xml')"/>
-  <xsl:variable name="countries" select="doc('/refs/countries.xml')/country:countries"/>
-  <xsl:variable name="languages" select="doc('/refs/languages.xml')/lang:languages"/>
+  <xsl:variable name="topics" select="doc('/referential/topics.xml')/oe:topics"/>
+  <xsl:variable name="countries" select="doc('/referential/countries.xml')/oe:countries"/>
+  <xsl:variable name="languages" select="doc('/referential/languages.xml')/oe:languages"/>
   
   <xsl:template match="search:response" as="item()*">
     <xsl:apply-templates select="search:result"/>
@@ -42,7 +40,7 @@
           <span><xsl:value-of select="$date"/></span>                  
         </p>
         <p style="font-size: 0.9em; text-align:right">
-          <a href=""><xsl:value-of select="$languages/lang:language[@id = current()/dt:language]/text()"/></a>
+          <xsl:apply-templates select="dt:language"/>
         </p>
       </div>
       <div class="span7">
@@ -78,12 +76,16 @@
     <xsl:value-of select="xdmp:tidy(.)[2]"/>
   </xsl:template>
   
+  <xsl:template match="dt:language">
+    <a href=""><xsl:value-of select="(data($languages/oe:language[@id = data(current())]/oe:label[@xml:lang = 'en']))[1]"/></a>
+  </xsl:template>
+  
   <xsl:template match="dt:subject" as="item()*">
-    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="."/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="data($topics/oe:topic[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
   </xsl:template>
   
   <xsl:template match="oe:country" as="item()*">
-    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="$countries/country:country[country:code eq upper-case(current())]/country:name/country:en[@case='normal']"/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="data($countries/oe:country[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
   </xsl:template>
   
 </xsl:stylesheet>

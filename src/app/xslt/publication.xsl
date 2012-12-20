@@ -18,7 +18,7 @@
   
   <xsl:output method="xhtml"/>
   
-  <xsl:variable name="lang-doc" select="doc('/refs/languages.xml')"/>
+  <xsl:variable name="languages" select="doc('/referential/languages.xml')/oe:languages"/>
   <xsl:variable name="thumbnail-url-150">http://images.oecdcode.org/covers/150/</xsl:variable>
   
   <!-- main template, creates page structure -->
@@ -41,7 +41,7 @@
         
         <xsl:call-template name="tpl.consumer-box">
           <xsl:with-param name="type" select="@type"/>
-          <xsl:with-param name="buy-link" select="(oe:bookshop/text(), '')[1]"/>
+          <xsl:with-param name="buy-link" select="(oe:bookshop/@rdf:resource, '')[1]"/>
           <xsl:with-param name="read-link" select="(oe:doi/@rdf:resource, '')[1]"/>
         </xsl:call-template>
       </div>
@@ -89,20 +89,22 @@
   </xsl:template>
   
   <xsl:template match="oe:translations">
-    <div>
-      <span>Also available in </span>
-      <xsl:apply-templates select="child::node()"/>
-    </div>
+    <xsl:if test="oe:translation">
+      <div>
+        <span>Also available in </span>
+        <xsl:apply-templates select="oe:translation"/>
+      </div>
+    </xsl:if>
   </xsl:template>
   
   <!-- display a translation link, just one; add a comma if it is not the last -->
   <xsl:template match="oe:translation">
     <strong>
-      <a href="{utils:link(oe:doi/@rdf:resource)}">
-        <xsl:value-of select="string-join($lang-doc//lang:language[@id = current()/dt:language],'/')" />
+      <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
+      <a href="{utils:link(@rdf:resource)}">
+        <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en' and position() = 1]) ,'/')" />
       </a>
     </strong>
-    <xsl:if test="following-sibling::oe:translation[1]">, </xsl:if>
   </xsl:template>
   
   <xsl:template match="dt:status">
@@ -221,7 +223,7 @@
   
   <!-- returns a local link for a given DOI -->
   <xsl:function name="utils:link">
-    <xsl:param name="doi"/>
-    <xsl:value-of select="concat('/display/', tokenize($doi, '/')[last()])"/>
+    <xsl:param name="id"/>
+    <xsl:value-of select="concat('/display/', $id)"/>
   </xsl:function>
 </xsl:stylesheet>

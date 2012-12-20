@@ -135,7 +135,7 @@ $("div.facet select").change(function(event) {
 */
 function manageFacets(facet, value, currentFacets) {
   key = facet,
-  val = value,
+  val = value+'',
   arr = currentFacets[key];
   
   if (arr) {

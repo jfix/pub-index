@@ -6,12 +6,8 @@ import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/f
 declare default element namespace "http://www.w3.org/1999/xhtml";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
+declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace search = "http://marklogic.com/appservices/search";
-declare namespace country = "country-data";
-declare namespace lang = "language-data";
-
-declare variable $country-doc := doc("/refs/countries.xml");
-declare variable $language-doc := doc("/refs/languages.xml");
 
 declare function module:render-facets($facets as element())
 {
@@ -35,17 +31,22 @@ as element(div)
     <ul>
     {
       for $value in $all-subject-facets//search:facet-value
-        let $name := data($value/@name)
-        let $count := data($value/@count)
-        let $css-class := if (contains($qtext, concat('subject:"', $name,'"'))) then 'selected' else ''
-        order by $name ascending
+        let $id := data($value/@name),
+            $count := data($value/@count)
+        
+        let $ref := module:get-ref('subject', $id),
+            $label := module:get-ref-label($ref)
+        
+        let $css-class := if (contains($qtext, concat('subject:"', $id,'"'))) then 'selected' else ''
+        
+        order by $label ascending
         return 
           <li>
             <a class="{$css-class}" 
-              href="/subject/{xdmp:url-encode($value/@name)}"
+              href="/subject/{$id}"
               data-facet="subject"
-              data-value="{$value/@name}"
-              >{$name}</a> ({$count})
+              data-value="{$id}"
+              >{ $label }</a> ({$count})
           </li>
     }
     </ul>
@@ -59,21 +60,21 @@ as element(div)
     <select data-facet="country">
       <option value="">Filter by country</option>
     {
-      for $country in $all-country-facets//search:facet-value
-        let $code := data($country/@name)
-        let $count := data($country/@count)
-        let $css-class := if (contains($qtext, concat('country:', $code))) then 'selected' else ''
-        (:let $_log := utils:log("about to log information on country name"):)
-        (: TODO: create easy-to-use mapping function resolve("country", code) => Name of country :)
-        let $name := module:get-ref-description("country",$code)
-        (:let $_log := utils:log(concat("COUNTRY-NAME: ", $code, ": ", $name)):)
-
-        order by $name ascending
+      for $value in $all-country-facets//search:facet-value
+        let $id := data($value/@name),
+            $count := data($value/@count)
+        
+        let $ref := module:get-ref('country', $id),
+            $label := module:get-ref-label($ref)
+        
+        let $css-class := if (contains($qtext, concat('country:', $id))) then 'selected' else ''
+        
+        order by $label ascending
         return
-          if($name) then
-            <option value="{$code}">
-              {if (contains($qtext, concat('country:"', $code, '"'))) then attribute selected { "selected" } else ()}
-              {concat($name," (", $count,")")}
+          if($label) then
+            <option value="{$id}">
+              {if (contains($qtext, concat('country:"', $id, '"'))) then attribute selected { "selected" } else ()}
+              {concat($label," (", $count,")")}
             </option> else ()
     }
     </select>
@@ -106,16 +107,19 @@ as element(div)
     <select data-facet="language">
       <option value="">Filter by language</option>
       {
-        for $language in $all-language-facets//search:facet-value
-          let $code := data($language/@name)
-          let $count := data($language/@count)
-          let $name := module:get-ref-description("language",$code)
-          order by $name ascending
+        for $value in $all-language-facets//search:facet-value
+          let $id := data($value/@name),
+              $count := data($value/@count)
+          
+          let $ref := module:get-ref('language', $id),
+              $label := module:get-ref-label($ref)
+          
+          order by $label ascending
           return
-            if($name) then
-              <option value="{$code}">
-                {if (contains($qtext, concat('language:"', $code, '"'))) then attribute selected { "selected" } else ()}
-                {concat($name," (", $count,")")}
+            if($label) then
+              <option value="{$id}">
+                {if (contains($qtext, concat('language:"', $id, '"'))) then attribute selected { "selected" } else ()}
+                {concat($label," (", $count,")")}
               </option>
             else ()
       }
@@ -131,17 +135,22 @@ as element(div)
     <ul>
     {
       for $value in $all-pubtype-facets//search:facet-value
-        let $name := data($value/@name)
-        let $count := data($value/@count)
-        let $css-class := if (contains($qtext, concat('pubtype:"', $name, '"'))) then 'selected' else ''
-        order by $name ascending
+        let $id := data($value/@name),
+            $count := data($value/@count)
+        
+        let $ref := module:get-ref('pubtype', $id),
+            $label := module:get-ref-label($ref)
+        
+        let $css-class := if (contains($qtext, concat('pubtype:"', $id, '"'))) then 'selected' else ''
+        
+        order by $label ascending
         return 
           <li>
             <a class="{$css-class}"
-              href="/pubtype/{xdmp:url-encode($value/@name)}"
+              href="/pubtype/{$id}"
               data-facet="pubtype"
-              data-value="{$value/@name}"
-              >{$name}</a> ({$count})
+              data-value="{$id}"
+              >{$label}</a> ({$count})
           </li>
     }
     </ul>
@@ -151,31 +160,52 @@ as element(div)
 declare function module:render-selected-facets($qtext as xs:string)
 as element(div)?
 {
-  let $facets := functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
+  let $facets :=
+    for $facet in functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
+      let $type := fn:substring-before($facet,":")
+      let $id := fn:replace($facet,"[a-z]+:""([^""]+)""", "$1")
+      
+      let $ref := module:get-ref($type, $id)
+      let $label := data($ref/oe:label[@xml:lang eq 'en'])
+      
+      return
+        <span data-facet="{$type}" data-value="{$id}" class="selected-facet">
+          <i class="icon-ok"></i>{$label}
+        </span>
+  
   return
     if($facets) then
       <div id="search-results-facets" class="facet selected">
-      {
-        for $f in functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
-        let $t := fn:substring-before($f,":")
-        let $v := fn:replace($f,"[a-z]+:""([^""]+)""", "$1")
-        return <span data-facet="{$t}" data-value="{$v}" class="selected-facet">
-          <i class="icon-ok"></i>
-          {module:get-ref-description($t,$v)}
-        </span>
-      }
+        { $facets }
       </div>
     else
       ()
 };
 
-declare private function module:get-ref-description($type as xs:string, $code as xs:string)
+declare private function module:get-ref($type as xs:string, $id as xs:string)
+as element()?
+{
+  if($type eq "subject") then
+    collection("referential")//oe:topic[@id eq $id]
+    
+  else if($type eq "country") then
+    collection("referential")//oe:country[@id eq $id]
+    
+  else if ($type eq "language") then
+    collection("referential")//oe:language[@id eq $id]
+    
+  else if ($type eq "pubtype") then
+    <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}">
+      <label xml:lang="en">{$id}</label>
+      <label xml:lang="fr">{$id}</label>
+    </itemtype>
+    
+  else
+    ()
+};
+
+declare private function module:get-ref-label($ref as element())
 as xs:string?
 {
-  if($type eq "country") then
-     $country-doc//country:country[country:code eq upper-case($code)]/country:name/country:en[@case="normal"]
-  else if ($type eq "language") then
-    fn:data($language-doc/lang:*/lang:language[@id = $code])
-  else
-    $code
+  (data($ref/oe:label[@xml:lang eq 'en']))[1] (: duplicate shield for en & fr in languages :)
 };
