@@ -72,6 +72,7 @@ as element(oe:toc)
             </bibliographic>
         }
         {$comp/oe:doi}
+        {$comp/oe:freepreview}
         {
           if ($showTg) then
             for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/oe:relation[@type = 'chapter' and @rdf:resource = $comp/dt:identifier]
@@ -91,6 +92,7 @@ as element(oe:toc)
                     </bibliographic>
                 }
                 {$tg/oe:doi}
+                {$tg/oe:freepreview}
               </item>
           else
             ()
