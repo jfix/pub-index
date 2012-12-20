@@ -97,8 +97,7 @@ declare function lib-search:transformed-result(
   (
     search:snippet($result, $ctsquery, $options)/*,
     $result/oe:item/dt:identifier,
-    $result/oe:item/dt:title,
-    $result/oe:item/oe:subTitle,
+    $result/oe:item/oe:bibliographic,
     $result/oe:item/dt:available,
     <oe:type>{fn:data($result/oe:item/@type)}</oe:type>,
     $result/oe:item/oe:coverImage,

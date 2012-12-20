@@ -40,7 +40,7 @@ as element(oe:translations)
 {
   <translations xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
     {
-      for $trans in collection("metadata")[.//dt:identifier = $item/dt:relation[@type = 'translation']/@rdf:resource]/oe:item
+      for $trans in collection("metadata")[.//dt:identifier = $item/oe:relation[@type = 'translation']/@rdf:resource]/oe:item
       return
         <translation rdf:resource="{$trans/dt:identifier}">
           {$trans/dt:language}
@@ -56,27 +56,41 @@ as element(oe:toc)
   return
   <toc xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
     {
-      for $ipo in collection("metadata")/oe:item[@type = $types]/dt:relation[@type = 'completeversion' and @rdf:resource = $id and not(../dt:relation[@type = 'chapter']) ]
+      for $ipo in collection("metadata")/oe:item[@type = $types]/oe:relation[@type = 'completeversion' and @rdf:resource = $id and not(../oe:relation[@type = 'chapter']) ]
       let $comp := $ipo/..
       order by xs:integer($ipo/@order) ascending
       return <item>
         {attribute type { $comp/@type }}
         {$comp/dt:identifier}
-        {$comp/dt:title}
+        {
+          for $bbl in $comp/oe:bibliographic
+          return
+            <bibliographic>
+              {$bbl/@*}
+              {$bbl/dt:title}
+              {if ($showAbstract) then $bbl/dt:abstract else ()}
+            </bibliographic>
+        }
         {$comp/oe:doi}
-        {if ($showAbstract) then $comp/dt:abstract else ()}
         {
           if ($showTg) then
-            for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/dt:relation[@type = 'chapter' and @rdf:resource = $comp/dt:identifier]
+            for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/oe:relation[@type = 'chapter' and @rdf:resource = $comp/dt:identifier]
             let $tg  := $ipo2/..
             order by xs:integer($ipo2/@order) ascending
             return
               <item>
                 {attribute type { $tg/@type }}
                 {$tg/dt:identifier}
-                {$tg/dt:title}
+                {
+                  for $bbl in $tg/oe:bibliographic
+                  return
+                    <bibliographic>
+                      {$bbl/@*}
+                      {$bbl/dt:title}
+                      {if ($showAbstract) then $bbl/dt:abstract else ()}
+                    </bibliographic>
+                }
                 {$tg/oe:doi}
-                {if ($showAbstract) then $tg/dt:abstract else ()}
               </item>
           else
             ()

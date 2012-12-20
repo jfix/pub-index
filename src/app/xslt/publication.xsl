@@ -23,6 +23,8 @@
   
   <!-- main template, creates page structure -->
   <xsl:template match="oe:item">
+    <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
+    
     <div class="row">
       <xsl:if test="oe:coverImage">
         <!-- thumbnail-->
@@ -34,8 +36,8 @@
       <!-- title + metadata -->
       <div class="span9">
         <xsl:apply-templates select="oe:parent"/>
-        <xsl:apply-templates select="(dt:title[xml:lang='en'],dt:title)[1]"/>
-        <xsl:apply-templates select="(oe:subTitle[xml:lang='en'],oe:subTitle)[1]"/>
+        <xsl:apply-templates select="$biblio/dt:title"/>
+        <xsl:apply-templates select="$biblio/oe:subTitle"/>
         <xsl:apply-templates select="dt:available"/>
         <xsl:apply-templates select="oe:translations"/>
         
@@ -51,7 +53,7 @@
     <div class="row">
       <div class="span12">
         <!-- abstract -->
-        <xsl:apply-templates select="(dt:abstract[xml:lang='en'],dt:abstract)[1]"/>
+        <xsl:apply-templates select="$biblio/dt:abstract"/>
         
         <!-- toc -->
         <xsl:apply-templates select="oe:toc"/>
@@ -102,7 +104,7 @@
     <strong>
       <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
       <a href="{utils:link(@rdf:resource)}">
-        <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en' and position() = 1]) ,'/')" />
+        <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en']) ,'/')" />
       </a>
     </strong>
   </xsl:template>
@@ -128,7 +130,7 @@
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
       <div id="toc-actions" class="btn-group pull-right">
-        <xsl:if test="oe:item/dt:abstract"><button class="btn" data-toggle=".toc-abstract"><i class="icon-eye-open"></i> Abstracts</button></xsl:if>
+        <xsl:if test="oe:item//dt:abstract"><button class="btn" data-toggle=".toc-abstract"><i class="icon-eye-open"></i> Abstracts</button></xsl:if>
         <xsl:if test="oe:item/oe:item"><button class="btn" data-toggle=".toc-sublist"><i class="icon-eye-open"></i> Tables/Graphs</button></xsl:if>
       </div>
       <h4>Table of Contents</h4>
@@ -139,6 +141,7 @@
   </xsl:template>
   
   <xsl:template match="oe:toc//oe:item">
+    <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
     <li>
       <div>
         <div class="links pull-right">
@@ -152,10 +155,10 @@
           <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
           <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
         </xsl:choose>
-        <xsl:value-of select="(dt:title[xml:lang='en'],dt:title)[1]"/>
+        <xsl:value-of select="$biblio/dt:title"/>
         
         <div class="toc-details">
-          <xsl:apply-templates select="(dt:abstract[xml:lang='en'],dt:abstract)[1]"/>
+          <xsl:apply-templates select="$biblio/dt:abstract"/>
           
           <xsl:if test="oe:item">
             <ul class="toc toc-sublist">

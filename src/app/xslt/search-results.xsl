@@ -47,10 +47,7 @@
         <xsl:if test="$cover">
           <a href="{$url}"><img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/></a> 
         </xsl:if>
-        <h4><a href="{$url}"><xsl:value-of select="$title"/></a></h4>
-        <xsl:if test="$subtitle">
-          <h5><a href="{$url}"><xsl:value-of select="$subtitle"/></a></h5>
-        </xsl:if>
+        <xsl:apply-templates select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"></xsl:apply-templates>
         <p><xsl:apply-templates select="search:match"/></p>
         <p style="font-size: 0.9em; text-align: right;">
           <span>Covered by this publication: </span>
@@ -76,8 +73,25 @@
     <xsl:value-of select="xdmp:tidy(.)[2]"/>
   </xsl:template>
   
+  <xsl:template match="oe:bibliographic">
+    <h4>
+      <a>
+        <xsl:attribute name="href"><xsl:value-of select="concat('/display/', ../dt:identifier)"></xsl:value-of></xsl:attribute>
+        <xsl:value-of select="dt:title"/>
+      </a>
+    </h4>
+    <xsl:if test="oe:subTitle">
+      <h5>
+        <a>
+          <xsl:attribute name="href"><xsl:value-of select="concat('/display/', ../dt:identifier)"></xsl:value-of></xsl:attribute>
+          <xsl:value-of select="oe:subTitle"/>
+        </a>
+      </h5>
+    </xsl:if>
+  </xsl:template>
+  
   <xsl:template match="dt:language">
-    <a href=""><xsl:value-of select="(data($languages/oe:language[@id = data(current())]/oe:label[@xml:lang = 'en']))[1]"/></a>
+    <a href=""><xsl:value-of select="data($languages/oe:language[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
   </xsl:template>
   
   <xsl:template match="dt:subject" as="item()*">

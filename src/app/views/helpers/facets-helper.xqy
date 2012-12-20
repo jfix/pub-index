@@ -207,5 +207,5 @@ as element()?
 declare private function module:get-ref-label($ref as element())
 as xs:string?
 {
-  (data($ref/oe:label[@xml:lang eq 'en']))[1] (: duplicate shield for en & fr in languages :)
+  data($ref/oe:label[@xml:lang eq 'en'])
 };

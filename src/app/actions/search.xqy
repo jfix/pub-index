@@ -28,9 +28,10 @@ declare function local:render-opensearch-rss($result)
     {
       for $item in $result/search:result
       let $snippet := $item/search:snippet
+      let $biblio := ($snippet/oe:bibliographic[@xml:lang eq 'en'],$snippet/oe:bibliographic)[1]
       return
         <item>
-          <title>{ fn:data(($snippet/dt:title[xml:lang eq 'en'],$snippet/dt:title)[1]) }</title>
+          <title>{ fn:data($biblio/dt:title) }</title>
           <link>{ concat('http://',$host, '/display/', $snippet/dt:identifier) }</link>
           <description>{ fn:data($item/search:snippet/search:match) }</description>
         </item>
