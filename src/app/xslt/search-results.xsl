@@ -7,7 +7,8 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
   xmlns:search="http://marklogic.com/appservices/search"
   xmlns:dt="http://purl.org/dc/terms/"
-  xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/">  
+  xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/"
+  xmlns="http://www.w3.org/1999/xhtml">  
   
   <xsl:output omit-xml-declaration="yes" method="xhtml"/>
   <xsl:variable name="topics" select="doc('/referential/topics.xml')/oe:topics"/>
@@ -28,7 +29,6 @@
     <xsl:variable name="type" select="oe:type/text()"/>
     <xsl:variable name="title" select="(dt:title[xml:lang eq 'en'],dt:title)[1]/text()"/>
     <xsl:variable name="subtitle" select="(oe:subTitle[xml:lang eq 'en'],oe:subTitle)[1]/text()"/>
-    <xsl:variable name="date" select="format-dateTime(dt:available/text(), '[D] [MNn] [Y]')"/>
     <xsl:variable name="cover" select="(oe:coverImage/text(),'cover_not_yetm.jpg')[1]"/>
     <xsl:variable name="cover-url" select="concat('http://images.oecdcode.org/covers/60/', $cover)"/>
     <div class="row">
@@ -37,7 +37,7 @@
           <span class="pubtype-label label {data($type)}"><xsl:value-of select="$type"/></span>
         </h4>
         <p style="font-size: 0.9em; text-align:right">
-          <span><xsl:value-of select="$date"/></span>                  
+          <xsl:apply-templates select="dt:available"/>
         </p>
         <p style="font-size: 0.9em; text-align:right">
           <xsl:apply-templates select="dt:language"/>
@@ -88,6 +88,13 @@
         </a>
       </h5>
     </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="dt:available">
+    <span class="availability">
+      <xsl:if test="xs:dateTime(.) gt current-dateTime()"><i class="icon-time"></i></xsl:if>
+      <xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/>
+    </span>
   </xsl:template>
   
   <xsl:template match="dt:language">
