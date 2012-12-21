@@ -24,28 +24,35 @@
   <!-- main template, creates page structure -->
   <xsl:template match="oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
-    
     <div class="row">
       <xsl:if test="oe:coverImage">
         <!-- thumbnail-->
         <div class="span3">
           <xsl:apply-templates select="oe:coverImage"/>
         </div>
-       </xsl:if>
+      </xsl:if>
       
       <!-- title + metadata -->
-      <div class="span9">
+      <div id="metadata" class="span9">
         <xsl:apply-templates select="oe:parent"/>
         <xsl:apply-templates select="$biblio/dt:title"/>
         <xsl:apply-templates select="$biblio/oe:subTitle"/>
-        <xsl:apply-templates select="dt:available"/>
+        
+        <div class="languages">
+          <xsl:apply-templates select="dt:language"/>
+        </div>
+        
+        <div class="availability">
+          <xsl:apply-templates select="dt:available"/>
+        </div>
+        
         <xsl:apply-templates select="oe:translations"/>
         
-        <xsl:call-template name="tpl.consumer-box">
-          <xsl:with-param name="type" select="@type"/>
-          <xsl:with-param name="buy-link" select="(oe:bookshop/@rdf:resource, '')[1]"/>
-          <xsl:with-param name="read-link" select="(oe:doi/@rdf:resource, '')[1]"/>
-        </xsl:call-template>
+        <div class="links">
+          <xsl:apply-templates select="oe:freepreview"/>
+          <xsl:apply-templates select="oe:doi"/>
+          <xsl:apply-templates select="oe:bookshop"/>
+        </div>
       </div>
       
     </div>
@@ -74,43 +81,57 @@
   </xsl:template>
   
   <xsl:template match="dt:title">
-    <h3><xsl:value-of select="."/></h3>
+    <h3>
+      <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
+    </h3>
   </xsl:template>
   
   <xsl:template match="oe:subTitle">
-    <h4><xsl:value-of select="."/></h4>
+    <h4>
+      <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
+    </h4>
+  </xsl:template>
+  
+  <xsl:template match="dt:language">
+    <xsl:value-of select="string-join( data($languages//oe:language[@id = current()]/oe:label[@xml:lang = 'en']) ,'/')" />
   </xsl:template>
   
   <xsl:template match="dt:available">
-    <div>
-      <span>
-        Published on 
-        <span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
-      </span>
-    </div>  
+    <span>
+      <xsl:choose>
+        <xsl:when test="xs:dateTime(.) gt current-dateTime()"><i class="icon-time"></i> To be published on </xsl:when>
+        <xsl:otherwise>Published on </xsl:otherwise>
+      </xsl:choose>
+      <span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
+    </span>
   </xsl:template>
   
   <xsl:template match="oe:translations">
     <xsl:if test="oe:translation">
-      <div>
-        <span>Also available in </span>
-        <xsl:apply-templates select="oe:translation"/>
+      <div class="translations">
+        <span>Also available in <xsl:apply-templates select="oe:translation"/></span>
       </div>
     </xsl:if>
   </xsl:template>
   
   <!-- display a translation link, just one; add a comma if it is not the last -->
   <xsl:template match="oe:translation">
-    <strong>
-      <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
-      <a href="{utils:link(@rdf:resource)}">
-        <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en']) ,'/')" />
-      </a>
-    </strong>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
+    <a href="{utils:link(@rdf:resource)}">
+      <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en']) ,'/')" />
+    </a>
   </xsl:template>
   
-  <xsl:template match="dt:status">
-    <span class="status"><strong>Status:</strong> <span><xsl:value-of select="."/></span></span>  
+  <xsl:template match="oe:freepreview">
+    <a class="btn" href="{@rdf:resource}" target="_blank">Read</a>
+  </xsl:template>
+  
+  <xsl:template match="oe:bookshop">
+    <a class="btn" href="{@rdf:resource}" target="_blank">Buy this <xsl:value-of select="../@type"/></a>
+  </xsl:template>
+  
+  <xsl:template match="oe:doi">
+    <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
   </xsl:template>
   
   <!-- display the cover images if there is one -->
@@ -170,28 +191,30 @@
     </li>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:item//oe:freepreview">
-    <a target="_blank">
-      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
-      <i class="icon-eye-open"></i>
-    </a>
+  <xsl:template match="oe:toc//oe:freepreview">
+    <xsl:call-template name="toc-link">
+      <xsl:with-param name="icon">icon-eye-open</xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:item//oe:bookshop">
-    <a target="_blank">
-      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
-      <i class="icon-shopping-cart"></i>
-    </a>
+  <xsl:template match="oe:toc//oe:bookshop">
+    <xsl:call-template name="toc-link">
+      <xsl:with-param name="icon">icon-shopping-cart</xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:item//oe:doi">
-    <a target="_blank">
-      <xsl:attribute name="href"><xsl:value-of select="@rdf:resource"></xsl:value-of></xsl:attribute>
-      <i class="icon-download-alt"></i>
-    </a>
+  <xsl:template match="oe:toc//oe:doi">
+    <xsl:call-template name="toc-link">
+      <xsl:with-param name="icon">icon-download-alt</xsl:with-param>
+    </xsl:call-template>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:item//dt:abstract">
+  <xsl:template name="toc-link">
+    <xsl:param name="icon"/>
+    <a href="{@rdf:resource}" target="_blank"><i class="{$icon}"></i></a>
+  </xsl:template>
+  
+  <xsl:template match="oe:toc//dt:abstract">
     <p class="toc-abstract">
       <xsl:value-of select="xdmp:tidy(.)[2]"/>
     </p>

@@ -123,6 +123,10 @@ div.exhibit-views-header {
   text-align: center;
 }
 
+#metadata > div { margin: 0.7em 0; }
+#metadata .links { margin-top: 0.9em; }
+#metadata .links a { margin-right: 1em; }
+
 p.abstract { margin: 1em 1em 3em; }
 
 #toc-actions { margin-top: -10px; }
