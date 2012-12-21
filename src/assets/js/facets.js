@@ -1,7 +1,9 @@
 $(function () {
 
 var $filterString = $("#in");
-var currentFacets = deserializeFacets($filterString.val());
+var currentFacets = {};
+
+deserializeFacets($filterString.val());
 
 $("div.facet ul li a, div.facet a, div.facet span").click(function (event) {
   event.preventDefault();
@@ -10,8 +12,8 @@ $("div.facet ul li a, div.facet a, div.facet span").click(function (event) {
   if(facet) {
     var value = $(this).data("value");
     if(value) {
-      var facets = manageFacets(facet, value, currentFacets);
-      var filterString = serializeFacets(facets);
+      manageFacets(facet, value);
+      var filterString = serializeFacets(currentFacets);
       
       $filterString.val(filterString);
       $("#searchForm").submit();
@@ -26,12 +28,12 @@ $("div.facet select").change(function(event) {
   if(currentFacets[facet]) {
     var oldValue = currentFacets[facet][0];
     if(oldValue) {
-      manageFacets(facet, oldValue, currentFacets);
+      manageFacets(facet, oldValue);
     }
   }
   
   if(value != "") {
-    manageFacets(facet, value, currentFacets);
+    manageFacets(facet, value);
   }
   
   var filterString = serializeFacets(currentFacets);
@@ -123,6 +125,24 @@ $("div.facet select").change(function(event) {
 
 })();
 
+// manage facet values in search result
+$(".facet-value").click(function (event) {
+  event.preventDefault();
+  
+  var facet = $(this).data("facet");
+  if(facet) {
+    var value = $(this).data("value");
+    if(value) {
+      if(manageFacets(facet, value, true)) {
+        var filterString = serializeFacets(currentFacets);
+        
+        $filterString.val(filterString);
+        $("#searchForm").submit();
+      }
+    }
+  }
+});
+
 /**
 * ( pubtype:book OR pubtype:article ) subject:"Development"
 *
@@ -133,7 +153,7 @@ $("div.facet select").change(function(event) {
 * values with spaces must be surrounded with double quotes
 *
 */
-function manageFacets(facet, value, currentFacets) {
+function manageFacets(facet, value, addonly) {
   key = facet,
   val = value+'',
   arr = currentFacets[key];
@@ -142,17 +162,20 @@ function manageFacets(facet, value, currentFacets) {
     var pos = $.inArray(val, arr);
     
     if (arr.length == 1 && pos == 0) {
+      if(addonly) return false;
       delete currentFacets[key];
     } else if (pos >= 0) {
+      if(addonly) return false;
       arr.splice(pos, 1);
       currentFacets[key] = arr;
     } else {
       currentFacets[key].push(val);
     }
   } else {
-    currentFacets[key] =[val];
+    currentFacets[key] = [val];
   }
-  return currentFacets;
+  
+  return true;
 }
 
 function serializeFacets(currentFacets) {
@@ -174,7 +197,6 @@ function serializeFacets(currentFacets) {
 }
 
 function deserializeFacets(filterString) {
-  var js = {};
   var facets = filterString.split(";");
   for(var i = 0; i < facets.length; i++) {
     var facetString = facets[i];
@@ -185,12 +207,10 @@ function deserializeFacets(filterString) {
       arr = values.split("|");
       for(var j = 0; j < arr.length; j++) {
         var value = arr[j];
-        js = manageFacets(facet, value, js);
+        manageFacets(facet, value);
       }
     }
   }
-  
-  return js;
 }
 
 /**

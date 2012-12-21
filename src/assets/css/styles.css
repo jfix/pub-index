@@ -80,6 +80,8 @@ label[for = "sortby"] { display: inline; margin-bottom: auto; }
 .label.periodical { background-color: #3A87AD; }
 .label.summary { background-color: #468847; }
 
+.facet-value { font-size: 0.95em; cursor: pointer; color: #0074B4; }
+
 .search-container {
   position: relative;
 }

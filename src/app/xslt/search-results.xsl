@@ -91,15 +91,24 @@
   </xsl:template>
   
   <xsl:template match="dt:language">
-    <a href=""><xsl:value-of select="data($languages/oe:language[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
+    <xsl:if test="position() > 1"><xsl:text>/</xsl:text></xsl:if>
+    <span data-facet="language" data-value="{.}" class="facet-value">
+      <xsl:value-of select="data($languages/oe:language[@id = data(current())]/oe:label[@xml:lang = 'en'])"/>
+    </span>
   </xsl:template>
   
   <xsl:template match="dt:subject" as="item()*">
-    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="data($topics/oe:topic[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
+    <span data-facet="subject" data-value="{.}" class="facet-value">
+      <xsl:value-of select="data($topics/oe:topic[@id = data(current())]/oe:label[@xml:lang = 'en'])"/>
+    </span>
   </xsl:template>
   
   <xsl:template match="oe:country" as="item()*">
-    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if><a href=""><xsl:value-of select="data($countries/oe:country[@id = data(current())]/oe:label[@xml:lang = 'en'])"/></a>
+    <xsl:if test="position() > 1"><xsl:text>, </xsl:text></xsl:if>
+    <span data-facet="country" data-value="{.}" class="facet-value">
+      <xsl:value-of select="data($countries/oe:country[@id = data(current())]/oe:label[@xml:lang = 'en'])"/>
+    </span>
   </xsl:template>
   
 </xsl:stylesheet>
