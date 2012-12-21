@@ -126,7 +126,7 @@ $("div.facet select").change(function(event) {
 })();
 
 // manage facet values in search result
-$(".facet-value").click(function (event) {
+$(".facet-value, .pubtype-label").click(function (event) {
   event.preventDefault();
   
   var facet = $(this).data("facet");
