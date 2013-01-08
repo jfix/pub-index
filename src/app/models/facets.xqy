@@ -60,21 +60,26 @@ as element(search:facet)
   return search:resolve($query, $facets-options)/search:facet[@name = $facet]
 };
 
-declare private function module:transform-query($element as element(), $filter as xs:string)
-as element()?
+declare function module:transform-query($elements as element()*, $filter as xs:string)
+as element()*
 {
-  let $sub as element()* := for $el in $element/*[not(@qtextpre = $filter)] return module:transform-query($el, $filter)
-  let $limit as xs:integer := if(local-name($element) = ('and-query','or-query')) then 1 else 0
-  
+  for $element in $elements
   return
-    if(count($sub) > $limit) then
-      element {fn:name($element)} {
-      $element/@*,
-      $sub
-    }
-    else if($limit eq 1) then
-      $sub
-    else
+    if($element[@qtextempty eq '1']) then
       $element
+    else if($element[not(@qtextpre eq $filter)]) then
+      let $sub as element()* := module:transform-query($element/*, $filter)
+      let $limit as xs:integer := if(local-name($element) = ('and-query','or-query')) then 1 else 0
+      return
+         if(count($sub) > $limit) then
+           element {fn:name($element)} {
+           $element/@*,
+           $sub
+         }
+         else if($limit eq 1) then
+           $sub
+         else
+           $element
+    else
+      ()
 };
-
