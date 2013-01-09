@@ -14,6 +14,7 @@ let $model := mi:get-item($id),
     $model := <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
       {$model/@*}
       {$model/*}
+      {mi:get-item-parent($model)}
       {mi:get-item-translations($model)}
       {mi:get-item-toc($id,true(),true())}
     </item>

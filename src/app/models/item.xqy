@@ -49,6 +49,30 @@ as element(oe:translations)
   </translations>
 };
 
+declare function module:get-item-parent($item as element(oe:item))
+as element(oe:parents)
+{
+  <parents xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+  {
+    for $parent in collection("metadata")[.//dt:identifier = $item/oe:relation[@type = ('series','periodical')]/@rdf:resource ]/oe:item
+    return
+      <item type="{$parent/@type}">
+        {$parent/dt:identifier}
+        {$parent/oe:doi}
+        {$parent/oe:bookshop}
+        {
+          for $bbl in $parent/oe:bibliographic
+          return
+            <bibliographic>
+              {$bbl/@*}
+              {$bbl/dt:title}
+            </bibliographic>
+        }
+      </item>
+    }
+  </parents>
+};
+
 declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $showAbstract as xs:boolean?)
 as element(oe:toc)
 {

@@ -34,7 +34,7 @@
       
       <!-- title + metadata -->
       <div id="metadata" class="span9">
-        <xsl:apply-templates select="oe:parent"/>
+        <xsl:apply-templates select="(oe:parents/oe:item[@type = 'bookseries']/oe:bibliographic[@xml:lang eq 'en'],oe:parents/oe:item[@type = 'bookseries']/oe:bibliographic)[1]"/>
         <xsl:apply-templates select="$biblio/dt:title"/>
         <xsl:apply-templates select="$biblio/oe:subTitle"/>
         
@@ -44,14 +44,17 @@
         
         <div class="availability">
           <xsl:apply-templates select="dt:available"/>
+          <xsl:apply-templates select="oe:upcomingEdition/dt:available"/>
         </div>
         
         <xsl:apply-templates select="oe:translations"/>
         
         <div class="links">
           <xsl:apply-templates select="oe:freepreview"/>
+          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:doi"/>
           <xsl:apply-templates select="oe:doi"/>
           <xsl:apply-templates select="oe:bookshop"/>
+          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:bookshop"/>
         </div>
       </div>
       
@@ -74,20 +77,20 @@
     </div>
   </xsl:template>
   
-  <xsl:template match="oe:parent">
-    <h4>
-      <a href="{utils:link(oe:doi/@rdf:resource)}"><xsl:value-of select="dt:title"/></a>
+  <xsl:template match="oe:parents//oe:bibliographic">
+    <h4 class="series">
+      <a href="{../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="dt:title"/></a>
     </h4>  
   </xsl:template>
   
   <xsl:template match="dt:title">
-    <h3>
+    <h3 class="title">
       <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
     </h3>
   </xsl:template>
   
   <xsl:template match="oe:subTitle">
-    <h4>
+    <h4 class="subtitle">
       <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
     </h4>
   </xsl:template>
@@ -104,6 +107,12 @@
       </xsl:choose>
       <span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
     </span>
+  </xsl:template>
+  
+  <xsl:template match="oe:upcomingEdition/dt:available">
+    <div>
+      <span>Next edition: </span><span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
+    </div>
   </xsl:template>
   
   <xsl:template match="oe:translations">
@@ -127,11 +136,25 @@
   </xsl:template>
   
   <xsl:template match="oe:bookshop">
-    <a class="btn" href="{@rdf:resource}" target="_blank">Buy this <xsl:value-of select="../@type"/></a>
+    <a class="btn" href="{@rdf:resource}" target="_blank">
+      <xsl:choose>
+        <xsl:when test="xs:dateTime(../dt:available) gt current-dateTime()">Pre-order this </xsl:when>
+        <xsl:otherwise>Buy this </xsl:otherwise>
+      </xsl:choose>
+      <xsl:value-of select="../@type"/>
+    </a>
   </xsl:template>
   
   <xsl:template match="oe:doi">
     <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
+  </xsl:template>
+  
+  <xsl:template match="oe:parents//oe:doi">
+    <a class="btn" href="{@rdf:resource}" target="_blank">See previous editions</a>
+  </xsl:template>
+  
+  <xsl:template match="oe:parents//oe:bookshop">
+    <a class="btn" href="{@rdf:resource}" target="_blank">Subscribe</a>
   </xsl:template>
   
   <!-- display the cover images if there is one -->
@@ -218,33 +241,6 @@
     <p class="toc-abstract">
       <xsl:value-of select="xdmp:tidy(.)[2]"/>
     </p>
-  </xsl:template>
-  
-  <!-- display the Read and Buy buttons -->
-  <xsl:template name="tpl.consumer-box">
-    <xsl:param name="type" as="xs:string"/>
-    <xsl:param name="buy-link" as="xs:string"/>
-    <xsl:param name="read-link" as="xs:string"/>
-    <br/>
-    <div>
-      <xsl:choose>
-        <xsl:when test="$read-link = ''">
-          <a class="btn disabled" href="#">Unavailable</a>
-        </xsl:when>
-        <xsl:otherwise>
-          <a class="btn" href="{$read-link}">Read this <xsl:value-of select="$type"/></a>
-        </xsl:otherwise>
-      </xsl:choose>
-      <xsl:text> </xsl:text>
-      <xsl:choose>
-        <xsl:when test="$buy-link = ''">
-          <a class="btn disabled" href="#">Unavailable for purchase</a>          
-        </xsl:when>
-        <xsl:otherwise>
-          <a class="btn" href="{$buy-link}">Buy this <xsl:value-of select="$type"/></a>
-        </xsl:otherwise>
-      </xsl:choose>       
-    </div>
   </xsl:template>
   
   <!-- returns a local link for a given DOI -->

@@ -34,7 +34,13 @@
     <div class="row">
       <div class="span2">
         <h4 style="text-align:right;">
-          <span class="pubtype-label label {data($type)}" data-facet="pubtype" data-value="{$type}"><xsl:value-of select="$type"/></span>
+          <span class="pubtype-label label {data($type)}" data-facet="pubtype" data-value="{$type}">
+            <xsl:choose>
+              <xsl:when test="$type eq 'book'">Book</xsl:when>
+              <xsl:when test="$type eq 'edition'">Periodical</xsl:when>
+              <xsl:otherwise>Unknown</xsl:otherwise>
+            </xsl:choose>
+          </span>
         </h4>
         <p style="font-size: 0.9em; text-align:right">
           <xsl:apply-templates select="dt:available"/>
