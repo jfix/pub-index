@@ -22,7 +22,7 @@ as empty-sequence()
         ,(
           "metadata"
           ,$type
-          ,if($type = ("book", "article", "workingpaper", "serial")) then "searchable" else ()
+          ,if($type = ("book", "article", "workingpaper", "edition")) then "searchable" else ()
         )
       )
     else
