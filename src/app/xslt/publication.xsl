@@ -44,7 +44,7 @@
         
         <div class="availability">
           <xsl:apply-templates select="dt:available"/>
-          <xsl:apply-templates select="oe:upcomingEdition/dt:available"/>
+          <xsl:apply-templates select="oe:upcomingEdition"/>
         </div>
         
         <xsl:apply-templates select="oe:translations"/>
@@ -109,9 +109,9 @@
     </span>
   </xsl:template>
   
-  <xsl:template match="oe:upcomingEdition/dt:available">
+  <xsl:template match="oe:upcomingEdition">
     <div>
-      <span>Next edition: </span><span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
+      <span>Next edition: </span><a href="{oe:doi/@rdf:resource}" target="_blank" class="pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn] [Y]')"/></a>
     </div>
   </xsl:template>
   
