@@ -37,7 +37,7 @@
           <span class="pubtype-label label {data($type)}" data-facet="pubtype" data-value="{$type}">
             <xsl:choose>
               <xsl:when test="$type eq 'book'">Book</xsl:when>
-              <xsl:when test="$type eq 'edition'">Periodical</xsl:when>
+              <xsl:when test="$type eq 'edition'">Serial</xsl:when>
               <xsl:otherwise>Unknown</xsl:otherwise>
             </xsl:choose>
           </span>
