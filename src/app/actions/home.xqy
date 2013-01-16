@@ -4,7 +4,7 @@ import module namespace s = "lib-search" at "/app/models/search.xqy";
 import module namespace f = "lib-facets" at "/app/models/facets.xqy";
 
 let $model := <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-  {s:get-latest-books(12)}
+  {s:get-latest-items(8,2,2)}
 </latests>
 
 return

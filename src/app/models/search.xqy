@@ -108,13 +108,29 @@ declare function lib-search:transformed-result(
   }</search:snippet>
 };
 
-declare function lib-search:get-latest-books($max as xs:integer)
+declare function lib-search:get-latest-items($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
+as element(oe:item)*
+{
+  let $ia := lib-search:get-latest-items('article', $qta)
+  let $iw := lib-search:get-latest-items('workingpaper', $qtw)
+  return (
+    lib-search:get-latest-items('book', $qtb + ($qta - count($ia)) + ($qtw - count($iw)))
+    ,$ia
+    ,$iw
+  )
+};
+
+declare function lib-search:get-latest-items($item as xs:string, $qt as xs:integer)
 as element(oe:item)*
 {
   (
-    for $book in collection("metadata")/oe:item[oe:status = 'available' and dt:available lt fn:current-dateTime() and fn:exists(oe:coverImage) ]
-    order by $book/dt:available descending
-    return $book
-  )[1 to $max]
+    for $item in collection($item)/oe:item[
+        oe:status = 'available'
+        and dt:available lt fn:current-dateTime()
+        and dt:available gt (fn:current-dateTime() - xs:dayTimeDuration('P30D'))
+        and fn:exists(oe:coverImage)
+      ]
+    order by $item/dt:available descending
+    return $item
+  )[1 to $qt]
 };
-
