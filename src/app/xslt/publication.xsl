@@ -135,7 +135,15 @@
     <a class="btn" href="{@rdf:resource}" target="_blank">Read</a>
   </xsl:template>
   
-  <xsl:template match="oe:bookshop">
+  <xsl:template match="oe:doi">
+    <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
+  </xsl:template>
+  
+  <xsl:template match="oe:parents//oe:doi">
+    <a class="btn" href="{@rdf:resource}" target="_blank">See previous editions</a>
+  </xsl:template>
+  
+  <xsl:template match="oe:item[@type != ('periodical','journal')]/oe:bookshop">
     <a class="btn" href="{@rdf:resource}" target="_blank">
       <xsl:choose>
         <xsl:when test="xs:dateTime(../dt:available) gt current-dateTime()">Pre-order this </xsl:when>
@@ -145,15 +153,7 @@
     </a>
   </xsl:template>
   
-  <xsl:template match="oe:doi">
-    <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
-  </xsl:template>
-  
-  <xsl:template match="oe:parents//oe:doi">
-    <a class="btn" href="{@rdf:resource}" target="_blank">See previous editions</a>
-  </xsl:template>
-  
-  <xsl:template match="oe:parents//oe:bookshop">
+  <xsl:template match="oe:item[@type = ('periodical','journal')]/oe:bookshop">
     <a class="btn" href="{@rdf:resource}" target="_blank">Subscribe</a>
   </xsl:template>
   
@@ -198,6 +198,11 @@
           <xsl:when test="@type eq 'chapter'"><i class="icon-file"></i></xsl:when>
           <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
           <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
+          <xsl:otherwise>
+            <xsl:if test="dt:available">
+              <span class="toc-pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
+            </xsl:if>
+          </xsl:otherwise>
         </xsl:choose>
         <xsl:value-of select="$biblio/dt:title"/>
         

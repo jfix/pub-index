@@ -7,6 +7,7 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl"
   xmlns:search="http://marklogic.com/appservices/search"
   xmlns:dt="http://purl.org/dc/terms/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/"
   xmlns="http://www.w3.org/1999/xhtml">  
   
@@ -24,7 +25,7 @@
   </xsl:template>
   
   <xsl:template match="oe:item">
-    <xsl:variable name="url" select="concat('/display/', dt:identifier)"/>
+    <xsl:variable name="url" select="oe:get-display-url(.)"/>
     
     <xsl:variable name="type" select="@type"/>
     <xsl:variable name="title" select="(dt:title[xml:lang eq 'en'],dt:title)[1]/text()"/>
@@ -38,7 +39,9 @@
             <xsl:choose>
               <xsl:when test="$type eq 'book'">Book</xsl:when>
               <xsl:when test="$type eq 'edition'">Serial</xsl:when>
-              <xsl:otherwise>Unknown</xsl:otherwise>
+              <xsl:when test="$type eq 'article'">Article</xsl:when>
+              <xsl:when test="$type eq 'workingpaper'">Working paper</xsl:when>
+              <xsl:otherwise><xsl:value-of select="$type"></xsl:value-of></xsl:otherwise>
             </xsl:choose>
           </span>
         </h4>
@@ -67,16 +70,17 @@
   </xsl:template>
   
   <xsl:template match="oe:bibliographic">
+    <xsl:variable name="url" select="oe:get-display-url(..)"/>
     <h4>
       <a>
-        <xsl:attribute name="href"><xsl:value-of select="concat('/display/', ../dt:identifier)"></xsl:value-of></xsl:attribute>
+        <xsl:attribute name="href"><xsl:value-of select="$url"></xsl:value-of></xsl:attribute>
         <xsl:value-of select="dt:title"/>
       </a>
     </h4>
     <xsl:if test="oe:subTitle">
       <h5>
         <a>
-          <xsl:attribute name="href"><xsl:value-of select="concat('/display/', ../dt:identifier)"></xsl:value-of></xsl:attribute>
+          <xsl:attribute name="href"><xsl:value-of select="$url"></xsl:value-of></xsl:attribute>
           <xsl:value-of select="oe:subTitle"/>
         </a>
       </h5>
@@ -121,5 +125,20 @@
   </xsl:template>
   
   <xsl:template match="node()" as="item()*"/>
+  
+  <xsl:function name="oe:get-display-url" as="xs:string">
+    <xsl:param name="item" as="node()"/>
+    <xsl:variable name="id">
+      <xsl:choose>
+        <xsl:when test="$item/@type = ('book','edition')">
+          <xsl:value-of select="data($item/dt:identifier)"></xsl:value-of>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    <xsl:value-of select="concat('/display/',$id)"></xsl:value-of>
+  </xsl:function>
   
 </xsl:stylesheet>

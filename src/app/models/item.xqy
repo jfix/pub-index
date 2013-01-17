@@ -30,9 +30,21 @@ as empty-sequence()
 };
 
 declare function module:get-item($id as xs:string)
-as element(oe:item)
+as element(oe:item)?
 {
   collection("metadata")[.//dt:identifier = $id]/oe:item
+};
+
+declare function module:get-item-type($id as xs:string)
+as xs:string?
+{
+  cts:element-attribute-values(
+    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","item")
+    ,fn:QName("","type")
+    ,()
+    ,()
+    ,cts:element-value-query(fn:QName("http://purl.org/dc/terms/","identifier"), $id)
+  )
 };
 
 declare function module:get-item-translations($item as element(oe:item))
@@ -71,6 +83,20 @@ as element(oe:parents)
       </item>
     }
   </parents>
+};
+
+declare function module:get-item-parent-id($id as xs:string)
+as xs:string?
+{
+  cts:element-attribute-values(
+    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+    ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+    ,(),()
+    ,cts:and-query((
+      cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),fn:QName("","type"),"=",("journal","series","completeversion","periodical"))
+      ,cts:element-range-query(fn:QName("http://purl.org/dc/terms/","identifier"),"=",$id)
+    ))
+  )[1]
 };
 
 declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $showAbstract as xs:boolean?)
@@ -122,6 +148,39 @@ as element(oe:toc)
             ()
         }
       </item>
+    }
+  </toc>
+};
+
+
+declare function module:get-serial-toc($id as xs:string, $showAbstract as xs:boolean?)
+as element(oe:toc)
+{
+  let $type := module:get-item-type($id)
+  let $rtype := if($type = 'journal') then 'journal' else 'series'
+  let $ctype := if($type = 'journal') then 'article' else 'workingpaper'
+  return
+  <toc xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+    {
+      for $item in cts:search(collection($ctype)/oe:item,
+                    cts:element-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),
+                      cts:and-query((
+                        cts:element-attribute-range-query(
+                          fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                          ,fn:QName("","type")
+                          ,"="
+                          ,$rtype
+                        )
+                        ,cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                          ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+                          ,"="
+                          ,$id
+                        )
+                      ))
+                    )
+                  )
+      order by $item/dt:available descending
+      return $item
     }
   </toc>
 };

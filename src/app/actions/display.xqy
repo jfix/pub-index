@@ -10,17 +10,34 @@ declare namespace dt = "http://purl.org/dc/terms/";
 declare variable $id as xs:string := xdmp:get-request-field("id");
 declare variable $format as xs:string := utils:get-output-format();
 
-let $model := mi:get-item($id),
-    $model := <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
-      {$model/@*}
-      {$model/*}
-      {mi:get-item-parent($model)}
-      {mi:get-item-translations($model)}
-      {mi:get-item-toc($id,true(),true())}
-    </item>
+declare variable $supported as xs:string* := ('book','edition','journal','workingpaperseries');
+
+let $model := mi:get-item($id)
+let $format := if($model/@type = $supported) then $format else 'xml'
+
+let $model :=
+    if($format eq 'html') then
+      <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+        {$model/@*}
+        {$model/*}
+        {mi:get-item-translations($model)}
+        {
+          if($model/@type = ('book','edition')) then (
+            mi:get-item-parent($model)
+            ,mi:get-item-toc($id,true(),true())
+          )
+          else (
+            mi:get-serial-toc($id,true())
+          )
+        }
+      </item>
+    else
+      $model
 
 return
-  if($format eq 'html') then
+  if(not($model)) then
+    (xdmp:set-response-code(404,"Not Found"),xdmp:set-response-content-type("text/plain"),'Not Found')
+  else if($format eq 'html') then
     (xdmp:set-response-content-type("text/html")
      ,xdmp:invoke(
         "/app/views/display.html.xqy"

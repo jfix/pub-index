@@ -196,7 +196,15 @@ as element()?
     
   else if ($type eq "pubtype") then
     <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}">
-      <label xml:lang="en">{if($id eq 'book') then 'Book' else if($id eq 'edition') then 'Serial' else 'Unknown'}</label>
+      <label xml:lang="en">
+      {
+        if($id eq 'book') then 'Book'
+        else if($id eq 'edition') then 'Serial'
+        else if($id eq 'article') then 'Article'
+        else if($id eq 'workingpaper') then 'Working paper'
+        else 'Unknown'
+      }
+      </label>
       <label xml:lang="fr">{$id}</label>
     </itemtype>
     
