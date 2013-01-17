@@ -20,13 +20,13 @@
   </xsl:template>
   
   <xsl:template match="search:result" as="item()*">
-    <xsl:apply-templates select="search:snippet"/>
+    <xsl:apply-templates select="oe:item"/>
   </xsl:template>
   
-  <xsl:template match="search:snippet" as="item()*">
+  <xsl:template match="oe:item">
     <xsl:variable name="url" select="concat('/display/', dt:identifier)"/>
     
-    <xsl:variable name="type" select="oe:type/text()"/>
+    <xsl:variable name="type" select="@type"/>
     <xsl:variable name="title" select="(dt:title[xml:lang eq 'en'],dt:title)[1]/text()"/>
     <xsl:variable name="subtitle" select="(oe:subTitle[xml:lang eq 'en'],oe:subTitle)[1]/text()"/>
     <xsl:variable name="cover" select="(oe:coverImage/text(),'cover_not_yetm.jpg')[1]"/>
@@ -34,7 +34,7 @@
     <div class="row">
       <div class="span2">
         <h4 style="text-align:right;">
-          <span class="pubtype-label label {data($type)}" data-facet="pubtype" data-value="{$type}">
+          <span class="pubtype-label label {$type}" data-facet="pubtype" data-value="{$type}">
             <xsl:choose>
               <xsl:when test="$type eq 'book'">Book</xsl:when>
               <xsl:when test="$type eq 'edition'">Serial</xsl:when>
@@ -54,8 +54,7 @@
           <a href="{$url}"><img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/></a> 
         </xsl:if>
         <xsl:apply-templates select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"></xsl:apply-templates>
-        <p><xsl:apply-templates select="search:match"/></p>
-        <p style="font-size: 0.9em; text-align: right;">
+        <p style="font-size: 0.9em; text-align: right; clear: both;">
           <span>Covered by this publication: </span>
           <span><xsl:apply-templates select="dt:subject"/></span>
           <xsl:if test="oe:country">
@@ -65,18 +64,6 @@
         <hr/>
       </div>  
     </div>
-  </xsl:template>
-  
-  <xsl:template match="search:match" as="item()*">
-    <xsl:apply-templates select="child::node()"/>
-  </xsl:template>
-  
-  <xsl:template match="search:highlight" as="item()*">
-    <span class="search-result-highlight"><xsl:value-of select="."/></span>
-  </xsl:template>
-  
-  <xsl:template match="node()" as="item()*">
-    <xsl:value-of select="xdmp:tidy(.)[2]"/>
   </xsl:template>
   
   <xsl:template match="oe:bibliographic">
@@ -93,6 +80,15 @@
           <xsl:value-of select="oe:subTitle"/>
         </a>
       </h5>
+    </xsl:if>
+    <xsl:if test="dt:abstract">
+      <xsl:variable name="abstract" select="data(xdmp:tidy(dt:abstract/text())[2]//*:body)" as="xs:string?"/>
+      <xsl:variable name="abstract-stripped" as="xs:string?">
+        <xsl:if test="string-length($abstract) > 260">
+          <xsl:value-of select="concat(normalize-space(substring($abstract,1,250)), '...')"/>
+        </xsl:if>
+      </xsl:variable>
+      <p><xsl:value-of select="($abstract-stripped,$abstract)[1]"/></p>
     </xsl:if>
   </xsl:template>
   
@@ -123,5 +119,7 @@
       <xsl:value-of select="data($countries/oe:country[@id = data(current())]/oe:label[@xml:lang = 'en'])"/>
     </span>
   </xsl:template>
+  
+  <xsl:template match="node()" as="item()*"/>
   
 </xsl:stylesheet>
