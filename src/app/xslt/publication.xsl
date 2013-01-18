@@ -164,9 +164,9 @@
   
   <!-- display the abstract -->
   <xsl:template match="dt:abstract">
-    <p class="abstract">
-      <xsl:value-of select="xdmp:tidy(.)[2]"/>
-    </p>
+    <div class="abstract">
+      <xsl:copy-of select="xdmp:tidy(.)[2]//*:body"></xsl:copy-of>
+    </div>
   </xsl:template>
   
   <xsl:template match="dt:identifier"/>
