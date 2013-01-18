@@ -102,48 +102,51 @@ as xs:string?
 declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $showAbstract as xs:boolean?)
 as element(oe:toc)
 {
-  let $types := ('chapter', if ($showTg) then ('table','graph') else ())
-  return
+  let $query := cts:and-query((
+                  cts:element-attribute-range-query(
+                    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","item")
+                    ,fn:QName("","type")
+                    ,"!="
+                    ,"summary"
+                  )
+                  ,cts:element-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),
+                    cts:and-query((
+                      cts:element-attribute-range-query(
+                        fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                        ,fn:QName("","type")
+                        ,"="
+                        ,"completeversion"
+                      )
+                      ,cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                        ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+                        ,"="
+                        ,$id
+                      )
+                    ))
+                  )
+                  ,cts:not-query(cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),fn:QName("","type"),"=","chapter"))
+                ))
+  let $rootids := cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"), (), (), $query)
+
+return
   <toc xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
     {
-      for $ipo in collection("metadata")/oe:item[@type = $types]/oe:relation[@type = 'completeversion' and @rdf:resource = $id and not(../oe:relation[@type = 'chapter']) ]
-      let $comp := $ipo/..
-      order by xs:integer($ipo/@order) ascending
+      for $comp in cts:search(collection("metadata")/oe:item, cts:element-range-query(fn:QName("http://purl.org/dc/terms/","identifier"), "=", $rootids))
+      order by xs:integer(($comp/oe:relation[@type = "completeversion"])[1]/@order) ascending
       return <item>
-        {attribute type { $comp/@type }}
-        {$comp/dt:identifier}
-        {
-          for $bbl in $comp/oe:bibliographic
-          return
-            <bibliographic>
-              {$bbl/@*}
-              {$bbl/dt:title}
-              {if ($showAbstract) then $bbl/dt:abstract else ()}
-            </bibliographic>
-        }
-        {$comp/oe:doi}
-        {$comp/oe:freepreview}
+        {$comp/@*}
+        {$comp/*}
         {
           if ($showTg) then
-            for $ipo2 in collection("metadata")/oe:item[@type = ('table','graph')]/oe:relation[@type = 'chapter' and @rdf:resource = $comp/dt:identifier]
-            let $tg  := $ipo2/..
-            order by xs:integer($ipo2/@order) ascending
-            return
-              <item>
-                {attribute type { $tg/@type }}
-                {$tg/dt:identifier}
-                {
-                  for $bbl in $tg/oe:bibliographic
-                  return
-                    <bibliographic>
-                      {$bbl/@*}
-                      {$bbl/dt:title}
-                      {if ($showAbstract) then $bbl/dt:abstract else ()}
-                    </bibliographic>
-                }
-                {$tg/oe:doi}
-                {$tg/oe:freepreview}
-              </item>
+            for $comp2 in cts:search(collection("metadata")/oe:item,
+                            cts:element-attribute-range-query(
+                            fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                            ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+                            ,"="
+                            ,$comp/dt:identifier
+                          ))
+            order by xs:integer(($comp/oe:relation[@type = "completeversion"])[1]/@order) ascending
+            return $comp2
           else
             ()
         }
@@ -151,7 +154,6 @@ as element(oe:toc)
     }
   </toc>
 };
-
 
 declare function module:get-serial-toc($id as xs:string, $showAbstract as xs:boolean?)
 as element(oe:toc)
