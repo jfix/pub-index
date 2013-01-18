@@ -8,6 +8,7 @@ declare default element namespace "http://www.w3.org/1999/xhtml";
 declare namespace ex = "exhibit";
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
+declare namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
 declare variable $model as node()? external;
 declare variable $facets as node()? external;
@@ -19,18 +20,24 @@ declare function local:render-latests-widget($items as element()*)
     <!-- Carousel items -->
     <div class="carousel-inner">
       {
-        for $b at $i in $items
+        for $item at $idx in $items
         return
-          if($i mod 4 eq 1) then
+          if($idx mod 4 eq 1) then
             <div>
-              { attribute class { if($i eq 1) then "item active" else "item" } }
+              { attribute class { if($idx eq 1) then "item active" else "item" } }
               <ul>
                 {
-                  for $book in $items[$i to $i+3]
-                  return
-                    <li><a href="/display/{$book/dt:identifier}" title="{$book/dt:title}">
-                      <img src="http://images.oecdcode.org/covers/100/{$book/oe:coverImage}" alt=""/>
-                    </a></li>
+                  for $item in $items[$idx to $idx+3]
+                    let $uri-id as xs:string :=
+                      if($item/@type = ('book','edition')) then
+                        data($item/dt:identifier)
+                      else
+                        ($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]
+                    let $bbl := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
+                    return
+                      <li><a href="/display/{$uri-id}" title="{$bbl/dt:title}">
+                        <img src="http://images.oecdcode.org/covers/100/{$item/oe:coverImage}" alt=""/>
+                      </a></li>
                 }
               </ul>
             </div>
