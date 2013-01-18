@@ -139,12 +139,22 @@ return
         {
           if ($showTg) then
             for $comp2 in cts:search(collection("metadata")/oe:item,
-                            cts:element-attribute-range-query(
-                            fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
-                            ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
-                            ,"="
-                            ,$comp/dt:identifier
-                          ))
+                            cts:element-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),
+                              cts:and-query((
+                                cts:element-attribute-range-query(
+                                  fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                                  ,fn:QName("","type")
+                                  ,"="
+                                  ,"chapter"
+                                )
+                                ,cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                                  ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+                                  ,"="
+                                  ,$comp/dt:identifier
+                                )
+                              ))
+                            )
+                          )
             order by xs:integer(($comp/oe:relation[@type = "completeversion"])[1]/@order) ascending
             return $comp2
           else
