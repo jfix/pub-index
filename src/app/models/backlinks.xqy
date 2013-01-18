@@ -1,5 +1,5 @@
 xquery version "1.0-ml";
-module namespace m = "lib-backlinks";
+module namespace module = "http://oecd.org/pi/models/backlinks";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
@@ -12,17 +12,17 @@ declare variable $cache-expire as xs:dayTimeDuration := xs:dayTimeDuration("P7D"
 (:
   Get backlinks for the given oecd item.
 :)
-declare function m:get-item-backlinks($item as element())
+declare function module:get-item-backlinks($item as element())
 as element()
 {
-  m:get-backlinks(string-join($item//dt:subject, ' '))
+  module:get-backlinks(string-join($item//dt:subject, ' '))
 };
 
 (:
   Get backlinks for the given search terms.
   Search results are cached in the marklogic database.
 :)
-declare function m:get-backlinks($terms as xs:string)
+declare function module:get-backlinks($terms as xs:string)
 as element()
 {
   let $bl := collection("backlinks")[.//dt:identifier = $terms]/*
@@ -30,13 +30,13 @@ as element()
   return
     if($bl) then
       if( xs:dayTimeDuration(current-dateTime() - fn:data(xdmp:document-properties(base-uri($bl))//pr:last-modified)) gt $cache-expire ) then
-        let $r := m:query-external-engine($terms),
+        let $r := module:query-external-engine($terms),
           $tmp := xdmp:document-insert(base-uri($bl), $r, (), "backlinks")
         return $r
       else
         $bl
     else
-      let $r := m:query-external-engine($terms),
+      let $r := module:query-external-engine($terms),
         $tmp := xdmp:document-insert(concat("/backlinks/", xdmp:hmac-sha1("oecd", $terms), ".xml" ), $r, (), "backlinks")
       return $r
 };
@@ -44,7 +44,7 @@ as element()
 (:
   Query an external search engine for the given terms.
 :)
-declare private function m:query-external-engine($terms as xs:string)
+declare private function module:query-external-engine($terms as xs:string)
 as element()
 {
   <backlinks xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:dt="http://purl.org/dc/terms/">

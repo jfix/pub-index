@@ -2,13 +2,13 @@ xquery version "1.0-ml";
 
 import module namespace json="http://marklogic.com/xdmp/json" at "/MarkLogic/json/json.xqy";
 import module namespace mi = "http://oecd.org/pi/models/item" at "/app/models/item.xqy";
-import module namespace utils = "lib-utils" at "/app/models/utils.xqy";
+import module namespace mu = "http://oecd.org/pi/models/utils" at "/app/models/utils.xqy";
 
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
 
 declare variable $id as xs:string := xdmp:get-request-field("id");
-declare variable $format as xs:string := utils:get-output-format();
+declare variable $format as xs:string := mu:get-output-format();
 
 declare variable $supported as xs:string* := ('book','edition','journal','workingpaperseries');
 

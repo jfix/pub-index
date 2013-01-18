@@ -1,11 +1,8 @@
 xquery version "1.0-ml";
-
-module namespace lib-search = "lib-search";
+module namespace module = "http://oecd.org/pi/models/search";
 
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
 import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
-
-import module namespace utils = "lib-utils" at "/app/models/utils.xqy";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
@@ -15,11 +12,11 @@ declare namespace dt = "http://purl.org/dc/terms/";
 declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
 declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
 
-declare variable $qtext as xs:string := functx:trim(concat($term, " ", lib-search:deserializeFilter($in)));
+declare variable $qtext as xs:string := functx:trim(concat($term, " ", module:deserializeFilter($in)));
 declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
 declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
 
-declare function lib-search:deserializeFilter($inFilter as xs:string)
+declare function module:deserializeFilter($inFilter as xs:string)
 as xs:string
 {
   let $facet := fn:string-join(
@@ -37,7 +34,7 @@ as xs:string
   return $facet
 };
 
-declare function lib-search:search( 
+declare function module:search( 
   $qtext as xs:string,
   $start-from as xs:integer
 ) as element(search:response)
@@ -78,19 +75,19 @@ declare function lib-search:search(
     ,$start-from)
 };
 
-declare function lib-search:get-latest-items($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
+declare function module:get-latest-items($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
 as element(oe:item)*
 {
-  let $ia := lib-search:get-latest-items('article', $qta)
-  let $iw := lib-search:get-latest-items('workingpaper', $qtw)
+  let $ia := module:get-latest-items('article', $qta)
+  let $iw := module:get-latest-items('workingpaper', $qtw)
   return (
-    lib-search:get-latest-items('book', $qtb + ($qta - count($ia)) + ($qtw - count($iw)))
+    module:get-latest-items('book', $qtb + ($qta - count($ia)) + ($qtw - count($iw)))
     ,$ia
     ,$iw
   )
 };
 
-declare function lib-search:get-latest-items($item as xs:string, $qt as xs:integer)
+declare function module:get-latest-items($item as xs:string, $qt as xs:integer)
 as element(oe:item)*
 {
   (

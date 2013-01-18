@@ -1,10 +1,10 @@
 xquery version "1.0-ml";
 
-import module namespace s = "lib-search" at "/app/models/search.xqy";
-import module namespace f = "lib-facets" at "/app/models/facets.xqy";
+import module namespace ms = "http://oecd.org/pi/models/search" at "/app/models/search.xqy";
+import module namespace mf = "http://oecd.org/pi/models/facets" at "/app/models/facets.xqy";
 
 let $model := <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-  {s:get-latest-items(8,2,2)}
+  {ms:get-latest-items(8,2,2)}
 </latests>
 
 return
@@ -14,7 +14,7 @@ return
       ,(
         xs:QName("ajax"),fn:false()
         ,xs:QName("model"),$model
-        ,xs:QName("facets"),f:facets("")
+        ,xs:QName("facets"),mf:facets("")
       )
     )
   )

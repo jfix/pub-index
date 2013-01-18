@@ -1,11 +1,9 @@
 xquery version "1.0-ml";
-
-module namespace module = "lib-facets";
+module namespace module = "http://oecd.org/pi/models/facets";
 
 import module namespace search = "http://marklogic.com/appservices/search" at "/MarkLogic/appservices/search/search.xqy";
 import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/functx-1.0-nodoc-2007-01.xqy";
-import module namespace utils = "lib-utils" at "/app/models/utils.xqy";
-    
+
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 declare variable $facets-options as element() :=

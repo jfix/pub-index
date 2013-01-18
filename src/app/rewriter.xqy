@@ -1,12 +1,6 @@
 xquery version "1.0-ml";
 
-declare default function namespace "http://www.w3.org/2005/xpath-functions";
-(:
-  /[type]/[doi] => /app.xqy?id=[type]/[doi]
-:)
-
-import module namespace utils = "lib-utils"
-    at "/app/models/utils.xqy";
+import module namespace mu = "http://oecd.org/pi/models/utils" at "/app/models/utils.xqy";
 
 declare function local:construct-new($url as xs:string,$pattern as xs:string,$view as xs:string)
 as xs:string
@@ -55,6 +49,6 @@ let $new-url :=
   (: by default try to resolve url passed in :)
   else $url
   
-let $_log := utils:log(concat("REWRITER: ", $new-url))
+let $_log := mu:log(concat("REWRITER: ", $new-url))
 
 return $new-url
