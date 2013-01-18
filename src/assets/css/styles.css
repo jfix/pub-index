@@ -132,10 +132,11 @@ div.exhibit-views-header {
 #metadata .links { margin-top: 0.9em; }
 #metadata .links a { margin-right: 1em; }
 
-div.abstract { margin: 1em 1em 3em; }
+div.abstract { margin: 1em; }
 div.abstract > p { margin: 0 0 0.5em; }
 
-#toc-actions { margin-top: -10px; }
+#toc-actions { margin-bottom: 5px; }
+#toc-root { clear: both; }
 
 .toc { list-style: none; margin: 0;  }
 .toc > li { padding: 0; border-top: 1px solid #ddd; }
@@ -162,6 +163,8 @@ div.abstract > p { margin: 0 0 0.5em; }
 .no-js .toc-sublist { display: block; }
 .no-js .toc-abstract { display: block; }
 
+#backlinks { font-size: 0.9em; padding: 0 1em; }
+#backlinks dd { margin-bottom: 0.5em; }
 /* 
   Zurb Foundation's reset styles contain a max-width: 100% that interfere with
   google maps bubble display.

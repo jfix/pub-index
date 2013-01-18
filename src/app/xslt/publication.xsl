@@ -177,7 +177,6 @@
         <xsl:if test="oe:item//dt:abstract"><button class="btn" data-toggle=".toc-abstract"><i class="icon-eye-open"></i> Abstracts</button></xsl:if>
         <xsl:if test="oe:item/oe:item"><button class="btn" data-toggle=".toc-sublist"><i class="icon-eye-open"></i> Tables/Graphs</button></xsl:if>
       </div>
-      <h4>Table of Contents</h4>
       <ul id="toc-root" class="toc">
         <xsl:apply-templates select="oe:item"></xsl:apply-templates>
       </ul>
