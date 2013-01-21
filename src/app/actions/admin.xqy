@@ -7,6 +7,7 @@ declare namespace dt = "http://purl.org/dc/terms/";
 
 declare variable $key := xdmp:get-request-field("key");
 declare variable $action := xdmp:get-request-field("action");
+declare variable $database :=xdmp:get-request-field("database", "");
 
 declare private function local:add()
 {
@@ -28,7 +29,25 @@ declare private function local:add()
       fn:error((),"Malformed XML input")
 };
 
-(: actions handler :)
+(: This function attempts to clear all forests for the database name provided
+ : Yes, this is very dangerous! Don't use unless you know what you are doing.
+ : You have been warned! Double-warned!!
+ :)
+declare private function local:clear-forest(
+    $database as xs:string
+)
+{
+    let $forests := xdmp:database-forests(xdmp:database($database))
+    return
+        if(fn:empty($forests)) then
+            fn:error((), fn:concat("No forests found for database: ", $database))
+        else
+            (xdmp:forest-clear($forests)
+            ,xdmp:log(fn:concat("********* Cleared forests ", fn:string-join(xs:string($forests), ", "), " for database: ", $database)))
+            
+};
+
+(: action handlers :)
 
 if(not($key)) then
   xdmp:set-response-code(401,"Unauthorized")
@@ -36,5 +55,7 @@ else if ($key ne xdmp:hmac-sha256('pacps', xs:string(xdmp:server()))) then
   xdmp:set-response-code(403,"Forbidden")
 else if ($action eq "add") then
   local:add()
+else if ($action eq "clear-forest" and string-length($database) > 0) then
+  local:clear-forest($database)
 else
   xdmp:set-response-code(400,"Bad Request")
