@@ -14,31 +14,7 @@ declare variable $id as xs:string := ($model//dt:identifier)[1];
 let $params := map:map(),
       $void := map:put($params, "title", string(($model//dt:title)[1])),
       $void := map:put($params, "scripts",(
-        <script type="text/javascript">
-          $(function() {{
-            $('#backlinks').load('/app/actions/backlinks.xqy?id={xdmp:url-encode($id)}');
-            $('#toc-actions .btn').each(function() {{
-              var $btn = $(this);
-              var toggle = $btn.data('toggle');
-              if(toggle) {{
-                var $targets = $('#toc-root').find(toggle);
-                var $icon = $btn.children('i');
-                $btn.click(function() {{
-                  $targets.fadeToggle();
-                  $btn.toggleClass('active');
-                  if($icon.hasClass('icon-eye-open')) {{
-                    $icon.removeClass('icon-eye-open');
-                    $icon.addClass('icon-eye-close');
-                  }}
-                  else {{
-                    $icon.removeClass('icon-eye-close');
-                    $icon.addClass('icon-eye-open');
-                  }}
-                }});
-              }}
-            }});
-          }});
-        </script>
+        <script src="/assets/js/oecd-display.js"></script>
       )),
       $void := map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/publication.xsl", $model))
 
