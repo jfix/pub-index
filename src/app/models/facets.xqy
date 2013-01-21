@@ -39,7 +39,6 @@ declare function module:facets($qtext as xs:string)
 as element(search:response)
 {
   let $query := search:parse($qtext, $facets-options)
-  let $all-facets := search:search("", $facets-options)
   
   return
     <response xmlns="http://marklogic.com/appservices/search">
