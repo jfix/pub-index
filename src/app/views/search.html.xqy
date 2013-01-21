@@ -139,7 +139,7 @@ as element(div)
     <div class="span9">
       { local:render-results-selected() }
       { local:render-results-header() }
-      { xdmp:xslt-invoke("/app/xslt/search-results.xsl", $model) }
+      { xdmp:xslt-invoke("/app/views/xslt/search-results.xsl", $model) }
       { local:render-results-footer() }
     </div>
   </div>

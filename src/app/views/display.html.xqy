@@ -40,7 +40,7 @@ let $params := map:map(),
           }});
         </script>
       )),
-      $void := map:put($params, "content", xdmp:xslt-invoke("/app/xslt/publication.xsl", $model))
+      $void := map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/publication.xsl", $model))
 
 return
   layout:render($params)

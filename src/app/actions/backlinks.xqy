@@ -11,5 +11,5 @@ let $model :=  mb:get-item-backlinks(collection("metadata")[.//dt:identifier = $
 
 return
   (xdmp:set-response-content-type("text/html")
-   ,xdmp:xslt-invoke("/app/xslt/backlinks.xsl", $model)
+   ,xdmp:xslt-invoke("/app/views/xslt/backlinks.xsl", $model)
   )
