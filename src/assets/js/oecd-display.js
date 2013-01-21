@@ -3,6 +3,15 @@ $(function() {
 var id = new RegExp("([^/])+(\\?|$)","").exec(window.location.href)[0];
 $('#backlinks').load('/app/actions/backlinks.xqy?id='+id);
 
+$('#toc-root').on('click', '.toc-row-header', function onClick_TocRowHeader(event) { 
+  if(event.target.nodeName != 'A') {
+    var $target = $(this).find('a.icon-download-alt');
+    if($target) {
+      $target[0].click();
+    }
+  }
+});
+
 $('#toc-actions .btn').each(function() {
   var $btn = $(this);
   var toggle = $btn.data('toggle');

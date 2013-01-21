@@ -142,6 +142,8 @@ div.abstract > p { margin: 0 0 0.5em; }
 li.toc-row { padding: 0.5em; border-top: 1px solid #ddd; }
 li.toc-row:hover { background-color: #eaeaea; }
 
+div.toc-row-header { cursor: pointer }
+
 #toc-root > .toc-row > .toc-row-header > .links { margin-right: 0.5em; }
 div.toc-row-header > .links { visibility: hidden; }
 li.toc-row:hover > .toc-row-header > .links { visibility: visible; }

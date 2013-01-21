@@ -236,7 +236,7 @@
   
   <xsl:template name="toc-link">
     <xsl:param name="icon"/>
-    <a href="{@rdf:resource}" target="_blank"><i class="{$icon}"></i></a>
+    <a href="{@rdf:resource}" target="_blank" class="{$icon}"></a>
   </xsl:template>
   
   <xsl:template match="oe:toc//dt:abstract">
