@@ -185,26 +185,25 @@
   
   <xsl:template match="oe:toc//oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
-    <li>
-      <div>
-        <div class="links pull-right">
-          <xsl:apply-templates select="oe:freepreview"/>
-          <xsl:apply-templates select="oe:bookshop"/>
-          <xsl:apply-templates select="oe:doi"/>
+    <li class="toc-row">
+        <div class="toc-row-header">
+          <div class="links pull-right">
+            <xsl:apply-templates select="oe:freepreview"/>
+            <xsl:apply-templates select="oe:bookshop"/>
+            <xsl:apply-templates select="oe:doi"/>
+          </div>
+          <xsl:choose>
+            <xsl:when test="@type eq 'chapter'"><span class="toc-icon"><i class="icon-file"></i></span></xsl:when>
+            <xsl:when test="@type eq 'table'"><span class="toc-icon"><i class="icon-th-list"></i></span></xsl:when>
+            <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>
+            <xsl:otherwise>
+              <xsl:if test="dt:available">
+                <span class="toc-pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
+              </xsl:if>
+            </xsl:otherwise>
+          </xsl:choose>
+          <span class="toc-title"><xsl:value-of select="$biblio/dt:title"/></span>
         </div>
-        
-        <xsl:choose>
-          <xsl:when test="@type eq 'chapter'"><i class="icon-file"></i></xsl:when>
-          <xsl:when test="@type eq 'table'"><i class="icon-th-list"></i></xsl:when>
-          <xsl:when test="@type eq 'graph'"><i class="icon-signal"></i></xsl:when>
-          <xsl:otherwise>
-            <xsl:if test="dt:available">
-              <span class="toc-pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
-            </xsl:if>
-          </xsl:otherwise>
-        </xsl:choose>
-        <xsl:value-of select="$biblio/dt:title"/>
-        
         <div class="toc-details">
           <xsl:apply-templates select="$biblio/dt:abstract"/>
           
@@ -214,7 +213,6 @@
             </ul>
           </xsl:if>
         </div>
-      </div>
     </li>
   </xsl:template>
   
