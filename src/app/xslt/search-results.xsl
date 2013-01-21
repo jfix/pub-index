@@ -86,13 +86,8 @@
       </h5>
     </xsl:if>
     <xsl:if test="dt:abstract">
-      <xsl:variable name="abstract" select="data(xdmp:tidy(dt:abstract/text())[2]//*:body)" as="xs:string?"/>
-      <xsl:variable name="abstract-stripped" as="xs:string?">
-        <xsl:if test="string-length($abstract) > 260">
-          <xsl:value-of select="concat(normalize-space(substring($abstract,1,250)), '...')"/>
-        </xsl:if>
-      </xsl:variable>
-      <p><xsl:value-of select="($abstract-stripped,$abstract)[1]"/></p>
+      <xsl:variable name="abstract" select="data(dt:abstract)" as="xs:string?"/>
+      <p><xsl:value-of select="if (string-length($abstract) > 260) then concat(normalize-space(substring($abstract,1,250)), '...') else $abstract"/></p>
     </xsl:if>
   </xsl:template>
   

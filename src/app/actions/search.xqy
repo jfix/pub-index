@@ -35,7 +35,7 @@ declare function local:render-opensearch-rss($results)
         else
           ($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]
       let $biblio := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
-      let $abstract := data(xdmp:tidy($biblio/dt:abstract)[2]//*:body)
+      let $abstract := data($biblio/dt:abstract)
       return
         <item>
           <guid>{ data($item/dt:identifier) }</guid>

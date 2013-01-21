@@ -17,7 +17,7 @@ as empty-sequence()
     if($id and $type) then
       xdmp:document-insert(
         fn:concat("/metadata/",$type,"/",$id,".xml")
-        ,$item
+        ,xdmp:xslt-invoke("/app/models/xslt/item-cleanup.xsl", $item)
         ,()
         ,(
           "metadata"

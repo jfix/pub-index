@@ -165,7 +165,7 @@
   <!-- display the abstract -->
   <xsl:template match="dt:abstract">
     <div class="abstract">
-      <xsl:copy-of select="xdmp:tidy(.)[2]//*:body"></xsl:copy-of>
+      <xsl:copy-of select="child::node()" copy-namespaces="no"/>
     </div>
   </xsl:template>
   
@@ -241,7 +241,7 @@
   
   <xsl:template match="oe:toc//dt:abstract">
     <p class="toc-abstract">
-      <xsl:value-of select="xdmp:tidy(.)[2]"/>
+      <xsl:value-of select="."/>
     </p>
   </xsl:template>
   
