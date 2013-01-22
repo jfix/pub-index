@@ -70,8 +70,7 @@ as element(oe:parents)
     return
       <item type="{$parent/@type}">
         {$parent/dt:identifier}
-        {$parent/oe:doi}
-        {$parent/oe:bookshop}
+        {$parent/oe:link}
         {
           for $bbl in $parent/oe:bibliographic
           return

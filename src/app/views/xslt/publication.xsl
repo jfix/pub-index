@@ -50,11 +50,11 @@
         <xsl:apply-templates select="oe:translations"/>
         
         <div class="links">
-          <xsl:apply-templates select="oe:freepreview"/>
-          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:doi"/>
-          <xsl:apply-templates select="oe:doi"/>
-          <xsl:apply-templates select="oe:bookshop"/>
-          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:bookshop"/>
+          <xsl:apply-templates select="oe:link[@type = 'freepreview']"/>
+          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:link[@type = 'doi']"/>
+          <xsl:apply-templates select="oe:link[@type = 'doi']"/>
+          <xsl:apply-templates select="oe:link[@type = 'bookshop']"/>
+          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:link[@type = 'bookshop']"/>
         </div>
       </div>
       
@@ -79,19 +79,19 @@
   
   <xsl:template match="oe:parents//oe:bibliographic">
     <h4 class="series">
-      <a href="{../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="dt:title"/></a>
+      <a href="{../oe:link[@type = 'doi']/@rdf:resource}" target="_blank"><xsl:value-of select="dt:title"/></a>
     </h4>  
   </xsl:template>
   
   <xsl:template match="dt:title">
     <h3 class="title">
-      <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
+      <a href="{../../oe:link[@type = 'doi']/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
     </h3>
   </xsl:template>
   
   <xsl:template match="oe:subTitle">
     <h4 class="subtitle">
-      <a href="{../../oe:doi/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
+      <a href="{../../oe:link[@type = 'doi']/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
     </h4>
   </xsl:template>
   
@@ -111,7 +111,7 @@
   
   <xsl:template match="oe:upcomingEdition">
     <div>
-      <span>Next edition: </span><a href="{oe:doi/@rdf:resource}" target="_blank" class="pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn] [Y]')"/></a>
+      <span>Next edition: </span><a href="{oe:link[@type = 'doi']/@rdf:resource}" target="_blank" class="pubdate"><xsl:value-of select="format-dateTime(oe:nextEditionDate, '[D] [MNn] [Y]')"/></a>
     </div>
   </xsl:template>
   
@@ -131,19 +131,19 @@
     </a>
   </xsl:template>
   
-  <xsl:template match="oe:freepreview">
+  <xsl:template match="oe:link[@type = 'freepreview']">
     <a class="btn" href="{@rdf:resource}" target="_blank">Read</a>
   </xsl:template>
   
-  <xsl:template match="oe:doi">
+  <xsl:template match="oe:link[@type = 'doi']">
     <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
   </xsl:template>
   
-  <xsl:template match="oe:parents//oe:doi">
+  <xsl:template match="oe:parents//oe:link[@type = 'doi']">
     <a class="btn" href="{@rdf:resource}" target="_blank">See previous editions</a>
   </xsl:template>
   
-  <xsl:template match="oe:item[@type != ('periodical','journal')]/oe:bookshop">
+  <xsl:template match="oe:item[@type != ('periodical','journal')]/oe:link[@type = 'bookshop']">
     <a class="btn" href="{@rdf:resource}" target="_blank">
       <xsl:choose>
         <xsl:when test="xs:dateTime(../dt:available) gt current-dateTime()">Pre-order this </xsl:when>
@@ -153,7 +153,7 @@
     </a>
   </xsl:template>
   
-  <xsl:template match="oe:item[@type = ('periodical','journal')]/oe:bookshop">
+  <xsl:template match="oe:item[@type = ('periodical','journal')]/oe:link[@type = 'bookshop']">
     <a class="btn" href="{@rdf:resource}" target="_blank">Subscribe</a>
   </xsl:template>
   
@@ -188,9 +188,9 @@
     <li class="toc-row">
         <div class="toc-row-header">
           <div class="links pull-right">
-            <xsl:apply-templates select="oe:freepreview"/>
-            <xsl:apply-templates select="oe:bookshop"/>
-            <xsl:apply-templates select="oe:doi"/>
+            <xsl:apply-templates select="oe:link[@type = 'freepreview']"/>
+            <xsl:apply-templates select="oe:link[@type = 'bookshop']"/>
+            <xsl:apply-templates select="oe:link[@type = 'doi']"/>
           </div>
           <xsl:choose>
             <xsl:when test="@type eq 'chapter'"><span class="toc-icon"><i class="icon-file"></i></span></xsl:when>
@@ -216,19 +216,19 @@
     </li>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:freepreview">
+  <xsl:template match="oe:toc//oe:link[@type = 'freepreview']">
     <xsl:call-template name="toc-link">
       <xsl:with-param name="icon">icon-eye-open</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
-  
-  <xsl:template match="oe:toc//oe:bookshop">
+ 
+  <xsl:template match="oe:toc//oe:link[@type = 'bookshop']">
     <xsl:call-template name="toc-link">
       <xsl:with-param name="icon">icon-shopping-cart</xsl:with-param>
     </xsl:call-template>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:doi">
+  <xsl:template match="oe:toc//oe:link[@type = 'doi']">
     <xsl:call-template name="toc-link">
       <xsl:with-param name="icon">icon-download-alt</xsl:with-param>
     </xsl:call-template>
