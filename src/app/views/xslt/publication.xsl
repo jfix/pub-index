@@ -255,14 +255,16 @@
   
   <xsl:template name="toc-link">
     <xsl:param name="link"/>
-    <xsl:variable name="icon">
-      <xsl:choose>
-        <xsl:when test="$link/@type eq 'freepreview'">icon-eye-open</xsl:when>
-        <xsl:when test="$link/@type eq 'bookshop'">icon-shopping-cart</xsl:when>
-        <xsl:when test="$link/@type eq 'doi'">icon-download-alt</xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-    <a href="{@rdf:resource}" target="_blank" class="{$icon}"></a>
+    <xsl:if test="$link">
+      <xsl:variable name="icon">
+        <xsl:choose>
+          <xsl:when test="$link/@type eq 'freepreview'">icon-eye-open</xsl:when>
+          <xsl:when test="$link/@type eq 'bookshop'">icon-shopping-cart</xsl:when>
+          <xsl:when test="$link/@type eq 'doi'">icon-download-alt</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <a href="{$link/@rdf:resource}" target="_blank" class="{$icon}"></a>
+    </xsl:if>
   </xsl:template>
   
   <xsl:template match="oe:toc//dt:abstract">
