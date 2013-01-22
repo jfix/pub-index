@@ -188,9 +188,15 @@
     <li class="toc-row">
         <div class="toc-row-header">
           <div class="links pull-right">
-            <xsl:apply-templates select="oe:link[@type = 'freepreview']"/>
-            <xsl:apply-templates select="oe:link[@type = 'bookshop']"/>
-            <xsl:apply-templates select="oe:link[@type = 'doi']"/>
+            <xsl:call-template name="toc-link">
+              <xsl:with-param name="link" select="oe:link[@type = 'freepreview']"/>
+            </xsl:call-template>
+            <xsl:call-template name="toc-link">
+              <xsl:with-param name="link" select="oe:link[@type = 'bookshop']"/>
+            </xsl:call-template>
+            <xsl:call-template name="toc-link">
+              <xsl:with-param name="link" select="oe:link[@type = 'doi']"/>
+            </xsl:call-template>
           </div>
           <xsl:choose>
             <xsl:when test="@type eq 'chapter'"><span class="toc-icon"><i class="icon-file"></i></span></xsl:when>
@@ -216,26 +222,15 @@
     </li>
   </xsl:template>
   
-  <xsl:template match="oe:toc//oe:link[@type = 'freepreview']">
-    <xsl:call-template name="toc-link">
-      <xsl:with-param name="icon">icon-eye-open</xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
- 
-  <xsl:template match="oe:toc//oe:link[@type = 'bookshop']">
-    <xsl:call-template name="toc-link">
-      <xsl:with-param name="icon">icon-shopping-cart</xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
-  
-  <xsl:template match="oe:toc//oe:link[@type = 'doi']">
-    <xsl:call-template name="toc-link">
-      <xsl:with-param name="icon">icon-download-alt</xsl:with-param>
-    </xsl:call-template>
-  </xsl:template>
-  
   <xsl:template name="toc-link">
-    <xsl:param name="icon"/>
+    <xsl:param name="link"/>
+    <xsl:variable name="icon">
+      <xsl:choose>
+        <xsl:when test="$link/@type eq 'freepreview'">icon-eye-open</xsl:when>
+        <xsl:when test="$link/@type eq 'bookshop'">icon-shopping-cart</xsl:when>
+        <xsl:when test="$link/@type eq 'doi'">icon-download-alt</xsl:when>
+      </xsl:choose>
+    </xsl:variable>
     <a href="{@rdf:resource}" target="_blank" class="{$icon}"></a>
   </xsl:template>
   
