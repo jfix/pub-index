@@ -17,6 +17,7 @@ declare variable $qtext as xs:string := $model/search:qtext;
 declare variable $total as xs:integer := $model/@total;
 declare variable $start as xs:integer := $model/@start;
 declare variable $page-length as xs:integer := $model/@page-length;
+declare variable $end as xs:integer := ($page-length + $start - 1);
 declare variable $total-time := round-half-to-even(seconds-from-duration($model/search:metrics/search:total-time), 2);
 
 declare private function local:render-results-selected()
@@ -47,7 +48,7 @@ as element(div)
           if ($total = 1) then
             "One result found."
           else
-            concat($total, " results found, showing ", $start, " to ", $page-length, ".")
+            concat($total, " results found, showing ", $start, " to ", $end, ".")
         }
         <label for="sortby" class="pull-right">Sort by:
           <select id="sortby" class="input-medium">
@@ -85,7 +86,7 @@ as element(div)
       if ($total = 1) then
         "One result found."
       else
-        concat($total, " results found in ", $total-time, " secs, showing ", $start, " to ", $page-length, ".")
+        concat($total, " results found in ", $total-time, " secs, showing ", $start, " to ", $end, ".")
     } 
     </div>
     <div class="span4">
