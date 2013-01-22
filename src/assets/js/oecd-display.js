@@ -33,4 +33,11 @@ $('#toc-actions .btn').each(function() {
   }
 });
 
+$('#summaries').on('change', function onChange_Summaries() {
+  var url = $(this).val();
+  if(url) {
+    window.open(url);
+  }
+});
+
 });

@@ -98,6 +98,38 @@ as xs:string?
   )[1]
 };
 
+declare function module:get-book-summaries($id as xs:string)
+as element(oe:summaries)
+{
+  let $ids := cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"), (), (),
+                cts:and-query((
+                  cts:element-attribute-range-query(
+                    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                    ,fn:QName("","type")
+                    ,"="
+                    ,"completeversion"
+                  )
+                  ,cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
+                    ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
+                    ,"="
+                    ,$id
+                  )
+                ))
+              )
+  
+  return
+    <summaries xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+    {
+      for $s in cts:search(collection("summary")/oe:item, cts:element-range-query(fn:QName("http://purl.org/dc/terms/","identifier"), "=", $ids))
+      return
+      <summary>
+        {$s/dt:language}
+        {$s/oe:link[@type = 'doi']}
+      </summary>
+    }
+    </summaries>
+};
+
 declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $showAbstract as xs:boolean?)
 as element(oe:toc)
 {

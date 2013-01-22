@@ -24,6 +24,7 @@ let $model :=
         {
           if($model/@type = ('book','edition')) then (
             mi:get-item-parent($model)
+            ,mi:get-book-summaries($id)
             ,mi:get-item-toc($id,true(),true())
           )
           else (

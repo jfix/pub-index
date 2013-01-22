@@ -172,6 +172,36 @@
   
   <xsl:template match="dt:identifier"/>
   
+  <xsl:template match="oe:summaries">
+    <xsl:variable name="nbsummaries" select="count(oe:summary)"/>
+    <xsl:if test="$nbsummaries > 0">
+      <div class="summaries well well-small">
+        <xsl:choose>
+          <xsl:when test="$nbsummaries = 1">
+            <xsl:variable name="summary" select="oe:summary"/>
+            This publication has been summarised in 
+            <a href="{$summary/oe:link[@type = 'doi']/@rdf:resource}">
+              <xsl:value-of select="string-join( data($languages//oe:language[@id = $summary/dt:language]/oe:label[@xml:lang = 'en']) ,'/')"/>
+            </a>.
+          </xsl:when>
+          <xsl:when test="$nbsummaries gt 1">
+            This publication has been summarised in <span><xsl:value-of select="$nbsummaries"/></span> languages:
+            <select id="summaries" class="input-medium">
+              <option value="">Please select one</option>
+              <xsl:apply-templates select="oe:summary">
+                <xsl:sort select="data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en'])" data-type="string"/>
+              </xsl:apply-templates>
+            </select>
+          </xsl:when>
+        </xsl:choose>
+      </div>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="oe:summary">
+    <option value="{oe:link[@type = 'doi']/@rdf:resource}"><xsl:value-of select="data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en'])"/></option>
+  </xsl:template>
+  
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
       <div id="toc-actions" class="btn-group pull-right">
