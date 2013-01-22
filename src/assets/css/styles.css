@@ -147,7 +147,7 @@ div.toc-row-header { cursor: pointer }
 #toc-root > .toc-row > .toc-row-header > .links { margin-right: 0.5em; }
 div.toc-row-header > .links { visibility: hidden; }
 li.toc-row:hover > .toc-row-header > .links { visibility: visible; }
-div.toc-row-header > .links i { margin-left: 1em; }
+div.toc-row-header > .links a { margin-left: .5em; }
 
 .toc-icon { display:block; float:left; margin-right: 0.5em;  }
 .toc-pubdate { display: block; float:left; width: 6em; padding-right: 1em; text-align: right; }
