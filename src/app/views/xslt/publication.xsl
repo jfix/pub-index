@@ -19,16 +19,22 @@
   <xsl:output method="xhtml"/>
   
   <xsl:variable name="languages" select="doc('/referential/languages.xml')/oe:languages"/>
-  <xsl:variable name="thumbnail-url-150">http://images.oecdcode.org/covers/150/</xsl:variable>
-  
+
   <!-- main template, creates page structure -->
   <xsl:template match="oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
     <div class="row">
       <xsl:if test="oe:coverImage">
+        <xsl:variable name="thumbnail-url">
+          <xsl:choose>
+            <xsl:when test="@type = 'workingpaperseries'">http://images.oecdcode.org/covers/wpseries/</xsl:when>
+            <xsl:otherwise>http://images.oecdcode.org/covers/150/</xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        
         <!-- thumbnail-->
         <div class="span3">
-          <xsl:apply-templates select="oe:coverImage"/>
+          <img src="{concat($thumbnail-url, oe:coverImage)}" class="img-polaroid cover"/>
         </div>
       </xsl:if>
       
@@ -155,11 +161,6 @@
   
   <xsl:template match="oe:item[@type = ('periodical','journal')]/oe:link[@type = 'bookshop']">
     <a class="btn" href="{@rdf:resource}" target="_blank">Subscribe</a>
-  </xsl:template>
-  
-  <!-- display the cover images if there is one -->
-  <xsl:template match="oe:coverImage">
-    <img src="{concat($thumbnail-url-150, .)}" class="img-polaroid cover"/>
   </xsl:template>
   
   <!-- display the abstract -->
