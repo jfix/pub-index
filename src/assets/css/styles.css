@@ -169,7 +169,7 @@ div.toc-details { margin-left: 1.5em; }
 .no-js .toc-sublist { display: block; }
 .no-js .toc-abstract { display: block; }
 
-#summaries { margin: 0; }
+#summaries { margin: 0; font-size: 0.9em; }
 
 #backlinks { font-size: 0.9em; padding: 0 1em; }
 #backlinks dd { margin-bottom: 0.5em; }
