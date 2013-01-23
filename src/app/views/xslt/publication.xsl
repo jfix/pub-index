@@ -111,13 +111,13 @@
         <xsl:when test="xs:dateTime(.) gt current-dateTime()"><i class="icon-time"></i> To be published on </xsl:when>
         <xsl:otherwise>Published on </xsl:otherwise>
       </xsl:choose>
-      <span class="pubdate"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
+      <span class="pubdate" data-date="{.}"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
     </span>
   </xsl:template>
   
   <xsl:template match="oe:upcomingEdition">
     <div>
-      <span>Next edition: </span><a href="{oe:link[@type = 'doi']/@rdf:resource}" target="_blank" class="pubdate"><xsl:value-of select="format-dateTime(oe:nextEditionDate, '[D] [MNn] [Y]')"/></a>
+      <span>Next edition: </span><a href="{oe:link[@type = 'doi']/@rdf:resource}" target="_blank" class="pubdate" data-date="{.}"><xsl:value-of select="format-dateTime(oe:nextEditionDate, '[D] [MNn] [Y]')"/></a>
     </div>
   </xsl:template>
   
@@ -235,7 +235,7 @@
             <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>
             <xsl:otherwise>
               <xsl:if test="dt:available">
-                <span class="toc-pubdate"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
+                <span class="toc-pubdate" data-date="{dt:available}"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
               </xsl:if>
             </xsl:otherwise>
           </xsl:choose>

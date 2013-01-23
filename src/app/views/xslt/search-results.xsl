@@ -94,7 +94,7 @@
   <xsl:template match="dt:available">
     <span class="availability">
       <xsl:if test="xs:dateTime(.) gt current-dateTime()"><i class="icon-time"></i></xsl:if>
-      <xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/>
+      <span class="date" data-date="{.}"><xsl:value-of select="format-dateTime(., '[D] [MNn] [Y]')"/></span>
     </span>
   </xsl:template>
   

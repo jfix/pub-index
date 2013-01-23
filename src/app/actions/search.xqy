@@ -41,7 +41,7 @@ declare function local:render-opensearch-rss($results)
           <guid>{ data($item/dt:identifier) }</guid>
           <title>{ fn:data($biblio/dt:title) }</title>
           <link>{ concat('http://',$host, '/display/', $uri-id) }</link>
-          <pubDate>{ concat(data($item/dt:available),'Z') }</pubDate>
+          <pubDate>{ data($item/dt:available) }</pubDate>
           <description>{ if(string-length($abstract) > 260) then concat(normalize-space(substring($abstract,1,250)), '...') else $abstract }</description>
         </item>
     }
