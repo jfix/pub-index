@@ -9,7 +9,7 @@ declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: s
 declare function module:render-search-form()
 {
   <form action="/search" method="get" name="searchForm" id="searchForm">
-    <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class=""/>
+    <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="" autocomplete="off"/>
     <input type="hidden" id="in" name="in" value="{$in}"/>
     <input type="hidden" id="start" name="start" value="1"/>
   </form>

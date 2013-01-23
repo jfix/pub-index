@@ -149,7 +149,10 @@ as element(div)
 let $params := map:map(),
       $void := map:put($params, "title", "Welcome to OECD publications"),
       $void := map:put($params, "scripts",(
-        <script type="text/javascript">
+        <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
+        ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
+        ,<script src="/assets/js/facets.js"></script>
+        ,<script type="text/javascript">
           $(document).ready(function() {{
             $(".pager a").click(function() {{
               var start = $(this).data("start");

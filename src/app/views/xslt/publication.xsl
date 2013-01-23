@@ -263,7 +263,14 @@
           <xsl:when test="$link/@type eq 'doi'">icon-download-alt</xsl:when>
         </xsl:choose>
       </xsl:variable>
-      <a href="{$link/@rdf:resource}" target="_blank" class="{$icon}"></a>
+      <xsl:variable name="title">
+        <xsl:choose>
+          <xsl:when test="$link/@type eq 'freepreview'">Read</xsl:when>
+          <xsl:when test="$link/@type eq 'bookshop'">Buy</xsl:when>
+          <xsl:when test="$link/@type eq 'doi'">Download (for&#160;OECD&#160;iLibrary&#160;subscribing&#160;institutions)</xsl:when>
+        </xsl:choose>
+      </xsl:variable>
+      <a href="{$link/@rdf:resource}" target="_blank" class="{$icon}" title="{$title}"></a>
     </xsl:if>
   </xsl:template>
   

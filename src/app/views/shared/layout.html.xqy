@@ -20,7 +20,6 @@ declare function module:render($params as map:map) {
     <!-- Included CSS Files -->
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
     <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
-    <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
     <link rel="stylesheet" href="/assets/css/styles.css"/>
     <link rel="stylesheet" href="/assets/css/oecd.css"/>
 
@@ -105,16 +104,19 @@ declare function module:render($params as map:map) {
     <!-- Included JS Files -->
     <script src="/assets/jquery/jquery-1.8.3.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-    <script src="/assets/js/facets.js"></script>
-    <script type="text/javascript">
+    {map:get($params,'scripts')}
+    <script>
       $(function() {{
-        $( "#term" ).autocomplete({{
-          source: "/app/actions/suggest.xqy",
+        $('#term').typeahead({{
+          minLength: 2,
+          source: function(query, process) {{
+            $.post('/app/actions/suggest.xqy', {{ term: query }}, function(data) {{
+              process(data);
+            }});
+          }}
         }});
       }});
     </script>
-    {map:get($params,'scripts')}
     <script src="/assets/js/oecd.js"></script>
   </body>
 </html>
