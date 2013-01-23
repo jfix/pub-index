@@ -45,7 +45,7 @@
         <xsl:apply-templates select="$biblio/oe:subTitle"/>
         
         <div class="languages">
-          <xsl:apply-templates select="dt:language"/>
+          <xsl:value-of select="string-join( data($languages//oe:language[@id = current()/dt:language]/oe:label[@xml:lang = 'en']) ,'/')" />
         </div>
         
         <div class="availability">
@@ -99,10 +99,6 @@
     <h4 class="subtitle">
       <a href="{../../oe:link[@type = 'doi']/@rdf:resource}" target="_blank"><xsl:value-of select="."/></a>
     </h4>
-  </xsl:template>
-  
-  <xsl:template match="dt:language">
-    <xsl:value-of select="string-join( data($languages//oe:language[@id = current()]/oe:label[@xml:lang = 'en']) ,'/')" />
   </xsl:template>
   
   <xsl:template match="dt:available">
