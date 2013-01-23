@@ -109,10 +109,17 @@ declare function module:render($params as map:map) {
       $(function() {{
         $('#term').typeahead({{
           minLength: 2,
-          source: function(query, process) {{
+          source: function typehead_source(query, process) {{
             $.post('/app/actions/suggest.xqy', {{ term: query }}, function(data) {{
               process(data);
             }});
+          }},
+          updater: function typeahead_updater(item) {{
+           this.$element.val(item);
+           setTimeout(function formSubmit() {{
+             $("#searchForm").submit();
+           }}, 500);
+           return item;
           }}
         }});
       }});
