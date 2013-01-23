@@ -24,17 +24,17 @@
   <xsl:template match="oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
     <div class="row">
-      <xsl:if test="oe:coverImage">
+      <xsl:variable name="coverImage" select="(oe:coverImage, (oe:toc/oe:item)[1]/oe:coverImage)[1]"/>
+      <xsl:if test="$coverImage">
         <xsl:variable name="thumbnail-url">
           <xsl:choose>
             <xsl:when test="@type = 'workingpaperseries'">http://images.oecdcode.org/covers/wpseries/</xsl:when>
             <xsl:otherwise>http://images.oecdcode.org/covers/150/</xsl:otherwise>
           </xsl:choose>
         </xsl:variable>
-        
         <!-- thumbnail-->
         <div class="span3">
-          <img src="{concat($thumbnail-url, oe:coverImage)}" class="img-polaroid cover"/>
+          <img src="{concat($thumbnail-url, $coverImage)}" class="img-polaroid cover"/>
         </div>
       </xsl:if>
       
