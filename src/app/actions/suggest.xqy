@@ -6,15 +6,13 @@ declare variable $term := xdmp:get-request-field("term");
 
 let $options := 
   <options xmlns="http://marklogic.com/appservices/search">
+    <additional-query>{cts:collection-query("searchable")}</additional-query>
     <default-suggestion-source>
       <word>
         <!-- this searches title and abstract -->
         <field name="suggest-field" collation="http://marklogic.com/collation//S1"/>
       </word>
     </default-suggestion-source>
-    <term>
-      <term-option>case-sensitive</term-option>
-    </term>
   </options>
 
 let $model := search:suggest($term, $options, 10)
