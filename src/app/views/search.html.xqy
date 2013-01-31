@@ -17,7 +17,7 @@ declare variable $qtext as xs:string := $model/search:qtext;
 declare variable $total as xs:integer := $model/@total;
 declare variable $start as xs:integer := $model/@start;
 declare variable $page-length as xs:integer := $model/@page-length;
-declare variable $end as xs:integer := ($page-length + $start - 1);
+declare variable $end as xs:integer := min(($page-length + $start - 1, $total));
 declare variable $total-time := round-half-to-even(seconds-from-duration($model/search:metrics/search:total-time), 2);
 
 declare private function local:render-results-selected()
@@ -108,8 +108,8 @@ as element(div)
 declare function local:render-paging()
 as element(div)
 {
-  let $next-page := if ($start + $page-length gt $total) then () else $start + $page-length
-  let $prev-page := if ($start - $page-length gt 0) then $start - $page-length else ()
+  let $prev-page := max(($start - $page-length, 1))
+  let $next-page := $start + $page-length
   return
   <div style="float: right;">
     <ul class="pager" style="margin: 0;">
@@ -121,7 +121,7 @@ as element(div)
         ,
         text { '&#160;' }
         ,
-        if ($start < $total) then
+        if ($next-page <= $total) then
           <li><a data-start="{number($next-page)}" href="#">Next &raquo;</a></li>
         else
           <li class="disabled"><a href="#">Next &raquo;</a></li>
