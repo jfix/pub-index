@@ -24,7 +24,7 @@
   <xsl:template match="oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]" />
     <div class="row">
-      <xsl:variable name="coverImage" select="(oe:coverImage, (oe:toc/oe:item)[1]/oe:coverImage)[1]"/>
+      <xsl:variable name="coverImage" select="(oe:coverImage, (oe:toc/oe:item)[1]/oe:coverImage, 'cover_not_yetm.jpg')[1]"/>
       <xsl:if test="$coverImage">
         <xsl:variable name="thumbnail-url">
           <xsl:choose>
