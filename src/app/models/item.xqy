@@ -186,7 +186,7 @@ return
                               ))
                             )
                           )
-            order by xs:integer(($comp/oe:relation[@type = "completeversion"])[1]/@order) ascending
+            order by xs:integer(($comp2/oe:relation[@type = "completeversion"])[1]/@order) ascending
             return $comp2
           else
             ()
