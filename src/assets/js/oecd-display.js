@@ -9,7 +9,16 @@ $('#toc-root').on('click', '.toc-row-header', function onClick_TocRowHeader(even
   if(event.target.nodeName != 'A') {
     var $target = $(this).find('a.icon-download-alt');
     if($target) {
-      $target[0].click();
+      var anchor = $target[0];
+      if(anchor.click) {
+        anchor.click();
+      }
+      else {
+        var href = anchor.href;
+        if(href) {
+          window.open(href);
+        }
+      }
     }
   }
 });
