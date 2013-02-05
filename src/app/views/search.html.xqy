@@ -163,7 +163,7 @@ let $params := map:map(),
       $void := map:put($params, "scripts",(
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-        ,<script src="/assets/js/facets.js"></script>
+        ,<script src="/assets/js/oecd-facets.js"></script>
         ,<script src="/assets/js/oecd-search.js"></script>
       )),
       $void := map:put($params, "content", local:render-content())

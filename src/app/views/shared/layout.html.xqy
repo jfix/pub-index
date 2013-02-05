@@ -130,7 +130,7 @@ declare function module:render($params as map:map) {
         }});
       }});
     </script>
-    <script src="/assets/js/oecd.js"></script>
+    <script src="/assets/js/oecd-layout.js"></script>
   </body>
 </html>
 )};
