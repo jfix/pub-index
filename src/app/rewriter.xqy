@@ -46,6 +46,9 @@ let $new-url :=
   else if (fn:matches($url, "^/opensearch.xml$"))
   then  fn:replace($url, "^/opensearch.xml$",   "/app/actions/osd.xqy")
   
+  else if (fn:matches($url, "^/items-by-country$"))
+  then "/app/actions/items-by-country.xqy"
+  
   (: by default try to resolve url passed in :)
   else $url
   

@@ -101,3 +101,12 @@ as element(oe:item)*
     return $item
   )[1 to $qt]
 };
+
+declare function module:count-items-by-country()
+as element(item-frequency)*
+{
+  for $id in cts:element-values(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/", "country"), "", ("item-frequency"), cts:collection-query(("searchable")))
+  return
+    <item-frequency ref="{$id}" frequency="{cts:frequency($id)}" />
+};
+
