@@ -51,16 +51,28 @@ as element(div)
             concat($total, " results found, showing ", $start, " to ", $end, ".")
         }
         <label for="sortby" class="pull-right">Sort by:
-          <select id="sortby" class="input-medium">
-            <option value="date" selected="selected">Date (latest first)</option>
-            <option value="date">Date (oldest first)</option>
-            <option value="title">Title (A-Z)</option>
-            <option value="title">Title (Z-A)</option>
+          <select id="sortby" name="sortby" class="input-medium">
+          {
+            local:get-sort-option('date', 'Date (latest first)')
+            ,local:get-sort-option('date-asc', 'Date (oldest first)')
+            ,local:get-sort-option('title', 'Title (A-Z)')
+            ,local:get-sort-option('title-desc', 'Title (Z-A)')
+            ,local:get-sort-option('relevance', 'Relevance')
+          }
           </select>
         </label>
       </div>
     </div>
   </div>
+};
+
+declare private function local:get-sort-option($value as xs:string, $label as xs:string)
+as element(option)
+{
+  <option value="{$value}">
+    {if($sh:order eq $value) then attribute {'selected'} {'selected'} else ()}
+    {$label}
+  </option>
 };
 
 (:~
@@ -152,17 +164,7 @@ let $params := map:map(),
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
         ,<script src="/assets/js/facets.js"></script>
-        ,<script type="text/javascript">
-          $(document).ready(function() {{
-            $(".pager a").click(function() {{
-              var start = $(this).data("start");
-              if(start) {{
-                $("#start").val(start);
-                $("#searchForm").submit();
-              }}
-            }});
-          }});
-        </script>
+        ,<script src="/assets/js/oecd-search.js"></script>
       )),
       $void := map:put($params, "content", local:render-content())
 

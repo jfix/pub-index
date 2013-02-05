@@ -15,6 +15,37 @@ declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: s
 declare variable $qtext as xs:string := functx:trim(concat($term, " ", module:deserializeFilter($in)));
 declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
 declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
+declare variable $order as xs:string := xdmp:get-request-field("order");
+
+declare variable $search-options := <options xmlns="http://marklogic.com/appservices/search">
+    <constraint name="pubtype">
+      <range type="xs:string">
+        <element name="item" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+        <attribute ns="" name="type"/>
+      </range>
+    </constraint>
+    <constraint name="country">
+      <range type="xs:string">
+        <element name="country" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
+      </range>
+    </constraint>
+    <constraint name="subject">
+      <range type="xs:string">
+        <element name="subject" ns="http://purl.org/dc/terms/"/>
+      </range>
+    </constraint>
+    <constraint name="language">
+      <range type="xs:string">
+        <element name="language" ns="http://purl.org/dc/terms/"/>
+      </range>
+    </constraint>
+    <searchable-expression>collection("searchable")</searchable-expression>
+    {
+      module:search-order-options()
+    }
+    <transform-results apply="raw"/>
+    <return-facets>false</return-facets>
+  </options>;
 
 declare function module:deserializeFilter($inFilter as xs:string)
 as xs:string
@@ -34,45 +65,42 @@ as xs:string
   return $facet
 };
 
-declare function module:search( 
-  $qtext as xs:string,
-  $start-from as xs:integer
-) as element(search:response)
+declare function module:search($qtext as xs:string, $start-from as xs:integer)
+as element(search:response)
 {
-  search:search($qtext
-    ,
-    <options xmlns="http://marklogic.com/appservices/search">
-        <constraint name="pubtype">
-            <range type="xs:string">
-                <element name="item" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
-                <attribute ns="" name="type"/>
-            </range>
-        </constraint>
-        <constraint name="country">
-            <range type="xs:string">
-                <element name="country" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
-            </range>
-        </constraint>
-        <constraint name="subject">
-            <range type="xs:string">
-                <element name="subject" ns="http://purl.org/dc/terms/"/>
-            </range>
-        </constraint>
-        <constraint name="language">
-            <range type="xs:string">
-                <element name="language" ns="http://purl.org/dc/terms/"/>
-            </range>
-        </constraint>
-        <searchable-expression>collection("searchable")</searchable-expression>
-        <sort-order type="xs:dateTime" collation="http://marklogic.com/collation/" direction="descending">
-            <element ns="http://purl.org/dc/terms/" name="available"/>
-        </sort-order>
-        <sort-order type="score" direction="ascending">
-            <score/>
-        </sort-order>
-        <transform-results apply="raw"/>
-    </options>
-    ,$start-from)
+  search:search($qtext, $search-options, $start-from)
+};
+
+declare function module:search-order-options()
+{
+  if($order eq "date-asc") then
+    (
+      <search:sort-order type="xs:dateTime" direction="ascending">
+        <search:element ns="http://purl.org/dc/terms/" name="available"/>
+      </search:sort-order>
+      ,<search:sort-order type="score" direction="descending">
+        <search:score/>
+      </search:sort-order>
+    )
+  else if ($order eq "title-desc") then
+    <search:sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="descending">
+      <search:element ns="http://purl.org/dc/terms/" name="title"/>
+    </search:sort-order>
+  else if ($order eq "title") then
+    <search:sort-order type="xs:string" collation="http://marklogic.com/collation/" direction="ascending">
+      <search:element ns="http://purl.org/dc/terms/" name="title"/>
+    </search:sort-order>
+  else if ($order eq "relevance") then
+    () (: default search:search behavior :)
+  else
+    (
+      <search:sort-order type="xs:dateTime" collation="http://marklogic.com/collation/" direction="descending">
+        <search:element ns="http://purl.org/dc/terms/" name="available"/>
+      </search:sort-order>
+      ,<search:sort-order type="score" direction="descending">
+        <search:score/>
+      </search:sort-order>
+    )
 };
 
 declare function module:get-latest-items($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
