@@ -15,7 +15,7 @@ declare function module:render-facets($facets as element())
   
   return
   (
-    module:render-subject-facet($qtext, $facets/search:facet[@name = 'subject'])
+     module:render-subject-facet($qtext, $facets/search:facet[@name = 'subject'])
     ,module:render-country-facet($qtext, $facets/search:facet[@name = 'country'])
     ,module:render-year-facet($qtext, $facets/search:facet[@name = 'date'])
     ,module:render-language-facet($qtext, $facets/search:facet[@name = 'language'])
@@ -27,7 +27,7 @@ declare private function module:render-subject-facet($qtext as xs:string, $all-s
 as element(div)
 {
   <div class="subject facet">
-    <h6>Subjects</h6>
+    <h6>Topics</h6>
     <ul>
     {
       for $value in $all-subject-facets//search:facet-value
