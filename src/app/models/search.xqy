@@ -45,6 +45,9 @@ declare variable $search-options := <options xmlns="http://marklogic.com/appserv
       </range>
     </constraint>
     <searchable-expression>collection("searchable")</searchable-expression>
+    <term>
+      <term-option>unstemmed</term-option>
+    </term>
     {
       module:search-order-options()
     }
