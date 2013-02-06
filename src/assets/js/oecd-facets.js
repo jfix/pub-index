@@ -42,39 +42,76 @@ $("div.facet select").change(function(event) {
   $("#searchForm").submit();
 });
 
-(function() {
+(function init_dateslider() {
   var $startDate = $('#start-date');
   var $endDate = $('#end-date');
   var $slider = $('#slider-date-range');
   
-  var oldest = $startDate.data('oldest');
-  oldest = new Date(oldest + "T00:00:00");
+  var oldest = new Date($startDate.data('oldest') + "T00:00:00");
+  var newest = new Date($endDate.data('newest') + "T00:00:00");
   
-  var newest = $endDate.data('newest');
-  newest = new Date(newest + "T00:00:00");
+  var from;
+  if(currentFacets.from) {
+    from =  new Date(currentFacets.from[0] + "T00:00:00");
+  }
+  
+  var to;
+  if(currentFacets.to) {
+    to =  new Date(currentFacets.to[0] + "T00:00:00");
+  }
+  else {
+    to = new Date();
+    to.setHours(0,0,0,0);
+  }
   
   var nbdays = (newest - oldest)/86400000;
   
-  var converSliderIndexToDate = function(index) {
+  var converSliderIndexToDate = function converSliderIndexToDate(index) {
     var time = oldest.getTime() + (index*86400000);
     return new Date(time);
   };
   
-  var converDateToSliderIndex = function(date) {
+  var converDateToSliderIndex = function converDateToSliderIndex(date) {
     var index  = (date - oldest)/86400000;
     return index;
   };
   
-  var submitForm = function() {
-    /*
-    manageFacets("startDate", $startDate.datepicker("getDate").toISOString().substr(0,10), currentFacets);
-    manageFacets("endDate", $endDate.datepicker("getDate").toISOString().substr(0,10), currentFacets);
+  var submitForm = function submitForm() {
+    if(currentFacets.from) delete currentFacets.from;
+    manageFacets("from", formatDate($startDate.datepicker("getDate")), currentFacets);
+    if(currentFacets.to) delete currentFacets.to;
+    manageFacets("to", formatDate($endDate.datepicker("getDate")), currentFacets);
     
     var filterString = serializeFacets(currentFacets);
     $filterString.val(filterString);
     $("#searchForm").submit();
-    */
   };
+  
+  var formatDate = function formatDate(date) {
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
+    var yyyy = date.getFullYear();
+    
+    if(dd<10){dd='0'+dd}
+    if(mm<10){mm='0'+mm}
+    return yyyy + '-' + mm + '-' + dd;
+  }
+  
+  var maxDate = function maxDate(d1,d2) {
+    if(!d1)
+      return d2;
+    if(!d2)
+      return d1;
+    return d1 > d2 ? d1 : d2;
+  }
+  
+  var minDate = function minDate(d1,d2) {
+    if(!d1)
+      return d2;
+    if(!d2)
+      return d1;
+    return d1 < d2 ? d1 : d2;
+  }
   
   $(".facet .datepicker").datepicker({
     dateFormat: 'd M yy',
@@ -82,8 +119,10 @@ $("div.facet select").change(function(event) {
     changeYear: true
   });
   
-  $startDate.datepicker( "setDate", oldest );
-  $endDate.datepicker( "setDate", newest );
+  $startDate.datepicker( "setDate", maxDate(from,oldest) );
+  $endDate.datepicker( "setDate", minDate(to,newest) );
+  
+  var timeoutHandle;
   
   $startDate.change(function(event) {
     var newDate = $startDate.datepicker("getDate");
@@ -94,7 +133,9 @@ $("div.facet select").change(function(event) {
       $startDate.datepicker( "setDate", oldest );
       $slider.slider("values", 0, 0);
     }
-    submitForm();
+    
+    if(timeoutHandle) clearTimeout(timeoutHandle);
+    timeoutHandle = setTimeout(submitForm,2000);
   });
   
   $endDate.change(function(event) {
@@ -106,23 +147,26 @@ $("div.facet select").change(function(event) {
       $endDate.datepicker( "setDate", newest );
       $slider.slider("values", 1, nbdays);
     }
-    submitForm();
+    
+    if(timeoutHandle) clearTimeout(timeoutHandle);
+    timeoutHandle = setTimeout(submitForm,2000);
   });
   
   $slider.slider({
     range: true,
     min: 0,
     max: nbdays,
-    values: [0, nbdays],
+    values: [converDateToSliderIndex($startDate.datepicker("getDate")), converDateToSliderIndex($endDate.datepicker("getDate"))],
     slide: function( event, ui ) {
+      if(timeoutHandle) clearTimeout(timeoutHandle);
       $startDate.datepicker( "setDate", converSliderIndexToDate(ui.values[0]) );
       $endDate.datepicker( "setDate", converSliderIndexToDate(ui.values[1]) );
     },
     change: function( event, ui) {
-      submitForm();
+      timeoutHandle = setTimeout(submitForm,2000);
     }
   });
-
+  
 })();
 
 // manage facet values in search result
@@ -212,41 +256,5 @@ function deserializeFacets(filterString) {
     }
   }
 }
-
-/**
-* Takes facet object and creates a string that MarkLogic understands.
-*
-*
-function serializeFacets(currentFacets) {
-  var serialized = "";
-  
-  for (key in currentFacets) {
-    var values = currentFacets[key];
-    if (values.length > 1) {
-      serialized += "(";
-      for (var i = 0; values.length > i; i++) {
-        var needsQuotes = (values[i].search(" ") >= 0);
-        
-        if (i > 0) serialized += " OR ";
-        
-        if (needsQuotes) {
-          serialized += key + ":" + '"' + values[i] + '"';
-        } else {
-          serialized += key + ":" + values[i];
-        }
-      }
-      serialized += ")";
-    } else {
-      if (values[0].search(" ") >= 0) {
-        serialized += key + ":" + '"' + values[0] + '"';
-      } else {
-        serialized += key + ":" + values[0];
-      }
-    }
-    serialized += " ";
-  }
-  return $.trim(serialized);
-}
-*/
 
 });

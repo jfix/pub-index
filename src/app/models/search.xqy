@@ -12,7 +12,7 @@ declare namespace dt = "http://purl.org/dc/terms/";
 declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
 declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
 
-declare variable $qtext as xs:string := functx:trim(concat($term, " ", module:deserializeFilter($in)));
+declare variable $qtext as xs:string := module:build-qtext($term, $in);
 declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
 declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
 declare variable $order as xs:string := xdmp:get-request-field("order");
@@ -39,6 +39,11 @@ declare variable $search-options := <options xmlns="http://marklogic.com/appserv
         <element name="language" ns="http://purl.org/dc/terms/"/>
       </range>
     </constraint>
+    <constraint name="date">
+      <range type="xs:dateTime" facet="false">
+        <element name="available" ns="http://purl.org/dc/terms/"/>
+      </range>
+    </constraint>
     <searchable-expression>collection("searchable")</searchable-expression>
     {
       module:search-order-options()
@@ -54,15 +59,32 @@ as xs:string
     for $t1 in functx:value-except(fn:tokenize($inFilter, ";"),'')
       let $facet := fn:substring-before($t1, ":")
       let $values := fn:substring-after($t1, ":")
-      let $values := fn:string-join(
-        for $t2 in functx:value-except(fn:tokenize($values, "\|"),'')
-        return fn:concat($facet,':"',$t2,'"')
-        ,' OR '
-      )
+      let $values :=
+        if($facet eq "from") then
+          concat("date GE ", $values, "T23:59:59")
+        else if ($facet eq "to") then
+          concat("date LE ", $values, "T23:59:59")
+        else
+          fn:string-join(
+            for $t2 in functx:value-except(fn:tokenize($values, "\|"),'')
+            return fn:concat($facet,':"',$t2,'"')
+            ,' OR '
+          )
       return fn:concat('(',$values,')')
       ,' '
   )
   return $facet
+};
+
+declare private function module:build-qtext($term, $in)
+as xs:string
+{
+  let $qtext := functx:trim(concat($term, " ", module:deserializeFilter($in)))
+  return
+    if(contains($qtext, 'date LE ')) then
+      $qtext
+    else
+      concat($qtext, ' ', '(date LE ', current-dateTime(), ')')
 };
 
 declare function module:search($qtext as xs:string, $start-from as xs:integer)

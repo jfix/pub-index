@@ -6,6 +6,8 @@ import module namespace functx = "http://www.functx.com" at "/MarkLogic/functx/f
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
+declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
+
 declare variable $facets-options as element() :=
   <options xmlns="http://marklogic.com/appservices/search">
     <constraint name="pubtype">
@@ -29,6 +31,11 @@ declare variable $facets-options as element() :=
         <element name="language" ns="http://purl.org/dc/terms/"/>
       </range>
     </constraint>
+    <constraint name="date">
+      <range type="xs:dateTime" facet="false">
+        <element name="available" ns="http://purl.org/dc/terms/"/>
+      </range>
+    </constraint>
     <searchable-expression>collection("searchable")</searchable-expression>
     <return-results>false</return-results>
     <return-facets>true</return-facets>
@@ -47,6 +54,7 @@ as element(search:response)
       {module:get-filtered-facet($query, 'country')}
       {module:get-filtered-facet($query, 'language')}
       {module:get-filtered-facet($query, 'pubtype')}
+      {module:get-dates-facet($query)}
     </response>
 };
 
@@ -79,4 +87,29 @@ as element()*
            $element
     else
       ()
+};
+
+declare private function module:get-dates-facet($query as element())
+{
+  (:] good to know, range indexes don't hold time zone value ... AH AH AH AH! >:)
+  <search:facet name="date" type="xs:dateTime">
+    <search:facet-value name="min">
+    {
+      cts:min(
+        cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
+        ,()
+        ,cts:query(module:transform-query($query, 'date GE '))
+        )
+    }
+    </search:facet-value>
+    <search:facet-value name="max">
+    {
+      cts:max(
+        cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
+        ,()
+        ,cts:query(module:transform-query($query, 'date LE '))
+        )
+    }
+    </search:facet-value>
+  </search:facet>
 };

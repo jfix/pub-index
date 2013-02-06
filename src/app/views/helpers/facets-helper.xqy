@@ -17,7 +17,7 @@ declare function module:render-facets($facets as element())
   (
     module:render-subject-facet($qtext, $facets/search:facet[@name = 'subject'])
     ,module:render-country-facet($qtext, $facets/search:facet[@name = 'country'])
-    ,module:render-year-facet($qtext, fn:current-date() - xs:dayTimeDuration('P15000D'), fn:current-date())
+    ,module:render-year-facet($qtext, $facets/search:facet[@name = 'date'])
     ,module:render-language-facet($qtext, $facets/search:facet[@name = 'language'])
     ,module:render-pubtype-facet($qtext, $facets/search:facet[@name = 'pubtype'])
   )
@@ -81,21 +81,34 @@ as element(div)
   </div>
 };
 
-declare private function module:render-year-facet($qtext as xs:string, $min as xs:date, $max as xs:date)
+declare private function module:render-year-facet($qtext as xs:string, $pubdate-facets as element(search:facet))
 as element(div)
 {
+  let $min := xs:date(substring(string($pubdate-facets//search:facet-value[@name eq 'min']),1,10))
+  let $max := xs:date(substring(string($pubdate-facets//search:facet-value[@name eq 'max']),1,10))
+  return
   <div class="year facet">
     <h6>Publication date</h6>
     <div id="date-range-controls">
       <div id="slider-date-range"></div>
       <span class="input-append">
-        <input type="text" id="start-date" data-oldest="{substring(string($min),1,10)}" class="datepicker input-small"/>
+        <input type="text" id="start-date" data-oldest="{$min}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
       <span class="input-append pull-right">
-        <input type="text" id="end-date" data-newest="{substring(string($max),1,10)}" class="datepicker input-small"/>
+        <input type="text" id="end-date" data-newest="{$max}" class="datepicker input-small"/>
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
+      {
+        <!--
+        if($max gt current-date()) then
+          <label class="checkbox" style="margin: 5px;">
+            <input id="forthcoming" type="checkbox"/> Show forthcoming
+          </label>
+        else
+          ()
+        -->
+      }
     </div>
   </div>
 };
@@ -172,6 +185,36 @@ as element(div)?
         <span data-facet="{$type}" data-value="{$id}" class="selected-facet">
           <i class="icon-ok"></i>{$label}
         </span>
+  
+  let $facet := functx:get-matches($qtext, "\(date GE .*?\)")[. ne ""][1]
+  let $facets :=
+    if($facet) then
+    (
+      $facets
+      ,let $value := xs:date(substring(fn:replace($facet,"\(date GE (.*?)\)", "$1"),1,10))
+       return
+        <span data-facet="from" data-value="{$value}" class="selected-facet">
+          <i class="icon-ok"></i>From: {format-date($value, '[D] [MNn,*-3] [Y]')}
+        </span>
+    )
+    else
+      $facets
+  
+  let $facet := functx:get-matches($qtext, "\(date LE .*?\)")[. ne ""][1]
+  let $facets :=
+    if($facet) then
+    (
+      $facets
+      ,let $value := xs:date(substring(fn:replace($facet,"\(date LE (.*?)\)", "$1"),1,10))
+       return
+        if(current-date() ne $value) then
+          <span data-facet="to" data-value="{$value}" class="selected-facet">
+            <i class="icon-ok"></i>To: {format-date($value, '[D] [MNn,*-3] [Y]')}
+          </span>
+        else ()
+    )
+    else
+      $facets
   
   return
     if($facets) then
