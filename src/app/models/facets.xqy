@@ -95,20 +95,26 @@ declare private function module:get-dates-facet($query as element())
   <search:facet name="date" type="xs:dateTime">
     <search:facet-value name="min">
     {
-      cts:min(
-        cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
-        ,()
-        ,cts:query(module:transform-query($query, 'date GE '))
+      (
+        cts:min(
+          cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
+          ,()
+          ,cts:query(module:transform-query($query, 'date GE '))
         )
+        ,current-dateTime()
+      )[1]
     }
     </search:facet-value>
     <search:facet-value name="max">
     {
-      cts:max(
-        cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
-        ,()
-        ,cts:query(module:transform-query($query, 'date LE '))
+      (
+        cts:max(
+          cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
+          ,()
+          ,cts:query(module:transform-query($query, 'date LE '))
         )
+        ,current-dateTime()
+      )[1]
     }
     </search:facet-value>
   </search:facet>
