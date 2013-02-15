@@ -4,7 +4,9 @@ import module namespace ms = "http://oecd.org/pi/models/search" at "/app/models/
 import module namespace mf = "http://oecd.org/pi/models/facets" at "/app/models/facets.xqy";
 
 let $model := <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-  {ms:get-latest-items(8,2,2)}
+  { 
+  (: How many: book, article, wp :)
+  ms:get-latest(8,2,2) }
 </latests>
 
 return

@@ -128,26 +128,36 @@ declare function module:search-order-options()
     )
 };
 
-declare function module:get-latest-items($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
+declare function module:get-latest($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)
 as element(oe:item)*
 {
-  let $ia := module:get-latest-items('article', $qta)
-  let $iw := module:get-latest-items('workingpaper', $qtw)
-  return (
-    module:get-latest-items('book', $qtb + ($qta - count($ia)) + ($qtw - count($iw)))
-    ,$ia
-    ,$iw
-  )
+    (: Articles: 30 days old max :)
+    let $latestArticles := module:get-latest-items('article', $qta, fn:current-dateTime() - xs:dayTimeDuration('P30D') )
+    
+    (: WP: 30 days old max :)
+    let $latestWorkingpapers := module:get-latest-items('workingpaper', $qtw, fn:current-dateTime() - xs:dayTimeDuration('P30D'))
+    
+    (: Books: no real max date, setting it to 1 year :)
+    let $latestBooks := module:get-latest-items(
+                            'book', 
+                            $qtb + ($qta - count($latestArticles)) + ($qtw - count($latestWorkingpapers)),
+                            fn:current-dateTime() - xs:dayTimeDuration('P365D'))
+                            
+    return (
+        $latestBooks
+        ,$latestArticles
+        ,$latestWorkingpapers
+    )
 };
 
-declare function module:get-latest-items($item as xs:string, $qt as xs:integer)
+declare function module:get-latest-items($item as xs:string, $qt as xs:integer, $maxDate as xs:dateTime)
 as element(oe:item)*
 {
   (
     for $item in collection($item)/oe:item[
         oe:status = 'available'
-        and dt:available lt fn:current-dateTime()
-        and dt:available gt (fn:current-dateTime() - xs:dayTimeDuration('P30D'))
+        and dt:available lt fn:current-dateTime()               
+        and dt:available gt ($maxDate)
         and fn:exists(oe:coverImage)
       ]
     order by $item/dt:available descending
