@@ -6,6 +6,7 @@ declare default element namespace "http://www.w3.org/1999/xhtml";
 
 declare variable $module:debug as xs:boolean := true();
 
+declare variable $host := (xdmp:get-request-header("X-Forwarded-For"),xdmp:get-request-header("HOST"))[1];
 
 declare function module:log(
   $msg as xs:string,

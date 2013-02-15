@@ -16,7 +16,6 @@ let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)(.xml|.json)?$"
 let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
-let $opensearch-pattern as xs:string := "^/opensearch[/]?\?(.*)?"
 
 let $new-url :=
   (: home page :)
@@ -39,15 +38,17 @@ let $new-url :=
   else if(fn:matches($url, $search-pattern))
   then  fn:replace($url,     $search-pattern,       "/app/actions/search.xqy?$1") 
   
-  (: opensearch results :)
-  else if (fn:matches($url, $opensearch-pattern))
-  then  fn:replace($url,     $opensearch-pattern,   "/app/opensearch.xqy?$1")
-  
   else if (fn:matches($url, "^/opensearch.xml$"))
   then  fn:replace($url, "^/opensearch.xml$",   "/app/actions/osd.xqy")
   
   else if (fn:matches($url, "^/items-by-country$"))
   then "/app/actions/items-by-country.xqy"
+  
+  else if (fn:matches($url, "^/api/changed(\?.*)?$"))
+  then fn:replace($url, "^/api/changed(\?.*)?$", "/app/api/changed.xqy$1")
+  
+  else if (fn:matches($url, "^/api/changed/lastday$"))
+  then "/app/api/changed.xqy?since=P1D"
   
   (: by default try to resolve url passed in :)
   else $url

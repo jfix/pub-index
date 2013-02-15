@@ -16,24 +16,21 @@ let $model := mi:get-item($id)
 let $format := if($model/@type = $supported) then $format else 'xml'
 
 let $model :=
-    if($format eq 'html') then
-      <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
-        {$model/@*}
-        {$model/*}
-        {mi:get-item-translations($model)}
-        {
-          if($model/@type = ('book','edition')) then (
-            mi:get-item-parent($model)
-            ,mi:get-book-summaries($id)
-            ,mi:get-item-toc($id,true(),true())
-          )
-          else (
-            mi:get-serial-toc($id,true())
-          )
-        }
-      </item>
-    else
-      $model
+  <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+    {$model/@*}
+    {$model/*}
+    {mi:get-item-translations($model)}
+    {
+      if($model/@type = ('book','edition')) then (
+        mi:get-item-parent($model)
+        ,mi:get-book-summaries($id)
+        ,mi:get-item-toc($id,true(),true())
+      )
+      else (
+        mi:get-serial-toc($id,true())
+      )
+    }
+  </item>
 
 return
   if(not($model)) then
@@ -51,6 +48,7 @@ return
   
   else if ($format eq 'xml') then
     (xdmp:set-response-content-type("text/xml")
+      ,'<?xml version="1.0" encoding="UTF-8"?>'
      ,$model
     )
   

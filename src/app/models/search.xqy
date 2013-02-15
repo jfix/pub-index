@@ -163,3 +163,19 @@ as element(item-frequency)*
     <item-frequency ref="{$id}" frequency="{cts:frequency($id)}" />
 };
 
+declare function module:get-modified-items($searchable as xs:boolean, $since as xs:dateTime)
+as xs:string*
+{
+  cts:uris((),(),
+    cts:and-query((
+      if($searchable) then cts:collection-query("searchable") else cts:collection-query("metadata")
+      ,cts:properties-query(
+        cts:element-range-query(
+          xs:QName("prop:last-modified")
+          ,">"
+          ,$since
+        )
+      ))
+    )
+  )
+};
