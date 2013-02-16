@@ -15,7 +15,7 @@ declare variable $facets as node()? external;
 
 declare function local:render-latests-widget($items as element()*)
 {(
-  <h3>Latest publications</h3>,
+  <h3>Latest publications <small> <a href="/search?term=&amp;in=&amp;start=1&amp;order=">browse them all</a></small></h3>,
   <div id="latest" class="carousel slide well">
     <!-- Carousel items -->
     <div class="carousel-inner">

@@ -169,10 +169,19 @@ $("div.facet select").change(function(event) {
   
 })();
 
+$("span#clear-facets").click( function (evt) {
+    location.href="/search?term=&in=&start=1&order=";
+});
+$("span.selected-facet").on("hover", function (evt) {
+     $(this).find("i").toggleClass("icon-ok").toggleClass("icon-remove");
+     $(this).toggleClass("delete-facet");
+});
+
 // manage facet values in search result
 $(".facet-value, .pubtype-label").click(function (event) {
-  event.preventDefault();
-  
+  event.preventDefault(); /* not sure why this is needed, there is no default action on span elements */
+  event.stopPropagation(); /* otherwise click event bubbles up to search-result-item parent which will display publication page */
+
   var facet = $(this).data("facet");
   if(facet) {
     var value = $(this).data("value");

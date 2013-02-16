@@ -15,4 +15,15 @@ $("#sortby").on("change", function onClick_SortBy(event) {
   $("#searchForm").submit();
 });
 
+    $(".search-result-item .abstract").on("hover", function (evt) {
+        $(this).parents("div.metadata").addClass("show-full-abstract");
+    });
+    $(".search-result-item").on("hover", function (evt) {
+        $(this).toggleClass("highlight")
+                .find(".metadata").toggleClass("active")
+                .find("h4 a, h5 a").toggleClass("underline");
+    });
+    $(".search-result-item").on("click", function (evt) {
+        location.href = $(this).data('url');
+    });
 });
