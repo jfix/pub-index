@@ -153,10 +153,11 @@ as element(div)
         
         let $ref := module:get-ref('pubtype', $id),
             $label := module:get-ref-label($ref)
+            
         
         let $css-class := if (contains($qtext, concat('pubtype:"', $id, '"'))) then 'selected' else ''
         
-        order by $label ascending
+        order by $ref/@order ascending
         return 
           <li>
             <a class="{$css-class}"
@@ -230,6 +231,11 @@ as element(div)?
       ()
 };
 
+(:~
+ : based on a $type string value and an identifier $id, return a 
+ : label for a facet value. 
+ : Typically, this will be "Book" for $type "pubtype" and $id "book"
+ :)
 declare private function module:get-ref($type as xs:string, $id as xs:string)
 as element()?
 {
@@ -242,20 +248,30 @@ as element()?
   else if ($type eq "language") then
     collection("referential")//oe:language[@id eq $id]
     
+    (:
+    see #5298 for order
+    1. Periodical book (new label for serial)
+    2. Book
+    3. Article
+    4. Journal
+    5. Working Paper
+    6. Working Paper series
+
+    FIXME: this is a huge repetition of code, but once again, this is quickest.  
+           Probably the order (and the labels) should/could be maintained in a 
+           lookup file.
+    :)
   else if ($type eq "pubtype") then
-    <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}">
-      <label xml:lang="en">
-      {
-        if($id eq 'book') then 'Book'
-        else if($id eq 'edition') then 'Serial'
-        else if($id eq 'article') then 'Article'
-        else if($id eq 'workingpaper') then 'Working paper'
-        else 'Unknown'
-      }
-      </label>
-      <label xml:lang="fr">{$id}</label>
-    </itemtype>
-    
+        if($id eq 'book') then 
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="2"><label xml:lang="en">Book</label><label xml:lang="fr">{$id}</label></itemtype>
+        else if($id eq 'edition') then 
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="1"><label xml:lang="en">Periodical book</label><label xml:lang="fr">{$id}</label></itemtype>
+        else if($id eq 'article') then
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="3"><label xml:lang="en">Article</label><label xml:lang="fr">{$id}</label></itemtype>
+        else if($id eq 'workingpaper') then 
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="5"><label xml:lang="en">Working Paper</label><label xml:lang="fr">{$id}</label></itemtype>
+        else 
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="99"><label xml:lang="en">Unknown</label><label xml:lang="fr">{$id}</label></itemtype>
   else
     ()
 };
