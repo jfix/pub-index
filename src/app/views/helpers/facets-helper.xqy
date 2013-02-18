@@ -220,7 +220,11 @@ as element(div)?
     if($facets) then
       <div id="search-results-facets" class="facet selected">
         { $facets }
-        <span id="clear-facets"><i class="icon-remove"></i>Clear all</span>
+        {
+          if (fn:count($facets) > 1) then
+            <span id="clear-facets"><i class="icon-remove"></i>Clear all</span>
+          else ()
+        }
       </div>
     else
       ()
