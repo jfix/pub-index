@@ -50,6 +50,7 @@ as element(div)
           </li>
     }
     </ul>
+    <hr/>
   </div>
 };
 
@@ -78,6 +79,7 @@ as element(div)
             </option> else ()
     }
     </select>
+    <hr/>
   </div>
 };
 
@@ -100,16 +102,13 @@ as element(div)
         <span class="add-on"><i class="icon-calendar"></i></span>
       </span>
       {
-        <!--
         if($max gt current-date()) then
-          <label class="checkbox" style="margin: 5px;">
-            <input id="forthcoming" type="checkbox"/> Show forthcoming
-          </label>
+            <a id="btn-show-forthcoming" class="pull-right btn btn-mini" data-end-date="{substring(string($pubdate-facets//search:facet-value[@name eq 'max']),1,10)}">Include forthcoming publications</a>
         else
           ()
-        -->
       }
     </div>
+    <hr/>
   </div>
 };
 
@@ -137,6 +136,7 @@ as element(div)
             else ()
       }
     </select>
+    <hr/>
   </div>
 };
 
