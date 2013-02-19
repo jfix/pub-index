@@ -84,20 +84,6 @@ as element(oe:parents)
   </parents>
 };
 
-declare function module:get-item-parent-id($id as xs:string)
-as xs:string?
-{
-  cts:element-attribute-values(
-    fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
-    ,fn:QName("http://www.w3.org/1999/02/22-rdf-syntax-ns#","resource")
-    ,(),()
-    ,cts:and-query((
-      cts:element-attribute-range-query(fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation"),fn:QName("","type"),"=",("journal","series","completeversion","periodical"))
-      ,cts:element-range-query(fn:QName("http://purl.org/dc/terms/","identifier"),"=",$id)
-    ))
-  )[1]
-};
-
 declare function module:get-book-summaries($id as xs:string)
 as element(oe:summaries)
 {
