@@ -12,7 +12,7 @@ declare variable $model as node()? external;
 declare variable $id as xs:string := ($model//dt:identifier)[1];
 
 let $params := map:map(),
-      $void := map:put($params, "title", string(($model//dt:title)[1])),
+      $void := map:put($params, "title", concat(string(($model//dt:title)[1]), " - OECD publications")),
       $void := map:put($params, "scripts",(
         <script src="/assets/js/oecd-display.js"></script>
       )),

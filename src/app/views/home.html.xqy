@@ -103,7 +103,7 @@ declare function local:render-content()
 };
 
 let $params := map:map(),
-      $void := map:put($params, "title", "Welcome to OECD publications"),
+      $void := map:put($params, "title", "OECD publications"),
       $void := map:put($params, "content", local:render-content()),
       $void := map:put($params, "scripts", (
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />

@@ -12,6 +12,8 @@ declare namespace dt = "http://purl.org/dc/terms/";
 
 declare variable $model as node()? external;
 declare variable $facets as node()? external;
+declare variable $term := normalize-space(xdmp:get-request-field("term"));
+
 
 declare variable $qtext as xs:string := $model/search:qtext;
 declare variable $total as xs:integer := $model/@total;
@@ -159,7 +161,8 @@ as element(div)
 };
 
 let $params := map:map(),
-      $void := map:put($params, "title", "Welcome to OECD publications"),
+        (: title should display normalized query term  if there is one - related to issue #5348 :)
+      $void := map:put($params, "title", concat(if (string-length($term) > 0) then concat("Results for '", $term, "'") else ("Search results"), " - OECD publications")   ),
       $void := map:put($params, "scripts",(
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
