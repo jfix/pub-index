@@ -71,11 +71,11 @@
         <!-- abstract -->
         <xsl:apply-templates select="$biblio/dt:abstract"/>
         
-        <!-- toc -->
-        <xsl:apply-templates select="oe:toc"/>
-        
         <!-- multilingual summaries -->
         <xsl:apply-templates select="oe:summaries"/>
+        
+        <!-- toc -->
+        <xsl:apply-templates select="oe:toc"/>
         
         <h4>Related links</h4>
         <div id="backlinks"></div>
@@ -201,8 +201,8 @@
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
       <div id="toc-actions" class="btn-group pull-right">
-        <xsl:if test="oe:item//dt:abstract"><button class="btn" data-toggle=".toc-abstract"><i class="icon-eye-open"></i> Abstracts</button></xsl:if>
-        <xsl:if test="oe:item/oe:item"><button class="btn" data-toggle=".toc-sublist"><i class="icon-eye-open"></i> Tables/Graphs</button></xsl:if>
+        <xsl:if test="oe:item//dt:abstract"><button class="btn" data-toggle=".toc-abstract">Hide/Show Abstracts</button></xsl:if>
+        <xsl:if test="oe:item/oe:item"><button class="btn" data-toggle=".toc-sublist">Tables &amp; Graphs</button></xsl:if>
       </div>
       <ul id="toc-root" class="toc">
         <xsl:apply-templates select="oe:item"></xsl:apply-templates>
@@ -226,7 +226,7 @@
             </xsl:call-template>
           </div>
           <xsl:choose>
-            <xsl:when test="@type eq 'chapter'"><span class="toc-icon"><i class="icon-file"></i></span></xsl:when>
+            <xsl:when test="@type eq 'chapter'"><!-- no icon for chapters --></xsl:when>
             <xsl:when test="@type eq 'table'"><span class="toc-icon"><i class="icon-th-list"></i></span></xsl:when>
             <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>
             <xsl:otherwise>
