@@ -7,43 +7,51 @@ declare namespace dt = "http://purl.org/dc/terms/";
 import module namespace ms = "http://oecd.org/pi/models/search" at "/app/models/search.xqy";
 
 declare function test:last-publications-number-of ()
+(: Test: get-latest() :)
+(: Description: To be done :)
 {
-    let $model :=         
+    let $model :=
         <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-            {ms:get-latest-items(8,2,2)}
+            {ms:get-latest(8,2,2)}
         </latests>
-    return
-        (: 8 items have to be returned :)
-        assert:equal(fn:count($model/oe:latests/oe:item), 8, "The number of last publications (should be 8)")
+    let $nbBook := fn:count($model/oe:item[@type='book'])
+    let $nbArticle := fn:count($model/oe:item[@type='article'])
+    let $nbWP := fn:count($model/oe:item[@type='workingpaper'])
+    return 
+    (
+        (: 10 items have to be returned :)
+        assert:equal(fn:count($model/oe:item), 12, "The number of last publications should be 12")
+        (: 6 <= Nombre of book <= 8 :)
+        ,assert:true($nbBook ge 8 and $nbBook le 12, "There are 8 books minimum and 12 books maximum")
+        (: 0 <= Nombre of article <= 2 :)
+        ,assert:true($nbArticle ge 0 and $nbArticle le 2, "There are 0 article minimum and 2 articles maximum")
+        (: 0 <= Nombre of WorkingPaper <= 2 :)
+        ,assert:true($nbWP ge 0 and $nbWP le 2, "There are 0 workingpaper minimum and 2 workingpapers maximum")
+    )
 };
 
 declare function test:last-publications-article-publication-date ()
+(: Test: get-latest() :)
+(: Description: All Articles have to be between today and 3 months ago :)
 {
-    let $model :=         
+    let $model :=
         <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-            {ms:get-latest-items(8,2,2)}
+            {ms:get-latest(8,2,2)}
         </latests>
     return    
-        (: All Articles have to be  between today and 3 months ago :)
-        for $item in $model/oe:latests/oe:item[@type='article']/dt:available
-        return assert:true($item lt fn:current-dateTime() and $item gt (fn:current-dateTime() - xs:dayTimeDuration('P90D')),"???")
+        for $item at $i in $model/oe:item[@type='article']/dt:available
+        return assert:true($item lt fn:current-dateTime() and $item gt (fn:current-dateTime() - xs:dayTimeDuration('P90D')),"$i - ???")
 };
 
 declare function test:last-publications-workingpaper-publication-date ()
+(: Test: get-latest() :)
+(: Description: All Working Papers have to be between today and 3 months ago :)
 {
     let $model :=         
         <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
-            {ms:get-latest-items(8,2,2)}
+            {ms:get-latest(8,2,2)}
         </latests>
     return
-        (: All Working Papers have to be  between today and 3 months ago :)
-        for $item in $model/oe:latests/oe:item[@type='workingpaper']/dt:available
-        return assert:true($item lt fn:current-dateTime() and $item gt (fn:current-dateTime() - xs:dayTimeDuration('P90D')),"???")
-};
-
-declare function test:last-publications-book-if-exist ()
-{
-    (: a book exists if less than 8 articles and WP are in the last publications list :)
-    let $model := "Yes"
-    return assert:equal($model, "No","Test to be done ! if a book exists...")
+        for $item at $i in $model/oe:item[@type='workingpaper']/dt:available
+        return assert:true($item lt fn:current-dateTime() and $item gt (fn:current-dateTime() - xs:dayTimeDuration('P90D')),"$i - ???")
 };
