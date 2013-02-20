@@ -116,7 +116,7 @@ declare function module:render($params as map:map) {
           }},
           updater: function typeahead_updater(item) {{
             var oldval = this.$element.val();
-            var regex = new RegExp(oldval);
+            var regex = new RegExp(oldval,'i');
             if(regex.test(item)) {{
               this.$element.val(item);
               $("#searchForm").submit();

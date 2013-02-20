@@ -39,6 +39,10 @@ declare variable $facets-options as element() :=
     <return-results>false</return-results>
     <return-facets>true</return-facets>
     <return-metrics>false</return-metrics>
+    <term>
+      <term-option>unstemmed</term-option>
+      <term-option>case-insensitive</term-option>
+    </term>
   </options>;
 
 declare function module:facets($qtext as xs:string)
