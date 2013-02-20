@@ -12,25 +12,10 @@ declare variable $format as xs:string := mu:get-output-format();
 
 declare variable $supported as xs:string* := ('book','edition','journal','workingpaperseries');
 
-let $model := mi:get-item($id)
+let $model as element(oe:item)? := mi:get-item($id)
 let $format := if($model/@type = $supported) then $format else 'xml'
 
-let $model :=
-  <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
-    {$model/@*}
-    {$model/*}
-    {mi:get-item-translations($model)}
-    {
-      if($model/@type = ('book','edition')) then (
-        mi:get-item-parent($model)
-        ,mi:get-book-summaries($id)
-        ,mi:get-item-toc($id,true(),true())
-      )
-      else (
-        mi:get-serial-toc($id,true())
-      )
-    }
-  </item>
+let $model := mi:enhance-item($model)
 
 return
   if(not($model)) then

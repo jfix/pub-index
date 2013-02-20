@@ -1,6 +1,7 @@
 xquery version "1.0-ml";
 
 import module namespace mi = "http://oecd.org/pi/models/item" at "/app/models/item.xqy";
+import module namespace md = "http://oecd.org/pi/models/searchdoc" at "/app/models/searchdoc.xqy";
 
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
@@ -28,6 +29,11 @@ declare private function local:add()
       fn:error((),"Malformed XML input")
 };
 
+(: Refresh documents dedicated to search api if necessary :)
+declare private function local:build-search-documents() {
+  md:build-search-documents()
+};
+
 (: This function attempts to clear all forests for the current database.
  : Yes, this is very dangerous! Don't use unless you know what you are doing.
  : You have been warned! Double-warned!!
@@ -53,6 +59,8 @@ else if ($key ne xdmp:hmac-sha256('pacps', xs:string(xdmp:server()))) then
   xdmp:set-response-code(403,"Forbidden")
 else if ($action eq "add") then
   local:add()
+else if ($action eq "build-search-documents") then
+  local:build-search-documents()
 else if ($action eq "clear-forests") then
   local:clear-forests()
 else

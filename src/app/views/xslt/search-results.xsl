@@ -29,7 +29,7 @@
     <xsl:variable name="title" select="(dt:title[xml:lang eq 'en'],dt:title)[1]/text()"/>
     <xsl:variable name="subtitle" select="(oe:subTitle[xml:lang eq 'en'],oe:subTitle)[1]/text()"/>
     <xsl:variable name="cover" select="(oe:coverImage/text(),'cover_not_yetm.jpg')[1]"/>
-    <xsl:variable name="cover-url" select="concat('http://images.oecdcode.org/covers/100/', $cover)"/>
+    <xsl:variable name="cover-url" select="concat( if (@type = 'workingpaperseries') then 'http://images.oecdcode.org/covers/wpseries/' else 'http://images.oecdcode.org/covers/100/', $cover)"/>
 
     <div class="search-result-item" data-url="{$url}">
       <div class="row">
@@ -50,7 +50,7 @@
             </span>
           </h4>
           <p style="font-size: 0.9em; text-align:right">
-            <xsl:apply-templates select="dt:available"/>
+            <xsl:apply-templates select="(.//dt:available)[1]"/>
           </p>
           <p style="font-size: 0.9em; text-align:right">
             <xsl:apply-templates select="dt:language"/>
@@ -63,8 +63,7 @@
             </a>
           </xsl:if>
           <div class="metadata">
-            <xsl:apply-templates select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"
-            />
+            <xsl:apply-templates select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"/>
           </div>
         </div>
       </div>

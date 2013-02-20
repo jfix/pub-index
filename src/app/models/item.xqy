@@ -22,7 +22,6 @@ as empty-sequence()
         ,(
           "metadata"
           ,$type
-          ,if($type = ("book", "article", "workingpaper", "edition")) then "searchable" else ()
         )
       )
     else
@@ -35,6 +34,26 @@ as element(oe:item)?
   collection("metadata")[.//dt:identifier = $id]/oe:item
 };
 
+declare function module:enhance-item($model as element(oe:item))
+as element(oe:item)?
+{
+  <item xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/">
+    {$model/@*}
+    {$model/*}
+    {module:get-item-translations($model)}
+    {
+      if($model/@type = ('book','edition')) then (
+        module:get-item-parent($model)
+        ,module:get-book-summaries($model/dt:identifier)
+        ,module:get-item-toc($model/dt:identifier,true(),true())
+      )
+      else (
+        module:get-serial-toc($model/dt:identifier,true())
+      )
+    }
+  </item>
+};
+
 declare function module:get-item-type($id as xs:string)
 as xs:string?
 {
@@ -43,7 +62,10 @@ as xs:string?
     ,fn:QName("","type")
     ,()
     ,()
-    ,cts:element-value-query(fn:QName("http://purl.org/dc/terms/","identifier"), $id)
+    ,cts:and-query((
+      cts:collection-query("metadata")
+      ,cts:element-value-query(fn:QName("http://purl.org/dc/terms/","identifier"), $id)
+    ))
   )
 };
 
@@ -89,7 +111,8 @@ as element(oe:summaries)
 {
   let $ids := cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"), (), (),
                 cts:and-query((
-                  cts:element-attribute-range-query(
+                  cts:collection-query("metadata")
+                  ,cts:element-attribute-range-query(
                     fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","relation")
                     ,fn:QName("","type")
                     ,"="
@@ -120,7 +143,8 @@ declare function module:get-item-toc($id as xs:string, $showTg as xs:boolean?, $
 as element(oe:toc)
 {
   let $query := cts:and-query((
-                  cts:element-attribute-range-query(
+                  cts:collection-query("metadata")
+                  ,cts:element-attribute-range-query(
                     fn:QName("http://www.oecd.org/metapub/oecdOrg/ns/","item")
                     ,fn:QName("","type")
                     ,"!="
