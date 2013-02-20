@@ -159,21 +159,16 @@
 
   <xsl:template match="node()" as="item()*"/>
 
-  <xsl:function name="oe:get-display-url" as="xs:string">
+  <xsl:function name="oe:get-display-url" as="xs:string?">
     <xsl:param name="item" as="node()"/>
-    <xsl:variable name="id">
-      <xsl:choose>
-        <xsl:when test="$item/@type = ('book','edition')">
-          <xsl:value-of select="data($item/dt:identifier)"/>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of
-            select="($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]"
-          />
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    <xsl:value-of select="concat('/display/',$id)"/>
+    <xsl:choose>
+      <xsl:when test="$item/@type = ('article','workingpaper')">
+        <xsl:value-of select="$item/oe:link[@type eq 'doi']/@rdf:resource"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="concat('/display/', $item/dt:identifier)"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 
 </xsl:stylesheet>

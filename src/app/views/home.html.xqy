@@ -28,15 +28,15 @@ declare function local:render-latests-widget($items as element()*)
               <ul>
                 {
                   for $item in $items[$idx to $idx+3]
-                    let $uri-id as xs:string :=
-                      if($item/@type = ('book','edition')) then
-                        data($item/dt:identifier)
+                    let $uri as xs:string? :=
+                      if($item/@type eq ('book')) then
+                        concat('/display/', data($item/dt:identifier))
                       else
-                        ($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]
+                        $item/oe:link[@type eq 'doi']/@rdf:resource
                     let $bbl := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
                     return
-                      <li><a href="/display/{$uri-id}" title="{$bbl/dt:title}">
-                        <img src="http://images.oecdcode.org/covers/100/{$item/oe:coverImage}" alt=""/>
+                      <li><a href="{$uri}" title="{$bbl/dt:title}">
+                        <img src="http://images.oecdcode.org/covers/100/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]}" alt=""/>
                       </a></li>
                 }
               </ul>
@@ -55,36 +55,7 @@ declare function local:render-countries-widget()
 {(
   <h3>Browse by country</h3>,
   <div id="map-container">
-    <!-- temporary replacing simile widget with a place holder image -->
-    <img src="http://placehold.it/700x500&amp;text=map to select publications by country"/>
-    <!--
-      (:<div ex:role="coder" 
-      ex:coderClass="SizeGradient" 
-      id="pub-coder"
-      ex:color="green"
-      ex:gradientPoints="1, 10; 1000, 100" >
-    </div>
-    <div ex:role="view"
-      ex:viewClass="Map"
-      ex:type="satellite"
-      ex:label="Cities"
-      ex:latlng=".latlng"
-      ex:sizeKey=".publications"
-      ex:sizeCoder="pub-coder"
-      ex:sizeLegendLabel="publications"
-      ex:zoom="2"
-      ex:mapHeight="500"
-      ex:showHeader="false"
-      ex:showFooter="false"
-      ex:showSummary="false"
-      ex:showToolbox="false"
-      >
-      <div class="map-lens" ex:role="lens" style="display: none;">
-          <a ex:href-content=".url">
-            <span ex:content=".publications"></span> publication(s) on <b ex:content=".label"></b>
-          </a>
-      </div>
-    </div>:)-->
+   
   </div>
 )};
 
@@ -109,6 +80,10 @@ let $params := map:map(),
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
         ,<script src="/assets/js/oecd-facets.js"></script>
+        ,<script src="/assets/js/d3.v3.min.js"></script>
+        ,<script src="/assets/js/topojson.v0.min.js"></script>
+        ,<script src="/assets/js/oecd-map.js"></script>
+        
       ))
 
 return

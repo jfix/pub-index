@@ -131,10 +131,10 @@ declare function module:get-latest($qtb as xs:integer, $qta as xs:integer, $qtw 
 as element(oe:item)*
 {
     (: Articles: 30 days old max :)
-    let $latestArticles := module:get-latest-items('article', $qta, fn:current-dateTime() - xs:dayTimeDuration('P30D') )
+    let $latestArticles := module:get-latest-items('article', $qta, fn:current-dateTime() - xs:dayTimeDuration('P90D') )
     
     (: WP: 30 days old max :)
-    let $latestWorkingpapers := module:get-latest-items('workingpaper', $qtw, fn:current-dateTime() - xs:dayTimeDuration('P30D'))
+    let $latestWorkingpapers := module:get-latest-items('workingpaper', $qtw, fn:current-dateTime() - xs:dayTimeDuration('P90D'))
     
     (: Books: no real max date, setting it to 1 year :)
     let $latestBooks := module:get-latest-items(
@@ -157,7 +157,6 @@ as element(oe:item)*
         oe:status = 'available'
         and dt:available lt fn:current-dateTime()               
         and dt:available gt ($maxDate)
-        and fn:exists(oe:coverImage)
       ]
     order by $item/dt:available descending
     return $item
