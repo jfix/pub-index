@@ -20,8 +20,7 @@ declare variable $order as xs:string := xdmp:get-request-field("order");
 declare variable $search-options := <options xmlns="http://marklogic.com/appservices/search">
     <constraint name="pubtype">
       <range type="xs:string">
-        <element name="item" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
-        <attribute ns="" name="type"/>
+        <path-index xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/">/oe:item/@type</path-index>
       </range>
     </constraint>
     <constraint name="country">
