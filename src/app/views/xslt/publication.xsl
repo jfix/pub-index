@@ -231,7 +231,16 @@
             <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>            
             <xsl:otherwise>
               <xsl:if test="dt:available">
-                <xsl:if test="@type eq 'workingpaper'"><span class="toc-icon"><xsl:value-of select="oe:labelOrderNumber"/></span></xsl:if>
+                <xsl:if test="@type eq 'workingpaper'">
+                  <xsl:variable name="labelOrderNumber">
+                    <xsl:choose>
+                      <xsl:when test="oe:orderNumber"><xsl:value-of select="concat('#',oe:orderNumber)"/></xsl:when>
+                      <xsl:otherwise>
+                        <xsl:value-of select="concat(year-from-dateTime(xs:dateTime(dt:available)),'-',oe:yearNumber)"/>
+                      </xsl:otherwise>                      
+                    </xsl:choose>
+                  </xsl:variable>
+                  <span class="toc-icon"><xsl:value-of select="$labelOrderNumber"/></span></xsl:if>
                 <span class="toc-pubdate" data-date="{dt:available}"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
               </xsl:if>
             </xsl:otherwise>
