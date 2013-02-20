@@ -13,23 +13,28 @@ declare namespace prop = "http://marklogic.com/xdmp/property";
 
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-declare variable $searchable as xs:string* := ("book","edition","article","workingpaper","journal","workingpaperseries");
+declare variable $searchable-query := cts:and-query((
+  cts:collection-query(("book","edition","article","workingpaper","journal","workingpaperseries"))
+  ,cts:not-query(cts:collection-query("deleted"))
+));
 declare variable $since as xs:dateTime := fn:current-dateTime() - xs:dayTimeDuration("PT2H"); (: FIXME :)
 
 declare function module:build-search-documents()
 {
   let $ids :=
     cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"), (), (),
-      cts:collection-query($searchable)
+      $searchable-query
     )
   let $map := map:map()
   
-  let $void := module:check-updated-item($map)
-  ,$void := module:check-updated-children($map, $ids)
-  ,$void := module:check-updated-relations($map, $ids)
-  ,$void := module:build-search-document(map:keys($map))
-
-  return ()
+  return (
+    module:check-updated-item($map)
+    ,module:check-updated-children($map, $ids)
+    ,module:check-updated-relations($map, $ids)
+    ,module:build-search-document(map:keys($map))
+    
+    ,module:cleanup-deprecated-search-documents()
+  )
 };
 
 declare private function module:build-search-document($id as xs:string) {
@@ -126,7 +131,7 @@ declare private function module:check-updated-item($map as map:map) {
     ,cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"),
       (),(),
       cts:and-query((
-        cts:collection-query($searchable)
+        $searchable-query
         ,cts:properties-query(
           cts:element-range-query(
             xs:QName("prop:last-modified")
@@ -137,4 +142,27 @@ declare private function module:check-updated-item($map as map:map) {
       ))
     )
   )
+};
+
+declare private function module:cleanup-deprecated-search-documents() {
+  module:cleanup-deprecated-search-document(
+    cts:element-values(
+      fn:QName("http://purl.org/dc/terms/","identifier")
+      ,(),()
+      ,cts:and-query((
+        cts:collection-query("deleted")
+        ,cts:properties-query(
+            cts:element-range-query(
+              xs:QName("prop:last-modified")
+              ,">"
+              ,$since
+            )
+          )
+      ))
+    )
+  )
+};
+
+declare private function module:cleanup-deprecated-search-document($id as xs:string) {
+  xdmp:document-delete(concat("/searchdoc/", $id, ".xml"))
 };
