@@ -4,21 +4,14 @@ $(function() {
 var id = new RegExp("([^/])+(\\?|$)","").exec(window.location.href)[0];
 $('#backlinks').load('/app/actions/backlinks.xqy?id='+id);
 
-/* make TOC rows clickable */
+/* make TOC rows clickable: show/hide abstract */
 $('#toc-root').on('click', '.toc-row-header', function onClick_TocRowHeader(event) { 
   if(event.target.nodeName != 'A') {
     var $target = $(this).find('a.icon-download-alt');
     if($target) {
-      var anchor = $target[0];
-      if(anchor.click) {
-        anchor.click();
-      }
-      else {
-        var href = anchor.href;
-        if(href) {
-          window.open(href);
-        }
-      }
+      var $row = $(this).parent('.toc-row');
+      var $target = $row.find('.toc-abstract');
+      $target.fadeToggle();
     }
   }
 });
@@ -31,15 +24,14 @@ $('#toc-actions .btn').each(function() {
     var $targets = $('#toc-root').find(toggle);
     var $icon = $btn.children('i');
     $btn.click(function() {
-      $targets.fadeToggle();
+      var visible = $btn.hasClass('active');
+      
       $btn.toggleClass('active');
-      if($icon.hasClass('icon-eye-open')) {
-        $icon.removeClass('icon-eye-open');
-        $icon.addClass('icon-eye-close');
+      if(visible) {
+        $targets.fadeOut();
       }
       else {
-        $icon.removeClass('icon-eye-close');
-        $icon.addClass('icon-eye-open');
+        $targets.fadeIn();
       }
     });
   }
@@ -55,28 +47,5 @@ $('#summaries').on('change', function onChange_Summaries() {
 
 /* enable tooltips on links in TOC */
 $('#toc-root').find('div.links > a').tooltip();
-
-/* trigger tooltip on iLibrary links when hovering TOC rows */
-$('#toc-root').on('hover','div.toc-row-header',function onHover_TocRowHeader(event){
-  if(event.target.nodeName != 'A') {
-    var $target = $(this).find('a.icon-download-alt');
-    if($target) {
-      if(event.type == 'mouseenter') {
-        $target.tooltip('show');
-      }
-      else {
-        $target.tooltip('hide');
-      }
-    }
-  }
-});
-$('#toc-root').on('hover','div.links',function onHover_TocLinks(event){
-  if(event.target.nodeName != 'A' && event.type == 'mouseenter') {
-    var $target = $(this).find('a.icon-download-alt');
-    if($target) {
-      $target.tooltip('hide');
-    }
-  }
-});
 
 });
