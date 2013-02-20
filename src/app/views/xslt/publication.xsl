@@ -228,9 +228,10 @@
           <xsl:choose>
             <xsl:when test="@type eq 'chapter'"><!-- no icon for chapters --></xsl:when>
             <xsl:when test="@type eq 'table'"><span class="toc-icon"><i class="icon-th-list"></i></span></xsl:when>
-            <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>
+            <xsl:when test="@type eq 'graph'"><span class="toc-icon"><i class="icon-signal"></i></span></xsl:when>            
             <xsl:otherwise>
               <xsl:if test="dt:available">
+                <xsl:if test="@type eq 'workingpaper'"><span class="toc-icon"><xsl:value-of select="oe:labelOrderNumber"/></span></xsl:if>
                 <span class="toc-pubdate" data-date="{dt:available}"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
               </xsl:if>
             </xsl:otherwise>
