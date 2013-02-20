@@ -57,7 +57,6 @@
         
         <div class="links">
           <xsl:apply-templates select="oe:link[@type = 'freepreview']"/>
-          <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:link[@type = 'doi']"/>
           <xsl:apply-templates select="oe:link[@type = 'doi']"/>
           <xsl:apply-templates select="oe:link[@type = 'bookshop']"/>
           <xsl:apply-templates select="oe:parents/oe:item[@type = 'periodical']/oe:link[@type = 'bookshop']"/>
@@ -139,10 +138,6 @@
   
   <xsl:template match="oe:link[@type = 'doi']">
     <a class="btn" href="{@rdf:resource}" target="_blank">iLibrary</a>
-  </xsl:template>
-  
-  <xsl:template match="oe:parents//oe:link[@type = 'doi']">
-    <a class="btn" href="{@rdf:resource}" target="_blank">See previous editions</a>
   </xsl:template>
   
   <xsl:template match="oe:item[@type != ('periodical','journal')]/oe:link[@type = 'bookshop']">
