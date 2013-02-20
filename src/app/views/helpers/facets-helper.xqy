@@ -270,12 +270,12 @@ as element()?
         <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="3"><label xml:lang="en">Article</label><label xml:lang="fr">{$id}</label></itemtype>
         else if($id eq 'journal') then
         <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="4"><label xml:lang="en">Journal</label><label xml:lang="fr">{$id}</label></itemtype>
-        else if($id eq 'workingpaperserie') then
-        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="6"><label xml:lang="en">Working Paper Series</label><label xml:lang="fr">{$id}</label></itemtype>
+        else if($id eq 'workingpaperseries') then
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="6"><label xml:lang="en">Working Paper series</label><label xml:lang="fr">{$id}</label></itemtype>
         else if($id eq 'workingpaper') then 
         <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="5"><label xml:lang="en">Working Paper</label><label xml:lang="fr">{$id}</label></itemtype>
         else 
-        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="99"><label xml:lang="en">Unknown</label><label xml:lang="fr">{$id}</label></itemtype>
+        <itemtype xmlns="http://www.oecd.org/metapub/oecdOrg/ns/" id="{$id}" order="99"><label xml:lang="en">{$type}</label><label xml:lang="fr">{$id}</label></itemtype>
   else
     ()
 };

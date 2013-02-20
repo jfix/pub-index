@@ -38,9 +38,11 @@
             <span class="pubtype-label label {$type}" data-facet="pubtype" data-value="{$type}">
               <xsl:choose>
                 <xsl:when test="$type eq 'book'">Book</xsl:when>
-                <xsl:when test="$type eq 'edition'">Serial</xsl:when>
+                <xsl:when test="$type eq 'edition'">Periodical book</xsl:when>
                 <xsl:when test="$type eq 'article'">Article</xsl:when>
-                <xsl:when test="$type eq 'workingpaper'">Working paper</xsl:when>
+                <xsl:when test="$type eq 'workingpaper'">Working Paper</xsl:when>
+                <xsl:when test="$type eq 'workingpaperseries'">Working Paper series</xsl:when>
+                <xsl:when test="$type eq 'journal'">Journal</xsl:when>
                 <xsl:otherwise>
                   <xsl:value-of select="$type"/>
                 </xsl:otherwise>
