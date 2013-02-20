@@ -8,7 +8,7 @@ declare variable $since := xdmp:get-request-field("since");
 declare function local:enhance-uri($uri as xs:string)
 as xs:string
 {
-  concat( 'http://', $mu:host, '/display/', tokenize($uri,'/')[4] )
+  concat( 'http://', $mu:host, '/display/', tokenize($uri,'/')[3] )
 };
 
 let $duration as xs:dayTimeDuration := 
