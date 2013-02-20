@@ -12,6 +12,15 @@ as empty-sequence()
 {
   let $id := $item/dt:identifier
   let $type := $item/@type
+  let $deleted := if($item/oe:status eq "deleted") then true() else false()
+  
+  (: define collection(s) :)
+  let $collections := (
+    "metadata"
+    ,$type
+    ,if($deleted) then ("deleted")
+    else ()
+  )
   
   return 
     if($id and $type) then
@@ -19,10 +28,7 @@ as empty-sequence()
         fn:concat("/metadata/",$type,"/",$id,".xml")
         ,xdmp:xslt-invoke("/app/models/xslt/item-cleanup.xsl", $item)
         ,()
-        ,(
-          "metadata"
-          ,$type
-        )
+        ,$collections
       )
     else
       fn:error((),"Malformed XML input")

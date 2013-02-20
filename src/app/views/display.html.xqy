@@ -12,11 +12,16 @@ declare variable $model as node()? external;
 declare variable $id as xs:string := ($model//dt:identifier)[1];
 
 let $params := map:map(),
-      $void := map:put($params, "title", concat(string(($model//dt:title)[1]), " - OECD publications")),
-      $void := map:put($params, "scripts",(
-        <script src="/assets/js/oecd-display.js"></script>
-      )),
-      $void := map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/publication.xsl", $model))
+    $void := 
+    if($model/oe:status eq "deleted") then (
+         map:put($params, "title", "Deleted Content - OECD publications")
+        (:,map:put($params, "scripts",( <script src="/assets/js/oecd-display.js"></script> )):)
+        ,map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/deleted.xsl", $model))
+    ) else (
+         map:put($params, "title", concat(string(($model//dt:title)[1]), " - OECD publications"))
+        ,map:put($params, "scripts",( <script src="/assets/js/oecd-display.js"></script> ))
+        ,map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/publication.xsl", $model))
+    )
 
 return
   layout:render($params)
