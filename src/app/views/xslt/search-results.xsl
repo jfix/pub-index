@@ -73,7 +73,8 @@
             <xsl:variable name="related-topic-phrase">
               <xsl:choose>
                 <xsl:when test="count(dt:subject)>1">Related topics</xsl:when>
-                <xsl:otherwise>Related topic</xsl:otherwise>
+                <xsl:when test="count(dt:subject)=1">Related topic</xsl:when>
+                <xsl:otherwise/>
               </xsl:choose>
             </xsl:variable>
             <span><xsl:value-of select="$related-topic-phrase"/>: <xsl:apply-templates
@@ -82,7 +83,8 @@
               <xsl:variable name="related-country-phrase">
                 <xsl:choose>
                   <xsl:when test="count(oe:country)>1">Related countries</xsl:when>
-                  <xsl:otherwise>Related country</xsl:otherwise>
+                  <xsl:when test="count(oe:country)=1">Related country</xsl:when>
+                  <xsl:otherwise/>
                 </xsl:choose>
               </xsl:variable> &#160; <span><xsl:value-of select="$related-country-phrase"/>:
                   <xsl:apply-templates select="oe:country"/></span>
