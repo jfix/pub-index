@@ -38,3 +38,14 @@ as xs:string
      else
       'html'
 };
+
+declare function module:doc-exists($path as xs:string)
+as xs:boolean
+{
+    try { 
+        exists(xdmp:filesystem-file($path)) 
+    }
+    catch ($ex) { 
+        false() 
+    }
+};

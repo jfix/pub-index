@@ -4,6 +4,7 @@ module namespace module = "http://oecd.org/pi/models/searchdoc";
 (: Module powered by Alarache Unlimited ™ :)
 
 import module namespace mi = "http://oecd.org/pi/models/item" at "/app/models/item.xqy";
+import module namespace ut = "http://oecd.org/pi/models/utils" at "/app/models/utils.xqy";
 
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
@@ -164,5 +165,10 @@ declare private function module:cleanup-deprecated-search-documents() {
 };
 
 declare private function module:cleanup-deprecated-search-document($id as xs:string) {
-  xdmp:document-delete(concat("/searchdoc/", $id, ".xml"))
+  (: delete doc if it still exists... :)
+  let $targetDoc := concat("/searchdoc/", $id, ".xml")
+  return 
+  if (ut:doc-exists($targetDoc)) then
+    xdmp:document-delete($targetDoc)
+  else ()
 };
