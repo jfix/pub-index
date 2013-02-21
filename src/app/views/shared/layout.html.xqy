@@ -22,7 +22,7 @@ declare function module:render($params as map:map) {
     <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
     <link rel="stylesheet" href="/assets/css/styles.css"/>
     <link rel="stylesheet" href="/assets/css/oecd.css"/>
-
+    <link rel="shortcut icon" href="/assets/images/favicon.ico"/>
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
