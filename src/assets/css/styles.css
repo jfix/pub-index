@@ -320,7 +320,7 @@ div.exhibit-views-header{
 }
 
 div.abstract{
-    margin:1em;
+    margin:1em 1em 3em 1em;
 }
 div.abstract > p{
     margin:0 0 0.5em;
@@ -332,7 +332,10 @@ div.abstract > p{
 #toc-root{
     clear:both;
 }
-
+.toc-box-condensed {
+    height: 400px;
+    overflow:auto;
+}
 .toc{
     list-style:none;
     margin:0;
@@ -345,7 +348,7 @@ li.toc-row:hover{
     background-color:#eaeaea;
 }
 
-div.toc-row-header{
+div.toc-row-clickable{
     cursor:pointer
 }
 
@@ -366,6 +369,7 @@ div.toc-row-header > .links a{
     display:block;
     float:left;
     margin-right:0.5em;
+    font-size:smaller;
 }
 .toc-pubdate{
     display:block;
@@ -382,7 +386,7 @@ div.toc-row-header > .links a{
     margin-left:1em;
 }
 .toc-pubdate + .toc-title{
-    margin-left:6.5em;
+    margin-left:11em;
 }
 
 div.toc-details{
@@ -391,7 +395,7 @@ div.toc-details{
 
 .toc-abstract{
     display:none;
-    border:1px dashed #eee;
+    /*border:1px dashed #eee;*/
     font-size:0.9em;
     padding:0.5em;
     margin:0.5em 0 0;
