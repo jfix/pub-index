@@ -69,7 +69,9 @@
 
         <!-- multilingual summaries -->
         <xsl:apply-templates select="oe:summaries"/>
-
+        
+        <br/>
+        
         <!-- toc -->
         <xsl:apply-templates select="oe:toc"/>
 
@@ -217,23 +219,26 @@
 
   <xsl:template match="oe:toc">
     <xsl:if test="oe:item">
-      <div id="toc-actions" class="btn-group pull-right">
-        <xsl:if test="oe:item//dt:abstract">
-          <button class="btn btn-small" data-toggle=".toc-abstract">Abstracts</button>
-        </xsl:if>
-        <xsl:if test="oe:item/oe:item">
-          <button class="btn btn-small" data-toggle=".toc-sublist">Tables &amp; Graphs</button>
-        </xsl:if>
-        <a id="toc-expander" class="btn btn-small pull-right">
-          <i class="icon-chevron-down"/>
-          <span class="button-label">Expand table of contents</span>
-        </a>
-        
+      <div class="row">
+        <div id="toc-actions" class="btn-group pull-right">
+          <xsl:if test="oe:item//dt:abstract">
+            <a class="btn btn-small" data-toggle=".toc-abstract">Abstracts</a>
+          </xsl:if>
+          <xsl:if test="oe:item/oe:item">
+            <a class="btn btn-small" data-toggle=".toc-sublist">Tables &amp; Graphs</a>
+          </xsl:if>
+          <a id="toc-expander" class="btn btn-small">
+            <i class="icon-chevron-down"/>
+            <span class="button-label">Expand table of contents</span>
+          </a>
+        </div>
       </div>
-      <div id="toc-box" class="row toc-box-condensed">
-        <ul id="toc-root" class="toc" style="padding: 1em;margin: 1em;">
+      <div class="row">
+        <div id="toc-box" class="row toc-box-condensed">
+        <ul id="toc-root" class="toc" >
           <xsl:apply-templates select="oe:item"/>
         </ul>
+        </div>
       </div>
     </xsl:if>
   </xsl:template>

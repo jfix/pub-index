@@ -336,9 +336,11 @@ div.abstract > p{
     height: 400px;
     overflow:auto;
 }
-.toc{
+ul.toc{
     list-style:none;
-    margin:0;
+    /* FIXME: I don't think this is proper positioning, but it works in Chrome and Firefox, so we can live with it ... */
+    padding: 1em 0 1em 2em;
+    margin: 1em 0 1em 2em;
 }
 li.toc-row{
     padding:0.5em;
@@ -352,14 +354,22 @@ div.toc-row-clickable{
     cursor:pointer
 }
 
+div.toc-row-header {
+    /* need to set position to relative in order to position divs inside absolutely */
+    position:relative;
+}
 #toc-root > .toc-row > .toc-row-header > .links{
-    margin-right:0.5em;
+    position:absolute;
+    right:0.5em;
+    bottom:-2px; /* FIXME: this is petty pixel-tweaking ... I don't like it, but I don't know how to center the buttons vertically otherwise */   
 }
 div.toc-row-header > .links{
-    visibility:hidden;
+    /*visibility:hidden;*/
+    display: none;
 }
 li.toc-row:hover > .toc-row-header > .links{
-    visibility:visible;
+    /*visibility:visible;*/
+    display: block;
 }
 div.toc-row-header > .links a{
     margin-left:.5em;
