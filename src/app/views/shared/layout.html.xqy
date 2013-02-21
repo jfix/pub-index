@@ -141,6 +141,10 @@ declare function module:render($params as map:map) {
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         }})();
     </script>
+    
+    <div id="getsat-widget-4541"></div>
+    <script type="text/javascript" src="https://loader.engage.gsfn.us/loader.js"></script>
+    <script type="text/javascript">if (typeof GSFN !== "undefined"){{ GSFN.loadWidget(4541,{{"containerId":"getsat-widget-4541"}});}}</script>
   </body>
 </html>
 )};
