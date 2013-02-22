@@ -39,13 +39,8 @@ as xs:string
       'html'
 };
 
-declare function module:doc-exists($path as xs:string)
+declare function module:doc-exists($uri as xs:string)
 as xs:boolean
 {
-    try { 
-        exists(xdmp:filesystem-file($path)) 
-    }
-    catch ($ex) { 
-        false() 
-    }
+    if(cts:uris((),(),cts:document-query($uri))) then fn:true() else fn:false()
 };

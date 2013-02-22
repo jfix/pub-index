@@ -167,8 +167,6 @@ declare private function module:cleanup-deprecated-search-documents() {
 declare private function module:cleanup-deprecated-search-document($id as xs:string) {
   (: delete doc if it still exists... :)
   let $targetDoc := concat("/searchdoc/", $id, ".xml")
-  return 
-  if (ut:doc-exists($targetDoc)) then
-    xdmp:document-delete($targetDoc)
-  else ()
+  return
+  try { xdmp:document-delete($targetDoc) } catch ($ex) {}
 };
