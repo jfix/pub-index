@@ -9,29 +9,52 @@ declare namespace dt = "http://purl.org/dc/terms/";
 declare variable $key := xdmp:get-request-field("key");
 declare variable $action := xdmp:get-request-field("action");
 
-declare private function local:add()
+declare private function local:add-document($doc as node())
 {
-  let $node := xdmp:get-request-body()/node()
-  let $name := lower-case(local-name($node))
-  
+  let $name := lower-case(local-name($doc))  
   return
-    if($name) then
       if ($name eq 'item') then
-        mi:add($node)
-      else
+        mi:add($doc)
+      else if($name eq 'referential') then      
         xdmp:document-insert(
           fn:concat("/referential/",$name,".xml")
-          ,$node
+          ,$doc
           ,()
           ,("referential")
         )
-    else
-      fn:error((),"Malformed XML input")
+      else
+        fn:error((), "Malformed XML input (unknown root name)")
+};
+
+declare private function local:add(){
+    
+    let $request-body := xdmp:get-request-body("xml")    
+    let $items := $request-body//(oe:item|oe:referential)
+    
+    return 
+        <response>        
+            {            
+             for $item in $items              
+               return local:add-document($item)
+             ,
+             <add count="{count($items)}"/>
+            ,(: add duration :)            
+            <duration>{xdmp:elapsed-time()}</duration>
+            }            
+        </response>
 };
 
 (: Refresh documents dedicated to search api if necessary :)
 declare private function local:build-search-documents() {
-  md:build-search-documents()
+    <response>        
+        {            
+         md:build-search-documents()
+         ,
+         <build-search-documents status="complete"/>
+        ,(: add duration :)            
+        <duration>{xdmp:elapsed-time()}</duration>
+        }            
+    </response>  
 };
 
 (: This function attempts to clear all forests for the current database.
