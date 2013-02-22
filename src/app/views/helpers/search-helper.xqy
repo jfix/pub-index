@@ -10,7 +10,10 @@ declare variable $order as xs:string := (xdmp:get-request-field("order"), '')[1]
 declare function module:render-search-form()
 {
   <form action="/search" method="get" name="searchForm" id="searchForm">
+  <div class="input-append">
     <input placeholder="Search for publications" type="search" value="{$term}" id="term" name="term" class="" autocomplete="off"/>
+      <button class="btn" type="submit"><i class="icon-search"></i></button>
+    </div>
     <input type="hidden" id="in" name="in" value="{$in}"/>
     <input type="hidden" id="start" name="start" value="1"/>
     <input type="hidden" id="order" name="order" value="{$order}"/>
