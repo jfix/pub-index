@@ -294,7 +294,7 @@
                     </xsl:otherwise>
                   </xsl:choose>
                 </xsl:variable>
-                <span class="toc-icon">
+                <span class="toc-ordernumber">
                   <xsl:value-of select="$labelOrderNumber"/>
                 </span>
               </xsl:if>

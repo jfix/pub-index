@@ -381,6 +381,16 @@ div.toc-row-header > .links a{
     margin-right:0.5em;
     font-size:smaller;
 }
+
+.toc-ordernumber{
+    display:block;
+    float:left;
+    width:4em;
+    padding-right:1em;
+    text-align:right;
+	font-size:smaller;
+}
+
 .toc-pubdate{
     display:block;
     float:left;

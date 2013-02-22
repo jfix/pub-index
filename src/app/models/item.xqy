@@ -241,7 +241,7 @@ as element(oe:toc)
       order by (: crappy ordering, isn't it ? :)
         if( $item/@type = $ctype) then xs:integer($item/oe:volumeNumber) else ()  descending
         , if( $item/@type = $ctype ) then xs:integer($item/oe:issueNumber) else () descending
-        , if( $item/@type = $ctype ) then $item/dt:available else () descending
+        , if( $item/@type = 'article' ) then $item/dt:available else () descending
         , xs:integer($item/oe:relation[@type = $rtype]/@order) descending
       return $item
     }
