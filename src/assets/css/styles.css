@@ -387,7 +387,7 @@ div.toc-row-header > .links a{
     float:left;
     width:4em;
     padding-right:1em;
-    text-align:right;
+    /*text-align:right;*/
 	font-size:smaller;
 }
 
