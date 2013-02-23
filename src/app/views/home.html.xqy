@@ -32,7 +32,7 @@ declare function local:render-latests-widget($items as element()*)
       {
         for $item at $idx in $items
         return
-            <div class="{if ($idx = 1 then 'item active' else 'item'}">                
+            <div class="{if ($idx eq 1) then 'item active' else 'item'}">                
                 {
                     let $uri as xs:string? :=
                       if($item/@type eq ('book')) 
@@ -42,33 +42,32 @@ declare function local:render-latests-widget($items as element()*)
                         $item/oe:link[@type eq 'doi']/@rdf:resource
                     
                     let $bbl := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
+                    return 
+                    
+                        <a href="{$uri}">
+                            <div class="left-side" style="background-image: url(http://images.oecdcode.org/covers/340/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]})">
+                            </div>
+                            
+                            <div class="right-side">
+                                <h4>{$bbl/dt:title}</h4>
+                                <p><strong>{$bbl/oe:subTitle/text()}</strong></p>
+                                <br/>
+                                <p>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</p>
+                                <br/>
+                                <p class="abstract">{
+                                    let $abstract := $bbl/dt:abstract
+                                    return
+                                        if (string-length($abstract) gt 380)
+                                        then
+                                            concat(substring($abstract, 1, 380), " ...")
+                                        else
+                                            $abstract
+                                }</p>
+                            </div>
+                        </a>
+
                 }
                 
-                <a href="{$uri}">
-                    <div class="left-side" style="background-image(http://images.oecdcode.org/covers/340/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]})">
-                    </div>
-                    
-                    <div class="right-side">
-                        <h4>{$bbl/dt:title}</h4>
-                        <p>subtitle, pub date, start of abstract to come.</p>
-                    </div>
-                </a>
-(:             <!--<ul>
-                {
-                  for $item in $items[$idx to $idx+3]
-                    let $uri as xs:string? :=
-                      if($item/@type eq ('book')) then
-                        concat('/display/', data($item/dt:identifier))
-                      else
-                        $item/oe:link[@type eq 'doi']/@rdf:resource
-                    let $bbl := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
-                    return
-                      <li><a href="{$uri}" title="{$bbl/dt:title}">
-                        <img src="http://images.oecdcode.org/covers/100/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]}" alt=""/>
-                      </a></li>
-                }
-              </ul>-->
-:)
         </div>
        }
     </div>

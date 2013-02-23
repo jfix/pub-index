@@ -68,9 +68,9 @@ div.right-side {
     /* this has been determined by trial and error,
        and I must admit I'm not sure how to explain
        that number of pixels ... */
-    min-width: 304px;
-    max-width: 304px;
-    padding: 2em 2em 2em 2em;
+    min-width: 308px;
+    max-width: 308px;
+    padding: 1.5em 2em 2em 2em;
 
     /* this is more or less what remains of the 
        bootstrap carousel-caption class */
@@ -94,6 +94,10 @@ div.with-border {
     border: 2px solid #444444;
 }
 
+div#latest p.abstract {
+    line-height: 1.5em;
+    padding-right: 3em;
+}
 /* display the oecd logo on the right-hand side
    as background image, centred, solution from here:
    http://nicolasgallagher.com/css-background-image-hacks/ */
