@@ -75,10 +75,12 @@
         <!-- toc -->
         <xsl:apply-templates select="oe:toc"/>
 
+        <!-- TODO: for version:v2.0 - see issue #4919 back links
         <br/>
 
         <h4>Related links</h4>
         <div id="backlinks"/>
+        -->
       </div>
     </div>
   </xsl:template>
