@@ -138,7 +138,7 @@ declare function module:render($params as map:map) {
            so I have added them here. FIXME: needs regular updates (or maybe can be made
            empty again, after W7 migration at OECD is over.
         */
-        var $buoop = {{i:8,f:2,o:9.63,s:2,n:10}};  
+        var $buoop = {{vs:{{i:8,f:3.6,o:10.6,s:4,n:10}}}};  
         $buoop.ol = window.onload; 
         window.onload=function(){{ 
              try {{ if ($buoop.ol) $buoop.ol();}} catch (e) {{}} 
