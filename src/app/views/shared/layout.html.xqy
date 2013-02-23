@@ -22,6 +22,7 @@ declare function module:render($params as map:map) {
     <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
     <link rel="stylesheet" href="/assets/css/styles.css"/>
     <link rel="stylesheet" href="/assets/css/oecd.css"/>
+    <link rel="stylesheet" href="/assets/css/browser-update.org.custom.css"/>
     <link rel="shortcut icon" href="/assets/images/favicon.ico"/>
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
@@ -105,7 +106,7 @@ declare function module:render($params as map:map) {
     <script src="/assets/jquery/jquery-1.8.3.min.js"></script>
     <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
     {map:get($params,'scripts')}
-    <script>
+    <script type="text/javascript">
       $(function() {{
         $('#term').typeahead({{
           minLength: 2,
@@ -131,6 +132,22 @@ declare function module:render($params as map:map) {
       }});
     </script>
     <script src="/assets/js/oecd-layout.js"></script>
+    <script type="text/javascript"> 
+        /* normally, one should leave this empty to let "browser-update.org" make the
+           choice whether to alert or not. but they consider ie8 ok, but I don't,
+           so I have added them here. FIXME: needs regular updates (or maybe can be made
+           empty again, after W7 migration at OECD is over.
+        */
+        var $buoop = {{i:8,f:2,o:9.63,s:2,n:10}};  
+        $buoop.ol = window.onload; 
+        window.onload=function(){{ 
+             try {{ if ($buoop.ol) $buoop.ol();}} catch (e) {{}} 
+             var e = document.createElement("script"); 
+             e.setAttribute("type", "text/javascript"); 
+             e.setAttribute("src", "http://browser-update.org/update.js"); 
+             document.body.appendChild(e); 
+        }}
+    </script>
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-38704931-1']);
@@ -147,7 +164,8 @@ declare function module:render($params as map:map) {
     <script type="text/javascript">if (typeof GSFN !== "undefined"){{ GSFN.loadWidget(4541,{{"containerId":"getsat-widget-4541"}});}}</script>
   </body>
 </html>
-)};
+)
+};
 
 
 
