@@ -22,6 +22,103 @@ header{
     margin-bottom:4em;
 }
 
+/* **********************************************************
+
+   CAROUSEL STYLE SPECIFICATIONS
+
+   ********************************************************** */
+
+div.item {
+    /*  force a uniform height, this is less than a typical cover, 
+        but otherwise the carousel would take up too much vertical 
+        space. */
+    height: 400px;
+    /* need to do this so that I can position child elements absolutely */
+    position: relative;
+}
+
+.carousel-control {
+    /* overload bootstrap defaults */
+    top: 50% !important;
+}
+
+/* move line of little circle to the bottom */
+/* overload bootstrap defaults */
+.carousel-indicators {
+    bottom: 15px !important;
+    top: inherit;
+}
+
+/* define the left half showing the cover, 
+   based on its "guaranteed" width of 340px */
+div.left-side{
+    width: 340px;
+    max-width: 340px;
+    min-width: 340px;
+}
+
+/* define right-hand side containing title 
+   and metadata */
+div.right-side {
+    position: absolute;
+    top: 0;
+    right: 0;
+    float: right;
+    height: 100%;
+    /* this has been determined by trial and error,
+       and I must admit I'm not sure how to explain
+       that number of pixels ... */
+    min-width: 304px;
+    max-width: 304px;
+    padding: 2em 2em 2em 2em;
+
+    /* this is more or less what remains of the 
+       bootstrap carousel-caption class */
+    background: #333333;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+div.left-side {
+    /* crop the image, don't resize it - I'm waiting 
+       for NEA to complain that one cannot see their 
+       logo because of this */
+    overflow: hidden;
+    float: left;
+    height: 100%;
+}
+/* we have to delimitate the actual carousel, otherwise
+   it just fades into the rest, the "well" class was
+   not an option */
+div.with-border {
+    border: 2px solid #444444;
+}
+
+/* display the oecd logo on the right-hand side
+   as background image, centred, solution from here:
+   http://nicolasgallagher.com/css-background-image-hacks/ */
+   
+div.right-side::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	background-image: url(/assets/images/logo.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
+
+/* **********************************************************
+
+   SOMETHING ELSE
+
+   ********************************************************** */
+
 .cover{
     margin:0 2em 2em 1em;
     border:1px solid black;

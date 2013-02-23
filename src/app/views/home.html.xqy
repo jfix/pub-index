@@ -15,17 +15,45 @@ declare variable $facets as node()? external;
 
 declare function local:render-latests-widget($items as element()*)
 {(
-  <h3>Latest publications <small> <a href="/search?term=&amp;in=&amp;start=1&amp;order=">browse them all</a></small></h3>,
-  <div id="latest" class="carousel slide well">
+  <h3>Latest publications <small> <a href="/search?term=&amp;in=&amp;start=1&amp;order=">browse all</a></small></h3>,
+  <div id="latest" class="carousel slide">
+  
+    <!-- the list of little circles to indicate the available carousel items -->
+    <ol class="carousel-indicators">
+    {
+        for $i in (1 to count($items)) 
+        return
+            <li data-target="#latest" data-slide-to="{$i}"></li>
+    }
+    </ol>
+    
     <!-- Carousel items -->
-    <div class="carousel-inner">
+    <div class="carousel-inner with-border">
       {
         for $item at $idx in $items
         return
-          if($idx mod 4 eq 1) then
-            <div>
-              { attribute class { if($idx eq 1) then "item active" else "item" } }
-              <ul>
+            <div class="{if ($idx = 1 then 'item active' else 'item'}">                
+                {
+                    let $uri as xs:string? :=
+                      if($item/@type eq ('book')) 
+                      then
+                        concat('/display/', data($item/dt:identifier))
+                      else
+                        $item/oe:link[@type eq 'doi']/@rdf:resource
+                    
+                    let $bbl := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
+                }
+                
+                <a href="{$uri}">
+                    <div class="left-side" style="background-image(http://images.oecdcode.org/covers/340/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]})">
+                    </div>
+                    
+                    <div class="right-side">
+                        <h4>{$bbl/dt:title}</h4>
+                        <p>subtitle, pub date, start of abstract to come.</p>
+                    </div>
+                </a>
+(:             <!--<ul>
                 {
                   for $item in $items[$idx to $idx+3]
                     let $uri as xs:string? :=
@@ -39,10 +67,9 @@ declare function local:render-latests-widget($items as element()*)
                         <img src="http://images.oecdcode.org/covers/100/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]}" alt=""/>
                       </a></li>
                 }
-              </ul>
-            </div>
-          else
-            ()
+              </ul>-->
+:)
+        </div>
        }
     </div>
     <!-- Carousel nav -->
