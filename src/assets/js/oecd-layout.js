@@ -11,6 +11,11 @@
 /* OECD nav bar */
 $(function() {
 
+ /* start the carousel on the home page, each slide is displayed for three seconds */
+ $('div#latest').carousel({
+  	interval: 3000	
+  })
+
 /* define actions for dropdown menus */
 $("#nav a.hasPanel").click(function (e) {
   e.preventDefault ();
