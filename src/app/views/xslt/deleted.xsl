@@ -36,7 +36,7 @@
       
       <!-- title + metadata -->
       <div id="metadata" class="span9">
-        This content is no longer available.
+        This content is no longer published.
       </div> 
       
     </div>
