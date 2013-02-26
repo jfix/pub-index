@@ -123,6 +123,11 @@ div.right-side::before {
 
    ********************************************************** */
 
+#map-container {
+    width: 700px;
+    height: 400px;
+    border: 2px solid #444444;
+}
 .cover{
     margin:0 2em 2em 1em;
     border:1px solid black;

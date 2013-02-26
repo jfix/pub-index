@@ -1,0 +1,4099 @@
+{"features": [
+    {
+        "id": "af",
+        "properties": {
+            "name": "Afghanistan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 65,
+            "geo_latitude": 33
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                65,
+                33
+            ]
+        }
+    },
+    {
+        "id": "za",
+        "properties": {
+            "name": "South Africa",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 24,
+            "geo_latitude": -29
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                24,
+                -29
+            ]
+        }
+    },
+    {
+        "id": "al",
+        "properties": {
+            "name": "Albania",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 20,
+            "geo_latitude": 41
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                20,
+                41
+            ]
+        }
+    },
+    {
+        "id": "dz",
+        "properties": {
+            "name": "Algeria",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 3,
+            "geo_latitude": 28
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                3,
+                28
+            ]
+        }
+    },
+    {
+        "id": "de",
+        "properties": {
+            "name": "Germany",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 9,
+            "geo_latitude": 51
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                9,
+                51
+            ]
+        }
+    },
+    {
+        "id": "ad",
+        "properties": {
+            "name": "Andorra",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 1.3,
+            "geo_latitude": 42.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                1.3,
+                42.3
+            ]
+        }
+    },
+    {
+        "id": "ao",
+        "properties": {
+            "name": "Angola",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 18.3,
+            "geo_latitude": -12.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18.3,
+                -12.3
+            ]
+        }
+    },
+    {
+        "id": "ai",
+        "properties": {
+            "name": "Anguilla",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -63.1,
+            "geo_latitude": 18.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -63.1,
+                18.15
+            ]
+        }
+    },
+    {
+        "id": "aq",
+        "properties": {
+            "name": "Antarctica",
+            "geo_accuracy": "administrative",
+            "geo_longitude": "0.00",
+            "geo_latitude": -90
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                "0.00",
+                -90
+            ]
+        }
+    },
+    {
+        "id": "ag",
+        "properties": {
+            "name": "Antigua and Barbuda",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61.48,
+            "geo_latitude": 17.03
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61.48,
+                17.03
+            ]
+        }
+    },
+    {
+        "id": "an",
+        "properties": {
+            "name": "Netherlands Antilles",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -68.45,
+            "geo_latitude": 12.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -68.45,
+                12.15
+            ]
+        }
+    },
+    {
+        "id": "sa",
+        "properties": {
+            "name": "Saudi Arabia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 45,
+            "geo_latitude": 25
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                45,
+                25
+            ]
+        }
+    },
+    {
+        "id": "ar",
+        "properties": {
+            "name": "Argentina",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -64,
+            "geo_latitude": -34
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -64,
+                -34
+            ]
+        }
+    },
+    {
+        "id": "am",
+        "properties": {
+            "name": "Armenia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 45,
+            "geo_latitude": 40
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                45,
+                40
+            ]
+        }
+    },
+    {
+        "id": "aw",
+        "properties": {
+            "name": "Aruba",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -69.58,
+            "geo_latitude": 12.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -69.58,
+                12.3
+            ]
+        }
+    },
+    {
+        "id": "au",
+        "properties": {
+            "name": "Australia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 133,
+            "geo_latitude": -27
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                133,
+                -27
+            ]
+        }
+    },
+    {
+        "id": "at",
+        "properties": {
+            "name": "Austria",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 13.2,
+            "geo_latitude": 47.2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                13.2,
+                47.2
+            ]
+        }
+    },
+    {
+        "id": "az",
+        "properties": {
+            "name": "Azerbaijan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 47.3,
+            "geo_latitude": 40.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                47.3,
+                40.3
+            ]
+        }
+    },
+    {
+        "id": "bs",
+        "properties": {
+            "name": "Bahamas",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -76,
+            "geo_latitude": 24.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -76,
+                24.15
+            ]
+        }
+    },
+    {
+        "id": "bh",
+        "properties": {
+            "name": "Bahrain",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 50.33,
+            "geo_latitude": 26
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                50.33,
+                26
+            ]
+        }
+    },
+    {
+        "id": "bd",
+        "properties": {
+            "name": "Bangladesh",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 90,
+            "geo_latitude": 24
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                90,
+                24
+            ]
+        }
+    },
+    {
+        "id": "bb",
+        "properties": {
+            "name": "Barbados",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -59.32,
+            "geo_latitude": 13.1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -59.32,
+                13.1
+            ]
+        }
+    },
+    {
+        "id": "by",
+        "properties": {
+            "name": "Belarus",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 28,
+            "geo_latitude": 53
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                28,
+                53
+            ]
+        }
+    },
+    {
+        "id": "be",
+        "properties": {
+            "name": "Belgium",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 4,
+            "geo_latitude": 50.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                4,
+                50.5
+            ]
+        }
+    },
+    {
+        "id": "bz",
+        "properties": {
+            "name": "Belize",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -88.45,
+            "geo_latitude": 17.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -88.45,
+                17.15
+            ]
+        }
+    },
+    {
+        "id": "bj",
+        "properties": {
+            "name": "Benin",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 2.15,
+            "geo_latitude": 9.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                2.15,
+                9.3
+            ]
+        }
+    },
+    {
+        "id": "bm",
+        "properties": {
+            "name": "Bermuda",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -64.45,
+            "geo_latitude": 32.2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -64.45,
+                32.2
+            ]
+        }
+    },
+    {
+        "id": "bt",
+        "properties": {
+            "name": "Bhutan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 90.3,
+            "geo_latitude": 27.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                90.3,
+                27.3
+            ]
+        }
+    },
+    {
+        "id": "bo",
+        "properties": {
+            "name": "Bolivia, Plurinational State of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -65,
+            "geo_latitude": -17
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -65,
+                -17
+            ]
+        }
+    },
+    {
+        "id": "ba",
+        "properties": {
+            "name": "Bosnia and Herzegovina",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 18,
+            "geo_latitude": 44
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                18,
+                44
+            ]
+        }
+    },
+    {
+        "id": "bw",
+        "properties": {
+            "name": "Botswana",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 24,
+            "geo_latitude": -22
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                24,
+                -22
+            ]
+        }
+    },
+    {
+        "id": "bv",
+        "properties": {
+            "name": "Bouvet Island",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 3.24,
+            "geo_latitude": -54.26
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                3.24,
+                -54.26
+            ]
+        }
+    },
+    {
+        "id": "br",
+        "properties": {
+            "name": "Brazil",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -55,
+            "geo_latitude": -10
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -55,
+                -10
+            ]
+        }
+    },
+    {
+        "id": "bn",
+        "properties": {
+            "name": "Brunei Darussalam",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 114.4,
+            "geo_latitude": 4.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                114.4,
+                4.3
+            ]
+        }
+    },
+    {
+        "id": "bg",
+        "properties": {
+            "name": "Bulgaria",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 25,
+            "geo_latitude": 43
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                25,
+                43
+            ]
+        }
+    },
+    {
+        "id": "bf",
+        "properties": {
+            "name": "Burkina Faso",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -2,
+            "geo_latitude": 13
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -2,
+                13
+            ]
+        }
+    },
+    {
+        "id": "bi",
+        "properties": {
+            "name": "Burundi",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": -3.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                -3.3
+            ]
+        }
+    },
+    {
+        "id": "ky",
+        "properties": {
+            "name": "Cayman Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -80.3,
+            "geo_latitude": 19.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -80.3,
+                19.3
+            ]
+        }
+    },
+    {
+        "id": "kh",
+        "properties": {
+            "name": "Cambodia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 105,
+            "geo_latitude": 13
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                105,
+                13
+            ]
+        }
+    },
+    {
+        "id": "cm",
+        "properties": {
+            "name": "Cameroon",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 12,
+            "geo_latitude": 6
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                12,
+                6
+            ]
+        }
+    },
+    {
+        "id": "ca",
+        "properties": {
+            "name": "Canada",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -95,
+            "geo_latitude": 60
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -95,
+                60
+            ]
+        }
+    },
+    {
+        "id": "cv",
+        "properties": {
+            "name": "Cape Verde",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -24,
+            "geo_latitude": 16
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -24,
+                16
+            ]
+        }
+    },
+    {
+        "id": "cf",
+        "properties": {
+            "name": "Central African Republic",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 21,
+            "geo_latitude": 7
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                21,
+                7
+            ]
+        }
+    },
+    {
+        "id": "cl",
+        "properties": {
+            "name": "Chile",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -71,
+            "geo_latitude": -30
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -71,
+                -30
+            ]
+        }
+    },
+    {
+        "id": "cn",
+        "properties": {
+            "name": "China",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 105,
+            "geo_latitude": 35
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                105,
+                35
+            ]
+        }
+    },
+    {
+        "id": "cx",
+        "properties": {
+            "name": "Christmas Island",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 105.4,
+            "geo_latitude": -10.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                105.4,
+                -10.3
+            ]
+        }
+    },
+    {
+        "id": "cy",
+        "properties": {
+            "name": "Cyprus",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 33,
+            "geo_latitude": 35
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                33,
+                35
+            ]
+        }
+    },
+    {
+        "id": "cc",
+        "properties": {
+            "name": "Cocos (Keeling) Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 96.5,
+            "geo_latitude": -12.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                96.5,
+                -12.3
+            ]
+        }
+    },
+    {
+        "id": "co",
+        "properties": {
+            "name": "Colombia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -72,
+            "geo_latitude": 4
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -72,
+                4
+            ]
+        }
+    },
+    {
+        "id": "km",
+        "properties": {
+            "name": "Comoros",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 44.15,
+            "geo_latitude": -12.1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44.15,
+                -12.1
+            ]
+        }
+    },
+    {
+        "id": "cg",
+        "properties": {
+            "name": "Congo, Republic of the",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 15,
+            "geo_latitude": -1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                15,
+                -1
+            ]
+        }
+    },
+    {
+        "id": "cd",
+        "properties": {
+            "name": "Congo, Democratic Republic of the",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 25,
+            "geo_latitude": "0.00"
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                25,
+                "0.00"
+            ]
+        }
+    },
+    {
+        "id": "ck",
+        "properties": {
+            "name": "Cook Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -159.46,
+            "geo_latitude": -21.14
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -159.46,
+                -21.14
+            ]
+        }
+    },
+    {
+        "id": "kr",
+        "properties": {
+            "name": "Korea, Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 127.3,
+            "geo_latitude": 37
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                127.3,
+                37
+            ]
+        }
+    },
+    {
+        "id": "kp",
+        "properties": {
+            "name": "Korea, Democratic People's Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 127,
+            "geo_latitude": 40
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                127,
+                40
+            ]
+        }
+    },
+    {
+        "id": "cr",
+        "properties": {
+            "name": "Costa Rica",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -84,
+            "geo_latitude": 10
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -84,
+                10
+            ]
+        }
+    },
+    {
+        "id": "ci",
+        "properties": {
+            "name": "Côte d'Ivoire",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -5,
+            "geo_latitude": 8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -5,
+                8
+            ]
+        }
+    },
+    {
+        "id": "hr",
+        "properties": {
+            "name": "Croatia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 15.3,
+            "geo_latitude": 45.1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                15.3,
+                45.1
+            ]
+        }
+    },
+    {
+        "id": "cu",
+        "properties": {
+            "name": "Cuba",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -80,
+            "geo_latitude": 21.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -80,
+                21.3
+            ]
+        }
+    },
+    {
+        "id": "dk",
+        "properties": {
+            "name": "Denmark",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 10,
+            "geo_latitude": 56
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                10,
+                56
+            ]
+        }
+    },
+    {
+        "id": "dj",
+        "properties": {
+            "name": "Djibouti",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 43,
+            "geo_latitude": 11.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                43,
+                11.3
+            ]
+        }
+    },
+    {
+        "id": "do",
+        "properties": {
+            "name": "Dominican Republic",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -70.4,
+            "geo_latitude": 19
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -70.4,
+                19
+            ]
+        }
+    },
+    {
+        "id": "dm",
+        "properties": {
+            "name": "Dominica",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61.2,
+            "geo_latitude": 15.25
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61.2,
+                15.25
+            ]
+        }
+    },
+    {
+        "id": "eg",
+        "properties": {
+            "name": "Egypt",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": 27
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                27
+            ]
+        }
+    },
+    {
+        "id": "sv",
+        "properties": {
+            "name": "El Salvador",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -88.55,
+            "geo_latitude": 13.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -88.55,
+                13.5
+            ]
+        }
+    },
+    {
+        "id": "ae",
+        "properties": {
+            "name": "United Arab Emirates",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 54,
+            "geo_latitude": 24
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                54,
+                24
+            ]
+        }
+    },
+    {
+        "id": "ec",
+        "properties": {
+            "name": "Ecuador",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -77.3,
+            "geo_latitude": -2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -77.3,
+                -2
+            ]
+        }
+    },
+    {
+        "id": "er",
+        "properties": {
+            "name": "Eritrea",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 39,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                39,
+                15
+            ]
+        }
+    },
+    {
+        "id": "es",
+        "properties": {
+            "name": "Spain",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -4,
+            "geo_latitude": 40
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -4,
+                40
+            ]
+        }
+    },
+    {
+        "id": "ee",
+        "properties": {
+            "name": "Estonia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 26,
+            "geo_latitude": 59
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                26,
+                59
+            ]
+        }
+    },
+    {
+        "id": "us",
+        "properties": {
+            "name": "United States",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -97,
+            "geo_latitude": 38
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -97,
+                38
+            ]
+        }
+    },
+    {
+        "id": "et",
+        "properties": {
+            "name": "Ethiopia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 38,
+            "geo_latitude": 8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                38,
+                8
+            ]
+        }
+    },
+    {
+        "id": "fk",
+        "properties": {
+            "name": "Falkland Islands (Malvinas)",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -59,
+            "geo_latitude": -51.45
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -59,
+                -51.45
+            ]
+        }
+    },
+    {
+        "id": "fo",
+        "properties": {
+            "name": "Faroe Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -7,
+            "geo_latitude": 62
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -7,
+                62
+            ]
+        }
+    },
+    {
+        "id": "fj",
+        "properties": {
+            "name": "Fiji",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 175,
+            "geo_latitude": -18
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                175,
+                -18
+            ]
+        }
+    },
+    {
+        "id": "fi",
+        "properties": {
+            "name": "Finland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 26,
+            "geo_latitude": 64
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                26,
+                64
+            ]
+        }
+    },
+    {
+        "id": "fr",
+        "properties": {
+            "name": "France",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 2.43,
+            "geo_latitude": 46.53
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                2.43,
+                46.53
+            ]
+        }
+    },
+    {
+        "id": "ga",
+        "properties": {
+            "name": "Gabon",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 11.45,
+            "geo_latitude": -1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                11.45,
+                -1
+            ]
+        }
+    },
+    {
+        "id": "gm",
+        "properties": {
+            "name": "Gambia, The",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -16.34,
+            "geo_latitude": 13.28
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -16.34,
+                13.28
+            ]
+        }
+    },
+    {
+        "id": "ge",
+        "properties": {
+            "name": "Georgia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 43.3,
+            "geo_latitude": 42
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                43.3,
+                42
+            ]
+        }
+    },
+    {
+        "id": "gs",
+        "properties": {
+            "name": "South Georgia and the South Sandwich Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -37,
+            "geo_latitude": -54.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -37,
+                -54.3
+            ]
+        }
+    },
+    {
+        "id": "gh",
+        "properties": {
+            "name": "Ghana",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -2,
+            "geo_latitude": 8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -2,
+                8
+            ]
+        }
+    },
+    {
+        "id": "gi",
+        "properties": {
+            "name": "Gibraltar",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -5.21,
+            "geo_latitude": 36.08
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -5.21,
+                36.08
+            ]
+        }
+    },
+    {
+        "id": "gr",
+        "properties": {
+            "name": "Greece",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 22,
+            "geo_latitude": 39
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                22,
+                39
+            ]
+        }
+    },
+    {
+        "id": "gd",
+        "properties": {
+            "name": "Grenada",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61.4,
+            "geo_latitude": 12.07
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61.4,
+                12.07
+            ]
+        }
+    },
+    {
+        "id": "gl",
+        "properties": {
+            "name": "Greenland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -40,
+            "geo_latitude": 72
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -40,
+                72
+            ]
+        }
+    },
+    {
+        "id": "gp",
+        "properties": {
+            "name": "Guadeloupe",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61.35,
+            "geo_latitude": 16.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61.35,
+                16.15
+            ]
+        }
+    },
+    {
+        "id": "gu",
+        "properties": {
+            "name": "Guam",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 144.47,
+            "geo_latitude": 13.28
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                144.47,
+                13.28
+            ]
+        }
+    },
+    {
+        "id": "gt",
+        "properties": {
+            "name": "Guatemala",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -90.15,
+            "geo_latitude": 15.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -90.15,
+                15.3
+            ]
+        }
+    },
+    {
+        "id": "gg",
+        "properties": {
+            "name": "Guernsey",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -2.35,
+            "geo_latitude": 49.28
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -2.35,
+                49.28
+            ]
+        }
+    },
+    {
+        "id": "gn",
+        "properties": {
+            "name": "Guinea",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -10,
+            "geo_latitude": 11
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -10,
+                11
+            ]
+        }
+    },
+    {
+        "id": "gw",
+        "properties": {
+            "name": "Guinea-Bissau",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -15,
+            "geo_latitude": 12
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -15,
+                12
+            ]
+        }
+    },
+    {
+        "id": "gq",
+        "properties": {
+            "name": "Equatorial Guinea",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 10,
+            "geo_latitude": 2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                10,
+                2
+            ]
+        }
+    },
+    {
+        "id": "gy",
+        "properties": {
+            "name": "Guyana",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -59,
+            "geo_latitude": 5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -59,
+                5
+            ]
+        }
+    },
+    {
+        "id": "gf",
+        "properties": {
+            "name": "French Guiana",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -53,
+            "geo_latitude": 4
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -53,
+                4
+            ]
+        }
+    },
+    {
+        "id": "ht",
+        "properties": {
+            "name": "Haiti",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -72.25,
+            "geo_latitude": 19
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -72.25,
+                19
+            ]
+        }
+    },
+    {
+        "id": "hm",
+        "properties": {
+            "name": "Heard Island and McDonald Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 72.31,
+            "geo_latitude": -53.06
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                72.31,
+                -53.06
+            ]
+        }
+    },
+    {
+        "id": "hn",
+        "properties": {
+            "name": "Honduras",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -86.3,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -86.3,
+                15
+            ]
+        }
+    },
+    {
+        "id": "hk",
+        "properties": {
+            "name": "Hong Kong, China",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 114.1,
+            "geo_latitude": 22.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                114.1,
+                22.15
+            ]
+        }
+    },
+    {
+        "id": "hu",
+        "properties": {
+            "name": "Hungary",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 20,
+            "geo_latitude": 47
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                20,
+                47
+            ]
+        }
+    },
+    {
+        "id": "im",
+        "properties": {
+            "name": "Isle of Man",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -4.3,
+            "geo_latitude": 54.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -4.3,
+                54.15
+            ]
+        }
+    },
+    {
+        "id": "vg",
+        "properties": {
+            "name": "Virgin Islands, British",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -64.3,
+            "geo_latitude": 18.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -64.3,
+                18.3
+            ]
+        }
+    },
+    {
+        "id": "vi",
+        "properties": {
+            "name": "Virgin Islands, U.S.",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -64.5,
+            "geo_latitude": 18.2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -64.5,
+                18.2
+            ]
+        }
+    },
+    {
+        "id": "in",
+        "properties": {
+            "name": "India",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 77,
+            "geo_latitude": 20
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                77,
+                20
+            ]
+        }
+    },
+    {
+        "id": "id",
+        "properties": {
+            "name": "Indonesia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 120,
+            "geo_latitude": -5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                120,
+                -5
+            ]
+        }
+    },
+    {
+        "id": "ir",
+        "properties": {
+            "name": "Iran, Islamic Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 53,
+            "geo_latitude": 32
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                53,
+                32
+            ]
+        }
+    },
+    {
+        "id": "iq",
+        "properties": {
+            "name": "Iraq",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 44,
+            "geo_latitude": 33
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                44,
+                33
+            ]
+        }
+    },
+    {
+        "id": "ie",
+        "properties": {
+            "name": "Ireland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -8,
+            "geo_latitude": 53
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -8,
+                53
+            ]
+        }
+    },
+    {
+        "id": "is",
+        "properties": {
+            "name": "Iceland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -18,
+            "geo_latitude": 65
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -18,
+                65
+            ]
+        }
+    },
+    {
+        "id": "il",
+        "properties": {
+            "name": "Israel",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 34.45,
+            "geo_latitude": 31.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                34.45,
+                31.3
+            ]
+        }
+    },
+    {
+        "id": "it",
+        "properties": {
+            "name": "Italy",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 12.5,
+            "geo_latitude": 42.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                12.5,
+                42.5
+            ]
+        }
+    },
+    {
+        "id": "jm",
+        "properties": {
+            "name": "Jamaica",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -77.3,
+            "geo_latitude": 18.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -77.3,
+                18.15
+            ]
+        }
+    },
+    {
+        "id": "jp",
+        "properties": {
+            "name": "Japan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 138,
+            "geo_latitude": 36
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                138,
+                36
+            ]
+        }
+    },
+    {
+        "id": "je",
+        "properties": {
+            "name": "Jersey",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -2.1,
+            "geo_latitude": 49.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -2.1,
+                49.15
+            ]
+        }
+    },
+    {
+        "id": "jo",
+        "properties": {
+            "name": "Jordan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 36,
+            "geo_latitude": 31
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                36,
+                31
+            ]
+        }
+    },
+    {
+        "id": "kz",
+        "properties": {
+            "name": "Kazakhstan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 68,
+            "geo_latitude": 48
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                68,
+                48
+            ]
+        }
+    },
+    {
+        "id": "ke",
+        "properties": {
+            "name": "Kenya",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 38,
+            "geo_latitude": 1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                38,
+                1
+            ]
+        }
+    },
+    {
+        "id": "kg",
+        "properties": {
+            "name": "Kyrgyzstan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 75,
+            "geo_latitude": 41
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                75,
+                41
+            ]
+        }
+    },
+    {
+        "id": "ki",
+        "properties": {
+            "name": "Kiribati",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 173,
+            "geo_latitude": 1.25
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                173,
+                1.25
+            ]
+        }
+    },
+    {
+        "id": "kw",
+        "properties": {
+            "name": "Kuwait",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 45.45,
+            "geo_latitude": 29.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                45.45,
+                29.3
+            ]
+        }
+    },
+    {
+        "id": "la",
+        "properties": {
+            "name": "Lao People's Democratic Republic",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 105,
+            "geo_latitude": 18
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                105,
+                18
+            ]
+        }
+    },
+    {
+        "id": "ls",
+        "properties": {
+            "name": "Lesotho",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 28.3,
+            "geo_latitude": -29.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                28.3,
+                -29.3
+            ]
+        }
+    },
+    {
+        "id": "lv",
+        "properties": {
+            "name": "Latvia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 25,
+            "geo_latitude": 57
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                25,
+                57
+            ]
+        }
+    },
+    {
+        "id": "lb",
+        "properties": {
+            "name": "Lebanon",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 35.5,
+            "geo_latitude": 33.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                35.5,
+                33.5
+            ]
+        }
+    },
+    {
+        "id": "lr",
+        "properties": {
+            "name": "Liberia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -9.3,
+            "geo_latitude": 6.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -9.3,
+                6.3
+            ]
+        }
+    },
+    {
+        "id": "ly",
+        "properties": {
+            "name": "Libyan Arab Jamahiriya",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 17,
+            "geo_latitude": 25
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                17,
+                25
+            ]
+        }
+    },
+    {
+        "id": "li",
+        "properties": {
+            "name": "Liechtenstein",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 9.32,
+            "geo_latitude": 47.16
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                9.32,
+                47.16
+            ]
+        }
+    },
+    {
+        "id": "lt",
+        "properties": {
+            "name": "Lithuania",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 24,
+            "geo_latitude": 56
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                24,
+                56
+            ]
+        }
+    },
+    {
+        "id": "lu",
+        "properties": {
+            "name": "Luxembourg",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 6.1,
+            "geo_latitude": 49.45
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                6.1,
+                49.45
+            ]
+        }
+    },
+    {
+        "id": "mo",
+        "properties": {
+            "name": "Macau, China",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 113.33,
+            "geo_latitude": 22.1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                113.33,
+                22.1
+            ]
+        }
+    },
+    {
+        "id": "mk",
+        "properties": {
+            "name": "Macedonia, Former Yugoslav Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 22,
+            "geo_latitude": 41.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                22,
+                41.5
+            ]
+        }
+    },
+    {
+        "id": "mg",
+        "properties": {
+            "name": "Madagascar",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 47,
+            "geo_latitude": -20
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                47,
+                -20
+            ]
+        }
+    },
+    {
+        "id": "my",
+        "properties": {
+            "name": "Malaysia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 112.3,
+            "geo_latitude": 2.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                112.3,
+                2.3
+            ]
+        }
+    },
+    {
+        "id": "mw",
+        "properties": {
+            "name": "Malawi",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 34,
+            "geo_latitude": -13.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                34,
+                -13.3
+            ]
+        }
+    },
+    {
+        "id": "mv",
+        "properties": {
+            "name": "Maldives",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 73,
+            "geo_latitude": 3.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                73,
+                3.15
+            ]
+        }
+    },
+    {
+        "id": "ml",
+        "properties": {
+            "name": "Mali",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -4,
+            "geo_latitude": 17
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -4,
+                17
+            ]
+        }
+    },
+    {
+        "id": "mt",
+        "properties": {
+            "name": "Malta",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 14.35,
+            "geo_latitude": 35.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                14.35,
+                35.5
+            ]
+        }
+    },
+    {
+        "id": "mp",
+        "properties": {
+            "name": "Northern Mariana Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 145.45,
+            "geo_latitude": 15.12
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                145.45,
+                15.12
+            ]
+        }
+    },
+    {
+        "id": "ma",
+        "properties": {
+            "name": "Morocco",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -5,
+            "geo_latitude": 32
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -5,
+                32
+            ]
+        }
+    },
+    {
+        "id": "mh",
+        "properties": {
+            "name": "Marshall Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 168,
+            "geo_latitude": 9
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                168,
+                9
+            ]
+        }
+    },
+    {
+        "id": "mq",
+        "properties": {
+            "name": "Martinique",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61,
+            "geo_latitude": 14.4
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61,
+                14.4
+            ]
+        }
+    },
+    {
+        "id": "mu",
+        "properties": {
+            "name": "Mauritius",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 57.33,
+            "geo_latitude": -20.17
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                57.33,
+                -20.17
+            ]
+        }
+    },
+    {
+        "id": "mr",
+        "properties": {
+            "name": "Mauritania",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -12,
+            "geo_latitude": 20
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -12,
+                20
+            ]
+        }
+    },
+    {
+        "id": "yt",
+        "properties": {
+            "name": "Mayotte",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 45.1,
+            "geo_latitude": -12.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                45.1,
+                -12.5
+            ]
+        }
+    },
+    {
+        "id": "mx",
+        "properties": {
+            "name": "Mexico",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -102,
+            "geo_latitude": 23
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -102,
+                23
+            ]
+        }
+    },
+    {
+        "id": "fm",
+        "properties": {
+            "name": "Micronesia, Federated States of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 158.15,
+            "geo_latitude": 6.55
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                158.15,
+                6.55
+            ]
+        }
+    },
+    {
+        "id": "md",
+        "properties": {
+            "name": "Moldova, Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 29,
+            "geo_latitude": 47
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                29,
+                47
+            ]
+        }
+    },
+    {
+        "id": "mc",
+        "properties": {
+            "name": "Monaco",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 7.24,
+            "geo_latitude": 43.44
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                7.24,
+                43.44
+            ]
+        }
+    },
+    {
+        "id": "mn",
+        "properties": {
+            "name": "Mongolia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 105,
+            "geo_latitude": 46
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                105,
+                46
+            ]
+        }
+    },
+    {
+        "id": "me",
+        "properties": {
+            "name": "Montenegro",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 19.18,
+            "geo_latitude": 42.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                19.18,
+                42.3
+            ]
+        }
+    },
+    {
+        "id": "ms",
+        "properties": {
+            "name": "Montserrat",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -62.12,
+            "geo_latitude": 16.45
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -62.12,
+                16.45
+            ]
+        }
+    },
+    {
+        "id": "mz",
+        "properties": {
+            "name": "Mozambique",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 35,
+            "geo_latitude": -18.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                35,
+                -18.15
+            ]
+        }
+    },
+    {
+        "id": "mm",
+        "properties": {
+            "name": "Myanmar",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 98,
+            "geo_latitude": 22
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                98,
+                22
+            ]
+        }
+    },
+    {
+        "id": "na",
+        "properties": {
+            "name": "Namibia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 17,
+            "geo_latitude": -22
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                17,
+                -22
+            ]
+        }
+    },
+    {
+        "id": "nr",
+        "properties": {
+            "name": "Nauru",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 166.55,
+            "geo_latitude": -0.32
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                166.55,
+                -0.32
+            ]
+        }
+    },
+    {
+        "id": "np",
+        "properties": {
+            "name": "Nepal",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 84,
+            "geo_latitude": 28
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                84,
+                28
+            ]
+        }
+    },
+    {
+        "id": "ni",
+        "properties": {
+            "name": "Nicaragua",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -85,
+            "geo_latitude": 13
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -85,
+                13
+            ]
+        }
+    },
+    {
+        "id": "ne",
+        "properties": {
+            "name": "Niger",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 8,
+            "geo_latitude": 16
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                8,
+                16
+            ]
+        }
+    },
+    {
+        "id": "ng",
+        "properties": {
+            "name": "Nigeria",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 8,
+            "geo_latitude": 10
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                8,
+                10
+            ]
+        }
+    },
+    {
+        "id": "nu",
+        "properties": {
+            "name": "Niue",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -169.52,
+            "geo_latitude": -19.02
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -169.52,
+                -19.02
+            ]
+        }
+    },
+    {
+        "id": "nf",
+        "properties": {
+            "name": "Norfolk Island",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 167.57,
+            "geo_latitude": -29.02
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                167.57,
+                -29.02
+            ]
+        }
+    },
+    {
+        "id": "no",
+        "properties": {
+            "name": "Norway",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 10,
+            "geo_latitude": 62
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                10,
+                62
+            ]
+        }
+    },
+    {
+        "id": "nc",
+        "properties": {
+            "name": "New Caledonia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 165.3,
+            "geo_latitude": -21.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                165.3,
+                -21.3
+            ]
+        }
+    },
+    {
+        "id": "nz",
+        "properties": {
+            "name": "New Zealand",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 174,
+            "geo_latitude": -41
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                174,
+                -41
+            ]
+        }
+    },
+    {
+        "id": "io",
+        "properties": {
+            "name": "British Indian Ocean Territory",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 71.3,
+            "geo_latitude": -6
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                71.3,
+                -6
+            ]
+        }
+    },
+    {
+        "id": "om",
+        "properties": {
+            "name": "Oman",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 57,
+            "geo_latitude": 21
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                57,
+                21
+            ]
+        }
+    },
+    {
+        "id": "ug",
+        "properties": {
+            "name": "Uganda",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 32,
+            "geo_latitude": 1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                32,
+                1
+            ]
+        }
+    },
+    {
+        "id": "uz",
+        "properties": {
+            "name": "Uzbekistan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 64,
+            "geo_latitude": 41
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                64,
+                41
+            ]
+        }
+    },
+    {
+        "id": "pk",
+        "properties": {
+            "name": "Pakistan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 70,
+            "geo_latitude": 30
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                70,
+                30
+            ]
+        }
+    },
+    {
+        "id": "pw",
+        "properties": {
+            "name": "Palau",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 134.3,
+            "geo_latitude": 7.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                134.3,
+                7.3
+            ]
+        }
+    },
+    {
+        "id": "pa",
+        "properties": {
+            "name": "Panama",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -80,
+            "geo_latitude": 9
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -80,
+                9
+            ]
+        }
+    },
+    {
+        "id": "pg",
+        "properties": {
+            "name": "Papua New Guinea",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 147,
+            "geo_latitude": -6
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                147,
+                -6
+            ]
+        }
+    },
+    {
+        "id": "py",
+        "properties": {
+            "name": "Paraguay",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -58,
+            "geo_latitude": -23
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -58,
+                -23
+            ]
+        }
+    },
+    {
+        "id": "nl",
+        "properties": {
+            "name": "Netherlands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 5.45,
+            "geo_latitude": 52.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                5.45,
+                52.3
+            ]
+        }
+    },
+    {
+        "id": "pe",
+        "properties": {
+            "name": "Peru",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -76,
+            "geo_latitude": -10
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -76,
+                -10
+            ]
+        }
+    },
+    {
+        "id": "ph",
+        "properties": {
+            "name": "Philippines",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 122,
+            "geo_latitude": 13
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                122,
+                13
+            ]
+        }
+    },
+    {
+        "id": "pn",
+        "properties": {
+            "name": "Pitcairn",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -130.06,
+            "geo_latitude": -25.04
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -130.06,
+                -25.04
+            ]
+        }
+    },
+    {
+        "id": "pl",
+        "properties": {
+            "name": "Poland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 20,
+            "geo_latitude": 52
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                20,
+                52
+            ]
+        }
+    },
+    {
+        "id": "pf",
+        "properties": {
+            "name": "French Polynesia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -140,
+            "geo_latitude": -15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -140,
+                -15
+            ]
+        }
+    },
+    {
+        "id": "pr",
+        "properties": {
+            "name": "Puerto Rico",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -66.3,
+            "geo_latitude": 18.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -66.3,
+                18.15
+            ]
+        }
+    },
+    {
+        "id": "pt",
+        "properties": {
+            "name": "Portugal",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -8,
+            "geo_latitude": 39.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -8,
+                39.3
+            ]
+        }
+    },
+    {
+        "id": "qa",
+        "properties": {
+            "name": "Qatar",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 51.15,
+            "geo_latitude": 25.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                51.15,
+                25.3
+            ]
+        }
+    },
+    {
+        "id": "re",
+        "properties": {
+            "name": "Réunion",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 55.36,
+            "geo_latitude": -21.06
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                55.36,
+                -21.06
+            ]
+        }
+    },
+    {
+        "id": "ro",
+        "properties": {
+            "name": "Romania",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 25,
+            "geo_latitude": 46
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                25,
+                46
+            ]
+        }
+    },
+    {
+        "id": "gb",
+        "properties": {
+            "name": "United Kingdom",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -2,
+            "geo_latitude": 54
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -2,
+                54
+            ]
+        }
+    },
+    {
+        "id": "ru",
+        "properties": {
+            "name": "Russian Federation",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 100,
+            "geo_latitude": 60
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                100,
+                60
+            ]
+        }
+    },
+    {
+        "id": "rw",
+        "properties": {
+            "name": "Rwanda",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": -2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                -2
+            ]
+        }
+    },
+    {
+        "id": "eh",
+        "properties": {
+            "name": "Western Sahara",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -13,
+            "geo_latitude": 24.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -13,
+                24.3
+            ]
+        }
+    },
+    {
+        "id": "bl",
+        "properties": {
+            "name": "Saint Barthélemy",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -62.85,
+            "geo_latitude": 17.9
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -62.85,
+                17.9
+            ]
+        }
+    },
+    {
+        "id": "sh",
+        "properties": {
+            "name": "Saint Helena, Ascension and Tristan da Cunha",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -5.42,
+            "geo_latitude": -15.56
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -5.42,
+                -15.56
+            ]
+        }
+    },
+    {
+        "id": "lc",
+        "properties": {
+            "name": "Saint Lucia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -60.58,
+            "geo_latitude": 13.53
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -60.58,
+                13.53
+            ]
+        }
+    },
+    {
+        "id": "kn",
+        "properties": {
+            "name": "Saint Kitts and Nevis",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -62.45,
+            "geo_latitude": 17.2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -62.45,
+                17.2
+            ]
+        }
+    },
+    {
+        "id": "sm",
+        "properties": {
+            "name": "San Marino",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 12.25,
+            "geo_latitude": 43.46
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                12.25,
+                43.46
+            ]
+        }
+    },
+    {
+        "id": "mf",
+        "properties": {
+            "name": "Saint Martin",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -63.57,
+            "geo_latitude": 18.05
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -63.57,
+                18.05
+            ]
+        }
+    },
+    {
+        "id": "pm",
+        "properties": {
+            "name": "Saint Pierre and Miquelon",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -56.2,
+            "geo_latitude": 46.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -56.2,
+                46.5
+            ]
+        }
+    },
+    {
+        "id": "va",
+        "properties": {
+            "name": "Holy See (Vatican City State)",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 12.27,
+            "geo_latitude": 41.54
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                12.27,
+                41.54
+            ]
+        }
+    },
+    {
+        "id": "vc",
+        "properties": {
+            "name": "Saint Vincent and the Grenadines",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61.12,
+            "geo_latitude": 13.15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61.12,
+                13.15
+            ]
+        }
+    },
+    {
+        "id": "sb",
+        "properties": {
+            "name": "Solomon Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 159,
+            "geo_latitude": -8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                159,
+                -8
+            ]
+        }
+    },
+    {
+        "id": "ws",
+        "properties": {
+            "name": "Samoa",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -172.2,
+            "geo_latitude": -13.35
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -172.2,
+                -13.35
+            ]
+        }
+    },
+    {
+        "id": "as",
+        "properties": {
+            "name": "American Samoa",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -170,
+            "geo_latitude": -14.2
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -170,
+                -14.2
+            ]
+        }
+    },
+    {
+        "id": "st",
+        "properties": {
+            "name": "São Tomé and Príncipe",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 7,
+            "geo_latitude": 1
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                7,
+                1
+            ]
+        }
+    },
+    {
+        "id": "sn",
+        "properties": {
+            "name": "Senegal",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -14,
+            "geo_latitude": 14
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -14,
+                14
+            ]
+        }
+    },
+    {
+        "id": "rs",
+        "properties": {
+            "name": "Serbia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 21,
+            "geo_latitude": 44
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                21,
+                44
+            ]
+        }
+    },
+    {
+        "id": "sc",
+        "properties": {
+            "name": "Seychelles",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 55.4,
+            "geo_latitude": -4.35
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                55.4,
+                -4.35
+            ]
+        }
+    },
+    {
+        "id": "sl",
+        "properties": {
+            "name": "Sierra Leone",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -11.3,
+            "geo_latitude": 8.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -11.3,
+                8.3
+            ]
+        }
+    },
+    {
+        "id": "sg",
+        "properties": {
+            "name": "Singapore",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 103.48,
+            "geo_latitude": 1.22
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                103.48,
+                1.22
+            ]
+        }
+    },
+    {
+        "id": "sk",
+        "properties": {
+            "name": "Slovakia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 19.3,
+            "geo_latitude": 48.4
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                19.3,
+                48.4
+            ]
+        }
+    },
+    {
+        "id": "si",
+        "properties": {
+            "name": "Slovenia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 14.49,
+            "geo_latitude": 46.07
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                14.49,
+                46.07
+            ]
+        }
+    },
+    {
+        "id": "so",
+        "properties": {
+            "name": "Somalia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 49,
+            "geo_latitude": 10
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                49,
+                10
+            ]
+        }
+    },
+    {
+        "id": "sd",
+        "properties": {
+            "name": "Sudan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                15
+            ]
+        }
+    },
+    {
+        "id": "lk",
+        "properties": {
+            "name": "Sri Lanka",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 81,
+            "geo_latitude": 7
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                81,
+                7
+            ]
+        }
+    },
+    {
+        "id": "se",
+        "properties": {
+            "name": "Sweden",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 15,
+            "geo_latitude": 62
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                15,
+                62
+            ]
+        }
+    },
+    {
+        "id": "ch",
+        "properties": {
+            "name": "Switzerland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 8,
+            "geo_latitude": 47
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                8,
+                47
+            ]
+        }
+    },
+    {
+        "id": "sr",
+        "properties": {
+            "name": "Suriname",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -56,
+            "geo_latitude": 4
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -56,
+                4
+            ]
+        }
+    },
+    {
+        "id": "sz",
+        "properties": {
+            "name": "Swaziland",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 31.3,
+            "geo_latitude": -26.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                31.3,
+                -26.3
+            ]
+        }
+    },
+    {
+        "id": "sy",
+        "properties": {
+            "name": "Syrian Arab Republic",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 38,
+            "geo_latitude": 35
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                38,
+                35
+            ]
+        }
+    },
+    {
+        "id": "tj",
+        "properties": {
+            "name": "Tajikistan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 71,
+            "geo_latitude": 39
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                71,
+                39
+            ]
+        }
+    },
+    {
+        "id": "tw",
+        "properties": {
+            "name": "Taiwan, Province of China",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 121,
+            "geo_latitude": 23.3
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                121,
+                23.3
+            ]
+        }
+    },
+    {
+        "id": "tz",
+        "properties": {
+            "name": "Tanzania, United Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 35,
+            "geo_latitude": -6
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                35,
+                -6
+            ]
+        }
+    },
+    {
+        "id": "td",
+        "properties": {
+            "name": "Chad",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 19,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                19,
+                15
+            ]
+        }
+    },
+    {
+        "id": "cz",
+        "properties": {
+            "name": "Czech Republic",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 15.3,
+            "geo_latitude": 49.45
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                15.3,
+                49.45
+            ]
+        }
+    },
+    {
+        "id": "th",
+        "properties": {
+            "name": "Thailand",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 100,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                100,
+                15
+            ]
+        }
+    },
+    {
+        "id": "tl",
+        "properties": {
+            "name": "Timor-Leste",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 125.55,
+            "geo_latitude": -8.5
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                125.55,
+                -8.5
+            ]
+        }
+    },
+    {
+        "id": "tg",
+        "properties": {
+            "name": "Togo",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 1.1,
+            "geo_latitude": 8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                1.1,
+                8
+            ]
+        }
+    },
+    {
+        "id": "tk",
+        "properties": {
+            "name": "Tokelau",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -172,
+            "geo_latitude": -9
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -172,
+                -9
+            ]
+        }
+    },
+    {
+        "id": "to",
+        "properties": {
+            "name": "Tonga",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -175,
+            "geo_latitude": -20
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -175,
+                -20
+            ]
+        }
+    },
+    {
+        "id": "tt",
+        "properties": {
+            "name": "Trinidad and Tobago",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -61,
+            "geo_latitude": 11
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -61,
+                11
+            ]
+        }
+    },
+    {
+        "id": "tn",
+        "properties": {
+            "name": "Tunisia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 9,
+            "geo_latitude": 34
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                9,
+                34
+            ]
+        }
+    },
+    {
+        "id": "tm",
+        "properties": {
+            "name": "Turkmenistan",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 60,
+            "geo_latitude": 40
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                60,
+                40
+            ]
+        }
+    },
+    {
+        "id": "tc",
+        "properties": {
+            "name": "Turks and Caicos Islands",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -71.35,
+            "geo_latitude": 21.45
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -71.35,
+                21.45
+            ]
+        }
+    },
+    {
+        "id": "tr",
+        "properties": {
+            "name": "Turkey",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 35,
+            "geo_latitude": 39
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                35,
+                39
+            ]
+        }
+    },
+    {
+        "id": "tv",
+        "properties": {
+            "name": "Tuvalu",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 178,
+            "geo_latitude": -8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                178,
+                -8
+            ]
+        }
+    },
+    {
+        "id": "ua",
+        "properties": {
+            "name": "Ukraine",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 32,
+            "geo_latitude": 49
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                32,
+                49
+            ]
+        }
+    },
+    {
+        "id": "uy",
+        "properties": {
+            "name": "Uruguay",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -56,
+            "geo_latitude": -33
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -56,
+                -33
+            ]
+        }
+    },
+    {
+        "id": "vu",
+        "properties": {
+            "name": "Vanuatu",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 167,
+            "geo_latitude": -16
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                167,
+                -16
+            ]
+        }
+    },
+    {
+        "id": "ve",
+        "properties": {
+            "name": "Venezuela, Bolivarian Republic of",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -66,
+            "geo_latitude": 8
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -66,
+                8
+            ]
+        }
+    },
+    {
+        "id": "vn",
+        "properties": {
+            "name": "Viet nam",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 106,
+            "geo_latitude": 16
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                106,
+                16
+            ]
+        }
+    },
+    {
+        "id": "wf",
+        "properties": {
+            "name": "Wallis and Futuna",
+            "geo_accuracy": "administrative",
+            "geo_longitude": -176.12,
+            "geo_latitude": -13.18
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                -176.12,
+                -13.18
+            ]
+        }
+    },
+    {
+        "id": "ye",
+        "properties": {
+            "name": "Yemen",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 48,
+            "geo_latitude": 15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                48,
+                15
+            ]
+        }
+    },
+    {
+        "id": "zm",
+        "properties": {
+            "name": "Zambia",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": -15
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                -15
+            ]
+        }
+    },
+    {
+        "id": "zw",
+        "properties": {
+            "name": "Zimbabwe",
+            "geo_accuracy": "administrative",
+            "geo_longitude": 30,
+            "geo_latitude": -20
+        },
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                30,
+                -20
+            ]
+        }
+    }
+]}

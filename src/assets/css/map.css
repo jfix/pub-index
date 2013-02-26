@@ -1,0 +1,232 @@
+
+#page {
+  background: white;
+  margin: 0 auto;
+  padding: 1px 30px;
+  width: 600px;
+  min-height: 100%; }
+
+/* line 17, ../sass/screen.sass */
+.chart {
+  border: 1px solid #999999; }
+  /* line 19, ../sass/screen.sass */
+  .chart p {
+    font-size: 0.85em; }
+  /* line 22, ../sass/screen.sass */
+  .chart.indicator {
+    height: 400px; }
+  /* line 25, ../sass/screen.sass */
+  .chart.big {
+    width: 600px;
+    height: 300px; }
+  /* line 29, ../sass/screen.sass */
+  .chart.medium {
+    width: 300px;
+    height: 200px; }
+  /* line 33, ../sass/screen.sass */
+  .chart.tall {
+    width: 380px;
+    height: 600px; }
+  /* line 37, ../sass/screen.sass */
+  .chart.tallmedium {
+    width: 250px;
+    height: 500px; }
+  /* line 41, ../sass/screen.sass */
+  .chart.small {
+    width: 120px;
+    height: 40px;
+    border: none; }
+
+/* line 54, ../sass/screen.sass */
+svg text {
+  fill: #444444;
+  font-size: 12px; }
+  /* line 58, ../sass/screen.sass */
+  svg text.title {
+    font-size: 14px;
+    font-weight: bold; }
+  /* line 62, ../sass/screen.sass */
+  svg text.subtitle {
+    font-size: 10px;
+    font-weight: normal;
+    font-style: italic;
+    fill: #777777; }
+  /* line 68, ../sass/screen.sass */
+  svg text.byline {
+    font-size: 10px;
+    font-weight: normal;
+    fill: #777777; }
+  /* line 73, ../sass/screen.sass */
+  svg text.countryLabel {
+    font-size: 10px; }
+  /* line 77, ../sass/screen.sass */
+  svg text.valueLabel {
+    font-size: 18px;
+    fill: #222222 !important; }
+/* line 86, ../sass/screen.sass */
+svg .axisLegend .domain {
+  visibility: hidden; }
+/* line 89, ../sass/screen.sass */
+svg .axisLegend .tick {
+  stroke: #999999;
+  stroke-width: 1px;
+  shape-rendering: crispEdges; }
+/* line 94, ../sass/screen.sass */
+svg .axisLegend text {
+  font-size: 10px;
+  fill: #666666;
+  text-anchor: start; }
+/* line 100, ../sass/screen.sass */
+svg .axisLegend.y text {
+  font-size: 10px;
+  text-anchor: end; }
+/* line 109, ../sass/screen.sass */
+svg .countryMark {
+  fill: #222222; }
+  /* line 112, ../sass/screen.sass */
+  svg .countryMark path {
+    fill: none;
+    stroke-width: 1;
+    stroke: #aaaaaa; }
+  /* line 117, ../sass/screen.sass */
+  svg .countryMark circle {
+    stroke-width: 2px;
+    stroke: white; }
+  /* line 121, ../sass/screen.sass */
+  svg .countryMark line {
+    stroke-width: 1;
+    stroke: #aaaaaa;
+    shape-rendering: crispEdges; }
+/* line 138, ../sass/screen.sass */
+svg .lineChart .countryMark path {
+  stroke-width: 1;
+  stroke: #222222;
+  opacity: 0.12; }
+/* line 144, ../sass/screen.sass */
+svg .lineChart .highlight path {
+  stroke: #222222;
+  opacity: 1; }
+/* line 147, ../sass/screen.sass */
+svg .lineChart .highlight circle {
+  stroke: white;
+  stroke-width: 3; }
+/* line 152, ../sass/screen.sass */
+svg .lineChart .oecdAvg path {
+  stroke: #444444; }
+/* line 154, ../sass/screen.sass */
+svg .lineChart .oecdAvg circle {
+  fill: #777777; }
+/* line 157, ../sass/screen.sass */
+svg .lineChart .panel {
+  fill: none;
+  stroke: #aaaaaa; }
+  /* line 160, ../sass/screen.sass */
+  svg .lineChart .panel .title {
+    fill: #444444;
+    stroke: none;
+    font-size: 14px; }
+/* line 169, ../sass/screen.sass */
+svg .rankChart rect, svg .rankChart circle {
+  fill: #aaaaaa; }
+/* line 172, ../sass/screen.sass */
+svg .rankChart line {
+  stroke: #cccccc; }
+/* line 176, ../sass/screen.sass */
+svg .rankChart .countryMark text {
+  font-size: 10px;
+  fill: #999999; }
+/* line 181, ../sass/screen.sass */
+svg .rankChart .countryMark.highlight rect, svg .rankChart .countryMark.highlight circle {
+  fill: #444444; }
+/* line 183, ../sass/screen.sass */
+svg .rankChart .countryMark.highlight line {
+  stroke: #444444;
+  stroke-width: 2; }
+/* line 186, ../sass/screen.sass */
+svg .rankChart .countryMark.highlight text {
+  fill: #222222;
+  font-weight: bold; }
+/* line 196, ../sass/screen.sass */
+svg .worldmap .country {
+  fill: #dddddd;
+  stroke: #dddddd; }
+/* line 200, ../sass/screen.sass */
+svg .worldmap .country-boundary {
+  fill: none;
+  stroke: white;
+  stroke-width: 0.5px;
+  stroke-linejoin: round; }
+/* line 206, ../sass/screen.sass */
+svg .worldmap .graticule {
+  fill: none;
+  stroke: black;
+  stroke-opacity: 0.2;
+  stroke-width: 0.5px; }
+/* line 213, ../sass/screen.sass */
+svg .mapDataLayer .countryMark circle {
+  fill: #222222;
+  stroke: none;
+  opacity: 0.6; }
+/* line 219, ../sass/screen.sass */
+svg .mapDataLayer .countryMark.highlight circle {
+  opacity: 1 !important; }
+
+/* line 223, ../sass/screen.sass */
+.fullSize .title {
+  font-size: 18px; }
+
+/* line 228, ../sass/screen.sass */
+.smallSize svg .countryMark path {
+  opacity: 0; }
+/* line 231, ../sass/screen.sass */
+.smallSize svg .highlight path {
+  opacity: 0.5;
+  stroke-width: 1; }
+/* line 234, ../sass/screen.sass */
+.smallSize svg .highlight circle {
+  stroke-width: 1; }
+/* line 236, ../sass/screen.sass */
+.smallSize svg .oecdAvg {
+  opacity: 0.5 !important; }
+/* line 240, ../sass/screen.sass */
+.smallSize svg .rankChart line {
+  stroke-width: 2px; }
+
+/* line 243, ../sass/screen.sass */
+.clickArea {
+  visibility: hidden; }
+
+/* line 247, ../sass/screen.sass */
+a svg .clickArea {
+  fill: white;
+  fill-opacity: 0.01;
+  stroke: #33aaff;
+  stroke-width: 5px;
+  opacity: 0;
+  visibility: visible; }
+
+/* line 255, ../sass/screen.sass */
+.single-fact {
+  font-family: "Helvetica Neue";
+  font-weight: 200; }
+  /* line 258, ../sass/screen.sass */
+  .single-fact .indicator {
+    font-size: 18px; }
+  /* line 260, ../sass/screen.sass */
+  .single-fact .subline {
+    font-size: 12px; }
+  /* line 262, ../sass/screen.sass */
+  .single-fact .number {
+    width: 100%; }
+
+/* line 265, ../sass/screen.sass */
+.d3tooltip {
+  position: absolute;
+  z-index: 9999;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  padding: 0.5em;
+  background: #333333;
+  opacity: 0.9;
+  color: white; }

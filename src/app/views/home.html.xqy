@@ -81,7 +81,6 @@ declare function local:render-countries-widget()
 {(
   <h3>Browse by country</h3>,
   <div id="map-container">
-   
   </div>
 )};
 
@@ -104,11 +103,20 @@ let $params := map:map(),
       $void := map:put($params, "content", local:render-content()),
       $void := map:put($params, "scripts", (
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
-        ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-        ,<script src="/assets/js/oecd-facets.js"></script>
-        ,<script src="/assets/js/d3.v3.min.js"></script>
-        ,<script src="/assets/js/topojson.v0.min.js"></script>
-        ,<script src="/assets/js/oecd-map.js"></script>
+        ,<script type="text/javascript" src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
+
+        ,<link rel="stylesheet" href="/assets/css/map.css" />
+        ,<link rel="stylesheet" href="/assets/js/qtip/jquery.qtip.css" />
+
+        ,<script type="text/javascript" src="/assets/js/qtip/jquery.qtip.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/d3.v3.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/d3.geo.projection.v0.min.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/topojson.v0.min.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/underscore.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/watch.js"></script>
+
+        ,<script type="text/javascript" src="/assets/js/map/chart-component.js"></script>
+
         
       ))
 
