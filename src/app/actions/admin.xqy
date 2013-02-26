@@ -15,7 +15,7 @@ declare private function local:add-document($doc as node())
   return
       if ($name eq 'item') then
         mi:add($doc)
-      else if($name eq 'referential') then      
+      else if($name eq ('countries','directorates','languages','topics')) then      
         xdmp:document-insert(
           fn:concat("/referential/",$name,".xml")
           ,$doc
@@ -29,7 +29,7 @@ declare private function local:add-document($doc as node())
 declare private function local:add(){
     
     let $request-body := xdmp:get-request-body("xml")    
-    let $items := $request-body//(oe:item|oe:referential)
+    let $items := $request-body//(oe:item|oe:countries|oe:directorates|oe:languages|oe:topics)
     
     return 
         <response>        
