@@ -149,7 +149,7 @@
     <xsl:if test="position() > 1">
       <xsl:text>, </xsl:text>
     </xsl:if>
-    <span data-facet="subject" data-value="{.}" class="facet-value">
+    <span data-facet="topic" data-value="{.}" class="facet-value">
       <xsl:value-of
         select="data($topics/oe:topic[@id = data(current())]/oe:label[@xml:lang = 'en'])"/>
     </span>

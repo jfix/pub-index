@@ -20,7 +20,7 @@ declare variable $facets-options as element() :=
         <element name="country" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
       </range>
     </constraint>
-    <constraint name="subject">
+    <constraint name="topic">
       <range type="xs:string">
         <element name="subject" ns="http://purl.org/dc/terms/"/>
       </range>
@@ -53,7 +53,7 @@ as element(search:response)
   return
     <response xmlns="http://marklogic.com/appservices/search">
       <qtext>{$qtext}</qtext>
-      {module:get-filtered-facet($query, 'subject')}
+      {module:get-filtered-facet($query, 'topic')}
       {module:get-filtered-facet($query, 'country')}
       {module:get-filtered-facet($query, 'language')}
       {module:get-filtered-facet($query, 'pubtype')}

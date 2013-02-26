@@ -13,7 +13,8 @@ let $url := xdmp:get-request-url()
 
 let $home-pattern as xs:string := "^/?$"
 let $country-pattern as xs:string := "^/country/([a-z]{2})$"
-let $subject-pattern as xs:string := "^/subject/([a-zA-Z+,]+)$"
+let $topic-pattern as xs:string := "^/topic/([a-zA-Z+,]+)$"
+let $pubtype-pattern as xs:string := "^/pubtype/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)(.xml|.json)?$"
 let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
 
@@ -26,9 +27,13 @@ let $new-url :=
   else if (fn:matches($url, $country-pattern))
   then  fn:replace($url,     $country-pattern,      "/app/actions/search.xqy?in=country:$1")
   
-(: redirect to subject browse page :)
-  else if (fn:matches($url, $subject-pattern))
-  then  fn:replace($url,     $subject-pattern,      "/app/actions/search.xqy?in=subject:$1")
+(: redirect to topic browse page :)
+  else if (fn:matches($url, $topic-pattern))
+  then  fn:replace($url,     $topic-pattern,      "/app/actions/search.xqy?in=topic:$1")
+  
+  (: redirect to pubtype browse page :)
+  else if (fn:matches($url, $pubtype-pattern))
+  then  fn:replace($url,     $pubtype-pattern,      "/app/actions/search.xqy?in=pubtype:$1")
   
   (: display an item :)
   else if (fn:matches($url, $display-pattern))

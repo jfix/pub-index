@@ -15,7 +15,7 @@ declare function module:render-facets($facets as element())
   
   return
   (
-     module:render-subject-facet($qtext, $facets/search:facet[@name = 'subject'])
+     module:render-topic-facet($qtext, $facets/search:facet[@name = 'topic'])
     ,module:render-country-facet($qtext, $facets/search:facet[@name = 'country'])
     ,module:render-year-facet($qtext, $facets/search:facet[@name = 'date'])
     ,module:render-language-facet($qtext, $facets/search:facet[@name = 'language'])
@@ -23,28 +23,28 @@ declare function module:render-facets($facets as element())
   )
 };
 
-declare private function module:render-subject-facet($qtext as xs:string, $all-subject-facets as element(search:facet))
+declare private function module:render-topic-facet($qtext as xs:string, $all-topic-facets as element(search:facet))
 as element(div)
 {
-  <div class="subject facet">
+  <div class="topic facet">
     <h6>Topics</h6>
     <ul>
     {
-      for $value in $all-subject-facets//search:facet-value
+      for $value in $all-topic-facets//search:facet-value
         let $id := data($value/@name),
             $count := data($value/@count)
         
-        let $ref := module:get-ref('subject', $id),
+        let $ref := module:get-ref('topic', $id),
             $label := module:get-ref-label($ref)
         
-        let $css-class := if (contains($qtext, concat('subject:"', $id,'"'))) then 'selected' else ''
+        let $css-class := if (contains($qtext, concat('topic:"', $id,'"'))) then 'selected' else ''
         
         order by $label ascending
         return 
           <li>
             <a class="{$css-class}" 
-              href="/subject/{$id}"
-              data-facet="subject"
+              href="/topic/{$id}"
+              data-facet="topic"
               data-value="{$id}"
               >{ $label }</a> ({$count})
           </li>
@@ -239,7 +239,7 @@ as element(div)?
 declare private function module:get-ref($type as xs:string, $id as xs:string)
 as element()?
 {
-  if($type eq "subject") then
+  if($type eq "topic") then
     collection("referential")//oe:topic[@id eq $id]
     
   else if($type eq "country") then

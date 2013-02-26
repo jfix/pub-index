@@ -15,7 +15,7 @@ declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: s
 declare variable $qtext as xs:string := module:build-qtext($term, $in);
 declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
 declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
-declare variable $order as xs:string := xdmp:get-request-field("order");
+declare variable $order as xs:string := (xdmp:get-request-field("order"), '')[1];
 
 declare variable $search-options := <options xmlns="http://marklogic.com/appservices/search">
     <constraint name="pubtype">
@@ -28,7 +28,7 @@ declare variable $search-options := <options xmlns="http://marklogic.com/appserv
         <element name="country" ns="http://www.oecd.org/metapub/oecdOrg/ns/"/>
       </range>
     </constraint>
-    <constraint name="subject">
+    <constraint name="topic">
       <range type="xs:string">
         <element name="subject" ns="http://purl.org/dc/terms/"/>
       </range>
