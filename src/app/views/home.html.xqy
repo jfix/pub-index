@@ -108,6 +108,8 @@ let $params := map:map(),
         ,<link rel="stylesheet" href="/assets/css/map.css" />
         ,<link rel="stylesheet" href="/assets/js/qtip/jquery.qtip.css" />
 
+        ,<script type="text/javascript" src="/assets/js/oecd-facets.js"></script>
+
         ,<script type="text/javascript" src="/assets/js/qtip/jquery.qtip.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/d3.v3.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/d3.geo.projection.v0.min.js"></script>
