@@ -14,6 +14,7 @@ let $url := xdmp:get-request-url()
 let $home-pattern as xs:string := "^/?$"
 let $country-pattern as xs:string := "^/country/([a-z]{2})$"
 let $topic-pattern as xs:string := "^/topic/([a-zA-Z+,]+)$"
+let $language-pattern as xs:string := "^/language/([a-z]{2})$"
 let $pubtype-pattern as xs:string := "^/pubtype/([a-zA-Z+,]+)$"
 let $display-pattern as xs:string := "^/display/([-a-z0-9_]+)(.xml|.json)?$"
 let $search-pattern as xs:string := "^/search[/]?\?(.*)$"
@@ -26,6 +27,10 @@ let $new-url :=
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
   then  fn:replace($url,     $country-pattern,      "/app/actions/search.xqy?in=country:$1")
+  
+(: redirect to language browse page :)
+  else if (fn:matches($url, $language-pattern))
+  then  fn:replace($url,     $language-pattern,      "/app/actions/search.xqy?in=language:$1")
   
 (: redirect to topic browse page :)
   else if (fn:matches($url, $topic-pattern))
