@@ -412,6 +412,21 @@ a.selected{
     font-weight:bold;
     color:black;
 }
+
+div.facet.topic>ul {
+    max-height:250px;
+    overflow: hidden;
+    transition: 1s;
+    -moz-transition: 1s; /* Firefox 4 */
+    -webkit-transition: 1s; /* Safari and Chrome */
+    -o-transition: 1s; /* Opera */
+    -ms-transition: 1s; /* IE10 */
+}
+div.facet.topic:hover>ul {    
+    max-height: 999px;
+    overflow: hidden;
+}
+
 img.flag{
     margin:0.2em;
     width:16px;
