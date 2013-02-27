@@ -6,7 +6,7 @@ import module namespace mf = "http://oecd.org/pi/models/facets" at "/app/models/
 let $model := <latests xmlns="http://www.oecd.org/metapub/oecdOrg/ns/">
   { 
   (: How many: book, article, wp :)
-  ms:get-latest(8,2,2) }
+  ms:get-latest(6,2,2) }
 </latests>
 
 return
