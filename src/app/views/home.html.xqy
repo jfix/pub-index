@@ -79,7 +79,7 @@ declare function local:render-latests-widget($items as element()*)
 
 declare function local:render-countries-widget()
 {(
-  <h3>Browse by country</h3>,
+  <h3>Browse by country <small>click on an icon to see related publications</small></h3>,
   <div id="map-container-gm"></div>,
   <!--<div id="map-container"></div>-->
 )};
@@ -121,7 +121,7 @@ let $params := map:map(),
 
 (: GMAP 3 :)
 (: key=AIzaSyDYNfnz6BXFos2D24stwobss_RD6GYRj0I&amp; :)
-        ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+        ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
         (:,<script type="text/javascript" src="/assets/js/gmap3.js"></script>:)
         ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox_packed.js"></script>
         ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer_packed.js"></script>

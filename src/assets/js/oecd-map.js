@@ -1,7 +1,20 @@
 $(function () {
     
     $.getJSON('/app/actions/items-by-country.xqy', function (data) {
-        var center = new google.maps.LatLng(22.49, 89.76);
+        /*var center = new google.maps.LatLng(22.49, 89.76);*/
+        
+        var center;
+        
+        var cltLoc = function (pos) {
+		    center = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+		}
+
+        if (0 /*navigator.geolocation*/) 
+		{
+			navigator.geolocation.getCurrentPosition( cltLoc );
+		} else {
+		    center = new google.maps.LatLng(25, 18);
+		}        
 
         /* 
            use admin map type, but without any features (oecd-compliant), go here for modifications
@@ -17,7 +30,7 @@ $(function () {
         ];
         /* define the options for the map, visible/hidden controls, initial zoom, etc. */
         var options = {
-            zoom: 1,
+            zoom: 2,
             center: center,
             panControl: false,
             zoomControl: true,
