@@ -46,7 +46,7 @@
             var _this = this;
             $(this).html("<i class=\"icon-spinner icon-spin\"></i>");
             return $.when(
-                $.getJSON("/app/actions/items-by-country.xqy"), 
+                $.getJSON("/app/actions/items-by-country-d3.xqy"), 
                 $.getJSON("/assets/data/country-coords.json"), 
                 $.getJSON("/assets/data/world-110m.json")).done(function (data, countries, map) {
                 
@@ -191,7 +191,7 @@
     
     attachClick = function (selection, $el) {
         return selection.on("click", function (d) {
-            location.href="/search?term=&in=country%3A" + d.countryCode + "%3B&start=1&order=";
+            location.href="/country/" + d.countryCode;
         });
     };
     
@@ -307,15 +307,15 @@
                 });
             }
         }
-        NUM_ITERATIONS = 250;
+        NUM_ITERATIONS = 50;
         for (num = _j = NUM_ITERATIONS; NUM_ITERATIONS <= 0 ? _j <= 0: _j >= 0; num = NUM_ITERATIONS <= 0 ?++ _j:-- _j) {
             q = d3.geom.quadtree(countries);
             i = 0;
             n = countries.length;
             while (++ i < n) {
                 c = countries[i];
-                c.x += (c.targetX - c.x) * .1 * (num / NUM_ITERATIONS);
-                c.y += (c.targetY - c.y) * .1 * (num / NUM_ITERATIONS);
+                c.x += (c.targetX - c.x) * .01;// * (num / NUM_ITERATIONS);
+                c.y += (c.targetY - c.y) * .01;// * (num / NUM_ITERATIONS);
                 q.visit(collide(c));
             }
         }

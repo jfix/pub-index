@@ -80,8 +80,8 @@ declare function local:render-latests-widget($items as element()*)
 declare function local:render-countries-widget()
 {(
   <h3>Browse by country</h3>,
-  <div id="map-container">
-  </div>
+  <div id="map-container-gm"></div>,
+  <!--<div id="map-container"></div>-->
 )};
 
 declare function local:render-content()
@@ -105,19 +105,28 @@ let $params := map:map(),
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script type="text/javascript" src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
 
-        ,<link rel="stylesheet" href="/assets/css/map.css" />
         ,<link rel="stylesheet" href="/assets/js/qtip/jquery.qtip.css" />
 
         ,<script type="text/javascript" src="/assets/js/oecd-facets.js"></script>
 
-        ,<script type="text/javascript" src="/assets/js/qtip/jquery.qtip.js"></script>
+(: D3 MAP :)
+        (:,<script type="text/javascript" src="/assets/js/qtip/jquery.qtip.js"></script>
+        ,<link rel="stylesheet" href="/assets/css/map.css" />
         ,<script type="text/javascript" src="/assets/js/map/d3.v3.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/d3.geo.projection.v0.min.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/topojson.v0.min.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/underscore.js"></script>
         ,<script type="text/javascript" src="/assets/js/map/watch.js"></script>
+        ,<script type="text/javascript" src="/assets/js/map/chart-component.js"></script>:)
 
-        ,<script type="text/javascript" src="/assets/js/map/chart-component.js"></script>
+(: GMAP 3 :)
+(: key=AIzaSyDYNfnz6BXFos2D24stwobss_RD6GYRj0I&amp; :)
+        ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+        (:,<script type="text/javascript" src="/assets/js/gmap3.js"></script>:)
+        ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox_packed.js"></script>
+        ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer_packed.js"></script>
+        ,<script type="text/javascript" src="/assets/js/oecd-map.js"></script>
+
 
         
       ))
