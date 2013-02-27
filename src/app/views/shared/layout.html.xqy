@@ -19,7 +19,7 @@ declare function module:render($params as map:map) {
     
     <!-- Included CSS Files -->
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
-    <!-- <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/> -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
     <link rel="stylesheet" href="/assets/css/styles.css"/>
     <link rel="stylesheet" href="/assets/css/oecd.css"/>
     <link rel="stylesheet" href="/assets/css/browser-update.org.custom.css"/>

@@ -58,7 +58,7 @@ declare private function module:render-country-facet($qtext as xs:string, $all-c
 as element(div)
 {
   <div class="country facet">
-    <select data-facet="country">
+    <select data-facet="country" class="span3">
       <option value="">Filter by country</option>
     {
       for $value in $all-country-facets//search:facet-value
@@ -116,7 +116,7 @@ declare private function module:render-language-facet($qtext as xs:string, $all-
 as element(div)
 {
   <div class="language facet">
-    <select data-facet="language">
+    <select data-facet="language" class="span3">
       <option value="">Filter by language</option>
       {
         for $value in $all-language-facets//search:facet-value
