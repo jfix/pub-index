@@ -15,19 +15,11 @@
   <xsl:template match="oe:item">
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"/>
     <div class="row">
-      <xsl:variable name="coverImage"
-        select="(oe:coverImage, (oe:toc/oe:item)[1]/oe:coverImage, 'cover_not_yetm.jpg')[1]"/>
+      <xsl:variable name="coverImage" select="utils:coverimage(.)"/>
       <xsl:if test="$coverImage">
-        <xsl:variable name="thumbnail-url">
-          <xsl:choose>
-            <xsl:when test="@type = 'workingpaperseries'"
-              >http://images.oecdcode.org/covers/wpseries/</xsl:when>
-            <xsl:otherwise>http://images.oecdcode.org/covers/150/</xsl:otherwise>
-          </xsl:choose>
-        </xsl:variable>
         <!-- thumbnail-->
         <div class="span3">
-          <img src="{concat($thumbnail-url, $coverImage)}" class="img-polaroid cover"/>
+          <img src="{concat('http://images.oecdcode.org/covers/150/', $coverImage)}" class="img-polaroid cover"/>
         </div>
       </xsl:if>
 
@@ -353,5 +345,21 @@
   <xsl:function name="utils:link">
     <xsl:param name="id"/>
     <xsl:value-of select="concat('/display/', $id)"/>
+  </xsl:function>
+  
+  <xsl:function name="utils:coverimage">
+    <xsl:param name="item"/>
+    <xsl:choose>
+      <xsl:when test="($item//oe:coverImage)[1]">
+        <xsl:value-of select="($item//oe:coverImage)[1]"/>
+      </xsl:when>
+      <xsl:when test="$item/dt:available and xs:dateTime($item/dt:available) gt current-dateTime()">
+        <xsl:text>cover_not_yetm.jpg</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="language" select="$item/dt:language"/>
+        <xsl:value-of select="if (count($language) > 1 or $language = 'en') then 'publications_oecdm.jpg' else 'publications_ocdem.jpg' "/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:function>
 </xsl:stylesheet>

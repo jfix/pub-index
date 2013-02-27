@@ -28,8 +28,7 @@
     <xsl:variable name="type" select="@type"/>
     <xsl:variable name="title" select="(dt:title[xml:lang eq 'en'],dt:title)[1]/text()"/>
     <xsl:variable name="subtitle" select="(oe:subTitle[xml:lang eq 'en'],oe:subTitle)[1]/text()"/>
-    <xsl:variable name="cover" select="(oe:coverImage/text(),'cover_not_yetm.jpg')[1]"/>
-    <xsl:variable name="cover-url" select="concat( if (@type = 'workingpaperseries') then 'http://images.oecdcode.org/covers/wpseries/' else 'http://images.oecdcode.org/covers/100/', $cover)"/>
+    <xsl:variable name="cover-url" select="concat('http://images.oecdcode.org/covers/100/', oe:coverimage(.))"/>
 
     <div class="search-result-item" data-url="{$url}">
       <div class="row">
@@ -57,7 +56,7 @@
           </p>
         </div>
         <div class="span7">
-          <xsl:if test="$cover">
+          <xsl:if test="$cover-url">
             <a href="{$url}">
               <img src="{$cover-url}" alt="Cover image" class="search-result-thumbnail"/>
             </a>
@@ -178,5 +177,20 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
-
+  
+  <xsl:function name="oe:coverimage">
+    <xsl:param name="item"/>
+    <xsl:choose>
+      <xsl:when test="($item//oe:coverImage)[1]">
+        <xsl:value-of select="($item//oe:coverImage)[1]"/>
+      </xsl:when>
+      <xsl:when test="$item/dt:available and xs:dateTime($item/dt:available) gt current-dateTime()">
+        <xsl:text>cover_not_yetm.jpg</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="language" select="$item/dt:language"/>
+        <xsl:value-of select="if (count($language) > 1 or $language = 'en') then 'publications_oecdm.jpg' else 'publications_ocdem.jpg' "/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
 </xsl:stylesheet>
