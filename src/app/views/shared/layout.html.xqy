@@ -120,14 +120,19 @@ declare function module:render($params as map:map) {
             var regex = new RegExp(oldval,'i');
             if(regex.test(item)) {{
               this.$element.val(item);
-              $("#searchForm").submit();
-              return item;
             }}
             else {{
-             $("#searchForm").submit();
-             return oldval;
+              item = oldval;
             }}
+            $("#in").val(''); // clean facets
+            $("#searchForm").submit();
+            return item;
           }}
+        }});
+        // remove facet filters on manual submit
+        $('#searchForm').on('submit', function(event) {{
+          if(!event.isTrigger)
+            $("#in").val('');
         }});
       }});
     </script>
