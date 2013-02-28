@@ -69,6 +69,9 @@ let $new-url :=
   else if (fn:matches($url, "^/assets/.*$"))
   then $url
   
+  else if (fn:matches($url, "^/xray/?(\?.*)?$"))
+  then $url
+  
   (: all routes have to be declared :)
   else '404'
   
