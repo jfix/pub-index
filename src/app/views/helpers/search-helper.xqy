@@ -2,10 +2,22 @@ xquery version "1.0-ml";
 module namespace module = "http://oecd.org/pi/views/helpers";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
+declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
-declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
-declare variable $order as xs:string := (xdmp:get-request-field("order"), '')[1];
+declare variable $term as xs:string := normalize-space(xdmp:get-request-field("term"));
+declare variable $in as xs:string := normalize-space(xdmp:get-request-field("in")); (: serialized filter string :)
+
+(: same logic as models/search.xqy :)
+declare variable $order as xs:string :=
+  let $tmporder := normalize-space(xdmp:get-request-field("order"))
+  return
+    if($tmporder = ('date', 'date-asc', 'title', 'title-desc', 'relevance')) then
+      $tmporder
+    else if(contains($in,'from:') or contains($in,'to:')) then
+      'date'
+    else
+      'relevance'
+;
 
 declare function module:render-search-form()
 {
@@ -16,7 +28,7 @@ declare function module:render-search-form()
     </div>
     <input type="hidden" id="in" name="in" value="{$in}"/>
     <input type="hidden" id="start" name="start" value="1"/>
-    <input type="hidden" id="order" name="order" value="{$order}"/>
+    <input type="hidden" id="order" name="order" value="{normalize-space(xdmp:get-request-field("order"))}"/>
   </form>
 };
 

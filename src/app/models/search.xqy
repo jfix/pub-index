@@ -9,13 +9,23 @@ declare default function namespace "http://www.w3.org/2005/xpath-functions";
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
 
-declare variable $term as xs:string := (xdmp:get-request-field("term"), '')[1];
-declare variable $in as xs:string := (xdmp:get-request-field("in"), '')[1]; (: serialized filter string :)
+declare variable $term as xs:string := normalize-space(xdmp:get-request-field("term"));
+declare variable $in as xs:string := normalize-space(xdmp:get-request-field("in")); (: serialized filter string :)
 
 declare variable $qtext as xs:string := module:build-qtext($term, $in);
 declare variable $start as xs:integer := if(functx:is-a-number(xdmp:get-request-field("start"))) then xs:integer(xdmp:get-request-field("start")) else 1;
 declare variable $page-length as xs:integer := if(functx:is-a-number(xdmp:get-request-field("page-length"))) then xs:integer(xdmp:get-request-field("page-length")) else 10;
-declare variable $order as xs:string := (xdmp:get-request-field("order"), '')[1];
+
+declare variable $order as xs:string :=
+  let $tmporder := normalize-space(xdmp:get-request-field("order"))
+  return
+    if($tmporder = ('date', 'date-asc', 'title', 'title-desc', 'relevance')) then
+      $tmporder
+    else if(contains($in,'from:') or contains($in,'to:')) then
+      'date'
+    else
+      'relevance'
+;
 
 declare variable $search-options := <options xmlns="http://marklogic.com/appservices/search">
     <constraint name="pubtype">
@@ -98,7 +108,16 @@ as element(search:response)
 
 declare function module:search-order-options()
 {
-  if($order eq "date-asc") then
+  if($order eq "date") then
+    (
+      <search:sort-order type="xs:dateTime" direction="descending">
+        <search:element ns="http://purl.org/dc/terms/" name="available"/>
+      </search:sort-order>
+      ,<search:sort-order type="score" direction="descending">
+        <search:score/>
+      </search:sort-order>
+    )
+  else if($order eq "date-asc") then
     (
       <search:sort-order type="xs:dateTime" direction="ascending">
         <search:element ns="http://purl.org/dc/terms/" name="available"/>
@@ -118,14 +137,7 @@ declare function module:search-order-options()
   else if ($order eq "relevance") then
     () (: default search:search behavior :)
   else
-    (
-      <search:sort-order type="xs:dateTime" collation="http://marklogic.com/collation/" direction="descending">
-        <search:element ns="http://purl.org/dc/terms/" name="available"/>
-      </search:sort-order>
-      ,<search:sort-order type="score" direction="descending">
-        <search:score/>
-      </search:sort-order>
-    )
+    fn:error((),"Unsupported order method")
 };
 
 declare function module:get-latest($qtb as xs:integer, $qta as xs:integer, $qtw as xs:integer)

@@ -26,19 +26,19 @@ let $new-url :=
 
 (: redirect to country browse page :)
   else if (fn:matches($url, $country-pattern))
-  then  fn:replace($url,     $country-pattern,      "/app/actions/search.xqy?in=country:$1")
+  then  fn:replace($url,     $country-pattern,      "/app/actions/search.xqy?in=country:$1&amp;order=date")
   
 (: redirect to language browse page :)
   else if (fn:matches($url, $language-pattern))
-  then  fn:replace($url,     $language-pattern,      "/app/actions/search.xqy?in=language:$1")
+  then  fn:replace($url,     $language-pattern,      "/app/actions/search.xqy?in=language:$1&amp;order=date")
   
 (: redirect to topic browse page :)
   else if (fn:matches($url, $topic-pattern))
-  then  fn:replace($url,     $topic-pattern,      "/app/actions/search.xqy?in=topic:$1")
+  then  fn:replace($url,     $topic-pattern,      "/app/actions/search.xqy?in=topic:$1&amp;order=date")
   
   (: redirect to pubtype browse page :)
   else if (fn:matches($url, $pubtype-pattern))
-  then  fn:replace($url,     $pubtype-pattern,      "/app/actions/search.xqy?in=pubtype:$1")
+  then  fn:replace($url,     $pubtype-pattern,      "/app/actions/search.xqy?in=pubtype:$1&amp;order=date")
   
   (: display an item :)
   else if (fn:matches($url, $display-pattern))
