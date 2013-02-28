@@ -111,7 +111,7 @@ declare function module:render($params as map:map) {
         $('#term').typeahead({{
           minLength: 2,
           source: function typehead_source(query, process) {{
-            $.post('/app/actions/suggest.xqy', {{ term: query }}, function(data) {{
+            $.post('/suggest', {{ term: query }}, function(data) {{
               process(data);
             }});
           }},

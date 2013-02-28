@@ -1,6 +1,6 @@
 $(function () {
     
-    $.getJSON('/app/actions/items-by-country.xqy', function (data) {
+    $.getJSON('/items-by-country', function (data) {
         /*var center = new google.maps.LatLng(22.49, 89.76);*/
         
         var center;

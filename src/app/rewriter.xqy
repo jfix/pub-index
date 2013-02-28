@@ -54,14 +54,23 @@ let $new-url :=
   else if (fn:matches($url, "^/items-by-country$"))
   then "/app/actions/items-by-country.xqy"
   
+  else if (fn:matches($url, "^/suggest(\?.*)?$"))
+  then fn:replace($url, "^/suggest(\?.*)?$", "/app/actions/suggest.xqy$1")
+  
+  else if (fn:matches($url, "^/admin(\?.*)?$"))
+  then fn:replace($url, "^/admin(\?.*)?$", "/app/actions/admin.xqy$1")
+  
   else if (fn:matches($url, "^/api/changed(\?.*)?$"))
   then fn:replace($url, "^/api/changed(\?.*)?$", "/app/api/changed.xqy$1")
   
   else if (fn:matches($url, "^/api/changed/lastday$"))
   then "/app/api/changed.xqy?since=P1D"
   
-  (: by default try to resolve url passed in :)
-  else $url
+  else if (fn:matches($url, "^/assets/.*$"))
+  then $url
+  
+  (: all routes have to be declared :)
+  else '404'
   
 let $_log := mu:log(concat("REWRITER: ", $new-url))
 
