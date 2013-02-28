@@ -49,13 +49,13 @@ declare function local:render-latests-widget($items as element()*)
                             </div>
                             
                             <div class="right-side">
-                                <h4>{$bbl/dt:title}</h4>
+                                <h4>{$bbl/dt:title/string()}</h4>
                                 <p><strong>{$bbl/oe:subTitle/text()}</strong></p>
                                 <br/>
                                 <p>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</p>
                                 <br/>
                                 <p class="abstract">{
-                                    let $abstract := $bbl/dt:abstract
+                                    let $abstract := $bbl/dt:abstract/string()
                                     return
                                         if (string-length($abstract) gt 380)
                                         then

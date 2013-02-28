@@ -9,7 +9,7 @@ declare function module:render($params as map:map) {
 (
 '<!DOCTYPE html>'
 ,<html>
-  <head profile="http://a9.com/-/spec/opensearch/1.1/">
+  <head>
     <meta charset="utf-8" />
     <!-- Set the viewport width to device width for mobile -->
     <meta name="viewport" content="width=device-width" />
@@ -17,6 +17,7 @@ declare function module:render($params as map:map) {
     <meta name="author" content="{map:get($params,'meta-author')}"/>
     <title>{(map:get($params,'title'), "OECD Publication Index")[1]}</title>
     
+    <link rel="profile" href="http://a9.com/-/spec/opensearch/1.1/"/>
     <!-- Included CSS Files -->
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
@@ -42,7 +43,7 @@ declare function module:render($params as map:map) {
       <div class="container">
         <div class="row">
           <div class="span7">
-            <img class="logo" src="/assets/images/logooecd_en.png"/>
+            <img class="logo" alt="OECD logo" src="/assets/images/logooecd_en.png"/>
           </div>
           <div class="span5" style="text-align:right">
             {search-helper:render-search-form()}
@@ -578,7 +579,7 @@ declare private variable $countriesList as element(div) := <div class="mainPane 
               <a href="http://www.oecd.org/countries/kuwait/">Kuwait</a>
             </li>
             <li class="K li_col2">
-              <a href="http://www.oecd.org/countries/kyrgyzstan/">Kyrgyzstan</a>
+              <a href="http://www.oecd.org/countries/kyrgyzstan/">Kyrgyzstan   </a>
             </li>
             <li class="L li_col2">
               <a href="http://www.oecd.org/countries/laopeoplesdemocraticrepublic/">Lao People's Democratic Republic</a>
@@ -1078,7 +1079,7 @@ declare private variable $topicsList := <div class="mainPane clearfix" id="topic
           <a href="http://www.oecd.org/internet/">Internet</a>
         </li>
         <li class="li_col3">
-          <a href="http://www.oecd.org/investment/">Investment</a>
+          <a href="http://www.oecd.org/investment/">Investment  </a>
         </li>
         <li class="li_col3">
           <a href="http://www.oecd.org/governance/">Public governance</a>

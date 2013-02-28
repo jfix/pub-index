@@ -19,7 +19,7 @@
       <xsl:if test="$coverImage">
         <!-- thumbnail-->
         <div class="span3">
-          <img src="{concat('http://images.oecdcode.org/covers/150/', $coverImage)}" class="img-polaroid cover"/>
+          <img src="{concat('http://images.oecdcode.org/covers/150/', $coverImage)}" alt="cover image of the publication" class="img-polaroid cover"/>
         </div>
       </xsl:if>
 
