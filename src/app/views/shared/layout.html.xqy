@@ -15,7 +15,7 @@ declare function module:render($params as map:map) {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="{map:get($params,'meta-description')}"/>
     <meta name="author" content="{map:get($params,'meta-author')}"/>
-    <title>{(map:get($params,'title'),"PubIndex")[1]}</title>
+    <title>{(map:get($params,'title'), "OECD Publication Index")[1]}</title>
     
     <!-- Included CSS Files -->
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>

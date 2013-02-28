@@ -241,9 +241,9 @@
     <xsl:variable name="biblio" select="(oe:bibliographic[@xml:lang eq 'en'],oe:bibliographic)[1]"/>
     <li class="toc-row">
       <!-- only provide title attribute for tooltip if there is an abstract - toh! -->
-      <xsl:if test="$biblio/dt:abstract">
+      <!--<xsl:if test="$biblio/dt:abstract">
         <xsl:attribute name="title">Click to view abstract</xsl:attribute>
-      </xsl:if>
+      </xsl:if>-->
       <div class="toc-row-header">
         <!-- only change cursor to pointer if there is an abstract - re-toh! -->
         <xsl:if test="$biblio/dt:abstract">

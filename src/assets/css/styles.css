@@ -545,8 +545,16 @@ div.toc-row-header > .links a{
 }
 
 .toc-title{
-    display:block;
+    /*display:block;*/
 }
+/* displays "Click to view abstract" on hover on toc items */
+.click-abstract {
+     margin-left: 3em; 
+     text-shadow: 1px 1px white;
+     font-size: 85%;
+     line-height: 1em; /* otherwise, the smaller font-size adds one pixel ... va comprendre ! */
+}
+
 .toc-icon + .toc-title{
     margin-left:1em;
 }

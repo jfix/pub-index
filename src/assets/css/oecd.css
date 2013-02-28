@@ -43,6 +43,8 @@ B - Main Navigation Section
 #nav li.navItem a.navAct span {
 	display: block;
 	padding: 6px 0;
+	/* with smaller sizes, it's the OECD header that breaks first, this helps a bit */
+	white-space: nowrap; 
 	}
 
 #nav li.bLast {
