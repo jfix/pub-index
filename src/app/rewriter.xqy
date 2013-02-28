@@ -73,7 +73,9 @@ let $new-url :=
   then $url
   
   (: all routes have to be declared :)
-  else '404'
+  else
+    (: redirect to error page with code 404 :)
+    (xdmp:set-response-code(404, "Page not found"), "/error.xqy")
   
 let $_log := mu:log(concat("REWRITER: ", $new-url))
 
