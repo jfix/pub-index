@@ -423,24 +423,34 @@ div.facet.topic>ul {
     -webkit-transition: 1s; /* Safari and Chrome */
     -o-transition: 1s; /* Opera */
     -ms-transition: 1s; /* IE10 */
+    position: relative;
 }
+
+/* add gradient at bottom of close topic box */
+/* TODO: this is not yet ready for primetime:
+
+The gradient should disappear on hover, and that's working quite nicely.
+However, the gradient has to be put back on mouseout, but that happens 
+too early, the gradient is clearly visible before the box has retracted.
+
+div.facet.topic > ul::after {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    content:"";
+    width: 100%;
+    height: 30px;
+    top: 230px;
+    position:absolute;
+    margin:0;
+}
+/\* remove gradient if hovering *\/
+div.facet.topic:hover>ul::after {
+    background: inherit;
+    content: "";
+}
+*/
 div.facet.topic:hover>ul {    
     max-height: 999px;
     overflow: hidden;
-}
-
-img.flag{
-    margin:0.2em;
-    width:16px;
-    height:16px;
-    border:2px solid white;
-}
-img.flag.selected{
-    border:2px solid #2A85E8;
-}
-
-div.exhibit-views-header{
-    display:none;
 }
 
 #latest ul{
