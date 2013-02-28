@@ -14,9 +14,9 @@ declare namespace dt = "http://purl.org/dc/terms/";
 declare variable $host := fn:concat('127.0.0.1', ':' , xdmp:get-request-port()); 
 
 (: Actions endpoints :)
-declare variable $homePath :=  '/app/actions/home.xqy';
-declare variable $displayPath :=  '/app/actions/display.xqy';
-declare variable $searchResultPath := '/app/actions/search.xqy?term=&amp;in=&amp;start=1&amp;order=';
+declare variable $homePath :=  '/';
+declare variable $displayPath :=  '/display';
+declare variable $searchResultPath := '/search?term=&amp;in=&amp;start=1&amp;order=';
 
 (: private functions to get and check pages content :)
 declare private function get-page($path) {
@@ -90,7 +90,7 @@ declare function test:should-render-book-page () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            is-html-response(get-page(fn:concat($displayPath, '?id=', $id )))  
+            is-html-response(get-page(fn:concat($displayPath, '/', $id )))  
         else ()
 };
 
@@ -99,7 +99,7 @@ declare function test:should-render-edition-page () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            is-html-response(get-page(fn:concat($displayPath, '?id=', $id )))  
+            is-html-response(get-page(fn:concat($displayPath, '/', $id )))  
         else ()
 };
 
@@ -108,7 +108,7 @@ declare function test:should-render-journal-page () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            is-html-response(get-page(fn:concat($displayPath, '?id=', $id )))  
+            is-html-response(get-page(fn:concat($displayPath, '/', $id )))  
         else ()
 };
 
@@ -117,7 +117,7 @@ declare function test:should-render-workingpaperseries-page () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            is-html-response(get-page(fn:concat($displayPath, '?id=', $id )))  
+            is-html-response(get-page(fn:concat($displayPath, '/', $id )))  
         else ()
 };
 
@@ -127,7 +127,7 @@ declare function test:should-return-workingpaper-xml-item () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            is-xml-response(get-page(fn:concat($displayPath, '?id=', $id )), 'item')  
+            is-xml-response(get-page(fn:concat($displayPath, '/', $id )), 'item')  
         else ()
 };
 
@@ -138,7 +138,7 @@ declare function test:should-return-deleted-content-page () {
     (: proceed only if an id was found :)    
     return 
         if($id) then
-            let $page := get-page(fn:concat($displayPath, '?id=', $id ))
+            let $page := get-page(fn:concat($displayPath, '/', $id ))
             return (
                 is-html-response($page),
                 (: also check page title :)
@@ -156,7 +156,7 @@ declare function test:should-return-404-page () {
 
 (:: 404 for invalid expression id ::)
 declare function test:should-return-404-page-for-invalid-identifier () {
-    let $resp := get-page(fn:concat($displayPath, '?id=', 'this-id-should-not-exist' ))
+    let $resp := get-page(fn:concat($displayPath, '/', 'this-id-should-not-exist' ))
     return
         (
             assert:true($resp/code eq 404, 'Error page is not returned'),
