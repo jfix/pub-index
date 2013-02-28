@@ -5,7 +5,8 @@ import module namespace assert = "http://github.com/robwhitby/xray/assertions" a
 declare namespace xs = "http://www.w3.org/2001/XMLSchema";
 declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
-declare variable $host := (xdmp:get-request-header("X-Forwarded-For"),xdmp:get-request-header("HOST"))[1];
+(: using a HOSTS mapping may cause the server to not be able to resolve itself... using loopback :)
+declare variable $host := concat('127.0.0.1', ':' , xdmp:get-request-port()); 
 
 declare function test:should-return-results ()
 {
