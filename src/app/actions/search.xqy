@@ -29,18 +29,18 @@ declare function local:render-opensearch-rss($results)
     {
       for $result in $results/search:result
       let $item := $result/oe:item
-      let $uri-id as xs:string :=
-        if($item/@type = ('book','edition')) then
-          data($item/dt:identifier)
+      let $uri as xs:string :=
+        if($item/@type = ('article','workingpaper')) then
+          $item/oe:link[@type eq 'doi']/@rdf:resource
         else
-          ($item/oe:relation[@type=('journal','series')]/@rdf:resource, data($item/dt:identifier))[1]
+          concat('http://',$host, '/display/', data($item/dt:identifier))
       let $biblio := ($item/oe:bibliographic[@xml:lang eq 'en'],$item/oe:bibliographic)[1]
       let $abstract := data($biblio/dt:abstract)
       return
         <item>
           <guid>{ data($item/dt:identifier) }</guid>
           <title>{ fn:data($biblio/dt:title) }</title>
-          <link>{ concat('http://',$host, '/display/', $uri-id) }</link>
+          <link>{ $uri }</link>
           <pubDate>{ data($item/dt:available) }</pubDate>
           <description>{ if(string-length($abstract) > 260) then concat(normalize-space(substring($abstract,1,250)), '...') else $abstract }</description>
         </item>
