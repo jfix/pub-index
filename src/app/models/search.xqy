@@ -45,7 +45,7 @@ declare variable $search-options := <options xmlns="http://marklogic.com/appserv
     </constraint>
     <constraint name="language">
       <range type="xs:string">
-        <element name="language" ns="http://purl.org/dc/terms/"/>
+        <path-index xmlns:oe="http://www.oecd.org/metapub/oecdOrg/ns/" xmlns:dt="http://purl.org/dc/terms/">/oe:item/dt:language</path-index>
       </range>
     </constraint>
     <constraint name="date">
