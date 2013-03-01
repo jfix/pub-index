@@ -21,10 +21,10 @@ declare variable $order as xs:string :=
   return
     if($tmporder = ('date', 'date-asc', 'title', 'title-desc', 'relevance')) then
       $tmporder
-    else if(contains($in,'from:') or contains($in,'to:')) then
-      'date'
-    else
+    else if(string-length($term) > 0 and not(contains($in,'from:') or contains($in,'to:'))) then
       'relevance'
+    else
+      'date'
 ;
 
 declare variable $search-options := <options xmlns="http://marklogic.com/appservices/search">
