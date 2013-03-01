@@ -381,7 +381,7 @@ span.label.book{
 span.label.edition{
     background-color:#3A87AD;
 }
-span.label.article{
+span.label.article, span.label.journal{
     background-color:#468847;
 }
 
