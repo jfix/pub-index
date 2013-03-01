@@ -273,25 +273,24 @@
               <i class="icon-signal"/>
             </span>
           </xsl:when>
+          <xsl:when test="@type eq 'workingpaper'">
+            <xsl:variable name="labelOrderNumber">
+              <xsl:choose>
+                <xsl:when test="oe:orderNumber">
+                  <xsl:value-of select="concat('#',oe:orderNumber)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                  <xsl:value-of select="concat(year-from-dateTime(xs:dateTime(dt:available)),'-',oe:yearNumber)"/>
+                </xsl:otherwise>
+              </xsl:choose>
+            </xsl:variable>
+            <span class="toc-ordernumber">
+              <xsl:value-of select="$labelOrderNumber"/>
+            </span>
+          </xsl:when>
           <xsl:otherwise>
             <xsl:if test="dt:available">
-              <xsl:if test="@type eq 'workingpaper'">
-                <xsl:variable name="labelOrderNumber">
-                  <xsl:choose>
-                    <xsl:when test="oe:orderNumber">
-                      <xsl:value-of select="concat('#',oe:orderNumber)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of
-                        select="concat(year-from-dateTime(xs:dateTime(dt:available)),'-',oe:yearNumber)"
-                      />
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:variable>
-                <span class="toc-ordernumber">
-                  <xsl:value-of select="$labelOrderNumber"/>
-                </span>
-              </xsl:if>
+              <span class="toc-pubdate" data-date="{dt:available}"><xsl:value-of select="format-dateTime(dt:available, '[D] [MNn,*-3] [Y]')"></xsl:value-of></span>
             </xsl:if>
           </xsl:otherwise>
         </xsl:choose>

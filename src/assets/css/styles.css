@@ -552,6 +552,7 @@ div.toc-row-header > .links a{
     width:6em;
     padding-right:1em;
     text-align:right;
+    font-size:smaller;
 }
 
 .toc-title{
@@ -567,9 +568,6 @@ div.toc-row-header > .links a{
 
 .toc-icon + .toc-title{
     margin-left:1em;
-}
-.toc-pubdate + .toc-title{
-    margin-left:11em;
 }
 
 div.toc-details{
