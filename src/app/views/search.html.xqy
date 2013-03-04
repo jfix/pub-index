@@ -1,8 +1,9 @@
 xquery version "1.0-ml";
 
 import module namespace layout = "http://oecd.org/pi/views" at "/app/views/shared/layout.html.xqy";
-import module namespace sh = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/search-helper.xqy";
-import module namespace fh = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/facets-helper.xqy";
+import module namespace hs = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/search-helper.xqy";
+import module namespace hf = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/facets-helper.xqy";
+import module namespace ha = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/assets-helper.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 
@@ -25,7 +26,7 @@ declare variable $total-time := round-half-to-even(seconds-from-duration($model/
 declare private function local:render-results-selected()
 as element(div)?
 {
-  let $html := fh:render-selected-facets($qtext)
+  let $html := hf:render-selected-facets($qtext)
   return
     if($html) then
       <div class="row">
@@ -72,7 +73,7 @@ declare private function local:get-sort-option($value as xs:string, $label as xs
 as element(option)
 {
   <option value="{$value}">
-    {if($sh:order eq $value) then attribute {'selected'} {'selected'} else ()}
+    {if($hs:order eq $value) then attribute {'selected'} {'selected'} else ()}
     {$label}
   </option>
 };
@@ -149,7 +150,7 @@ as element(div)
 {
   <div class="row">
     <div class="span3">
-      { fh:render-facets($facets) }
+      { hf:render-facets($facets) }
     </div>
     <div class="span9">
       { local:render-results-selected() }
@@ -166,8 +167,10 @@ let $params := map:map(),
       $void := map:put($params, "scripts",(
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-        ,<script src="/assets/js/oecd-facets.js"></script>
-        ,<script src="/assets/js/oecd-search.js"></script>
+        ,ha:script((
+          "/assets/js/oecd-facets.js"
+          ,"/assets/js/oecd-search.js"
+        ))
       )),
       $void := map:put($params, "content", local:render-content())
 

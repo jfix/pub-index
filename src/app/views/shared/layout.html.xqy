@@ -1,9 +1,11 @@
 xquery version "1.0-ml";
 module namespace module = "http://oecd.org/pi/views";
 
-import module namespace search-helper = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/search-helper.xqy";
+import module namespace hs = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/search-helper.xqy";
+import module namespace ha = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/assets-helper.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
+declare default function namespace "http://www.w3.org/2005/xpath-functions";
 
 declare function module:render($params as map:map) {
 (
@@ -21,9 +23,13 @@ declare function module:render($params as map:map) {
     <!-- Included CSS Files -->
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
-    <link rel="stylesheet" href="/assets/css/styles.css"/>
-    <link rel="stylesheet" href="/assets/css/oecd.css"/>
-    <link rel="stylesheet" href="/assets/css/browser-update.org.custom.css"/>
+    {
+      ha:style((
+        "/assets/css/styles.css"
+        ,"/assets/css/oecd.css"
+        ,"/assets/css/browser-update.org.custom.css"
+      ))
+    }
     <link rel="shortcut icon" href="/assets/images/favicon.ico"/>
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
@@ -46,7 +52,7 @@ declare function module:render($params as map:map) {
             <img class="logo" alt="OECD logo" src="/assets/images/logooecd_en.png"/>
           </div>
           <div class="span5" style="text-align:right">
-            {search-helper:render-search-form()}
+            {hs:render-search-form()}
           </div>
         </div>
         <div id="nav" class="row">
@@ -137,7 +143,7 @@ declare function module:render($params as map:map) {
         }});
       }});
     </script>
-    <script src="/assets/js/oecd-layout.js"></script>
+    { ha:script("/assets/js/oecd-layout.js") }
     <script type="text/javascript"> 
         /* normally, one should leave this empty to let "browser-update.org" make the
            choice whether to alert or not. but they consider ie8 ok, but I don't,

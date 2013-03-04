@@ -1,7 +1,8 @@
 xquery version "1.0-ml";
 
 import module namespace layout = "http://oecd.org/pi/views" at "/app/views/shared/layout.html.xqy";
-import module namespace fh = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/facets-helper.xqy";
+import module namespace hf = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/facets-helper.xqy";
+import module namespace ha = "http://oecd.org/pi/views/helpers" at "/app/views/helpers/assets-helper.xqy";
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 
@@ -88,7 +89,7 @@ declare function local:render-content()
 {
   <div class="row">
     <div class="span3">
-      { fh:render-facets($facets) }
+      { hf:render-facets($facets) }
     </div>
     <div class="span9">
       { local:render-latests-widget($model/*) }
@@ -104,31 +105,15 @@ let $params := map:map(),
       $void := map:put($params, "scripts", (
         <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
         ,<script type="text/javascript" src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-
-        ,<link rel="stylesheet" href="/assets/js/qtip/jquery.qtip.css" />
-
-        ,<script type="text/javascript" src="/assets/js/oecd-facets.js"></script>
-
-(: D3 MAP :)
-        (:,<script type="text/javascript" src="/assets/js/qtip/jquery.qtip.js"></script>
-        ,<link rel="stylesheet" href="/assets/css/map.css" />
-        ,<script type="text/javascript" src="/assets/js/map/d3.v3.js"></script>
-        ,<script type="text/javascript" src="/assets/js/map/d3.geo.projection.v0.min.js"></script>
-        ,<script type="text/javascript" src="/assets/js/map/topojson.v0.min.js"></script>
-        ,<script type="text/javascript" src="/assets/js/map/underscore.js"></script>
-        ,<script type="text/javascript" src="/assets/js/map/watch.js"></script>
-        ,<script type="text/javascript" src="/assets/js/map/chart-component.js"></script>:)
-
+        ,ha:script("/assets/js/oecd-facets.js")
+        
 (: GMAP 3 :)
 (: key=AIzaSyDYNfnz6BXFos2D24stwobss_RD6GYRj0I&amp; :)
         ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
         (:,<script type="text/javascript" src="/assets/js/gmap3.js"></script>:)
         ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox_packed.js"></script>
         ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer_packed.js"></script>
-        ,<script type="text/javascript" src="/assets/js/oecd-map.js"></script>
-
-
-        
+        ,ha:script("/assets/js/oecd-map.js")
       ))
 
 return
