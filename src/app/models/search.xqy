@@ -92,12 +92,7 @@ as xs:string
 declare private function module:build-qtext($term, $in)
 as xs:string
 {
-  let $qtext := functx:trim(concat($term, " ", module:deserializeFilter($in)))
-  return
-    if(contains($qtext, 'date LE ')) then
-      $qtext
-    else
-      concat($qtext, ' ', '(date LE ', current-dateTime(), ')')
+  functx:trim(concat($term, " ", module:deserializeFilter($in)))
 };
 
 declare function module:search($qtext as xs:string, $start-from as xs:integer)

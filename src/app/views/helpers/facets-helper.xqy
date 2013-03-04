@@ -103,7 +103,7 @@ as element(div)
       </span>
       {
         if($max gt current-date()) then
-            <a id="btn-show-forthcoming" class="pull-right btn btn-mini" data-end-date="{substring(string($pubdate-facets//search:facet-value[@name eq 'max']),1,10)}">Include forthcoming publications</a>
+          <a id="btn-forthcoming" class="pull-right btn btn-mini disabled">Exclude forthcoming publications</a>
         else
           ()
       }
@@ -195,7 +195,7 @@ as element(div)?
       ,let $value := xs:date(substring(fn:replace($facet,"\(date GE (.*?)\)", "$1"),1,10))
        return
         <span data-facet="from" data-value="{$value}" class="selected-facet">
-          <i class="icon-ok"></i>From: {format-date($value, '[D] [MNn,*-3] [Y]')}
+          <i class="icon-ok"></i>Published since: {format-date($value, '[D] [MNn,*-3] [Y]')}
         </span>
     )
     else
@@ -208,11 +208,9 @@ as element(div)?
       $facets
       ,let $value := xs:date(substring(fn:replace($facet,"\(date LE (.*?)\)", "$1"),1,10))
        return
-        if(current-date() ne $value) then
-          <span data-facet="to" data-value="{$value}" class="selected-facet">
-            <i class="icon-ok"></i>To: {format-date($value, '[D] [MNn,*-3] [Y]')}
-          </span>
-        else ()
+        <span data-facet="to" data-value="{$value}" class="selected-facet">
+          <i class="icon-ok"></i>Published until: {format-date($value, '[D] [MNn,*-3] [Y]')}
+        </span>
     )
     else
       $facets

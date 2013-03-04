@@ -70,9 +70,6 @@ $(function () {
         var to;
         if (currentFacets.to) {
             to = new Date(currentFacets.to[0] + zeroTime);
-        } else {
-            to = new Date();
-            to.setHours(0, 0, 0, 0);
         }
         
         var nbdays = (newest - oldest) / 86400000;
@@ -188,14 +185,23 @@ $(function () {
          * the max date (i.e. the date including forthcoming publications is put in the 
          * "data-end-date" attribute by facets-helper.xqy, see function module:render-year-facet
          */
-        $("#btn-show-forthcoming").on("click", function (evt) {
-            var endDate = $(this).data("end-date");
-            $endDate.datepicker("setDate", new Date(endDate));
-            manageFacets("to", formatDate($endDate.datepicker("getDate")), currentFacets);
-            var filterString = serializeFacets(currentFacets);
-            $filterString.val(filterString);
-            $("#searchForm").submit();
-        });
+        
+        var $btnForthcoming = $("#btn-forthcoming");
+        if($btnForthcoming) {
+            $btnForthcoming.removeClass("disabled");
+            var target;
+            if(to && to < (new Date())) {
+              $btnForthcoming.html("Include forthcoming publications");
+              target = newest;
+            } else {
+              target = new Date();
+            }
+            
+            $btnForthcoming.on("click", function (evt) {
+                $endDate.datepicker("setDate", target);
+                submitForm();
+            });
+        }
     })();
     
     
