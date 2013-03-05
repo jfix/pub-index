@@ -18,10 +18,23 @@ declare variable $searchable-query := cts:and-query((
   cts:collection-query(("book","edition","article","workingpaper","journal","workingpaperseries"))
   ,cts:not-query(cts:collection-query("deleted"))
 ));
-declare variable $since as xs:dateTime := fn:current-dateTime() - xs:dayTimeDuration("PT2H"); (: FIXME :)
 
+(: determine the reference date from wich the modified documents will be gathered :)
+declare variable $since as xs:dateTime :=
+  let $tmp as xs:dateTime? := cts:max(cts:element-reference(xs:QName("prop:last-modified")),("properties"),cts:collection-query("searchable"))
+  return
+    if($tmp instance of xs:dateTime) then
+      $tmp
+    else
+      cts:min(cts:element-reference(xs:QName("prop:last-modified")),("properties"),cts:collection-query("metadata"))
+;
+
+(:
+  Build search documents used by the search api.
+:)
 declare function module:build-search-documents()
 {
+  (: get all identifiers for searchable candidate :)
   let $ids :=
     cts:element-values(fn:QName("http://purl.org/dc/terms/","identifier"), (), (),
       $searchable-query
@@ -38,6 +51,9 @@ declare function module:build-search-documents()
   )
 };
 
+(:
+  Build a search document for the provided identifier which will be used by the search api.
+:)
 declare private function module:build-search-document($id as xs:string) {
   let $item := mi:enhance-item(mi:get-item($id))
   let $checksum := xdmp:hmac-md5('osef', xdmp:quote($item))
@@ -51,6 +67,9 @@ declare private function module:build-search-document($id as xs:string) {
 return ()
 };
 
+(:
+  List all items related to the provided identifier (aka children).
+:)
 declare private function module:get-children-uri($id as xs:string) {
   cts:uris((),(),
     cts:and-query((
@@ -64,6 +83,10 @@ declare private function module:get-children-uri($id as xs:string) {
   )
 };
 
+(:
+  Check if the provided identifier has updated items related to itself (aka children).
+  It set this identifier to fn:true in the map if updated.
+:)
 declare private function module:check-updated-children($map as map:map, $id as xs:string) {
   if(
     cts:uris((),(),
@@ -72,7 +95,7 @@ declare private function module:check-updated-children($map as map:map, $id as x
         ,cts:properties-query(
           cts:element-range-query(
             xs:QName("prop:last-modified")
-            ,">"
+            ,">="
             ,$since
           )
         )
@@ -83,6 +106,9 @@ declare private function module:check-updated-children($map as map:map, $id as x
   else ()
 };
 
+(:
+  List all items the provided identifier has relation to.
+:)
 declare private function module:get-relations-uri($id as xs:string) {
   cts:uris((),(),
     cts:element-range-query(
@@ -103,6 +129,10 @@ declare private function module:get-relations-uri($id as xs:string) {
   )
 };
 
+(:
+  Check if the provided identifier has relation to updated items.
+  It set this identifier to fn:true in the map if updated.
+:)
 declare private function module:check-updated-relations($map as map:map, $id as xs:string) {
  if(
     cts:uris((),(),
@@ -111,7 +141,7 @@ declare private function module:check-updated-relations($map as map:map, $id as 
         ,cts:properties-query(
           cts:element-range-query(
             xs:QName("prop:last-modified")
-            ,">"
+            ,">="
             ,$since
           )
         )
@@ -122,10 +152,14 @@ declare private function module:check-updated-relations($map as map:map, $id as 
   else ()
 };
 
+(: map map helper :)
 declare private function module:put-map($map as map:map, $id as xs:string) {
   map:put($map, $id, fn:true())
 };
 
+(:
+  Fill the map with true for all updated searchable items identifiers.
+:)
 declare private function module:check-updated-item($map as map:map) {
     module:put-map(
     $map
@@ -136,7 +170,7 @@ declare private function module:check-updated-item($map as map:map) {
         ,cts:properties-query(
           cts:element-range-query(
             xs:QName("prop:last-modified")
-            ,">"
+            ,">="
             ,$since
           )
         )
@@ -145,6 +179,9 @@ declare private function module:check-updated-item($map as map:map) {
   )
 };
 
+(:
+  Delete search documents for all new deleted items.
+:)
 declare private function module:cleanup-deprecated-search-documents() {
   module:cleanup-deprecated-search-document(
     cts:element-values(
@@ -155,7 +192,7 @@ declare private function module:cleanup-deprecated-search-documents() {
         ,cts:properties-query(
             cts:element-range-query(
               xs:QName("prop:last-modified")
-              ,">"
+              ,">="
               ,$since
             )
           )
@@ -164,6 +201,9 @@ declare private function module:cleanup-deprecated-search-documents() {
   )
 };
 
+(:
+  Delete the search document for the provided identifier.
+:)
 declare private function module:cleanup-deprecated-search-document($id as xs:string) {
   (: delete doc if it still exists... :)
   let $targetDoc := concat("/searchdoc/", $id, ".xml")
