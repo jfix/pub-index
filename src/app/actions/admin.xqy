@@ -46,14 +46,14 @@ declare private function local:add(){
 
 (: Refresh documents dedicated to search api if necessary :)
 declare private function local:build-search-documents() {
-    <response>        
-        {            
-         md:build-search-documents()
+    <response>
+        {
+         md:manage-search-documents()
          ,
          <build-search-documents status="complete"/>
-        ,(: add duration :)            
+        ,(: add duration :)
         <duration>{xdmp:elapsed-time()}</duration>
-        }            
+        }
     </response>  
 };
 

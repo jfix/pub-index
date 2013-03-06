@@ -29,6 +29,27 @@ declare variable $since as xs:dateTime :=
       cts:min(cts:element-reference(xs:QName("prop:last-modified")),("properties"),cts:collection-query("metadata"))
 ;
 
+declare function module:manage-search-documents() {
+  (
+    xdmp:eval('
+      xquery version "1.0-ml";
+      import module namespace md = "http://oecd.org/pi/models/searchdoc" at "/app/models/searchdoc.xqy";
+      
+      md:build-search-documents()
+      
+    ',())
+    ,
+    xdmp:eval('
+      xquery version "1.0-ml";
+      import module namespace md = "http://oecd.org/pi/models/searchdoc" at "/app/models/searchdoc.xqy";
+      
+      md:update-search-documents-quality()
+      
+    ',())
+  
+  )
+};
+
 (:
   Build search documents used by the search api.
 :)
@@ -209,4 +230,35 @@ declare private function module:cleanup-deprecated-search-document($id as xs:str
   let $targetDoc := concat("/searchdoc/", $id, ".xml")
   return
   try { xdmp:document-delete($targetDoc) } catch ($ex) {}
+};
+
+
+declare variable $quality-mindate := cts:min(cts:element-reference(fn:QName("http://purl.org/dc/terms/","available")));
+declare variable $quality-maxnbdays := fn:days-from-duration(fn:current-dateTime() - $quality-mindate);
+
+declare function module:update-search-documents-quality()
+{
+  let $map :=
+    cts:value-co-occurrences(cts:uri-reference()
+      ,cts:element-reference(fn:QName("http://purl.org/dc/terms/","available"))
+      ,("map")
+      ,cts:collection-query("searchable")
+    )
+  return
+    module:update-search-document-quality($map, map:keys($map))
+};
+
+declare private function module:update-search-document-quality($map as map:map, $key as xs:string)
+{
+  xdmp:document-set-quality($key, module:compute-quality( min(map:get($map, $key)) ))
+};
+
+declare private function module:compute-quality($date as xs:dateTime)
+as xs:int
+{
+  xs:int(
+    math:exp(
+      (fn:days-from-duration( $date - $quality-mindate ) div $quality-maxnbdays) * xs:double(8.0)
+    )
+  )
 };
