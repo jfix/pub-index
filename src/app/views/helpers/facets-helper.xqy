@@ -174,6 +174,8 @@ as element(div)
 declare function module:render-selected-facets($qtext as xs:string)
 as element(div)?
 {
+  let $known-facets as xs:string+ := ("topic", "country", "language", "pubtype", "from", "to")
+  
   let $facets :=
     for $facet in functx:get-matches($qtext, "[a-z]+:""([^""]+)""")[. ne ""]
       let $type := fn:substring-before($facet,":")
@@ -183,10 +185,14 @@ as element(div)?
       let $label := data($ref/oe:label[@xml:lang eq 'en'])
       
       return
+        if ($known-facets = $type)
+        then
         <span data-facet="{$type}" data-value="{$id}" class="selected-facet">
           <i class="icon-ok"></i>{$label}
         </span>
-  
+        else 
+            (: https://github.com/robwhitby/xray/pull/11 :)
+            fn:error((), 'PI-INVALIDFACETTYPE', concat( 'The value "', $type, '" is not a valid facet type.'))
   let $facet := functx:get-matches($qtext, "\(date GE .*?\)")[. ne ""][1]
   let $facets :=
     if($facet) then
@@ -195,7 +201,7 @@ as element(div)?
       ,let $value := xs:date(substring(fn:replace($facet,"\(date GE (.*?)\)", "$1"),1,10))
        return
         <span data-facet="from" data-value="{$value}" class="selected-facet">
-          <i class="icon-ok"></i>Published since: {format-date($value, '[D] [MNn,*-3] [Y]')}
+          <i class="icon-ok"></i>From {format-date($value, '[D] [MNn,*-3] [Y]')}
         </span>
     )
     else
@@ -209,7 +215,7 @@ as element(div)?
       ,let $value := xs:date(substring(fn:replace($facet,"\(date LE (.*?)\)", "$1"),1,10))
        return
         <span data-facet="to" data-value="{$value}" class="selected-facet">
-          <i class="icon-ok"></i>Published until: {format-date($value, '[D] [MNn,*-3] [Y]')}
+          <i class="icon-ok"></i>Until {format-date($value, '[D] [MNn,*-3] [Y]')}
         </span>
     )
     else
