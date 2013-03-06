@@ -22,8 +22,8 @@ declare function module:render($params as map:map) {
     
     <link rel="profile" href="http://a9.com/-/spec/opensearch/1.1/"/>
     <!-- Included CSS Files -->
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="/assets/bootstrap/2.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/bootstrap/2.3.1/css/bootstrap-responsive.min.css"/>
     {
       ha:style((
         "/assets/css/styles.css"
@@ -112,7 +112,7 @@ declare function module:render($params as map:map) {
 
     <!-- Included JS Files -->
     <script src="/assets/jquery/jquery-1.8.3.min.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap/2.3.1/js/bootstrap.min.js"></script>
     {map:get($params,'scripts')}
     <script type="text/javascript">
       $(function() {{
