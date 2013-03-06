@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ml="antlib:com.marklogic.ant"
+  name="pubindex" default="usage" basedir="." >
+  
+  <description>
+    This script sets up, or tears down an existing publication index server.
+    More specifically it does:
+    * creation of forest
+    * creation of database
+    * attach forest to database
+    * created indexes etc on database
+    * create http app server
+  </description>
+  
+  <property environment="ENV"/>
+  <!-- directories used are defined here, not in the properties file -->
+  <property name="template.dir" location="tpl"/>
+  <property name="setup.dir" location="setup"/>
+  <property name="setup.index.dir" location="${setup.dir}/index"/>
+  <property name="db.migration.dir" location="../dbmigration"/>
+  
+  <loadproperties srcFile="${ant.project.name}.${env}.properties">
+    <filterchain>
+      <expandproperties/>
+    </filterchain>
+  </loadproperties>
+
+  
+  <path id="mlant.class.path">
+    <pathelement location="lib/mlant.jar"/>
+    <pathelement location="lib/xcc.jar"/>
+    <pathelement location="lib/saxon9he.jar"/>
+    <pathelement location="lib/xqsync.jar"/>
+    <pathelement location="lib/xqdoc-ml.jar"/>
+    <pathelement location="lib/corb.jar"/>
+  </path>
+    
+  <typedef resource="com/marklogic/ant/antlib.xml" 
+    classpathref="mlant.class.path" uri="antlib:com.marklogic.ant"/>
+  
+  <target name="usage">
+    <echo>
+run this to initialize server environment, forest and database
+use -Denv=ENV where ENV can be dev or prod
+
+reminder: to see all available documented targets, use -p (-projecthelp)
+    </echo>
+  </target>
+  
+  <target 
+    name="create-all" 
+    depends="forest-create, database-create, database-forest-attach, http-app-server-create, indexes-setup"
+    description="This does everyting to set up the environment">
+    <echo>Finished setting up the environment</echo>
+  </target>
+  
+    <target 
+      name="delete-all" 
+      depends="http-app-server-delete, forest-delete, database-delete, database-forest-detach"
+      description="This does everyting to tear down the environment">
+      <echo>Finished deleting the environment</echo>
+    </target>
+  
+  <!-- ===================================================================== -->
+  <!-- database and forest                                                   -->
+  <!-- ===================================================================== -->
+  
+  <!-- create forest -->
+  <target name="forest-create" depends="init">
+    <echo message="Create forest"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="01-create-forest.xqy"/>
+    </ml:query>    
+  </target>
+  
+  <!-- create database -->
+  <target name="database-create" depends="forest-create">
+    <echo message="Create database"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="02-create-database.xqy"/>
+    </ml:query>    
+  </target>
+  
+  <!-- attach forest to database -->
+  <target name="database-forest-attach" depends="database-create">
+    <echo message="Attach database ${database-name} to forest ${forest-name}"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="03-attach-database-forest.xqy"/>
+    </ml:query>
+  </target>
+
+  <!-- detach forest from database -->
+  <target name="database-forest-detach" depends="init">
+    <echo message="Detach database ${database-name} from forest ${forest-name}"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="91-detach-forest.xqy"/>
+    </ml:query>
+  </target>
+  
+  <!-- delete database -->
+  <target name="database-delete" depends="database-forest-detach">
+    <echo message="Delete database ${database-name}"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="92-delete-database.xqy"/>
+    </ml:query>
+    <sleep seconds="2"/>
+  </target>
+
+  <!-- delete forest -->
+  <target name="forest-delete" depends="database-forest-detach">
+    <echo message="Delete forest ${forest-name}"/>
+    <sleep seconds="2"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="92-delete-forest.xqy"/>
+    </ml:query>    
+    <sleep seconds="2"/>
+  </target>
+  
+  <!-- ===================================================================== -->
+  <!-- app server                                                            -->
+  <!-- ===================================================================== -->
+
+  <!-- create app server -->
+  <target 
+    name="http-app-server-create" 
+    depends="database-forest-attach"
+    description="create an HTTP app server">
+    <echo message="Create HTTP app server"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="10-create-appserver.xqy"/>
+    </ml:query>    
+  </target>
+  
+  <!-- delete app server -->
+  <target 
+    name="http-app-server-delete" 
+    depends="init"
+    description="delete an HTTP app server">
+    <echo message="Delete HTTP app server"/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.dir}" includes="90-delete-appserver.xqy"/>
+    </ml:query>    
+  </target>
+
+  <!-- ===================================================================== -->
+  <!-- indexes setup                                                         -->
+  <!-- ===================================================================== -->
+
+  <target name="indexes-setup" depends="database-create">
+    <echo message="creating indexes and more ..."/>
+    <ml:query xccurl="${xccstring}" appendoutput="false">
+      <fileset dir="${setup.index.dir}" includes="*.xqy"/>
+    </ml:query>    
+  </target>
+  
+  
+  <!-- ===================================================================== -->
+  <!-- replace variables with stuff from properties file                     -->
+  <!-- ===================================================================== -->
+  <target name="init">
+    <input
+      message="Enter the password please: "
+      addproperty="xdbc-password">
+      <handler classname="org.apache.tools.ant.input.SecureInputHandler"/>
+    </input>
+    
+    <property name="xccstring" 
+      value="xcc://${xdbc-user}:${xdbc-password}@${xdbc-host}:${xdbc-port}/"/>
+    
+    <!-- more secure to not echo it <echo message="connection string: ${xccstring}"/>-->
+    
+    <delete dir="${setup.dir}" failonerror="false"/>
+    <mkdir dir="${setup.dir}"/>
+    <copy todir="${setup.dir}" failonerror="true">
+      <fileset includes="*.xqy" dir="${template.dir}" />
+      <filterchain>
+        <replaceregex pattern="\$forest-name" replace="${forest-name}"/>
+        <replaceregex pattern="\$database-name" replace="${database-name}"/>
+        <replaceregex pattern="\$app-server-name" replace="${app-server-name}"/>
+        <replaceregex pattern="\$app-server-port" replace="${app-server-port}"/>
+        <replaceregex pattern="\$root" replace="${root}"/>
+        <replaceregex pattern="\$rewrite-handler" replace="${rewrite-handler}"/>
+        <replaceregex pattern="\$group-id" replace="${group-id}"/>
+        <replaceregex pattern="\$error-handler" replace="${error-handler}"/>
+        <replaceregex pattern="\$group-id" replace="${group-id}"/>
+        <replaceregex pattern="\$forest-data-directory" replace="${forest-data-directory}"/>
+        <replaceregex pattern="\$module-location" replace="${module-location}"/>
+        <replaceregex pattern="\$oecd-namespace" replace="${oecd-namespace}"/>
+        <replaceregex pattern="\$dc-terms-namespace" replace="${dc-terms-namespace}"/>
+      </filterchain>
+    </copy>
+    <copy todir="${setup.index.dir}" failonerror="true">
+      <fileset includes="*.xqy" dir="${db.migration.dir}" />
+      <filterchain>
+        <replaceregex  pattern='"PublicationIndex"' replace="${database-name}"/>
+      </filterchain>
+    </copy>
+  </target>
+</project>
