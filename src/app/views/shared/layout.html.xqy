@@ -17,6 +17,7 @@ declare function module:render($params as map:map) {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content="{map:get($params,'meta-description')}"/>
     <meta name="author" content="{map:get($params,'meta-author')}"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>{(map:get($params,'title'), "OECD Publication Index")[1]}</title>
     
     <link rel="profile" href="http://a9.com/-/spec/opensearch/1.1/"/>
