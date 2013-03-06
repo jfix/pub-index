@@ -8,6 +8,15 @@
 }
 */
 
+body,
+input,
+button,
+select,
+textarea,
+.navbar-search .search-query {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+}
+
 .infoBox {
     width: 150px;
     max-width: 200px;
