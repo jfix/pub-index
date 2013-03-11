@@ -22,16 +22,8 @@ declare function module:render($params as map:map) {
     
     <link rel="profile" href="http://a9.com/-/spec/opensearch/1.1/"/>
     <!-- Included CSS Files -->
-    <link rel="stylesheet" href="/assets/bootstrap/2.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/assets/bootstrap/2.3.1/css/bootstrap-responsive.min.css"/>
-    {
-      ha:style((
-        "/assets/css/styles.css"
-        ,"/assets/css/oecd.css"
-        ,"/assets/css/browser-update.org.custom.css"
-      ))
-    }
-    <link rel="shortcut icon" href="/assets/images/favicon.ico"/>
+    <link rel="stylesheet" href="{ha:cachebust('/assets/css/site.css')}"/>   
+    <link rel="shortcut icon" href="/assets/img/favicon.ico"/>
     <!-- IE Fix for HTML5 Tags -->
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
@@ -50,7 +42,7 @@ declare function module:render($params as map:map) {
       <div class="container">
         <div class="row">
           <div class="span7">
-            <img class="logo" alt="OECD logo" src="/assets/images/logooecd_en.png"/>
+            <img class="logo" alt="OECD logo" src="/assets/img/logooecd_en.png"/>
           </div>
           <div class="span5" style="text-align:right">
             {hs:render-search-form()}
@@ -111,70 +103,13 @@ declare function module:render($params as map:map) {
     </div>
 
     <!-- Included JS Files -->
-    <script src="/assets/jquery/jquery-1.8.3.min.js"></script>
-    <script src="/assets/bootstrap/2.3.1/js/bootstrap.min.js"></script>
-    {map:get($params,'scripts')}
-    <script type="text/javascript">
-      $(function() {{
-        $('#term').typeahead({{
-          minLength: 2,
-          source: function typehead_source(query, process) {{
-            $.post('/suggest', {{ term: query }}, function(data) {{
-              process(data);
-            }});
-          }},
-          updater: function typeahead_updater(item) {{
-            var oldval = this.$element.val();
-            var regex = new RegExp(oldval,'i');
-            if(regex.test(item)) {{
-              this.$element.val(item);
-            }}
-            else {{
-              item = oldval;
-            }}
-            $("#in").val(''); // clean facets
-            $("#searchForm").submit();
-            return item;
-          }}
-        }});
-        // remove facet filters on manual submit
-        $('#searchForm').on('submit', function(event) {{
-          if(!event.isTrigger)
-            $("#in").val('');
-        }});
-      }});
-    </script>
-    { ha:script("/assets/js/oecd-layout.js") }
-    <script type="text/javascript"> 
-        /* normally, one should leave this empty to let "browser-update.org" make the
-           choice whether to alert or not. but they consider ie8 ok, but I don't,
-           so I have added them here. FIXME: needs regular updates (or maybe can be made
-           empty again, after W7 migration at OECD is over.
-        */
-        var $buoop = {{vs:{{i:8,f:3.6,o:10.6,s:4,n:10}}}};  
-        $buoop.ol = window.onload; 
-        window.onload=function(){{ 
-             try {{ if ($buoop.ol) $buoop.ol();}} catch (e) {{}} 
-             var e = document.createElement("script"); 
-             e.setAttribute("type", "text/javascript"); 
-             e.setAttribute("src", "http://browser-update.org/update.js"); 
-             document.body.appendChild(e); 
-        }}
-    </script>
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-38704931-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {{
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        }})();
-    </script>
-    
-    <div id="getsat-widget-4541"></div>
+    <script src="{ha:cachebust('/assets/js/vendor.js')}"></script>
+    <script src="{ha:cachebust('/assets/js/app.js')}"></script>   
+    {map:get($params,'scripts')}    
+
+    <!--div id="getsat-widget-4541"></div>
     <script type="text/javascript" src="https://loader.engage.gsfn.us/loader.js"></script>
-    <script type="text/javascript">if (typeof GSFN !== "undefined"){{ GSFN.loadWidget(4541,{{"containerId":"getsat-widget-4541"}});}}</script>
+    <script type="text/javascript">if (typeof GSFN !== "undefined"){{ GSFN.loadWidget(4541,{{"containerId":"getsat-widget-4541"}});}}</script-->
   </body>
 </html>
 )

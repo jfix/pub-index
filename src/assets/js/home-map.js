@@ -53,7 +53,7 @@ $(function () {
             gridSize: 30, /* modify this to change what's covered by a cluster */
             maxZoom: 15,
             minimumClusterSize: 5,
-            imagePath: "/assets/images/m",
+            imagePath: "/assets/img/m",
             calculator: function(arr, num){ 
                 return {
                     "text":"",
@@ -79,7 +79,7 @@ $(function () {
             var marker = new google.maps.Marker({
                 position: latlng,   /* position on the map*/
                 /*title: label,*/       /* There are X publications on YY */
-                icon: "/assets/images/small_logo.png"                
+                icon: "/assets/img/small_logo.png"                
             });
             /* on click on a marker takes you to the search page filtered for that country */
             google.maps.event.addListener(marker, 'click', function() {
@@ -128,7 +128,7 @@ infowindow.close();
 },
 marker: {
 values: data, options: {
-icon: '/assets/images/small_logo.png'
+icon: '/assets/img/small_logo.png'
 },
 cluster: {
 radius: 70,

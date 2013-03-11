@@ -1,16 +1,17 @@
+/*globals $*/
 $(function () {
     
     /* load backlinks/related links */
-    var id = new RegExp("([^/])+(\\?|$)", "").exec(window.location.href)[0];
-    $('#backlinks').load('/app/actions/backlinks.xqy?id=' + id);
+    //var id = new RegExp("([^/])+(\\?|$)", "").exec(window.location.href)[0];
+    //$('#backlinks').load('/app/actions/backlinks.xqy?id=' + id);
     
     /* make TOC rows clickable: show/hide abstract */
     $('#toc-root').on('click', '.toc-row-header', function onClick_TocRowHeader(event) {
-        if (event.target.nodeName != 'A') {
+        if (event.target.nodeName !== 'A') {
             var $target = $(this).find('a.icon-download-alt');
             if ($target) {
                 var $row = $(this).parent('.toc-row');
-                var $target = $row.find('.toc-abstract');
+                $target = $row.find('.toc-abstract');
                 $target.fadeToggle();
             }
         }

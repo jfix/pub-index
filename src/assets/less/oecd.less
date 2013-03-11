@@ -17,7 +17,7 @@ B - Main Navigation Section
 	float: left;
 	margin: 0; padding: 0;
 	border-top: 2px solid #018fd1;
-	background: #008FD1 url(/assets/images/mainnavbg.png) repeat-x;
+	background: #008FD1 url('@{imgPath}/mainnavbg.png') repeat-x;
 	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2973bd), to(#018fd0));
 	background: -moz-linear-gradient(center bottom, #018fd0 1%, #2973bd 100% );
 	list-style-type: none;
@@ -28,7 +28,7 @@ B - Main Navigation Section
 	float: left;
 	padding: 0 2px 0 0;
 	width: 14%;
-	background: url(/assets/images/splitter.png) right center no-repeat;
+	background: url('@{imgPath}/splitter.png') right center no-repeat;
 	}
 
 #nav li.navItem a.navAct {
@@ -98,16 +98,16 @@ B - Main Navigation Section
     visibility: hidden;
 }
 #nav li.navItem a.hasPanel:hover {
-    background: url("/assets/images/closedarrow.gif") no-repeat scroll right center #C5D7ED;
+    background: url("@{imgPath}/closedarrow.gif") no-repeat scroll right center #C5D7ED;
 }
 #nav li.activePage a.hasPanel {
-    background: url("/assets/images/closedarrowlight.gif") no-repeat scroll right center #FFFFFF;
+    background: url("@{imgPath}/closedarrowlight.gif") no-repeat scroll right center #FFFFFF;
 }
 #nav li.activePage a.hasPanel:hover {
-    background: url("/assets/images/closedarrow.gif") no-repeat scroll right center #FFFFFF;
+    background: url("@{imgPath}/closedarrow.gif") no-repeat scroll right center #FFFFFF;
 }
 #nav li.navItem.active a.hasPanel, #nav li.navItem.active a.hasPanel:hover {
-    background: url("/assets/images/openedarrow.gif") no-repeat scroll right center #FFFFFF;
+    background: url("@{imgPath}/openedarrow.gif") no-repeat scroll right center #FFFFFF;
     border-radius: 3px 3px 0 0;
     color: #2973BD !important;
     z-index: 320;
@@ -156,7 +156,7 @@ B - Main Navigation Section
     padding: 10px 10px 15px 40px;
 }
 .mainPane .pane a {
-    background: url("/assets/images/sidenavfl1off.gif") no-repeat scroll 20px 8px transparent;
+    background: url("@{imgPath}/sidenavfl1off.gif") no-repeat scroll 20px 8px transparent;
     color: #666666;
     display: block;
     line-height: 1.2em;
@@ -166,7 +166,7 @@ B - Main Navigation Section
     text-decoration: none;
 }
 .mainPane .pane a:hover {
-    background-image: url("/assets/images/sidenavfl1.gif");
+    background-image: url("@{imgPath}/sidenavfl1.gif");
     color: #2973BD;
 }
 .mainPane .pane a em {
@@ -232,7 +232,7 @@ D - Footer
 	display: block;
 	padding: 0 3px;
 	text-decoration: none;
-	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	//font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	color: #333; text-align: center;
 	}
 

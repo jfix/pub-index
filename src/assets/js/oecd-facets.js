@@ -1,3 +1,4 @@
+/*globals $*/
 $(function () {
     
     var $filterString = $("#in");

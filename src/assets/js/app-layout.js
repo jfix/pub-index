@@ -1,3 +1,4 @@
+/*globals $*/
 /*
  * jQuery outside events - v1.1 - 3/16/2010
  * http://benalman.com/projects/jquery-outside-events-plugin/

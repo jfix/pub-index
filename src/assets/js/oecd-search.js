@@ -1,3 +1,4 @@
+/*globals $*/
 $(function onLoad_Search () {
 
 // make pager works (we should provide working url on buttons...)
