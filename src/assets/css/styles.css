@@ -524,6 +524,7 @@ div.toc-row-header {
 }
 #toc-root > .toc-row > .toc-row-header > .links{
     position:absolute;
+    top: 0;
     right:0.5em;
     bottom:-2px; /* FIXME: this is petty pixel-tweaking ... I don't like it, but I don't know how to center the buttons vertically otherwise */   
 }

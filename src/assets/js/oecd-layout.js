@@ -48,7 +48,7 @@ $(function () {
     
     /* start the carousel on the home page, each slide is displayed for three seconds */
     $('div#latest').carousel({
-        interval: 3000
+        interval: 5000
     })
     
     /* define actions for dropdown menus */
