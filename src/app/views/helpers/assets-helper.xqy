@@ -16,5 +16,8 @@ declare function module:style($asset as xs:string) {
 
 (: search in cachebust variable, if not found, append version :)
 declare function module:cachebust($asset as xs:string) {
-	concat($asset, "?", $config:version)
+	if($config:cachebusters/*:asset[@path=$asset]) then
+		concat($asset, "?", $config:cachebusters/*:asset[@path=$asset]/text())
+	else
+		concat($asset, "?", $config:version)
 };
