@@ -1,0 +1,7 @@
+{
+	"host": "vm-ml", // hostname
+	"username": "user", //ssh username
+	"password": "pass",
+	"path": "/opt/PublicationIndex/", 
+	"createDirectories": true
+}

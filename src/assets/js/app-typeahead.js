@@ -1,19 +1,20 @@
 /*globals $:true*/
-$(function() {
+$(function () {
   $('#term').typeahead({
     minLength: 2,
     source: function typehead_source(query, process) {
-      $.post('/suggest', { term: query }, function(data) {
+      $.post('/suggest', {
+        term: query
+      }, function (data) {
         process(data);
       });
     },
     updater: function typeahead_updater(item) {
       var oldval = this.$element.val();
-      var regex = new RegExp(oldval,'i');
+      var regex = new RegExp(oldval, 'i');
       if(regex.test(item)) {
         this.$element.val(item);
-      }
-      else {
+      } else {
         item = oldval;
       }
       $("#in").val(''); // clean facets
@@ -22,8 +23,9 @@ $(function() {
     }
   });
   // remove facet filters on manual submit
-  $('#searchForm').on('submit', function(event) {
-    if(!event.isTrigger)
+  $('#searchForm').on('submit', function (event) {
+    if(!event.isTrigger) {
       $("#in").val('');
+    }
   });
 });
