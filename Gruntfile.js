@@ -18,7 +18,7 @@
 
     // Project configuration.
     grunt.initConfig({
-      output: "_build",
+      output: "build",
       pkg: grunt.file.readJSON('package.json'),
       banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %>\n'+
                 '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;'+
@@ -50,11 +50,20 @@
       copy: {
         xquery: {
           files: [
-            { dest: "<%= output %>/", cwd: "src/", src: ['app/**', 'test/**'], expand: true},  // static content, no compression needed
+            { dest: "<%= output %>/", cwd: "src/", src: ['app/**', 'test/**'], expand: true} // static xquery content, no compression needed            
+          ]
+        },
+        tests: {
+          files: [
+            { dest: "<%= output %>/", cwd: "src/", src: ['app/**', 'test/**'], expand: true}  // static tests content, no compression needed
+          ]
+        },
+        assets: {
+          files: [
             { dest: "<%= output %>/assets/img/", cwd: "src/assets/images/", src: ['*'], expand: true }, // logo & oecd stuff (will be converted to sprite at some point...)
             { dest: "<%= output %>/assets/img/", cwd: "components/bootstrap/img/", src: ['*'], expand: true }, // bootstrap img            
-            { dest: "<%= output %>/assets/css/images/", cwd: "components/jquery-ui/themes/cupertino/images/", src: ['*'], expand: true } // jquery ui img            
-          ]
+            { dest: "<%= output %>/assets/css/images/", cwd: "components/jquery-ui/themes/cupertino/images/", src: ['*'], expand: true } // jquery ui img -- path relative to css (../images)
+          ]         
         }
       },      
       concat: {
@@ -231,11 +240,17 @@
     grunt.loadNpmTasks('grunt-ssh');
     
     // Wrapper tasks
-    grunt.registerTask('default', ['copy', 'concat', 'less', 'cachebuster', 'sftp']);
+    // base build
+    grunt.registerTask('default', ['build']);
+    grunt.registerTask('build', ['copy', 'concat', 'less', 'cachebuster']);
 
-    //grunt.registerTask('full', ['clean', 'copy', 'concat', 'sprites', 'less', 'couchapp']);
+    // Full build (clean first, then build and minify)
+    grunt.registerTask('full', ['clean', 'build', 'min']);
+    
+    // No clean nor min and but sftp after in dev target
+    grunt.registerTask('dev', ['build', 'sftp']);
 
-    // minification step (compact css & js) then recalculate cachebust!
+    // minification step (compact css & js) then recalculate cachebusters!
     grunt.registerTask('min', ['cssmin', 'uglify', 'cachebuster']);
 
   };

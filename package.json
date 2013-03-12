@@ -1,9 +1,8 @@
 {
-  "name": "OECD-PubIndex",
+  "name": "pubindex",
   "homepage": "http://publications.oecd.org",
   "version": "1.0.0",
   "description": "Grunt.js build file",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

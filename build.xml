@@ -2,17 +2,39 @@
 <project name="PublicationIndex">
   <!-- define ${target} by adding -Dtarget=\\servername\full\path\to\PI -->
   <!-- define ${testuri} by adding -Dtesturi=http://servername:port/xray/?dir=test&modules=&tests=&format=xunit -->
+  <!-- define ${steps} by adding -Dsteps="clean build min" -->
   
   <!-- Environment property -->
   <property environment="ENV"/>
   
   <taskdef resource="net/sf/antcontrib/antlib.xml"/>
   
+  <target name="build">
+    <fail message="steps property not defined!" unless="steps"/>
+    <!-- NPM is available -->
+    <exec executable="${ENV.PATH_NODEJS_CMD}\npm.cmd" failonerror="true">
+        <arg value="--version"/>        
+    </exec>
+    <!-- NPM install if required, this will enforce the package.json versions -->
+    <exec executable="${ENV.PATH_NODEJS_CMD}\npm.cmd" failonerror="true">
+        <arg value="install"/>        
+    </exec>
+    <!-- Cheking if grunt is available -->
+    <exec executable="${ENV.PATH_NODEJS_CMD}\grunt.cmd" failonerror="true">
+        <arg value="--version"/>        
+    </exec>
+    <echo message="Politely ask Grunt to build the project"/>
+    <exec executable="${ENV.PATH_NODEJS_CMD}\grunt.cmd" failonerror="true">
+        <arg value="${steps}"/>        
+    </exec>
+  </target>
+
   <target name="deploy">
     <fail message="target property not defined!" unless="target"/>
     <echo message="Deploy to ${target}"/>
     <sync todir="${target}" verbose="true">
-      <fileset dir="${basedir}/src"/>
+      <fileset dir="${basedir}/build"/>
+      <!-- Keep xray install in target -->
       <preserveintarget>
         <include name="xray/**"/>
       </preserveintarget>
