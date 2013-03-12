@@ -12,42 +12,44 @@
   <target name="build">
     <fail message="steps property not defined!" unless="steps"/>
 
-	<echo message="ant ${ant.version}"/>
-
     <!-- NPM is available -->
-	<echo message="npm -v"/>
+    <echo message="npm -v"/>
     <exec executable="npm.cmd" failonerror="true">
-		<arg value="--no-color"/>  
-        <arg value="--version"/>        
-    </exec>
-    <!-- NPM install if required, this will enforce the package.json versions -->
-    <exec executable="npm.cmd" failonerror="true">
-		<arg value="--no-color"/>  
-      <arg value="install"/>        
-    </exec>
-    <!-- Cheking if grunt is available -->
-    <exec executable="grunt.cmd" failonerror="true">
-		  <arg value="--no-color"/>  
+      <arg value="--no-color"/>  
       <arg value="--version"/>        
     </exec>
+
+    <!-- NPM install if required, this will enforce the package.json versions -->
+    <exec executable="npm.cmd" failonerror="true">
+      <arg value="--no-color"/>  
+      <arg value="install"/>        
+    </exec>
+
+    <!-- Cheking if grunt is available -->
+    <exec executable="grunt.cmd" failonerror="true">
+      <arg value="--no-color"/>  
+      <arg value="--version"/>        
+    </exec>
+
+    <!-- run grunt -->
     <echo message="Politely ask Grunt to build the project"/>
     <exec executable="grunt.cmd" failonerror="true">
-        <arg value="--no-color"/>           
-        <arg value="${steps}"/>
+      <arg value="--no-color"/>           
+      <arg value="${steps}"/>
 
-        <!-- child processes outputs are not correty catched by ANT... -->
-        <!-- see: http://stackoverflow.com/questions/1602616/how-can-i-ensure-all-output-from-ants-exec-task-goes-to-stdout -->
-        <!--Next arg: forces node's stderror and stdout to a temporary file-->
-        <arg line=" &gt; _tempfile.out 2&lt;&amp;1"/>
+      <!-- child processes outputs are not correty catched by ANT... -->
+      <!-- see: http://stackoverflow.com/questions/1602616/how-can-i-ensure-all-output-from-ants-exec-task-goes-to-stdout -->
+      <!--Next arg: forces node's stderror and stdout to a temporary file-->
+      <arg line=" &gt; _tempfile.out 2&lt;&amp;1"/>
 
-        <!--Next arg: If command exits with an error, then output the temporary file to stdout, -->
-        <!--delete the temporary file and finally exit with error level 1 so that    -->
-        <!--the apply task can catch the error if @failonerror="true"                -->
-        <arg line=" || (type _tempfile.out &amp; del _tempfile.out &amp; exit /b 1)"/>
+      <!--Next arg: If command exits with an error, then output the temporary file to stdout, -->
+      <!--delete the temporary file and finally exit with error level 1 so that    -->
+      <!--the apply task can catch the error if @failonerror="true"                -->
+      <arg line=" || (type _tempfile.out &amp; del _tempfile.out &amp; exit /b 1)"/>
 
-        <!--Next arg: Otherwise, just type the temporary file and delete it-->
-        <arg line=" &amp; type _tempfile.out &amp; del _tempfile.out &amp;"/>
-       
+      <!--Next arg: Otherwise, just type the temporary file and delete it-->
+      <arg line=" &amp; type _tempfile.out &amp; del _tempfile.out &amp;"/>
+
     </exec>
   </target>
 
@@ -74,10 +76,10 @@
     
     <echo message="Run xray testing on ${testuri}"/>
     <exec executable="${ENV.PATH_CURL}\curl.exe" failonerror="true">
-        <arg value="-sS"/>
-        <arg value="-o"/>
-        <arg value="${basedir}\test-results\results.xml"/>
-        <arg value="${testuri}"/>
+      <arg value="-sS"/>
+      <arg value="-o"/>
+      <arg value="${basedir}\test-results\results.xml"/>
+      <arg value="${testuri}"/>
     </exec>
   </target>
 </project>
