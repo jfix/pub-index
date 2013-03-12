@@ -11,22 +11,43 @@
   
   <target name="build">
     <fail message="steps property not defined!" unless="steps"/>
+
+	<echo message="ant ${ant.version}"/>
+
     <!-- NPM is available -->
-    <exec executable="${ENV.PATH_NODEJS_CMD}\npm.cmd" failonerror="true">
+	<echo message="npm -v"/>
+    <exec executable="npm.cmd" failonerror="true">
+		<arg value="--no-color"/>  
         <arg value="--version"/>        
     </exec>
     <!-- NPM install if required, this will enforce the package.json versions -->
-    <exec executable="${ENV.PATH_NODEJS_CMD}\npm.cmd" failonerror="true">
-        <arg value="install"/>        
+    <exec executable="npm.cmd" failonerror="true">
+		<arg value="--no-color"/>  
+      <arg value="install"/>        
     </exec>
     <!-- Cheking if grunt is available -->
-    <exec executable="${ENV.PATH_NODEJS_CMD}\grunt.cmd" failonerror="true">
-        <arg value="--version"/>        
+    <exec executable="grunt.cmd" failonerror="true">
+		  <arg value="--no-color"/>  
+      <arg value="--version"/>        
     </exec>
     <echo message="Politely ask Grunt to build the project"/>
-    <exec executable="${ENV.PATH_NODEJS_CMD}\grunt.cmd" failonerror="true">
-        <arg value="--no-color"/>        
-        <arg value="${steps}"/>        
+    <exec executable="grunt.cmd" failonerror="true">
+        <arg value="--no-color"/>           
+        <arg value="${steps}"/>
+
+        <!-- child processes outputs are not correty catched by ANT... -->
+        <!-- see: http://stackoverflow.com/questions/1602616/how-can-i-ensure-all-output-from-ants-exec-task-goes-to-stdout -->
+        <!--Next arg: forces node's stderror and stdout to a temporary file-->
+        <arg line=" &gt; _tempfile.out 2&lt;&amp;1"/>
+
+        <!--Next arg: If command exits with an error, then output the temporary file to stdout, -->
+        <!--delete the temporary file and finally exit with error level 1 so that    -->
+        <!--the apply task can catch the error if @failonerror="true"                -->
+        <arg line=" || (type _tempfile.out &amp; del _tempfile.out &amp; exit /b 1)"/>
+
+        <!--Next arg: Otherwise, just type the temporary file and delete it-->
+        <arg line=" &amp; type _tempfile.out &amp; del _tempfile.out &amp;"/>
+       
     </exec>
   </target>
 
