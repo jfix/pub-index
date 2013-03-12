@@ -166,9 +166,11 @@
           files: {
             "./": "<%= output %>/**"
           },
-          options: grunt.util._.extend(grunt.file.readJSON('sftp.json'), {            
-            srcBasePath: '<%= output %>/'
-          })
+          options: (grunt.file.isFile('sftp.json')) ? 
+              grunt.util._.extend( grunt.file.readJSON('sftp.json'), {
+                srcBasePath: '<%= output %>/'
+              })
+              : {}          
         }
       },      
       watch: {
