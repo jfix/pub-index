@@ -25,6 +25,7 @@
     </exec>
     <echo message="Politely ask Grunt to build the project"/>
     <exec executable="${ENV.PATH_NODEJS_CMD}\grunt.cmd" failonerror="true">
+        <arg value="--no-color"/>        
         <arg value="${steps}"/>        
     </exec>
   </target>

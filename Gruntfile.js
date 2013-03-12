@@ -127,6 +127,7 @@
       },      
       cssmin: { // CSS Minify Task
         options: {
+          banner: '<%= banner %>',
           keepSpecialComments: 0,          
           removeEmpty: true
         },
