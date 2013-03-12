@@ -69,19 +69,16 @@ $(function () {
     // show tooltip on mouseover to click to see abstract
     // FIXME: use .filter() instead, apparently faster
     //$("li.toc-row span.toc-title")
-    //  .tooltip({"delay": 100, "placement": "right", title: "Click to view abstract"});
+      //  .tooltip({"delay": 100, "placement": "right", title: "Click to view abstract"});
     /* .toc-row:has(p.toc-abstract:hidden) */
-    $("li.toc-row:has(p.toc-abstract:hidden)").hover(
-
-    function () {
-        $(this).find(".toc-row-header .toc-title").append("<strong class='click-abstract text-info'> Click to view abstract</strong>");
-
-    }, function () {
-        $(this).find(".click-abstract").remove();
-
-    });
-    //        .tooltip({"delay": 100, "placement": "right", title: "!! Click to view abstract"});
-
+    
+    $("ul#toc-root>li").has( "p.toc-abstract:hidden" ).hover(
+        function() {
+            $(this).find("div.toc-row-clickable>span.toc-title").append("<strong class='click-abstract text-info'> Click to view abstract</strong>");
+        },
+        function() {
+            $(this).find(".click-abstract").remove();
+        });
 
     /* enable tooltips on links in TOC */
     //$('#toc-root').find('div.links > a').tooltip();

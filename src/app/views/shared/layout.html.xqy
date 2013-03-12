@@ -69,7 +69,13 @@ declare function module:render($params as map:map) {
                 <a class="navAct" href="http://www.oecd.org/statistics"><span>Statistics</span></a>
               </li>
               <li class="navItem activePage">
-                <a class="navAct" href="/"><span>Publications</span></a>
+                <a class="navAct" href="/">
+                    <span>
+                        Publications
+                    </span>
+                    <!--<span class="beta">βeta</span>-->
+                    <span class="beta">beta</span>
+                </a>
               </li>
               <li class="navItem">
                 <a class="navAct" href="http://www.oecd.org/newsroom"><span>Newsroom</span></a>

@@ -72,6 +72,9 @@ let $new-url :=
   else if (fn:matches($url, "^/xray/?(\?.*)?$"))
   then $url
   
+  else if (fn:matches($url, "^/robots.txt$"))
+  then "/app/robots.txt"
+  
   (: all routes have to be declared :)
   else
     (: redirect to error page with code 404 :)
