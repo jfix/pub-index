@@ -47,6 +47,7 @@ $(function () {
         var $lbl = $btn.find("span");
         
         $("#toc-box").toggleClass("toc-box-condensed");
+        $btn.toggleClass("active");
         
         if ( $icn.hasClass("icon-chevron-down")) {
             $icn.removeClass("icon-chevron-down");
