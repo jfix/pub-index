@@ -6,7 +6,6 @@ import module namespace ha = "http://oecd.org/pi/views/helpers" at "/app/views/h
 
 declare default element namespace "http://www.w3.org/1999/xhtml";
 
-declare namespace ex = "exhibit";
 declare namespace oe = "http://www.oecd.org/metapub/oecdOrg/ns/";
 declare namespace dt = "http://purl.org/dc/terms/";
 declare namespace rdf = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -111,8 +110,8 @@ let $params := map:map(),
 (: key=AIzaSyDYNfnz6BXFos2D24stwobss_RD6GYRj0I&amp; :)
         ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
         (:,<script type="text/javascript" src="/assets/js/gmap3.js"></script>:)
-        ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/infobox/src/infobox_packed.js"></script>
-        ,<script type="text/javascript" src="https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclustererplus/src/markerclusterer_packed.js"></script>
+        ,ha:script("/assets/js/map/infobox_packed.js")
+        ,ha:script("/assets/js/map/markerclusterer_packed.js")
         ,ha:script("/assets/js/oecd-map.js")
       ))
 

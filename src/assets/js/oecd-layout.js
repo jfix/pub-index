@@ -46,7 +46,7 @@
 /* OECD nav bar */
 $(function () {
     
-    /* start the carousel on the home page, each slide is displayed for three seconds */
+    /* start the carousel on the home page, each slide is displayed for five seconds */
     $('div#latest').carousel({
         interval: 5000
     })
