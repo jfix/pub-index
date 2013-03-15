@@ -101,18 +101,11 @@ declare function local:render-content()
 let $params := map:map(),
       $void := map:put($params, "title", "OECD publications"),
       $void := map:put($params, "content", local:render-content()),
-      $void := map:put($params, "scripts", (
-        <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
-        ,<script type="text/javascript" src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-        ,ha:script("/assets/js/oecd-facets.js")
-        
+      $void := map:put($params, "scripts", (        
 (: GMAP 3 :)
 (: key=AIzaSyDYNfnz6BXFos2D24stwobss_RD6GYRj0I&amp; :)
-        ,<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
-        (:,<script type="text/javascript" src="/assets/js/gmap3.js"></script>:)
-        ,ha:script("/assets/js/map/infobox_packed.js")
-        ,ha:script("/assets/js/map/markerclusterer_packed.js")
-        ,ha:script("/assets/js/oecd-map.js")
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
+        ,ha:script("/assets/js/home.js")
       ))
 
 return

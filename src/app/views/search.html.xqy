@@ -164,14 +164,7 @@ as element(div)
 let $params := map:map(),
         (: title should display normalized query term  if there is one - related to issue #5348 :)
       $void := map:put($params, "title", concat(if (string-length($term) > 0) then concat("Results for '", $term, "'") else ("Search results"), " - OECD publications")   ),
-      $void := map:put($params, "scripts",(
-        <link rel="stylesheet" href="/assets/jquery/ui/themes/cupertino/jquery-ui-1.9.2.custom.min.css" />
-        ,<script src="/assets/jquery/ui/jquery-ui-1.9.2.custom.min.js"></script>
-        ,ha:script((
-          "/assets/js/oecd-facets.js"
-          ,"/assets/js/oecd-search.js"
-        ))
-      )),
+      (: $void := map:put($params, "scripts",(ha:script("/assets/js/app.js")),  -- no specific js for this page :)
       $void := map:put($params, "content", local:render-content())
 
 return

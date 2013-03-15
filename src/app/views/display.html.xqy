@@ -20,7 +20,7 @@ let $params := map:map(),
         ,map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/deleted.xsl", $model))
     ) else (
          map:put($params, "title", concat(string(($model//dt:title)[1]), " - OECD publications"))
-        ,map:put($params, "scripts", ha:script("/assets/js/oecd-display.js"))
+        (:,map:put($params, "scripts", ())  -- no specific js for this page :)
         ,map:put($params, "content", xdmp:xslt-invoke("/app/views/xslt/publication.xsl", $model))
     )
 

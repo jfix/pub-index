@@ -1,33 +1,33 @@
+/*globals $*/
 $(function () {
-    
+
     /* load backlinks/related links */
-    var id = new RegExp("([^/])+(\\?|$)", "").exec(window.location.href)[0];
-    $('#backlinks').load('/app/actions/backlinks.xqy?id=' + id);
-    
+    //var id = new RegExp("([^/])+(\\?|$)", "").exec(window.location.href)[0];
+    //$('#backlinks').load('/app/actions/backlinks.xqy?id=' + id);
     /* make TOC rows clickable: show/hide abstract */
     $('#toc-root').on('click', '.toc-row-header', function onClick_TocRowHeader(event) {
-        if (event.target.nodeName != 'A') {
+        if(event.target.nodeName !== 'A') {
             var $target = $(this).find('a.icon-download-alt');
-            if ($target) {
+            if($target) {
                 var $row = $(this).parent('.toc-row');
-                var $target = $row.find('.toc-abstract');
+                $target = $row.find('.toc-abstract');
                 $target.fadeToggle();
             }
         }
     });
-    
+
     /* add logic to "show abstracts" & "show tables/graphs" action buttons */
     $('#toc-actions .btn').each(function () {
         var $btn = $(this);
         var toggle = $btn.data('toggle');
-        if (toggle) {
+        if(toggle) {
             var $targets = $('#toc-root').find(toggle);
             var $icon = $btn.children('i');
             $btn.click(function () {
                 var visible = $btn.hasClass('active');
-                
+
                 $btn.toggleClass('active');
-                if (visible) {
+                if(visible) {
                     $targets.fadeOut();
                 } else {
                     $targets.fadeIn();
@@ -35,17 +35,17 @@ $(function () {
             });
         }
     });
-    
+
     // don't show the big/small toc toggle button if there is no need
-    if ($("ul#toc-root").height() <= 400) {
-         $("#toc-expander").remove();
-         $("#toc-box").removeClass("toc-box-condensed");
+    if($("ul#toc-root").height() <= 400) {
+        $("#toc-expander").remove();
+        $("#toc-box").removeClass("toc-box-condensed");
     }
-    $("#toc-expander").on("click", function(evt) {
+    $("#toc-expander").on("click", function (evt) {
         var $btn = $(this);
         var $icn = $btn.find("i");
         var $lbl = $btn.find("span");
-        
+
         $("#toc-box").toggleClass("toc-box-condensed");
         $btn.toggleClass("active");
         
@@ -63,7 +63,7 @@ $(function () {
     /* add logic to summaries dropdown */
     $('#summaries').on('change', function onChange_Summaries() {
         var url = $(this).val();
-        if (url) {
+        if(url) {
             window.open(url);
         }
     });

@@ -1,0 +1,655 @@
+/*.cluster {
+    font-weight:bold;
+    color: white;
+    background: url(/assets/img/cluster_logo.png);
+    width: 50px;
+    height: 31px;
+    overflow: hidden;
+}
+*/
+
+/* remove below when no longer in beta */
+span.beta {
+    position: absolute;
+    top: -6px;
+    right: 7px;
+    color: #f89406;
+    font-weight: bold;
+    z-index: 100;
+    text-shadow: 1px 1px #eee;
+    font-size: 85%;
+}
+li.activePage, a.navAct {
+    position: relative;
+}
+/* remove above when no longer in beta */
+
+
+.infoBox {
+    width: 150px;
+    max-width: 200px;
+    background-color: black;
+    color: white;
+    font-size: smaller;
+    padding: 0.5em;
+    line-height: 1.2em;
+    opacity: .75;
+}
+
+body{
+    font-size:smaller;
+}
+
+.slogan{
+    margin-left:2em;
+    text-transform:capitalize;
+    font-weight:bold;
+    font-size:12px;
+    color:#727272;
+}
+.page-header{
+    margin-top:2em;
+    margin-bottom:1em;
+}
+
+img.logo{
+    margin-top:32px; /* this has been "pixel-perfected" to work with the alignment of the search form */
+}
+
+header{
+    margin-bottom:4em;
+}
+
+/* **********************************************************
+
+   CAROUSEL STYLE SPECIFICATIONS
+
+   ********************************************************** */
+
+div.item {
+    /*  force a uniform height, this is less than a typical cover, 
+        but otherwise the carousel would take up too much vertical 
+        space. */
+    height: 400px;
+    /* need to do this so that I can position child elements absolutely */
+    position: relative;
+}
+
+.carousel-control {
+    /* overload bootstrap defaults */
+    top: 50% !important;
+}
+
+/* move line of little circle to the bottom */
+/* overload bootstrap defaults */
+.carousel-indicators {
+    bottom: 15px !important;
+    top: inherit;
+}
+
+/* define the left half showing the cover, 
+   based on its "guaranteed" width of 340px */
+div.left-side{
+    width: 340px;
+    max-width: 340px;
+    min-width: 340px;
+}
+
+/* define right-hand side containing title 
+   and metadata */
+   
+div.right-side {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    /* this has been determined by trial and error,
+       and I must admit I'm not sure how to explain
+       that number of pixels ... */
+    min-width: 308px;
+    
+    margin-left: 340px; /* correponds to the left side width */
+    padding: 1.5em 2em 2em 2em;
+
+    /* this is more or less what remains of the 
+       bootstrap carousel-caption class */
+    background: #333333;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+}
+
+div.left-side {
+    /* crop the image, don't resize it - I'm waiting 
+       for NEA to complain that one cannot see their 
+       logo because of this */
+    overflow: hidden;
+    float: left;
+    height: 100%;
+}
+/* we have to delimitate the actual carousel, otherwise
+   it just fades into the rest, the "well" class was
+   not an option */
+div.with-border {
+    border: 2px solid #444444;
+}
+
+div#latest p.abstract {
+    line-height: 1.5em;
+    padding-right: 3em;
+}
+/* display the oecd logo on the right-hand side
+   as background image, centred, solution from here:
+   http://nicolasgallagher.com/css-background-image-hacks/ */
+   
+div.right-side::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	background-image: url('@{imgPath}/logo.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
+.carousel .carousel-control {
+	display: none;
+}
+.carousel:hover .carousel-control {
+	display: inherit;
+}
+/* **********************************************************
+
+   SOMETHING ELSE
+
+   ********************************************************** */
+
+#map-container, #map-container-gm {
+    width: 100%;
+    height: 400px;
+    border: 2px solid #444444;
+    /*width: 700px; height: 400px; position:relative;*/
+}
+.cover{
+    margin:0 2em 2em 1em;
+    border:1px solid black;
+    box-shadow:1em 1em 0.5em #c0c0c0;
+    width:150px;
+}
+
+.pubdate{
+    font-weight:bold;
+}
+
+.toc-list,
+.ml-list{
+    margin-left:3em;
+}
+
+.toc-list li,
+.ml-list li{
+    display:list-item;
+    list-style:circle;
+}
+
+.subtitle,
+.languages{
+    font-style:italic;
+}
+
+div.facet{
+    margin-top:1em;
+}
+.facet h6{
+    margin:0;
+}
+.facet ul{
+    list-style:none outside none;
+    margin:0 0 0 5px;
+    font-size:0.85em;
+}
+.facet select{
+    margin:5px 0 5px 0;
+}
+.facet.subject,
+.facet.pubtype{
+    margin-bottom:5px;
+}
+
+#date-range-controls{
+    margin:1em 0.6em 4em;
+}
+#slider-date-range{
+    font-size:0.8em; /* 0.5em is too tiny */
+    margin:1em 0 1em;
+}
+
+.ui-slider .ui-slider-range {
+    height: 1em !important;
+}
+.ui-slider .ui-slider-handle {
+    width: 1em !important;
+    height: 1.4em !important;
+    top: -.4em !important;
+    
+    -moz-border-radius-bottomright: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -khtml-border-bottom-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    
+    -moz-border-radius-bottomleft: 3px;
+-webkit-border-bottom-left-radius: 3px;
+-khtml-border-bottom-left-radius: 3px;
+border-bottom-left-radius: 3px;
+
+-moz-border-radius-topright: 3px;
+-webkit-border-top-right-radius: 3px;
+-khtml-border-top-right-radius: 3px;
+border-top-right-radius: 3px;
+
+-moz-border-radius-topleft: 3px;
+-webkit-border-top-left-radius: 3px;
+-khtml-border-top-left-radius: 3px;
+border-top-left-radius: 3px;
+}
+.facet .input-append{
+    font-size:inherit;
+}
+.facet .input-append .add-on{
+    padding:0.15em;
+}
+.facet .datepicker{
+    text-align:center;
+    padding:0.2em 0.2em;
+    font-size:0.8em;
+    width:6em;
+}
+
+#search-results-facets{
+    padding:5px;
+}
+#search-results-facets span{
+    font-size:0.9em;
+    margin-right:10px;
+    cursor:pointer;
+    color:#0074B4;
+}
+#search-results-facets i{
+    margin-right:4px;
+}
+
+#search-results-header{
+    padding:5px;
+    margin-bottom:10px;
+    background-color:#eee;
+}
+
+span#clear-facets {
+    color: red;
+    font-weight:bold;
+    float: right;
+}
+span.delete-facet {
+    color: red !important; /* w/o important it doesn't get applied */
+}
+label[for = "sortby"]{
+    display:inline;
+    margin-bottom:auto;
+}
+#sortby{
+    height:auto;
+    margin:0;
+    padding:0;
+}
+
+.search-result-highlight{
+    font-weight:bold;
+}
+
+.search-result-thumbnail{
+    float:left;
+    width: 100px; /* reserve width to avoid page elements moving when images are loaded late */
+    margin-right:20px; /* same margin as bootstrap span has to the left */
+    margin-top:10px; /* adapt to bootstrap h4 margin */
+    border:1px solid #c0c0c0;
+
+}
+
+.search-results .abstract{
+    margin:0;
+}
+
+div.search-results div.metadata {
+    position: relative;
+    height:158px;
+    overflow:hidden;
+    margin-bottom:1em;
+    margin-right:1em;
+}
+
+/*div.show-full-abstract {
+    overflow: visible !important;
+}
+*/
+.underline {
+    text-decoration: underline;
+}
+div.search-result-item {
+}
+div.search-result-item.highlight {
+    cursor:pointer;
+    background-color: #eeeeee;
+}
+
+div.search-results div.metadata::after {
+    /*background-image: url(/assets/img/gradient.png);*/
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    content:"";
+    width: 100%;
+    height: 30px;
+    bottom: 0px;
+    position:absolute;
+    margin:0;
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+/* from http://www.colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0+0,1+100;Custom
+
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1)));
+background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); 
+background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); 
+background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 ); 
+}
+*/
+}
+
+div.search-results div.metadata.active::after {
+    /* TODO: IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjElIiBzdG9wLWNvbG9yPSIjZWVlZWVlIiBzdG9wLW9wYWNpdHk9IjAuMDEiLz4KICAgIDxzdG9wIG9mZnNldD0iNzUlIiBzdG9wLWNvbG9yPSIjZWVlZWVlIiBzdG9wLW9wYWNpdHk9IjAuNzUiLz4KICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2VlZWVlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+    content:"";
+    width: 100%;
+    height: 30px;
+    bottom: 0px;
+    position:absolute;
+    margin:0;
+}
+
+div.search-results div.related-stuff 
+{
+    font-size:0.9em;
+    text-align:right;
+    padding: 0 2em 1em 0;
+    clear:both;
+}
+
+.related-stuff > span.facet-value{
+    font-size:0.9em !important;
+}
+
+
+span.availability i{
+    margin-right:0.2em;
+}
+
+span.label.book{
+    background-color:#B94A48;
+}
+span.label.edition{
+    background-color:#3A87AD;
+}
+span.label.article, span.label.journal{
+    background-color:#468847;
+}
+
+span.pubtype-label{
+    cursor:pointer;
+}
+span.facet-value{
+    cursor:pointer;
+    color:#0074B4;
+}
+
+.search-container{
+    position:relative;
+}
+.search-box{
+    position:absolute;
+    bottom:0;
+    left:0;
+}
+
+#searchForm{
+    position:relative;
+    top:85px;
+    margin:0;
+    padding:0;
+}
+
+/* facets can be either simple links (unselected) or have the css class "selected" which makes them .... correct! "selected" */
+a.selected{
+    font-weight:bold;
+    color:black;
+}
+
+div.facet.topic>ul {
+    max-height:250px;
+    overflow: hidden;
+    transition: 1s;
+    -moz-transition: 1s; /* Firefox 4 */
+    -webkit-transition: 1s; /* Safari and Chrome */
+    -o-transition: 1s; /* Opera */
+    -ms-transition: 1s; /* IE10 */
+    position: relative;
+}
+
+/* add gradient at bottom of close topic box */
+/* TODO: this is not yet ready for primetime:
+
+The gradient should disappear on hover, and that's working quite nicely.
+However, the gradient has to be put back on mouseout, but that happens 
+too early, the gradient is clearly visible before the box has retracted.
+
+div.facet.topic > ul::after {
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    content:"";
+    width: 100%;
+    height: 30px;
+    top: 230px;
+    position:absolute;
+    margin:0;
+}
+/\* remove gradient if hovering *\/
+div.facet.topic:hover>ul::after {
+    background: inherit;
+    content: "";
+}
+*/
+div.facet.topic:hover>ul {    
+    max-height: 999px;
+    overflow: hidden;
+}
+
+#latest ul{
+    padding:0 10%;
+    margin:0;
+}
+#latest ul li{
+    float:left;
+    width:25%;
+    list-style:none;
+    text-align:center;
+}
+
+#metadata > div{
+    margin:0.7em 0;
+}
+#metadata .links{
+    margin-top:0.9em;
+}
+#metadata .links a{
+    margin-right:1em;
+}
+
+div.abstract{
+    margin:1em 1em 3em 1em;
+}
+div.abstract > p{
+    margin:0 0 0.5em;
+}
+
+#toc-actions{
+    margin-bottom:5px;
+}
+#toc-root{
+    clear:both;
+}
+.toc-box-condensed {
+    height: 400px;
+    overflow:auto;
+}
+ul.toc{
+    list-style:none;
+    /* FIXME: I don't think this is proper positioning, but it works in Chrome and Firefox, so we can live with it ... */
+    padding: 1em 0 1em 2em;
+    margin: 1em 0 1em 2em;
+}
+li.toc-row{
+    padding:0.5em;
+    border-top:1px solid #ddd;
+}
+li.toc-row:hover{
+    background-color:#eaeaea;
+}
+
+div.toc-row-clickable{
+    cursor:pointer
+}
+
+div.toc-row-header {
+    /* need to set position to relative in order to position divs inside absolutely */
+    position:relative;
+}
+#toc-root > .toc-row > .toc-row-header > .links{
+    position:absolute;
+    top: 0;
+    right:0.5em;
+    bottom:-2px; /* FIXME: this is petty pixel-tweaking ... I don't like it, but I don't know how to center the buttons vertically otherwise */   
+}
+div.toc-row-header > .links{
+    /*visibility:hidden;*/
+    display: none;
+}
+li.toc-row:hover > .toc-row-header > .links{
+    /*visibility:visible;*/
+    display: block;
+}
+div.toc-row-header > .links a{
+    margin-left:.5em;
+}
+
+.toc-icon{
+    display:block;
+    float:left;
+    margin-right:0.5em;
+    font-size:smaller;
+}
+
+.toc-ordernumber{
+    display:block;
+    float:left;
+    width:4em;
+    padding-right:1em;
+    /*text-align:right;*/
+	font-size:smaller;
+}
+
+.toc-pubdate{
+    display:block;
+    float:left;
+    width:6em;
+    padding-right:1em;
+    text-align:right;
+    font-size:smaller;
+}
+
+.toc-title{
+    /*display:block;*/
+}
+/* displays "Click to view abstract" on hover on toc items */
+.click-abstract {
+     margin-left: 3em; 
+     text-shadow: 1px 1px white;
+     font-size: 85%;
+     line-height: 1em; /* otherwise, the smaller font-size adds one pixel ... va comprendre ! */
+}
+
+.toc-icon + .toc-title{
+    margin-left:1em;
+}
+
+div.toc-details{
+    margin-left:1.5em;
+}
+
+.toc-abstract{
+    display:none;
+    /*border:1px dashed #eee;*/
+    font-size:0.9em;
+    padding:0.5em;
+    margin:0.5em 0 0;
+    background-color:#fafafa;
+}
+
+.toc-sublist{
+    display:none;
+    margin-top:0.5em;
+}
+.toc-sublist > li{
+    border-top:1px dashed #ddd;
+}
+.toc-sublist > li.toc-row:hover{
+    background-color:#fff;
+}
+
+.no-js #toc-actions{
+    display:none;
+}
+.no-js .toc-sublist{
+    display:block;
+}
+.no-js .toc-abstract{
+    display:block;
+}
+
+#summaries{
+    margin:0;
+    font-size:0.9em;
+}
+
+#backlinks{
+    font-size:0.9em;
+    padding:0 1em;
+}
+#backlinks dd{
+    margin-bottom:0.5em;
+}
+/* 
+  Zurb Foundation's reset styles contain a max-width: 100% that interfere with
+  google maps bubble display.
+  
+  @see https://github.com/zurb/foundation/issues/112
+*/
+div#map-container img{
+    max-width:none;
+    height:auto;
+}
+
+div.exhibit-busyIndicator{
+    display:none;
+}
