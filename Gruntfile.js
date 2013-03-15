@@ -99,7 +99,7 @@
           dest: '<%= output %>/assets/js/app.js'
         },
         home: {
-          src: ['src/assets/js/home-*.js'],
+          src: ['src/assets/js/map/*.js', 'src/assets/js/home-*.js'],
           dest: '<%= output %>/assets/js/home.js'
         }        
       },      

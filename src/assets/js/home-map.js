@@ -54,7 +54,7 @@ $(function () {
             calculator: function (arr, num) {
                 return {
                     "text": "",
-                    /*"title": "Click to see countries in detail",*/
+                    "title": "Click to see countries represented by this cluster",
                     "index": 2
                 };
             }
@@ -96,108 +96,21 @@ $(function () {
         });
 
         var mc = new MarkerClusterer(map, markers, mcOptions);
+
+        /* TODO: have nice tooltips on mouseover on cluster icons
+        var infoboxForCluster = new InfoBox();
+        google.maps.event.addListener(mc, 'mouseover', function(c) {
+            var label = "Click here to see the " + c.getSize() + " countries represented by this cluster";
+            infoboxForCluster.setOptions({
+                content: label,
+                pixelOffset: new google.maps.Size(-75, 15),
+                closeBoxURL: ""
+            });
+            infoboxForCluster.open(map, c.getCenter());
+        });
+        google.maps.event.addListener(mc, 'mouseout', function(c) {
+            infoboxForCluster.close();
+        });*/
+
     });
 });
-
-/*        $("#map-container-gm").gmap3({
-map: {
-options: {
-center:[22.49, 89.76],
-zoom: 1,
-mapTypeId: google.maps.MapTypeId.SATELLITE,
-mapTypeControl: false,
-navigationControl: true,
-scrollwheel: true,
-streetViewControl: false, stylers:[ {
-visibility: "off"
-}]
-},
-events: {
-click: function(evt) {
-        var infowindow = $(this).gmap3({get:{name:"infowindow"}});
-if (infowindow) {
-infowindow.close();
-}
-}
-}
-},
-marker: {
-values: data, options: {
-icon: '/assets/img/small_logo.png'
-},
-cluster: {
-radius: 70,
-/\*0: {
-content: "<div class='cluster cluster-1'>CLUSTER_COUNT</div>",
-width: 50,
-height: 31
-},
-/\*20:*\/ 50: {
-content: "<div class='cluster cluster-2'>CLUSTER_COUNT</div>",
-width: 50,
-height: 31
-},*\/
-/\*50:*\/ 30: {
-content: "<div class='cluster cluster-3'>CLUSTER_COUNT</div>",
-width: 50,
-height: 31
-},
-events: {
-// events trigged by clusters
-mouseover: function (cluster) {
-},
-mouseout: function (cluster) {
-}
-}
-},
-events: {
-click: function (marker, event, context) {
-var map = $(this).gmap3("get"),
-infowindow = $(this).gmap3({
-get: {
-name: "infowindow"
-}
-});
-if (infowindow) {
-var country = context.data.country;
-var contents = "<a href='/country/" + contxt.data.code  + "'>";
-var count = context.data.count;
-if (count == 1) {
-contents += "There is only one publication on " + country;
-} else {
-contents += "There are " + count + " publications on " + country;
-}
-contents += "</a>";
-
-infowindow.open(map, marker);
-infowindow.setContent(contents);
-} else {
-$(this).gmap3({
-infowindow: {
-anchor: marker,
-options: {
-content: "<a href='/country/" + context.data.code  + "'>" +
-/\*                                        content: "<a href='/search?term=&in=country%3A" + context.data.code + "%3B&start=1&order=" + "'>" +
- *\/                                        (context.data.count == 1
-? "There is only one publication on " + context.data.country
-: "There are " + context.data.count + " publications on " + context.data.country)
-
-}
-}
-});
-}
-},
-mouseout: function () {
-var infowindow = $(this).gmap3({
-get: {
-name: "infowindow"
-}
-});
-/\*if (infowindow) {
-//infowindow.close();
-}*\/
-}
-}
-}
-
- */

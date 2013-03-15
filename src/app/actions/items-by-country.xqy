@@ -255,6 +255,7 @@ let $list :=
   for $o in $model
     let $country := collection("referential")//oe:country[@id = $o/@ref]
     let $location := map:get($locations, $o/@ref)
+    order by number($o/@frequency) descending
     return
       if($country and $location) then
         let $data := map:map()

@@ -156,7 +156,12 @@ div.right-side::before {
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
-
+.carousel .carousel-control {
+	display: none;
+}
+.carousel:hover .carousel-control {
+	display: inherit;
+}
 /* **********************************************************
 
    SOMETHING ELSE
@@ -532,6 +537,7 @@ div.toc-row-header {
 }
 #toc-root > .toc-row > .toc-row-header > .links{
     position:absolute;
+    top: 0;
     right:0.5em;
     bottom:-2px; /* FIXME: this is petty pixel-tweaking ... I don't like it, but I don't know how to center the buttons vertically otherwise */   
 }
