@@ -27,7 +27,7 @@ declare private function module:render-topic-facet($qtext as xs:string, $all-top
 as element(div)
 {
   <div class="topic facet">
-    <h6>Topics</h6>
+    <h5>Publications by topics</h5>
     <ul>
     {
       for $value in $all-topic-facets//search:facet-value
@@ -58,8 +58,9 @@ declare private function module:render-country-facet($qtext as xs:string, $all-c
 as element(div)
 {
   <div class="country facet">
+    <h5>Browse by country</h5>
     <select data-facet="country" class="span3">
-      <option value="">Filter by country</option>
+      <option value="">Select a country</option>
     {
       for $value in $all-country-facets//search:facet-value
         let $id := data($value/@name),
@@ -90,7 +91,7 @@ as element(div)
   let $max := xs:date(substring(string($pubdate-facets//search:facet-value[@name eq 'max']),1,10))
   return
   <div class="year facet">
-    <h6>Publication date</h6>
+    <h5>Publication date</h5>
     <div id="date-range-controls">
       <div id="slider-date-range"></div>
       <span class="input-append">
@@ -144,7 +145,7 @@ declare private function module:render-pubtype-facet($qtext as xs:string, $all-p
 as element(div)
 {
   <div class="pubtype facet">
-    <h6>Publication types</h6>
+    <h5>Publication types</h5>
     <ul>
     {
       for $value in $all-pubtype-facets//search:facet-value
