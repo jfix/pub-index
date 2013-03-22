@@ -15,7 +15,7 @@ declare variable $facets as node()? external;
 
 declare function local:render-latests-widget($items as element()*)
 {(
-  <h3>Latest publications <small> <a href="/search?term=&amp;in=&amp;start=1">browse all</a></small></h3>,
+  <h4>Latest publications <small> <a href="/search?term=&amp;in=&amp;start=1">browse all</a></small></h4>,
   <div id="latest" class="carousel slide">
   
     <!-- the list of little circles to indicate the available carousel items -->
@@ -79,9 +79,9 @@ declare function local:render-latests-widget($items as element()*)
 
 declare function local:render-countries-widget()
 {(
-  <h3>Browse by country <small>click on an icon to see related publications</small></h3>,
-  <div id="map-container-gm"></div>,
-  <!--<div id="map-container"></div>-->
+    <h4>Did you know that OECD publications cover more than <span class="highlight">two-hundred</span> countries? 
+    <br/><small>Explore the map below or browse the country list on the left</small></h4>
+   ,<div id="map-container-gm"></div>
 )};
 
 declare function local:render-content()
