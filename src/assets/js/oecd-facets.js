@@ -146,12 +146,12 @@ $(function () {
 
         var nbdays = (newest - oldest) / 86400000;
 
-        var converSliderIndexToDate = function converSliderIndexToDate(index) {
+        var convertSliderIndexToDate = function convertSliderIndexToDate(index) {
                 var time = oldest.getTime() + (index * 86400000);
                 return new Date(time);
             };
 
-        var converDateToSliderIndex = function converDateToSliderIndex(date) {
+        var convertDateToSliderIndex = function convertDateToSliderIndex(date) {
                 var index = (date - oldest) / 86400000;
                 return index;
             };
@@ -207,7 +207,7 @@ $(function () {
         $startDate.change(function (event) {
             var newDate = $startDate.datepicker("getDate");
             if(newDate) {
-                $slider.slider("values", 0, converDateToSliderIndex(newDate));
+                $slider.slider("values", 0, convertDateToSliderIndex(newDate));
             } else {
                 $startDate.datepicker("setDate", oldest);
                 $slider.slider("values", 0, 0);
@@ -220,7 +220,7 @@ $(function () {
         $endDate.change(function (event) {
             var newDate = $endDate.datepicker("getDate");
             if(newDate) {
-                $slider.slider("values", 1, converDateToSliderIndex(newDate));
+                $slider.slider("values", 1, convertDateToSliderIndex(newDate));
             } else {
                 $endDate.datepicker("setDate", newest);
                 $slider.slider("values", 1, nbdays);
@@ -234,11 +234,11 @@ $(function () {
             range: true,
             min: 0,
             max: nbdays,
-            values: [converDateToSliderIndex($startDate.datepicker("getDate")), converDateToSliderIndex($endDate.datepicker("getDate"))],
+            values: [convertDateToSliderIndex($startDate.datepicker("getDate")), convertDateToSliderIndex($endDate.datepicker("getDate"))],
             slide: function (event, ui) {
                 if(timeoutHandle) clearTimeout(timeoutHandle);
-                $startDate.datepicker("setDate", converSliderIndexToDate(ui.values[0]));
-                $endDate.datepicker("setDate", converSliderIndexToDate(ui.values[1]));
+                $startDate.datepicker("setDate", convertSliderIndexToDate(ui.values[0]));
+                $endDate.datepicker("setDate", convertSliderIndexToDate(ui.values[1]));
             },
             change: function (event, ui) {
                 timeoutHandle = setTimeout(submitForm, timeoutLength);
@@ -272,7 +272,19 @@ $(function () {
         }
     })();
 
-
+    /**
+     * Make the little calendar icons clickable (see #5551)
+     * 1. onhover make cursor be a hand
+     * 2. onclick display datepicker (via triggering the focus event on the text input element)
+     */
+    var $calendarIcons = $("#date-range-controls span.input-append span.add-on");
+    $calendarIcons.on("hover", function(evt) {
+       $(this).toggleClass("clickable");
+    });
+    $calendarIcons.on("click", function(evt) {
+       $(this).prev("input.datepicker").trigger("focus"); 
+    });
+    
     /**
      * When "Clear all" button on top of search results is clicked,
      * reloads page with default search.
