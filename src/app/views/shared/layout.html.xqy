@@ -28,7 +28,16 @@ declare function module:render($params as map:map) {
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">//</script>
     <![endif]-->
-
+    
+    <!-- IE Fix for gradients -->
+    <!--[if gte IE 9]>
+        <style type="text/css">
+            .gradient {
+                filter: none;
+            }
+        </style>
+    <![endif]-->
+    
     {map:get($params,'header')}
     <!-- Opensearch description document -->
     <link rel="search"
@@ -97,12 +106,12 @@ declare function module:render($params as map:map) {
         <div id="footer" class="span12">
           <ul class="footerNav">
             <li>© OECD. All rights reserved</li>
-            <li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899066_1_1_1_1,00.html">Terms &amp; Conditions</a></li>
-            <li><a href="http://www.oecd.org/document/0,3746,en_2649_201185_1899048_1_1_1_1,00.html">Privacy Policy</a></li>
-            <li><a href="http://www.marklogic.com/">Powered by MarkLogic</a></li>
-            <li><a href="http://www.oecd.org/MyOECD/0,3359,en_17642234_17642806_1_1_1_1_1,00.html">MyOECD</a></li>
-            <li><a href="http://www.oecd.org/SiteMap/0,3362,en_2649_201185_1_1_1_1_1,00.html">Site Map</a></li>
-            <li class="last"><a href="http://www.oecd.org/document/0,3746,en_2649_201185_42516321_1_1_1_1,00.html">Contact Us</a></li>
+            <li><a href="http://www.oecd.org/termsandconditions/">Terms &amp; Conditions</a></li>
+            <li><a href="http://www.oecd.org/privacy/">Privacy Policy</a></li>
+            <li><a href="http://www.oecd.org/about/publishing/orderingoecdpublications.htm">Find a local distributor</a></li>
+            <li><a href="https://www.oecd.org/login">MyOECD</a></li>
+            <li><a href="http://www.oecd.org/sitemap/">Site Map</a></li>
+            <li class="last"><a href="http://www.oecd.org/contact/">Contact Us</a></li>
           </ul>
         </div>
       </div>
