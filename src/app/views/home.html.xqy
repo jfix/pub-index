@@ -28,7 +28,7 @@ declare function local:render-latests-widget($items as element()*)
     </ol>
     
     <!-- Carousel items -->
-    <div class="carousel-inner with-border">
+    <div class="carousel-inner">
       {
         for $item at $idx in $items
         return
@@ -48,11 +48,11 @@ declare function local:render-latests-widget($items as element()*)
                             <div class="left-side" style="background-image: url(http://images.oecdcode.org/covers/340/{($item/oe:coverImage, 'cover_not_yetm.jpg')[1]})">
                             </div>
                             
-                            <div class="right-side">
+                            <div class="right-side gradient">
+                                <p class="publication-date"><strong>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</strong></p>
+                                
                                 <h4>{$bbl/dt:title/string()}</h4>
                                 <p><strong>{$bbl/oe:subTitle/text()}</strong></p>
-                                <br/>
-                                <p>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</p>
                                 <br/>
                                 <p class="abstract">{
                                     let $abstract := $bbl/dt:abstract/string()
