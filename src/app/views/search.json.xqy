@@ -27,7 +27,7 @@ let $custom :=
     return 
        (map:put($config, 
             "array-element-names", 
-            ("root", "results", "country", "topics", "topic"))
+            ("root", (:"results",:) "result", "country", (:"topics",:) "topic"))
             
         (:,
         map:put($config, "element-namespace", "http://marklogic.com/appservices/search"),
