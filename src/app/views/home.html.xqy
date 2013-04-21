@@ -49,20 +49,16 @@ declare function local:render-latests-widget($items as element()*)
                             </div>
                             
                             <div class="right-side gradient">
-                                <p class="publication-date"><strong>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</strong></p>
-                                
-                                <h4>{$bbl/dt:title/string()}</h4>
-                                <p><strong>{$bbl/oe:subTitle/text()}</strong></p>
-                                <br/>
-                                <p class="abstract">{
-                                    let $abstract := $bbl/dt:abstract/string()
-                                    return
-                                        if (string-length($abstract) gt 380)
-                                        then
-                                            concat(substring($abstract, 1, 380), " ...")
-                                        else
-                                            $abstract
-                                }</p>
+                                <div class="content-container">
+                                    <p class="publication-date"><strong>{format-dateTime($item/dt:available, '[D] [MNn] [Y]')}</strong></p>
+                                    
+                                    <h4>{$bbl/dt:title/string()}</h4>
+                                    <p><strong>{$bbl/oe:subTitle/text()}</strong></p>
+                                    <br/>
+                                    <p class="abstract">{
+                                        $bbl/dt:abstract/string()
+                                    }</p>
+                                </div>
                             </div>
                         </a>
 
@@ -107,6 +103,7 @@ let $params := map:map(),
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&amp;language=en"></script>
         ,ha:script("/assets/js/home.js")
       ))
+
 
 return
   layout:render($params)
